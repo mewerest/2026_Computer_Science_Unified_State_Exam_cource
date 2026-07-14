@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: шпаргалка для ЕГЭ</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --radius: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem 1.2rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      padding: 0.3rem 0.6rem;
+      background-color: #eaf3f9;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      color: #444;
+    }
+
+    p {
+      margin-bottom: 0.4rem;
+    }
+
+    code {
+      background-color: var(--code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9em;
+      border: 1px solid #ddd;
+    }
+
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem 0.8rem;
+      margin: 0.4rem 0;
+      overflow-x: auto;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 650px) {
+      .two-columns {
+        grid-template-columns: 1fr;
+      }
+      body {
+        padding: 0.8rem 0.6rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+
+    .note-mini {
+      background-color: #fffdf5;
+      border: 1px solid #f0e6a0;
+      border-radius: var(--radius);
+      padding: 0.4rem 0.7rem;
+      margin: 0.4rem 0;
+      font-size: 0.85rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+      margin-top: 1.5rem;
+      padding: 0.5rem;
+      background-color: #f0f7fb;
+      border-radius: var(--radius);
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>🐍 Python: шпаргалка для ЕГЭ</h1>
+  <p class="subtitle">Сжатый справочник по всем темам · Кликай на функции, чтобы открыть описание</p>
+
+  <!-- ==================== 1. ПЕРЕМЕННЫЕ И ТИПЫ ДАННЫХ ==================== -->
+  <h2>1. Переменные, типы данных и операции</h2>
+
+  <div class="two-columns">
+    <div>
+      <h3>Типы данных</h3>
+      <pre># int — целые числа
+x = 42
+
+# float — числа с плавающей точкой
+pi = 3.14
+
+# str — строки (текст)
+name = "Анна"
+
+# bool — логический тип
+flag = True   # или False</pre>
+    </div>
+    <div>
+      <h3>Арифметические операции</h3>
+      <pre>a + b    # сложение
+a - b    # вычитание
+a * b    # умножение
+a ** b   # возведение в степень
+a / b    # деление (результат — float)
+a // b   # целочисленное деление
+a % b    # остаток от деления</pre>
+    </div>
+  </div>
+
+  <div class="two-columns">
+    <div>
+      <h3>Вывод на экран</h3>
+      <pre><a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Текст")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("x =", x)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"x = {x}, y = {y}")  # f-строка</pre>
+    </div>
+    <div>
+      <h3>Узнать тип</h3>
+      <pre><a href="functions_descriptions.html#func-type" class="func-link" target="_blank">type</a>(x)       # → &lt;class 'int'&gt;
+<a href="functions_descriptions.html#func-type" class="func-link" target="_blank">type</a>("abc")   # → &lt;class 'str'&gt;</pre>
+    </div>
+  </div>
+
+  <div class="note-mini">
+    <strong>⚠️ Не путай:</strong> <code>=</code> — присваивание (<code>x = 5</code>), <code>==</code> — сравнение (<code>x == 5</code>).
+  </div>
+
+  <div class="two-columns">
+    <div>
+      <h3>Изменение переменной</h3>
+      <pre>x = 10
+x = x + 5   # x = 15
+x += 3      # x = 18 (короткая запись)
+x -= 2      # x = 16
+x *= 2      # x = 32</pre>
+    </div>
+    <div>
+      <h3>Преобразование типов</h3>
+      <pre><a href="functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>("42")        # → 42
+<a href="functions_descriptions.html#func-float" class="func-link" target="_blank">float</a>("3.14")    # → 3.14
+<a href="functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(123)         # → "123"
+<a href="functions_descriptions.html#func-list" class="func-link" target="_blank">list</a>("abc")      # → ['a', 'b', 'c']
+<a href="functions_descriptions.html#func-bool" class="func-link" target="_blank">bool</a>(0)          # → False
+<a href="functions_descriptions.html#func-bool" class="func-link" target="_blank">bool</a>(1)          # → True</pre>
+    </div>
+  </div>
+
+  <div class="two-columns">
+    <div>
+      <h3>Ввод с клавиатуры</h3>
+      <pre>name = <a href="functions_descriptions.html#func-input" class="func-link" target="_blank">input</a>("Имя: ")
+age = <a href="functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(<a href="functions_descriptions.html#func-input" class="func-link" target="_blank">input</a>("Возраст: "))</pre>
+    </div>
+  </div>
+
+  <!-- ==================== 2. УСЛОВНЫЙ ОПЕРАТОР ==================== -->
+  <h2>2. Условный оператор if-elif-else</h2>
+
+  <div class="two-columns">
+    <div>
+      <h3>Знаки сравнения</h3>
+      <pre>a == b   # равно
+a != b   # не равно
+a &gt; b    # больше
+a &lt; b    # меньше
+a &gt;= b   # больше или равно
+a &lt;= b   # меньше или равно</pre>
+    </div>
+    <div>
+      <h3>Логические операторы</h3>
+      <pre>a and b   # И  (оба True)
+a or b    # ИЛИ (хотя бы одно True)
+not a     # НЕ  (переворачивает)</pre>
+    </div>
+  </div>
+
+  <h3>Синтаксис</h3>
+  <pre>if условие1:
+    # код, если условие1 истинно
+elif условие2:
+    # код, если условие1 ложно, а условие2 истинно
+else:
+    # код, если все условия ложны</pre>
+
+  <div class="note-mini">
+    <strong>💡 Проверяется сверху вниз. Выполняется первый истинный блок, остальные пропускаются.</strong>
+  </div>
+
+  <pre>age = 17
+if age &gt;= 18:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Можно")
+elif age &gt;= 14:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Можно с родителями")
+else:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Нельзя")</pre>
+
+  <!-- ==================== 3. ЦИКЛЫ ==================== -->
+  <h2>3. Циклы for и while</h2>
+
+  <div class="two-columns">
+    <div>
+      <h3>Цикл for</h3>
+      <pre># По списку
+for item in список:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(item)
+
+# По range()
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(5):        # 0..4
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(i)
+
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(2, 6):     # 2..5
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(i)
+
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(0, 10, 2): # 0,2,4,6,8
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(i)
+
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(5, 0, -1): # 5,4,3,2,1
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(i)</pre>
+    </div>
+    <div>
+      <h3>Цикл while</h3>
+      <pre>while условие:
+    # код, пока условие True
+
+x = 5
+while x &gt; 0:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(x)
+    x -= 1</pre>
+      <h3>Прерывание цикла</h3>
+      <pre><a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a>      # выход из цикла
+<a href="functions_descriptions.html#keyword-continue" class="func-link" target="_blank">continue</a>   # пропуск итерации</pre>
+    </div>
+  </div>
+
+  <!-- ==================== 4. СТРОКИ ==================== -->
+  <h2>4. Строки</h2>
+
+  <div class="two-columns">
+    <div>
+      <h3>Срезы</h3>
+      <pre>s = "Python"
+s[0]        # 'P'
+s[-1]       # 'n'
+s[0:3]      # 'Pyt' (0,1,2)
+s[:3]       # 'Pyt'
+s[3:]       # 'hon'
+s[::-1]     # 'nohtyP' — переворот
+s[::2]      # 'Pto' — каждый второй
+<a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(s)      # 6</pre>
+    </div>
+    <div>
+      <h3>Основные методы</h3>
+      <pre>s.<a href="functions_descriptions.html#method-upper" class="func-link" target="_blank">upper</a>()           # "ПРИВЕТ"
+s.<a href="functions_descriptions.html#method-lower" class="func-link" target="_blank">lower</a>()           # "привет"
+s.<a href="functions_descriptions.html#method-strip" class="func-link" target="_blank">strip</a>()           # убрать пробелы
+s.<a href="functions_descriptions.html#method-replace" class="func-link" target="_blank">replace</a>(old, new)
+s.<a href="functions_descriptions.html#method-find" class="func-link" target="_blank">find</a>(sub)        # индекс или -1
+s.<a href="functions_descriptions.html#method-count" class="func-link" target="_blank">count</a>(sub)       # количество
+s.<a href="functions_descriptions.html#method-startswith" class="func-link" target="_blank">startswith</a>(pref) # True/False
+s.<a href="functions_descriptions.html#method-endswith" class="func-link" target="_blank">endswith</a>(suf)    # True/False
+s.<a href="functions_descriptions.html#method-isdigit" class="func-link" target="_blank">isdigit</a>()         # только цифры?
+s.<a href="functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()           # список слов
+s.<a href="functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>(",")        # список по запятой
+", ".<a href="functions_descriptions.html#method-join" class="func-link" target="_blank">join</a>(list)     # список → строка</pre>
+    </div>
+  </div>
+
+  <div class="note-mini">
+    <strong>⚠️ Строки неизменяемы.</strong> Все методы возвращают <strong>новую</strong> строку.
+  </div>
+
+  <!-- ==================== 5. СПИСКИ ==================== -->
+  <h2>5. Списки</h2>
+
+  <div class="two-columns">
+    <div>
+      <h3>Создание и доступ</h3>
+      <pre>lst = [1, 2, 3, 4, 5]
+empty = []
+mixed = [1, "текст", True]
+
+lst[0]         # 1
+lst[-1]        # 5
+lst[1:3]       # [2, 3] — срез
+<a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(lst)       # 5</pre>
+    </div>
+    <div>
+      <h3>Изменение</h3>
+      <pre>lst[0] = 99              # замена
+lst.<a href="functions_descriptions.html#method-append" class="func-link" target="_blank">append</a>(x)           # в конец
+lst.<a href="functions_descriptions.html#method-insert" class="func-link" target="_blank">insert</a>(i, x)        # на позицию i
+lst.<a href="functions_descriptions.html#method-remove" class="func-link" target="_blank">remove</a>(x)           # по значению
+lst.<a href="functions_descriptions.html#method-pop" class="func-link" target="_blank">pop</a>(i)              # по индексу
+lst.<a href="functions_descriptions.html#method-pop" class="func-link" target="_blank">pop</a>()               # последний
+lst.<a href="functions_descriptions.html#method-extend" class="func-link" target="_blank">extend</a>([x, y])      # добавить список
+lst.<a href="functions_descriptions.html#method-clear" class="func-link" target="_blank">clear</a>()             # очистить
+lst2 = lst.<a href="functions_descriptions.html#method-copy" class="func-link" target="_blank">copy</a>()        # копия</pre>
+    </div>
+  </div>
+
+  <h3>Полезные функции</h3>
+  <pre><a href="functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>(lst)          # минимум
+<a href="functions_descriptions.html#func-max" class="func-link" target="_blank">max</a>(lst)          # максимум
+<a href="functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>(lst)          # сумма (только числа)
+<a href="functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted</a>(lst)       # новый отсортированный
+lst.<a href="functions_descriptions.html#method-sort" class="func-link" target="_blank">sort</a>()          # сортировка на месте
+lst.<a href="functions_descriptions.html#method-sort" class="func-link" target="_blank">sort</a>(reverse=True)  # по убыванию
+lst.<a href="functions_descriptions.html#method-count-list" class="func-link" target="_blank">count</a>(x)        # количество вхождений
+lst.<a href="functions_descriptions.html#method-index-list" class="func-link" target="_blank">index</a>(x)        # индекс первого</pre>
+
+  <h3>Генератор списка (list comprehension)</h3>
+  <pre>[x*2 for x in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(5)]              # [0, 2, 4, 6, 8]
+[x for x in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(10) if x % 2 == 0]  # [0, 2, 4, 6, 8]
+[<a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(w) for w in слова]              # список длин слов</pre>
+
+  <!-- ==================== 6. СЛОВАРИ ==================== -->
+  <h2>6. Словари</h2>
+
+  <div class="two-columns">
+    <div>
+      <h3>Создание и доступ</h3>
+      <pre>d = {"ключ": "значение", "x": 10}
+empty = {}
+d["новый"] = 5          # добавить
+d["x"] = 20             # изменить
+val = d["ключ"]         # получить (KeyError)
+val = d.<a href="functions_descriptions.html#method-get" class="func-link" target="_blank">get</a>("ключ")    # безопасно
+val = d.<a href="functions_descriptions.html#method-get" class="func-link" target="_blank">get</a>("ключ", 0) # с умолчанием</pre>
+    </div>
+    <div>
+      <h3>Перебор</h3>
+      <pre># По ключам
+for key in d:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(key, d[key])
+
+# По парам
+for key, val in d.<a href="functions_descriptions.html#method-items" class="func-link" target="_blank">items</a>():
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(key, "→", val)
+
+# Только значения
+for val in d.<a href="functions_descriptions.html#method-values" class="func-link" target="_blank">values</a>():
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(val)
+
+# Проверка ключа
+if key <a href="functions_descriptions.html#keyword-in" class="func-link" target="_blank">in</a> d:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Есть")</pre>
+    </div>
+  </div>
+
+  <h3>Основные методы</h3>
+  <pre>d.<a href="functions_descriptions.html#method-keys" class="func-link" target="_blank">keys</a>()            # все ключи
+d.<a href="functions_descriptions.html#method-values" class="func-link" target="_blank">values</a>()          # все значения
+d.<a href="functions_descriptions.html#method-items" class="func-link" target="_blank">items</a>()           # пары (ключ, значение)
+d.<a href="functions_descriptions.html#method-pop-dict" class="func-link" target="_blank">pop</a>(key, None)    # удалить и вернуть
+d.<a href="functions_descriptions.html#method-update" class="func-link" target="_blank">update</a>(d2)        # добавить пары из d2
+<a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(d)              # количество пар</pre>
+
+  <h3>Подсчёт частоты (важнейший паттерн)</h3>
+  <pre>counter = {}
+for item in data:
+    counter[item] = counter.<a href="functions_descriptions.html#method-get" class="func-link" target="_blank">get</a>(item, 0) + 1
+
+# Ключ с максимальным значением
+max_key = <a href="functions_descriptions.html#func-max" class="func-link" target="_blank">max</a>(counter, key=counter.<a href="functions_descriptions.html#method-get" class="func-link" target="_blank">get</a>)</pre>
+
+  <!-- ==================== 7. ФУНКЦИИ ==================== -->
+  <h2>7. Функции</h2>
+
+  <div class="two-columns">
+    <div>
+      <h3>Создание функции</h3>
+      <pre><a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> имя(параметр1, параметр2):
+    """Описание."""
+    результат = параметр1 + параметр2
+    <a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> результат
+
+# Вызов
+x = имя(5, 10)   # x = 15</pre>
+    </div>
+    <div>
+      <h3>Возврат нескольких значений</h3>
+      <pre><a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> stats(a, b):
+    <a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> a+b, a*b
+
+s, p = stats(3, 5)  # s=8, p=15</pre>
+      <h3>Пустая функция</h3>
+      <pre><a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> заглушка():
+    <a href="functions_descriptions.html#keyword-pass" class="func-link" target="_blank">pass</a></pre>
+    </div>
+  </div>
+
+  <div class="note-mini">
+    <strong>💡 Локальные переменные</strong> внутри функции не видны снаружи. Используй параметры и <code><a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a></code>.
+  </div>
+
+  <!-- ==================== 8. ЧТЕНИЕ ФАЙЛОВ ==================== -->
+  <h2>8. Чтение файлов</h2>
+
+  <div class="two-columns">
+    <div>
+      <h3>Чтение всего файла</h3>
+      <pre><a href="functions_descriptions.html#keyword-with" class="func-link" target="_blank">with</a> <a href="functions_descriptions.html#func-open" class="func-link" target="_blank">open</a>("file.txt", "r",
+          encoding="utf-8") as f:
+    text = f.<a href="functions_descriptions.html#method-read" class="func-link" target="_blank">read</a>()</pre>
+    </div>
+    <div>
+      <h3>Построчное чтение</h3>
+      <pre><a href="functions_descriptions.html#keyword-with" class="func-link" target="_blank">with</a> <a href="functions_descriptions.html#func-open" class="func-link" target="_blank">open</a>("file.txt", "r",
+          encoding="utf-8") as f:
+    for line in f:
+        line = line.<a href="functions_descriptions.html#method-strip" class="func-link" target="_blank">strip</a>()
+        if line:
+            <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(line)</pre>
+    </div>
+  </div>
+
+  <h3>Другие методы чтения</h3>
+  <pre>f.<a href="functions_descriptions.html#method-read" class="func-link" target="_blank">read</a>()         # весь файл одной строкой
+f.<a href="functions_descriptions.html#method-readline" class="func-link" target="_blank">readline</a>()     # одна строка (или "" в конце)
+f.<a href="functions_descriptions.html#method-readlines" class="func-link" target="_blank">readlines</a>()    # список всех строк</pre>
+
+  <h3>Безопасное чтение</h3>
+  <pre><a href="functions_descriptions.html#keyword-try" class="func-link" target="_blank">try</a>:
+    <a href="functions_descriptions.html#keyword-with" class="func-link" target="_blank">with</a> <a href="functions_descriptions.html#func-open" class="func-link" target="_blank">open</a>("file.txt", "r", encoding="utf-8") as f:
+        data = f.<a href="functions_descriptions.html#method-read" class="func-link" target="_blank">read</a>()
+<a href="functions_descriptions.html#keyword-try" class="func-link" target="_blank">except</a> FileNotFoundError:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Файл не найден")</pre>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Шпаргалка по всем темам курса.</strong> Используй для быстрого поиска синтаксиса при решении задач. Кликай на функции, чтобы открыть подробное описание.
+  </div>
+
+</body>
+</html>

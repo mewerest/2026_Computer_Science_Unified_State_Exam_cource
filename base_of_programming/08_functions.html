@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: функции — методичка репетитора</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .theory-block p {
+      margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.95rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .func-intro {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .func-intro .func-name {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .func-intro .more-link {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+    }
+
+    .function-diagram {
+      background-color: #f0f4ff;
+      border: 2px solid #a0b8e0;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+    .function-diagram .box {
+      display: inline-block;
+      border: 2px solid #1a5f8a;
+      border-radius: 8px;
+      padding: 10px 18px;
+      margin: 5px;
+      background-color: #fff;
+      font-weight: 600;
+    }
+
+    .function-diagram .arrow {
+      display: inline-block;
+      font-size: 1.5rem;
+      margin: 0 8px;
+      color: #1a5f8a;
+    }
+
+    .function-diagram .return-box {
+      border-color: #8a3a1a;
+      background-color: #fce8e0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .task-section {
+      background-color: #f9f9f9;
+      border: 2px dashed #ccc;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1.2rem 0;
+    }
+
+    .task-section h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .task-block {
+      margin-bottom: 1.4rem;
+    }
+
+    .task-block h3 {
+      margin-top: 0.8rem;
+      color: #1a5f8a;
+    }
+
+    .star-task {
+      color: #c96f0d;
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+      .function-diagram .box {
+        display: block;
+        margin: 8px auto;
+        max-width: 250px;
+      }
+      .function-diagram .arrow {
+        display: block;
+        transform: rotate(90deg);
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>⚙️ Python: функции</h1>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем создавать собственные команды.</p>
+
+  <!-- ==================== ЧАСТЬ 1 ==================== -->
+  <h2>Часть 1. Введение в функции — зачем они нужны</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Представь, что в программе нужно трижды посчитать площадь прямоугольника. Можно скопировать код три раза, но это дублирование. Если нужно будет исправить формулу — придётся править в трёх местах.</p>
+    <p><strong>Функция</strong> — это именованный блок кода, который можно вызвать из любого места программы. Мы даём функции имя, описываем, что она делает, а затем используем это имя как команду.</p>
+  </div>
+
+  <div class="function-diagram">
+    <strong>Как работает функция:</strong><br><br>
+    <span class="box">Входные данные<br><small>(аргументы)</small></span>
+    <span class="arrow">→</span>
+    <span class="box" style="background-color: #d8eaf5;">ФУНКЦИЯ<br><small>(блок кода)</small></span>
+    <span class="arrow">→</span>
+    <span class="box return-box">Результат<br><small>(возвращаемое значение)</small></span>
+  </div>
+
+  <div class="code-block">
+    <pre># Без функций — дублирование кода
+w1, h1 = 10, 5
+area1 = w1 * h1
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Площадь 1:", area1)
+
+w2, h2 = 7, 3
+area2 = w2 * h2
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Площадь 2:", area2)
+
+# Три одинаковых блока — а если формула изменится?</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 2 ==================== -->
+  <h2>Часть 2. Создание и вызов функций</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Функция создаётся с помощью ключевого слова <code>def</code> (от «define»). После <code>def</code> идёт имя функции, круглые скобки и двоеточие. Тело функции пишется с отступом в 4 пробела. Чтобы функция выполнилась, её нужно <strong>вызвать</strong>.</p>
+  </div>
+
+  <!-- Первое упоминание def -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a></span> — ключевое слово для создания функции. После него: имя, круглые скобки с параметрами, двоеточие.</p>
+    <p class="more-link"><a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre># Определяем функцию
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> greet():
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Привет!")
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Добро пожаловать!")
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("—" * 30)
+
+# Вызываем функцию
+greet()
+greet()  # Можно сколько угодно раз</pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Важно:</strong> функция должна быть <strong>определена до её вызова</strong>. Если вызвать <code>greet()</code> до <code>def greet():</code> — ошибка <code>NameError</code>.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 3 ==================== -->
+  <h2>Часть 3. Параметры — передаём данные в функцию</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Чтобы функция была гибкой, ей можно передавать <strong>параметры</strong> — значения, с которыми она будет работать. Параметры перечисляются в скобках при определении функции. При вызове мы передаём <strong>аргументы</strong> — конкретные значения.</p>
+  </div>
+
+  <div class="code-block">
+    <pre># Функция с одним параметром
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> greet_person(name):
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"Привет, {name}!")
+
+greet_person("Анна")
+greet_person("Борис")
+
+# Функция с несколькими параметрами
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> print_area(width, height):
+    area = width * height
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"{width}×{height} = {area}")
+
+print_area(10, 5)
+print_area(7, 3)</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 4 ==================== -->
+  <h2>Часть 4. Возврат значения — оператор return</h2>
+
+  <!-- Первое упоминание return -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a></span> — завершает функцию и возвращает указанное значение в место вызова. Без <code>return</code> функция возвращает <code>None</code>.</p>
+    <p class="more-link"><a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre># Функция с return — возвращает результат
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> calculate_area(width, height):
+    area = width * height
+    <a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> area
+
+# Сохраняем результат в переменную
+area1 = calculate_area(10, 5)
+area2 = calculate_area(7, 3)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"Сумма площадей: {area1 + area2}")</pre>
+  </div>
+
+  <div class="code-block">
+    <pre># return немедленно завершает функцию
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> can_drive(age):
+    if age >= 18:
+        <a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> "Можно водить"
+    else:
+        <a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f"Ещё рано, жди {18 - age} лет"
+    # Код ниже никогда не выполнится
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(can_drive(20))
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(can_drive(14))</pre>
+  </div>
+
+  <h3>4.1 Возврат нескольких значений</h3>
+  <div class="code-block">
+    <pre># Функция возвращает сразу несколько значений
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> rectangle_info(width, height):
+    area = width * height
+    perimeter = 2 * (width + height)
+    <a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> area, perimeter
+
+rect_area, rect_perim = rectangle_info(10, 5)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"Площадь: {rect_area}, Периметр: {rect_perim}")</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 5 ==================== -->
+  <h2>Часть 5. Область видимости переменных</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Переменные, созданные внутри функции, — <strong>локальные</strong>, они «живут» только внутри этой функции. Переменные вне функций — <strong>глобальные</strong>. Функция — это «чёрный ящик», который работает со своими данными.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>global_var = "Я глобальная"
+
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> demo_scope():
+    local_var = "Я локальная"
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Внутри:", global_var)    # Глобальную видно
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Внутри:", local_var)     # Локальную видно
+
+demo_scope()
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Снаружи:", global_var)    # Глобальную видно
+# print(local_var)  # ОШИБКА! Локальная переменная не видна снаружи</pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Изменять глобальные переменные внутри функции — плохая практика.</strong> Функция должна получать данные через параметры и возвращать результат через <code>return</code>.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 6 ==================== -->
+  <h2>Часть 6. Пустые функции — заглушки pass</h2>
+
+  <!-- Первое упоминание pass -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#keyword-pass" class="func-link" target="_blank">pass</a></span> — пустая операция-заглушка. Используется там, где синтаксис требует кода, но по логике там пока ничего нет.</p>
+    <p class="more-link"><a href="functions_descriptions.html#keyword-pass" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre># Пустые функции-заглушки — программа не падает
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> start_game():
+    <a href="functions_descriptions.html#keyword-pass" class="func-link" target="_blank">pass</a>  # Реализую позже
+
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> load_level(number):
+    <a href="functions_descriptions.html#keyword-pass" class="func-link" target="_blank">pass</a>  # Реализую позже
+
+<a href="functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> save_progress():
+    <a href="functions_descriptions.html#keyword-pass" class="func-link" target="_blank">pass</a>  # Реализую позже
+
+# Программа запускается, хотя функции пока ничего не делают
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Игровой движок загружен.")
+start_game()
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Игра завершена (пока что мгновенно).")</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Пошаговая разработка:</strong> сначала создаёшь структуру программы из заглушек — программа уже работает. Потом постепенно заменяешь <code>pass</code> на реальный код. Это стандартный подход в программировании.</p>
+  </div>
+
+  <!-- ==================== ЗАДАНИЯ ==================== -->
+  <div class="task-section">
+    <h2>📝 Задания для практики (домашняя работа)</h2>
+    <p>Перед уроком реши эти задачи. Если что-то не получается — приходи с вопросами.</p>
+
+    <div class="task-block">
+      <h3>Блок A. Простые функции</h3>
+      <ol>
+        <li>Напиши функцию <code>print_separator()</code>, которая выводит строку из 30 дефисов. Вызови её три раза.</li>
+        <li>Напиши функцию <code>greet_user(name)</code>, которая принимает имя и выводит приветствие. Вызови для трёх имён.</li>
+        <li>Напиши функцию <code>print_square(side)</code>, которая принимает сторону квадрата и выводит его площадь и периметр.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок Б. Функции с return</h3>
+      <ol>
+        <li>Напиши функцию <code>multiply(a, b)</code>, которая возвращает произведение двух чисел.</li>
+        <li>Напиши функцию <code>is_even(number)</code>, которая возвращает <code>True</code> для чётного числа и <code>False</code> для нечётного. Проверь для чисел от 1 до 10.</li>
+        <li>Напиши функцию <code>max_of_three(a, b, c)</code>, которая возвращает наибольшее из трёх чисел.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок В. Комплексные функции</h3>
+      <ol>
+        <li>Напиши функцию <code>count_vowels(text)</code>, которая возвращает количество гласных букв в строке (русских, строчных).</li>
+        <li>Напиши функцию <code>is_palindrome(text)</code>, которая проверяет, является ли строка палиндромом. Перед проверкой приводи к нижнему регистру и убирай пробелы.</li>
+        <li class="star-task">★ Напиши программу «Калькулятор»: создай функции для сложения, вычитания, умножения, деления. Функцию для возведения в степень оставь с <code>pass</code>. В <code>main()</code> запроси два числа и операцию, вызови нужную функцию.</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет репетитора.</strong> Функции — это фундамент любой серьёзной программы. С этого момента старайся любую осмысленную операцию оформлять в виде функции. Правило хорошего тона: функция должна делать что-то одно и иметь понятное имя. Увидимся на уроке!
+  </div>
+
+</body>
+</html>

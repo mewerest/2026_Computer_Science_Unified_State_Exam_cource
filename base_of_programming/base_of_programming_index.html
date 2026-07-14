@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Основы программирования на Python — методички</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --accent-light: #eaf3f9;
+      --border: #e0e0e0;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .subtitle {
+      color: #555;
+      font-style: italic;
+      margin-bottom: 1.8rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    p {
+      margin-bottom: 0.8rem;
+    }
+
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      .lessons-grid {
+        grid-template-columns: 1fr;
+      }
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+
+    .lesson-card {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+
+    .lesson-card:hover {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-color: #bbb;
+    }
+
+    .lesson-card .num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 2rem;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .lesson-card .info h3 {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .lesson-card .info p {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0;
+    }
+
+    .cheat-card {
+      background-color: #fffdf5;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cheat-card .icon {
+      font-size: 2rem;
+    }
+
+    .cheat-card h3 {
+      color: #8a6d00;
+      margin-bottom: 0.2rem;
+    }
+
+    .cheat-card a {
+      color: #8a6d00;
+      font-weight: 600;
+    }
+
+    .principles {
+      background-color: var(--accent-light);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .principles ul {
+      margin: 0.5rem 0 0 1.2rem;
+    }
+
+    .principles li {
+      margin-bottom: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../index.html" class="back-link">← На главную страницу курса</a>
+
+  <h1>📚 Основы программирования на Python</h1>
+  <p class="subtitle">Методички для самостоятельного изучения · Метод «Перевёрнутый класс»</p>
+
+  <p>В этом разделе собран теоретический материал, необходимый для освоения программирования на Python с нуля. Темы выстроены по нарастающей: каждая следующая опирается на предыдущие и по возможности использует уже изученные конструкции для закрепления.</p>
+
+  <div class="principles">
+    <strong>🔁 Как работать с методичками:</strong>
+    <ul>
+      <li>Прочитай теорию и разбери примеры кода <strong>до урока</strong>.</li>
+      <li>Попробуй выполнить задания для практики самостоятельно.</li>
+      <li>На уроке разбираем вопросы, ошибки и решаем дополнительные задачи.</li>
+      <li>Кликни на имя любой функции в коде — откроется страница с её описанием.</li>
+    </ul>
+  </div>
+
+  <h2>Темы (по порядку изучения)</h2>
+
+  <div class="lessons-grid">
+
+    <a href="00_preparation.html" class="lesson-card">
+      <span class="num">0</span>
+      <div class="info">
+        <h3>Подготовка к работе</h3>
+        <p>Установка Python, запуск программ, среда разработки IDLE</p>
+      </div>
+    </a>
+
+    <a href="01_variables.html" class="lesson-card">
+      <span class="num">1</span>
+      <div class="info">
+        <h3>Переменные и типы данных</h3>
+        <p>Переменные, ввод и вывод, типы данных, арифметические операции</p>
+      </div>
+    </a>
+
+    <a href="02_condition.html" class="lesson-card">
+      <span class="num">2</span>
+      <div class="info">
+        <h3>Условные операторы</h3>
+        <p>if, else, elif, знаки сравнения, логические операторы</p>
+      </div>
+    </a>
+
+    <a href="03_cycles.html" class="lesson-card">
+      <span class="num">3</span>
+      <div class="info">
+        <h3>Циклы</h3>
+        <p>for, while, range(), break, continue</p>
+      </div>
+    </a>
+
+    <a href="04_lists.html" class="lesson-card">
+      <span class="num">4</span>
+      <div class="info">
+        <h3>Списки</h3>
+        <p>Создание, индексация, срезы, методы списков, сортировка</p>
+      </div>
+    </a>
+
+    <a href="05_strings.html" class="lesson-card">
+      <span class="num">5</span>
+      <div class="info">
+        <h3>Строки</h3>
+        <p>Срезы строк, методы строк, split(), join(), преобразование типов</p>
+      </div>
+    </a>
+
+    <a href="06_dicts.html" class="lesson-card">
+      <span class="num">6</span>
+      <div class="info">
+        <h3>Словари</h3>
+        <p>Пары «ключ-значение», перебор, подсчёт частоты, группировка</p>
+      </div>
+    </a>
+
+    <a href="07_files.html" class="lesson-card">
+      <span class="num">7</span>
+      <div class="info">
+        <h3>Чтение файлов</h3>
+        <p>open(), read(), readlines(), запись в список, обработка данных</p>
+      </div>
+    </a>
+
+    <a href="08_functions.html" class="lesson-card">
+      <span class="num">8</span>
+      <div class="info">
+        <h3>Функции</h3>
+        <p>def, параметры, return, область видимости, заглушки pass</p>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Шпаргалка -->
+  <div class="cheat-card">
+    <span class="icon">📋</span>
+    <div>
+      <h3>Шпаргалка по всем темам</h3>
+      <p>Сжатый справочник со всем синтаксисом Python, изученным в этом разделе. Держи под рукой при решении задач.</p>
+      <a href="cheat_sheet.html">Открыть шпаргалку →</a>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подготовка к ЕГЭ по информатике — методический курс</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --accent-light: #eaf3f9;
+      --border: #e0e0e0;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .hero {
+      background-color: var(--accent-light);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2rem;
+      border: 1px solid #c0d8ec;
+    }
+
+    .hero p {
+      margin-bottom: 0.5rem;
+    }
+
+    .method-note {
+      background-color: #fffdf5;
+      border: 1px solid #f0e6a0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .method-note strong {
+      color: #8a6d00;
+    }
+
+    .section-card {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0;
+      transition: box-shadow 0.2s;
+    }
+
+    .section-card:hover {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+
+    .section-card h3 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-card a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.4rem 1rem;
+      background-color: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .section-card a:hover {
+      background-color: #134b6e;
+    }
+
+    .structure-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 1rem 0;
+    }
+
+    .structure-list li {
+      margin-bottom: 0.6rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .structure-list li::before {
+      content: "📄";
+      position: absolute;
+      left: 0;
+      font-size: 0.9rem;
+    }
+
+    .structure-list li.folder::before {
+      content: "📁";
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #888;
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🐍 Подготовка к ЕГЭ по информатике</h1>
+  <p style="font-size: 1.05rem; color: #555; font-style: italic;">Методический курс по программированию на Python</p>
+
+  <div class="hero">
+    <p>Этот курс создан для последовательной подготовки к ЕГЭ по информатике. Он состоит из двух больших разделов:</p>
+    <ul style="margin: 0.5rem 0 0 1.2rem;">
+      <li><strong>Основы программирования</strong> — изучение Python с нуля до уверенного владения базовыми конструкциями.</li>
+      <li><strong>Разбор заданий ЕГЭ</strong> — пошаговые алгоритмы решения всех 27 заданий экзамена.</li>
+    </ul>
+  </div>
+
+  <!-- Метод перевёрнутого класса -->
+  <div class="method-note">
+    <strong>🔁 Метод «Перевёрнутый класс»</strong><br>
+    Этот курс построен по принципу <em>перевёрнутого класса</em>. Ученик самостоятельно изучает теорию по методичкам до занятия, а на уроке время посвящается практике, разбору вопросов и решению задач. Такой подход позволяет глубже усвоить материал и не тратить драгоценное время урока на лекции.
+  </div>
+
+  <h2>📚 Структура курса</h2>
+
+  <div class="section-card">
+    <h3>Раздел 1. Основы программирования на Python</h3>
+    <p>Последовательное изучение языка с нуля: от установки Python до написания собственных функций. Каждая тема опирается на предыдущие — материал даётся по нарастающей.</p>
+    <p><strong>Темы:</strong> установка и настройка · переменные и типы данных · условные операторы · циклы · списки · строки · словари · чтение файлов · функции</p>
+    <a href="base_of_programming/base_of_programming_index.html">Перейти к разделу →</a>
+  </div>
+
+  <div class="section-card">
+    <h3>Раздел 2. Разбор заданий ЕГЭ</h3>
+    <p>Подробные алгоритмы решения всех 27 заданий ЕГЭ по информатике с примерами кода на Python. Для каждого задания — описание подхода, типовые ошибки и тренировочные варианты.</p>
+    <p><strong>Задания:</strong> с №1 по №27</p>
+    <a href="tasks/tasks_index.html">Перейти к разделу →</a>
+  </div>
+
+  <h2>📁 Структура репозитория</h2>
+  <ul class="structure-list">
+    <li class="folder"><strong>base_of_programming/</strong> — методички по основам программирования</li>
+    <li class="folder"><strong>tasks/</strong> — разборы заданий ЕГЭ</li>
+    <li><strong>index.html</strong> — эта страница (введение и обзор курса)</li>
+  </ul>
+
+  <h2>🚀 Как работать с курсом</h2>
+  <ol>
+    <li><strong>Начни с основ.</strong> Если ты никогда не программировал — проходи раздел «Основы программирования» по порядку, от первой до последней методички.</li>
+    <li><strong>Изучай теорию дома.</strong> Читай методичку, пробуй примеры кода, выполняй задания для практики.</li>
+    <li><strong>Приходи на урок с вопросами.</strong> Всё, что не получилось или осталось непонятным — разбираем вместе.</li>
+    <li><strong>Используй шпаргалку.</strong> В конце раздела основ есть сводная шпаргалка по всем темам — держи её под рукой.</li>
+    <li><strong>Переходи к задачам ЕГЭ.</strong> Когда база освоена, начинай решать задания из второго раздела.</li>
+  </ol>
+
+  <div class="footer-note">
+    Методический курс · Актуально для ЕГЭ 2025–2026
+  </div>
+
+</body>
+</html>

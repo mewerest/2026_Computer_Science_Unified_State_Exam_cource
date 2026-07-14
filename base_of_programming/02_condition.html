@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: условные операторы — методичка репетитора</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .theory-block p {
+      margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.95rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .task-section {
+      background-color: #f9f9f9;
+      border: 2px dashed #ccc;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1.2rem 0;
+    }
+
+    .task-section h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .task-block {
+      margin-bottom: 1.4rem;
+    }
+
+    .task-block h3 {
+      margin-top: 0.8rem;
+      color: #1a5f8a;
+    }
+
+    .star-task {
+      color: #c96f0d;
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>🔀 Python: условные операторы</h1>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем принимать решения вместе с кодом.</p>
+
+  <!-- ==================== ЧАСТЬ 1 ==================== -->
+  <h2>Часть 1. Проверка условий и знаки сравнения</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Любое условие в программировании — это вопрос, на который можно ответить «да» или «нет». В Python ответ «да» — это специальное значение <code>True</code> (истина), а ответ «нет» — <code>False</code> (ложь). Вместе они называются <strong>булевым типом данных</strong> (<code>bool</code>).</p>
+    <p>Чтобы задать вопрос о сравнении двух величин, мы используем <strong>знаки сравнения</strong> — они очень похожи на математические, но есть важные отличия.</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Знак</th>
+        <th>Значение</th>
+        <th>Пример условия</th>
+        <th>Результат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>==</code></td>
+        <td>равно</td>
+        <td><code>5 == 5</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>!=</code></td>
+        <td>не равно</td>
+        <td><code>5 != 3</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>&gt;</code></td>
+        <td>больше</td>
+        <td><code>7 &gt; 4</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>&lt;</code></td>
+        <td>меньше</td>
+        <td><code>2 &lt; 8</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>&gt;=</code></td>
+        <td>больше или равно</td>
+        <td><code>6 &gt;= 6</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>&lt;=</code></td>
+        <td>меньше или равно</td>
+        <td><code>10 &lt;= 9</code></td>
+        <td><code>False</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Внимание!</strong> Не путай <code>=</code> (оператор присваивания) и <code>==</code> (знак сравнения «равно»).</p>
+    <p><code>x = 5</code> — «положи в переменную x число 5».</p>
+    <p><code>x == 5</code> — «правда ли, что x равен 5?»</p>
+  </div>
+
+  <div class="code-block">
+    <pre>x = 10
+y = 20
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("x равно y?", x == y)       # False
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("x не равно y?", x != y)    # True
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("x меньше y?", x < y)       # True
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("x больше или равно 10?", x >= 10)  # True</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 2 ==================== -->
+  <h2>Часть 2. Условный оператор if — принимаем первое решение</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Условный оператор <code>if</code> (с английского — «если») — это основа принятия решений в программировании. Он позволяет выполнить определённый блок кода только в том случае, если заданное условие истинно (<code>True</code>). Если условие ложно — код внутри блока просто пропускается.</p>
+    <p><strong>Структура оператора <code>if</code>:</strong></p>
+    <ul>
+      <li>Ключевое слово <code>if</code>, после него — условие и двоеточие.</li>
+      <li>Со следующей строки — <strong>обязательный отступ в 4 пробела</strong> (или один Tab). Все строки с одинаковым отступом образуют тело условия.</li>
+      <li>Код без отступа — программа продолжается независимо от условия.</li>
+    </ul>
+  </div>
+
+  <div class="code-block">
+    <pre>temperature = 25
+
+if temperature > 20:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("На улице тепло, можно идти гулять!")
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Не забудь взять воду.")
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Программа завершена.")  # Эта строка выполнится всегда</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Обрати внимание:</strong> если ввести <code>temperature = 15</code> и запустить код, два сообщения внутри <code>if</code> не появятся. Программа просто пропустит этот блок и сразу напечатает «Программа завершена».</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 3 ==================== -->
+  <h2>Часть 3. Конструкция else — план «Б»</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Часто нам нужно не только выполнить действие, когда условие истинно, но и предусмотреть альтернативу на случай, если условие ложно. Для этого используется конструкция <code>else</code> (с английского — «иначе»).</p>
+    <p><code>else</code> не имеет собственного условия — он срабатывает автоматически, когда условие в <code>if</code> оказалось ложным. Это как светофор: «если зелёный — иди, иначе — стой».</p>
+  </div>
+
+  <div class="code-block">
+    <pre>age = 16
+
+if age >= 18:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Доступ разрешён.")
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Добро пожаловать!")
+else:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Доступ запрещён.")
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Приходи через", 18 - age, "года/лет.")
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Проверка завершена.")</pre>
+  </div>
+
+  <div class="theory-block">
+    <p><strong>Важное правило:</strong> <code>else</code> всегда пишется на том же уровне отступа, что и <code>if</code>, и после него тоже ставится двоеточие. Его тело точно так же выделяется отступом в 4 пробела.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 4 ==================== -->
+  <h2>Часть 4. Проверка нескольких условий: elif и вложенные проверки</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> В жизни редко бывает только два варианта. Для цепочек проверок в Python есть конструкция <code>elif</code> (сокращение от «else if» — «иначе если»).</p>
+    <p><strong>Как это работает:</strong></p>
+    <ul>
+      <li>Python проверяет условия по порядку сверху вниз.</li>
+      <li>Как только находится первое истинное условие — выполняется его блок.</li>
+      <li>Все последующие <code>elif</code> и <code>else</code> <strong>игнорируются</strong>.</li>
+      <li>Если ни одно условие не истинно — срабатывает <code>else</code> (если он есть).</li>
+    </ul>
+  </div>
+
+  <div class="code-block">
+    <pre>health = 65
+
+if health >= 80:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Герой полон сил!")
+elif health >= 30:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Герой ранен, но ещё в строю.")
+elif health > 0:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Герой при смерти! Нужно лечение.")
+else:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Герой пал в бою...")
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Текущее здоровье:", health)</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Ключевой момент:</strong> в примере выше <code>health = 65</code>. Это удовлетворяет и второму (<code>&gt;= 30</code>), и третьему (<code>&gt; 0</code>) условию. Но выполнится <strong>только второй блок</strong> — тот, что встретился первым. Дальше проверка прекращается.</p>
+  </div>
+
+  <h3>4.1 Вложенные условия</h3>
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Иногда одного условия недостаточно, и решение зависит от комбинации факторов. В таких случаях можно поместить один <code>if</code> внутрь другого. Это называется <strong>вложенным условием</strong>.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>age = 20
+has_ticket = True
+
+if age >= 18:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Возраст подходит.")
+    # Это вложенная проверка — она выполняется, только если age >= 18
+    if has_ticket == True:
+        <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Билет есть. Проходи!")
+    else:
+        <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Билета нет. Купи на входе.")
+else:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Вход только с 18 лет.")
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Охрана завершила проверку.")</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 5 ==================== -->
+  <h2>Часть 5. Логические операторы: and, or, not</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Часто нужно проверить не одно условие, а сразу несколько одновременно или в комбинации. Для этого существуют <strong>логические операторы</strong>. Они позволяют строить составные условия и делают код лаконичнее, чем вложенные <code>if</code>.</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Оператор</th>
+        <th>Значение</th>
+        <th>Результат <code>True</code>, если…</th>
+        <th>Пример</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>and</code></td>
+        <td>логическое И</td>
+        <td>оба условия истинны</td>
+        <td><code>age &gt;= 18 and has_ticket</code></td>
+      </tr>
+      <tr>
+        <td><code>or</code></td>
+        <td>логическое ИЛИ</td>
+        <td>хотя бы одно условие истинно</td>
+        <td><code>day == "сб" or day == "вс"</code></td>
+      </tr>
+      <tr>
+        <td><code>not</code></td>
+        <td>логическое НЕ</td>
+        <td>условие ложно (переворачивает)</td>
+        <td><code>not is_blocked</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="code-block">
+    <pre># Пример с and — оба условия должны быть истинны
+temperature = 22
+is_sunny = True
+
+if temperature > 20 and is_sunny == True:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Идеальная погода для прогулки!")
+else:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Лучше остаться дома.")
+
+# Пример с or — достаточно одного истинного условия
+day = "суббота"
+if day == "суббота" or day == "воскресенье":
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Ура, выходной!")
+else:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Сегодня рабочий день.")
+
+# Пример с not — переворачивает значение
+is_raining = False
+if not is_raining:  # то же самое, что is_raining == False
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Зонт не нужен.")</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Лайфхак:</strong> можно комбинировать операторы и использовать скобки для группировки, как в математике:</p>
+    <p><code>if (age &gt;= 18 and has_ticket) or is_vip:</code> — «пустить, если есть 18 лет и билет, либо если вип-гость».</p>
+  </div>
+
+  <!-- ==================== ЗАДАНИЯ ==================== -->
+  <div class="task-section">
+    <h2>📝 Задания для практики (домашняя работа)</h2>
+    <p>Перед уроком реши эти задачи. Если где-то застрял — не беда, на занятии разберём каждый шаг.</p>
+
+    <div class="task-block">
+      <h3>Блок A. Понимание условий и if-else</h3>
+      <ol>
+        <li>Создай переменную <code>number</code> с любым целым числом. Напиши программу, которая выводит «Число положительное», если оно больше нуля, и «Число отрицательное или ноль» — в противном случае.</li>
+        <li>Напиши программу, которая проверяет, является ли число чётным. (<em>Подсказка: используй оператор <code>%</code> — если остаток от деления на 2 равен 0, число чётное.</em>)</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок Б. Цепочки условий с elif</h3>
+      <ol>
+        <li>Создай переменную <code>score</code> (оценка от 0 до 100). Напиши программу, которая выводит словесную оценку:
+          <ul>
+            <li>90–100: «Отлично»</li>
+            <li>75–89: «Хорошо»</li>
+            <li>60–74: «Удовлетворительно»</li>
+            <li>Меньше 60: «Нужно подтянуть»</li>
+          </ul>
+        </li>
+        <li class="star-task">★ Задача со звёздочкой: напиши программу, которая по номеру месяца (1–12) выводит время года. Например: 12, 1, 2 — «Зима», 3, 4, 5 — «Весна» и так далее. Используй <code>or</code> для объединения месяцев внутри одного <code>elif</code>.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок В. Логические операторы и вложенные условия</h3>
+      <ol>
+        <li>Напиши программу-«проверку доступа». Даны переменные <code>is_logged_in = True</code> (залогинен ли пользователь) и <code>is_admin = False</code> (является ли администратором). Если пользователь залогинен и администратор — выведи «Добро пожаловать, администратор». Если просто залогинен — «Добро пожаловать, пользователь». Иначе — «Доступ запрещён, войдите в систему».</li>
+        <li>Напиши программу, которая имитирует светофор. Создай переменную <code>color</code> со значением <code>"зелёный"</code>, <code>"жёлтый"</code> или <code>"красный"</code>. Выведи соответствующее действие: «Идти», «Приготовиться» или «Стоять». Для любого другого значения выведи «Светофор сломан».</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет репетитора.</strong> Поиграй с примерами из методички: меняй значения переменных, добавляй новые <code>print()</code> внутри блоков <code>if</code> и смотри, как меняется вывод. Условные операторы — это сердце логики любой программы. Почувствуй их, и дальше будет только интереснее!
+  </div>
+
+</body>
+</html>

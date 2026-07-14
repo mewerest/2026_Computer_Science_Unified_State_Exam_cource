@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: циклы — методичка репетитора</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .theory-block p {
+      margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.95rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .task-section {
+      background-color: #f9f9f9;
+      border: 2px dashed #ccc;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1.2rem 0;
+    }
+
+    .task-section h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .task-block {
+      margin-bottom: 1.4rem;
+    }
+
+    .task-block h3 {
+      margin-top: 0.8rem;
+      color: #1a5f8a;
+    }
+
+    .star-task {
+      color: #c96f0d;
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>🔁 Python: циклы</h1>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем повторять, пока не получится.</p>
+
+  <!-- ==================== ЧАСТЬ 1 ==================== -->
+  <h2>Часть 1. Введение в циклы — зачем они нужны</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Представь, что тебе нужно вывести числа от 1 до 100. Писать сто строк с <a href="functions_descriptions.html#func-print" class="func-link" target="_blank"><code>print()</code></a> — это долго и скучно. А если нужно вывести числа до миллиона? Вот тут на помощь приходят <strong>циклы</strong>.</p>
+    <p><strong>Цикл</strong> — это конструкция, которая позволяет выполнить один и тот же блок кода много раз. Вместо копирования строк мы описываем правило один раз, а компьютер повторяет его столько, сколько нужно.</p>
+    <p>В Python два основных вида циклов:</p>
+    <ul>
+      <li><strong>Цикл <code>for</code></strong> — используется, когда мы <strong>заранее знаем</strong>, сколько повторений нужно, или когда нужно перебрать элементы коллекции (списка, строки и т.д.).</li>
+      <li><strong>Цикл <code>while</code></strong> — используется, когда количество повторений <strong>заранее неизвестно</strong> и зависит от условия. Он повторяется, пока условие остаётся истинным.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 2 ==================== -->
+  <h2>Часть 2. Структура цикла for</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Цикл <code>for</code> последовательно перебирает элементы коллекции. На каждом шаге он берёт очередной элемент, присваивает его переменной и выполняет тело цикла. Когда элементы заканчиваются — цикл завершается.</p>
+    <p><strong>Структура:</strong></p>
+    <ul>
+      <li>Ключевое слово <code>for</code>.</li>
+      <li>Имя переменной (придумываем сами).</li>
+      <li>Ключевое слово <code>in</code>.</li>
+      <li>Коллекция (список, строка, диапазон).</li>
+      <li>Двоеточие.</li>
+      <li>Тело цикла с отступом в 4 пробела.</li>
+    </ul>
+  </div>
+
+  <div class="code-block">
+    <pre># Цикл for по списку — перебираем элементы
+fruits = ["яблоко", "банан", "апельсин"]
+
+for fruit in fruits:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Сейчас обрабатывается:", fruit)
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Я люблю этот фрукт!")
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Цикл завершён.")  # Без отступа — выполнится один раз после цикла</pre>
+  </div>
+
+  <div class="code-block">
+    <pre># Цикл for по строке — перебираем символы
+word = "Python"
+
+for letter in word:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Буква:", letter)</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 3 ==================== -->
+  <h2>Часть 3. Функция range() — числовые последовательности</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Чтобы выполнить цикл определённое количество раз, не создавая список вручную, используют функцию <code>range()</code>. Она генерирует последовательность чисел «на лету», не занимая лишнюю память.</p>
+  </div>
+
+  <!-- Первое упоминание range() — с описанием -->
+  <div class="func-intro" style="background-color: #eaf3f9; border: 1px solid #b0c8dc; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0; font-size: 0.95rem;">
+    <p><span style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range()</a></span> — генерирует последовательность целых чисел. Число <code>конец</code> никогда не включается. Может принимать от 1 до 3 аргументов.</p>
+    <p style="font-size: 0.85rem; margin-top: 0.3rem;"><a href="functions_descriptions.html#func-range" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Форма</th>
+        <th>Значение</th>
+        <th>Пример</th>
+        <th>Результат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>range(конец)</code></td>
+        <td>От 0 до конец-1</td>
+        <td><code>range(5)</code></td>
+        <td>0, 1, 2, 3, 4</td>
+      </tr>
+      <tr>
+        <td><code>range(начало, конец)</code></td>
+        <td>От начало до конец-1</td>
+        <td><code>range(2, 6)</code></td>
+        <td>2, 3, 4, 5</td>
+      </tr>
+      <tr>
+        <td><code>range(начало, конец, шаг)</code></td>
+        <td>От начало до конец-1 с шагом</td>
+        <td><code>range(1, 10, 2)</code></td>
+        <td>1, 3, 5, 7, 9</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Ключевое правило:</strong> число <code>конец</code> <strong>никогда не включается</strong> в результат. <code>range(5)</code> — это числа 0, 1, 2, 3, 4 (пять чисел, но пятый индекс не включается).</p>
+  </div>
+
+  <div class="code-block">
+    <pre># range(конец) — от 0 до 4
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("range(5):")
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(5):
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(i)                            # 0, 1, 2, 3, 4
+
+# range(начало, конец) — от 3 до 7
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("\nrange(3, 8):")
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(3, 8):
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(i)                            # 3, 4, 5, 6, 7
+
+# range(начало, конец, шаг) — от 0 до 9 с шагом 2
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("\nrange(0, 10, 2):")
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(0, 10, 2):
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(i)                            # 0, 2, 4, 6, 8
+
+# Обратный отсчёт — шаг -1
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("\nОбратный отсчёт:")
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(5, 0, -1):
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(i)                            # 5, 4, 3, 2, 1</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Перебор индексов:</strong> <code>for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(<a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(список))</code> — перебирает индексы от 0 до длины-1. Полезно, когда нужно знать позицию элемента или изменить его.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 4 ==================== -->
+  <h2>Часть 4. Цикл while — повторяем, пока условие истинно</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Цикл <code>while</code> (с английского — «пока») выполняет блок кода до тех пор, пока условие остаётся истинным (<code>True</code>). Как только условие становится ложным — цикл останавливается.</p>
+    <p>Цикл <code>while</code> удобен, когда мы не знаем заранее, сколько именно шагов потребуется: например, запрашиваем пароль у пользователя, пока он не введёт правильный, или ждём определённого события в игре.</p>
+  </div>
+
+  <div class="code-block">
+    <pre># Простой счётчик с while
+counter = 1
+
+while counter <= 5:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Шаг номер", counter)
+    counter += 1                  # Увеличиваем счётчик — важно!
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Цикл завершён. counter =", counter)</pre>
+  </div>
+
+  <div class="code-block">
+    <pre># Пример — считаем сумму цифр числа
+number = 12345
+sum_digits = 0
+
+while number > 0:
+    digit = number % 10            # Получаем последнюю цифру
+    sum_digits += digit            # Добавляем к сумме
+    number = number // 10          # Отбрасываем последнюю цифру
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Сумма цифр:", sum_digits)   # 15</pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Осторожно — бесконечный цикл!</strong> Если условие в <code>while</code> никогда не станет ложным, цикл будет выполняться бесконечно, и программа зависнет. Например: <code>while True: print("Бесконечность...")</code>. Всегда проверяй, что внутри цикла есть код, который в какой-то момент изменит условие на <code>False</code>.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 5 ==================== -->
+  <h2>Часть 5. Прерывание цикла — break и continue</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Иногда нужно не просто дождаться конца цикла, а прервать его досрочно или пропустить отдельные итерации. Для этого есть два оператора:</p>
+  </div>
+
+  <!-- Первое упоминание break и continue — с описанием -->
+  <div class="func-intro" style="background-color: #eaf3f9; border: 1px solid #b0c8dc; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0; font-size: 0.95rem;">
+    <p><span style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></span> — немедленно прерывает выполнение цикла. Программа выходит из цикла и продолжает выполнение с первой строки после него.</p>
+    <p style="margin-top: 0.5rem;"><span style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a href="functions_descriptions.html#keyword-continue" class="func-link" target="_blank">continue</a></span> — пропускает оставшуюся часть <strong>текущей итерации</strong> и переходит к следующей. Цикл не прерывается полностью.</p>
+    <p style="font-size: 0.85rem; margin-top: 0.3rem;"><a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre># break — ищем первое отрицательное число и останавливаемся
+numbers = [5, 8, 12, -3, 7, 9, -1, 4]
+
+for num in numbers:
+    if num < 0:
+        <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Нашёл отрицательное число:", num)
+        <a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a>                       # Выходим из цикла
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Проверил:", num)
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Поиск завершён.")</pre>
+  </div>
+
+  <div class="code-block">
+    <pre># continue — пропускаем все отрицательные числа
+numbers = [5, -2, 8, -7, 12, -3, 9]
+
+for num in numbers:
+    if num < 0:
+        <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Пропускаю отрицательное:", num)
+        <a href="functions_descriptions.html#keyword-continue" class="func-link" target="_blank">continue</a>                    # Переходим к следующему числу
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Обрабатываю:", num * 2)  # Выполнится только для положительных</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 6 ==================== -->
+  <h2>Часть 6. Проверка нескольких условий в цикле</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Внутри цикла можно использовать любые конструкции: условные операторы, вложенные циклы, логические операторы. Это позволяет строить сложную логику обработки данных.</p>
+  </div>
+
+  <div class="code-block">
+    <pre># Классифицируем числа из списка
+numbers = [10, -5, 0, 23, -18, 7, 0, 42, -3]
+positive = 0
+negative = 0
+zero = 0
+
+for num in numbers:
+    if num > 0:
+        positive += 1
+    elif num < 0:
+        negative += 1
+    else:
+        zero += 1
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"Положительных: {positive}, отрицательных: {negative}, нулей: {zero}")</pre>
+  </div>
+
+  <div class="code-block">
+    <pre># Поиск с несколькими условиями
+numbers = [13, 27, 48, 55, 62, 71, 84]
+
+for num in numbers:
+    if num > 50 and num % 2 == 0:   # Больше 50 И чётное
+        <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Нашёл подходящее число:", num)
+        <a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a>
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(num, "не подходит")</pre>
+  </div>
+
+  <div class="code-block">
+    <pre># Совмещение while и нескольких условий — игровая механика
+health = 100
+hit_count = 0
+
+while health > 0:
+    hit_count += 1
+    if hit_count % 3 == 0:       # Каждый третий удар — критический
+        damage = 30
+        <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"Удар {hit_count}: КРИТИЧЕСКИЙ! -{damage} HP")
+    else:
+        damage = 10
+        <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"Удар {hit_count}: обычный. -{damage} HP")
+    health -= damage
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"Осталось здоровья: {health}")
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"\nГерой продержался {hit_count} ударов.")</pre>
+  </div>
+
+  <!-- ==================== ЗАДАНИЯ ==================== -->
+  <div class="task-section">
+    <h2>📝 Задания для практики (домашняя работа)</h2>
+    <p>Перед уроком реши эти задачи. Если что-то не получается — приходи с вопросами, разберём всё на занятии.</p>
+
+    <div class="task-block">
+      <h3>Блок A. Цикл for и range()</h3>
+      <ol>
+        <li>С помощью цикла <code>for</code> и <a href="functions_descriptions.html#func-range" class="func-link" target="_blank"><code>range()</code></a> выведи все числа от 1 до 20 включительно.</li>
+        <li>Выведи все чётные числа от 2 до 30 включительно. <em>(Подсказка: используй <code>range</code> с шагом.)</em></li>
+        <li>Выведи таблицу умножения для числа 7: от «7 × 1 = 7» до «7 × 10 = 70».</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок Б. Цикл while</h3>
+      <ol>
+        <li>Напиши программу, которая выводит числа от 10 до 1 в обратном порядке (обратный отсчёт). Используй цикл <code>while</code>.</li>
+        <li>Создай переменную <code>balance = 1000</code> (баланс в рублях). Напиши цикл <code>while</code>, который на каждом шаге уменьшает баланс на 150 рублей и выводит остаток. Цикл должен остановиться, когда баланс станет меньше 150 рублей.</li>
+        <li class="star-task">★ Напиши программу, которая запрашивает у пользователя число и выводит его факториал. Например, для 5: 5! = 1 × 2 × 3 × 4 × 5 = 120.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок В. break, continue и несколько условий</h3>
+      <ol>
+        <li>Дан список чисел: <code>[12, 45, 7, 30, 89, 23, 5, 68]</code>. Напиши цикл, который ищет первое число больше 50 и выводит его. Как только нашёл — прерывай цикл с помощью <a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank"><code>break</code></a>.</li>
+        <li>Дан список чисел: <code>[8, -3, 15, 0, -7, 22, -1, 9]</code>. Напиши цикл, который выводит только положительные числа, а отрицательные и ноль пропускает с помощью <a href="functions_descriptions.html#keyword-continue" class="func-link" target="_blank"><code>continue</code></a>.</li>
+        <li>Напиши программу, которая находит и выводит сумму всех чисел от 1 до 100, которые делятся на 3 или на 5.</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет репетитора.</strong> Циклы — это то, ради чего и придумали компьютеры: делать однообразную работу быстро и без ошибок. Попробуй <strong>мысленно пройти</strong> каждый пример из методички, записывая значения переменных на бумаге на каждом шаге. Это лучший способ понять, как работает цикл изнутри.
+  </div>
+
+</body>
+</html>

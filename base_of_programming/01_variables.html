@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: переменные и типы данных — методичка репетитора</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .theory-block p {
+      margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.95rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .func-intro {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .func-intro .func-name {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .func-intro .more-link {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .task-section {
+      background-color: #f9f9f9;
+      border: 2px dashed #ccc;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1.2rem 0;
+    }
+
+    .task-section h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .task-block {
+      margin-bottom: 1.4rem;
+    }
+
+    .task-block h3 {
+      margin-top: 0.8rem;
+      color: #1a5f8a;
+    }
+
+    .star-task {
+      color: #c96f0d;
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>🐍 Python: переменные и типы данных</h1>
+  <p class="subtitle">Методичка ученика · Перед уроком прочитай теорию и попробуй примеры — на занятии будем практиковаться.</p>
+
+  <!-- ==================== ЧАСТЬ 1 ==================== -->
+  <h2>Часть 1. «Привет, мир!» — вывод на экран</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Программа — это набор инструкций. Чтобы увидеть результат работы программы, мы используем функцию, которая выводит данные на экран. В Python она называется <code>print()</code>. Всё, что мы помещаем внутрь скобок, отображается в консоли.</p>
+    <p>Текст обязательно пишется в кавычках (одинарных или двойных). Числа можно передавать без кавычек.</p>
+  </div>
+
+  <!-- Первое упоминание print() — с описанием -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print()</a></span> — выводит переданные объекты на экран. Можно передавать сколько угодно объектов через запятую.</p>
+    <p class="more-link"><a href="functions_descriptions.html#func-print" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Привет, мир!")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('Я учу Python')
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(2024)  # Числа можно выводить без кавычек</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Комментарии в коде:</strong> всё, что идёт после символа <code>#</code> — это комментарий. Python игнорирует комментарии, они нужны для пояснений. Пиши комментарии, чтобы не забыть, что делает твой код.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 2 ==================== -->
+  <h2>Часть 2. Переменные — именованные «коробки» для данных</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Компьютер постоянно работает с данными. Чтобы было удобно к ним обращаться, мы даём данным имена — создаём <strong>переменные</strong>. Представь, что переменная — это коробка с наклейкой: на коробке написано имя, а внутри лежит значение.</p>
+    <p>Знак <code>=</code> в Python — это не математическое «равно», а <strong>оператор присваивания</strong>. Он говорит: «положи в переменную слева значение, которое находится справа». Сначала вычисляется правая часть, затем результат кладётся в переменную.</p>
+  </div>
+
+  <div class="code-block">
+    <pre># Создаём переменные
+name = "Алиса"        # Переменная name хранит строку "Алиса"
+age = 16              # Переменная age хранит число 16
+height = 1.68         # Переменная height хранит число 1.68
+
+# Выводим значения переменных
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(name)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(age)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(height)</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 3 ==================== -->
+  <h2>Часть 3. Базовые типы данных</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Данные в Python бывают разных <strong>типов</strong>. Тип определяет, какие операции можно выполнять с данными. Три главных типа для старта:</p>
+    <ul>
+      <li><strong>Целые числа (<code>int</code>)</strong> — <code>5</code>, <code>100</code>, <code>-3</code></li>
+      <li><strong>Числа с плавающей точкой (<code>float</code>)</strong> — <code>3.14</code>, <code>-0.5</code>, <code>2.0</code></li>
+      <li><strong>Строки (<code>str</code>)</strong> — любой текст: <code>"Hello"</code>, <code>"123"</code> (это уже не число, а строка символов!)</li>
+    </ul>
+  </div>
+
+  <!-- Первое упоминание type() — с описанием -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#func-type" class="func-link" target="_blank">type()</a></span> — возвращает тип переданного объекта. Полезно, чтобы убедиться, с каким именно типом мы работаем.</p>
+    <p class="more-link"><a href="functions_descriptions.html#func-type" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre>name = "Алиса"
+age = 16
+height = 1.68
+
+# Узнаем типы данных с помощью type()
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="functions_descriptions.html#func-type" class="func-link" target="_blank">type</a>(name))    # &lt;class 'str'&gt;
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="functions_descriptions.html#func-type" class="func-link" target="_blank">type</a>(age))     # &lt;class 'int'&gt;
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="functions_descriptions.html#func-type" class="func-link" target="_blank">type</a>(height))  # &lt;class 'float'&gt;</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 4 ==================== -->
+  <h2>Часть 4. Арифметические операции</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Python отлично считает. Все действия выполняются с помощью специальных знаков — <strong>операторов</strong>. Результат операции зависит от того, какой оператор мы выбрали, и от типов чисел, которые в ней участвуют.</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Оператор</th>
+        <th>Действие</th>
+        <th>Пример</th>
+        <th>Результат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>+</code></td>
+        <td>Сложение</td>
+        <td><code>5 + 3</code></td>
+        <td><code>8</code></td>
+      </tr>
+      <tr>
+        <td><code>-</code></td>
+        <td>Вычитание</td>
+        <td><code>10 - 4</code></td>
+        <td><code>6</code></td>
+      </tr>
+      <tr>
+        <td><code>*</code></td>
+        <td>Умножение</td>
+        <td><code>6 * 7</code></td>
+        <td><code>42</code></td>
+      </tr>
+      <tr>
+        <td><code>**</code></td>
+        <td>Возведение в степень</td>
+        <td><code>2 ** 10</code></td>
+        <td><code>1024</code></td>
+      </tr>
+      <tr>
+        <td><code>/</code></td>
+        <td>Обычное деление</td>
+        <td><code>15 / 4</code></td>
+        <td><code>3.75</code></td>
+      </tr>
+      <tr>
+        <td><code>//</code></td>
+        <td>Целочисленное деление</td>
+        <td><code>15 // 4</code></td>
+        <td><code>3</code></td>
+      </tr>
+      <tr>
+        <td><code>%</code></td>
+        <td>Остаток от деления</td>
+        <td><code>15 % 4</code></td>
+        <td><code>3</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Ключевое различие:</strong> <code>/</code> всегда возвращает <code>float</code>. <code>//</code> отбрасывает дробную часть. <code>%</code> показывает, сколько «лишнего» остаётся, когда одно число не делится на другое нацело.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>a = 15
+b = 4
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Сложение:", a + b)        # 19
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Умножение:", a * b)        # 60
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Степень:", 2 ** 3)          # 8
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Корень из 9:", 9 ** 0.5)    # 3.0 (степень 0.5 — квадратный корень)
+
+# Три вида деления — самая важная тема урока!
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Обычное деление:", a / b)     # 3.75 (результат всегда float)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Целочисленное:", a // b)      # 3 (отбрасывает дробную часть)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Остаток:", a % b)            # 3 (15 = 4×3 + 3)</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Приоритет операций:</strong> как в математике — сначала скобки, потом степень <code>**</code>, потом умножение/деление, потом сложение/вычитание. Если сомневаешься — ставь скобки: <code>(2 + 3) * 4</code>.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 5 ==================== -->
+  <h2>Часть 5. Изменение значений переменных</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Значение, которое лежит в «коробке»-переменной, можно заменить в любой момент. Старое значение при этом забывается. Более того, чтобы вычислить новое значение, мы можем использовать текущее значение этой же переменной — это абсолютно нормально и очень удобно.</p>
+    <p>В Python есть короткая форма записи таких изменений: <code>+=</code>, <code>-=</code>, <code>*=</code> и другие. Это называется «синтаксический сахар» — более короткий и приятный способ написать то же самое.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>xp = 100
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Начальный опыт:", xp)
+
+# Полностью заменили значение
+xp = 200
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Новый опыт:", xp)
+
+# Увеличили на 50 (взяли старое значение и прибавили)
+xp = xp + 50
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("После апа:", xp)  # Будет 250
+
+# Короткая запись (синтаксический сахар)
+xp += 10     # то же самое, что xp = xp + 10
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Ещё плюс 10:", xp)  # Будет 260
+
+xp -= 30     # то же самое, что xp = xp - 30
+xp *= 2      # то же самое, что xp = xp * 2
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Итоговый опыт:", xp)</pre>
+  </div>
+
+  <!-- ==================== ЗАДАНИЯ ==================== -->
+  <div class="task-section">
+    <h2>📝 Задания для практики (домашняя работа)</h2>
+    <p>Перед уроком попробуй решить эти задачи. Если что-то не получается — это нормально, приходи с вопросами.</p>
+
+    <div class="task-block">
+      <h3>Блок A. Переменные и вывод</h3>
+      <ol>
+        <li>Создай переменные для хранения своего имени, фамилии и любимого цвета. Выведи их по очереди с помощью <a href="functions_descriptions.html#func-print" class="func-link" target="_blank"><code>print()</code></a>.</li>
+        <li>Создай переменную <code>city</code>. Присвой ей название города, в котором ты живёшь. Выведи фразу «Я живу в городе …», используя запятую внутри <code>print()</code>: <code>print("Текст", переменная)</code>.</li>
+        <li>Создай переменные <code>a = 7</code> и <code>b = 3</code>. Выведи результаты всех семи арифметических операций между ними (сложение, вычитание, умножение, степень, обычное деление, целочисленное деление, остаток).</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок Б. Изменение переменных</h3>
+      <ol>
+        <li>Создай переменную <code>lives = 5</code>. Напиши код, который сначала уменьшит жизни на 1, а затем снова выведет их количество. Потом увеличь жизни на 3 и выведи результат. Используй короткую запись (<code>+=</code>, <code>-=</code>).</li>
+        <li>Создай переменную <code>score = 0</code>. Увеличь её на 10, потом умножь на 2, потом вычти 5. Выведи результат после каждого действия.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок В. Эксперименты с типами</h3>
+      <ol>
+        <li>Создай переменные разных типов: целое число, число с плавающей точкой, строку. Для каждой переменной выведи её значение и тип с помощью <a href="functions_descriptions.html#func-type" class="func-link" target="_blank"><code>type()</code></a>.</li>
+        <li class="star-task">★ Что выведет <code>print(type("123"))</code> и <code>print(type(123))</code>? Проверь свою догадку в коде.</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет репетитора.</strong> Перепиши примеры из <strong>Части 4</strong> в тетрадь от руки и рядом с каждым <code>print</code> запиши, что именно он выводит. Это лучший способ понять и запомнить разницу между <code>/</code>, <code>//</code> и <code>%</code>. Увидимся на уроке!
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: словари — методичка репетитора</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .theory-block p {
+      margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.95rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .func-intro {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .func-intro .func-name {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .func-intro .more-link {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .task-section {
+      background-color: #f9f9f9;
+      border: 2px dashed #ccc;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1.2rem 0;
+    }
+
+    .task-section h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .task-block {
+      margin-bottom: 1.4rem;
+    }
+
+    .task-block h3 {
+      margin-top: 0.8rem;
+      color: #1a5f8a;
+    }
+
+    .star-task {
+      color: #c96f0d;
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .dict-diagram {
+      background-color: #f0f4ff;
+      border: 2px solid #a0b8e0;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+    .dict-diagram .pair {
+      display: inline-block;
+      border: 2px solid #1a5f8a;
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin: 5px;
+      background-color: #fff;
+    }
+
+    .dict-diagram .key {
+      background-color: #d8eaf5;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .dict-diagram .value {
+      background-color: #e0f5e3;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .dict-diagram .arrow-mini {
+      margin: 0 6px;
+      color: #1a5f8a;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+      .dict-diagram .pair {
+        display: block;
+        margin: 8px auto;
+        max-width: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>📖 Python: словари</h1>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем работать с парами «ключ-значение».</p>
+
+  <!-- ==================== ЧАСТЬ 1 ==================== -->
+  <h2>Часть 1. Что такое словарь и зачем он нужен</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Список хранит элементы по порядку, и чтобы найти нужный, мы должны знать его индекс. Но часто данные удобнее хранить не по номеру, а по <strong>ключу</strong> — осмысленному имени.</p>
+    <p><strong>Словарь (dict)</strong> — это коллекция пар <strong>«ключ → значение»</strong>. Как настоящий словарь: ищешь слово (ключ) — получаешь его определение (значение). Ключи уникальны, значения могут повторяться.</p>
+  </div>
+
+  <div class="dict-diagram">
+    <strong>Словарь: ключ → значение</strong><br><br>
+    <div class="pair"><span class="key">"яблоко"</span> <span class="arrow-mini">→</span> <span class="value">"фрукт"</span></div>
+    <div class="pair"><span class="key">"огурец"</span> <span class="arrow-mini">→</span> <span class="value">"овощ"</span></div>
+    <div class="pair"><span class="key">"арбуз"</span> <span class="arrow-mini">→</span> <span class="value">"ягода"</span></div>
+  </div>
+
+  <div class="code-block">
+    <pre># Словарь — доступ по ключу
+products = {
+    "яблоко": "фрукт",
+    "огурец": "овощ",
+    "арбуз": "ягода"
+}
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(products["огурец"])  # "овощ" — мгновенно</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 2 ==================== -->
+  <h2>Часть 2. Создание словаря и базовые операции</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Словарь создаётся с помощью фигурных скобок <code>{}</code>. Внутри — пары <code>ключ: значение</code>. Ключом может быть любой неизменяемый тип (строки, числа), значением — что угодно.</p>
+  </div>
+
+  <div class="code-block">
+    <pre># Создание словаря
+student = {
+    "имя": "Анна",
+    "возраст": 17,
+    "класс": 11,
+    "средний_балл": 4.7
+}
+
+# Получение значения
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(student["имя"])       # Анна
+
+# Добавление новой пары
+student["город"] = "Москва"
+
+# Изменение значения
+student["возраст"] = 18
+
+# Удаление пары
+del student["класс"]</pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Ошибка KeyError:</strong> если обратиться к несуществующему ключу — <code>student["адрес"]</code> — будет ошибка. Используй <code>.get()</code> для безопасного доступа.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 3 ==================== -->
+  <h2>Часть 3. Безопасный доступ — in и .get()</h2>
+
+  <!-- Первое упоминание in для словарей и .get() -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#keyword-in" class="func-link" target="_blank">in</a></span> — проверяет, есть ли ключ в словаре. Возвращает <code>True</code> или <code>False</code>.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-get" class="func-link" target="_blank">.get()</a></span> — безопасно получает значение по ключу. Если ключа нет — возвращает <code>None</code> или указанное значение по умолчанию.</p>
+    <p class="more-link"><a href="functions_descriptions.html#method-get" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre>student = {"имя": "Борис", "возраст": 17}
+
+# Проверка наличия ключа
+if "класс" <a href="functions_descriptions.html#keyword-in" class="func-link" target="_blank">in</a> student:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(student["класс"])
+else:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Класс неизвестен")
+
+# Безопасное получение через .get()
+city = student.<a href="functions_descriptions.html#method-get" class="func-link" target="_blank">get</a>("город", "не указан")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Город:", city)  # "не указан"</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 4 ==================== -->
+  <h2>Часть 4. Перебор словаря — ключи, значения, пары</h2>
+
+  <!-- Первое упоминание .keys(), .values(), .items() -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#method-keys" class="func-link" target="_blank">.keys()</a></span> — возвращает все ключи словаря.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-values" class="func-link" target="_blank">.values()</a></span> — возвращает все значения словаря.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-items" class="func-link" target="_blank">.items()</a></span> — возвращает пары <code>(ключ, значение)</code>. Самый популярный метод для перебора.</p>
+    <p class="more-link"><a href="functions_descriptions.html#cat-dict" class="func-link" target="_blank">Все методы словарей в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre>fruits = {"яблоко": 150, "банан": 90, "апельсин": 80, "киви": 60}
+
+# Перебор ключей
+for fruit in fruits:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(fruit)
+
+# Перебор значений
+for calories in fruits.<a href="functions_descriptions.html#method-values" class="func-link" target="_blank">values</a>():
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(calories, "ккал")
+
+# Перебор пар — самый полезный
+for name, cals in fruits.<a href="functions_descriptions.html#method-items" class="func-link" target="_blank">items</a>():
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"{name}: {cals} ккал")</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 5 ==================== -->
+  <h2>Часть 5. Главный паттерн — подсчёт частоты</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Самая частая задача на словари в ЕГЭ — <strong>подсчёт частоты</strong>: сколько раз каждый элемент встретился в наборе данных. Словарь идеально подходит: ключ — элемент, значение — счётчик.</p>
+  </div>
+
+  <div class="code-block">
+    <pre># Подсчёт частоты слов
+text = "яблоко банан яблоко апельсин банан яблоко киви банан банан"
+words = text.<a href="functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()
+
+word_count = {}
+for word in words:
+    word_count[word] = word_count.<a href="functions_descriptions.html#method-get" class="func-link" target="_blank">get</a>(word, 0) + 1
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Частота слов:")
+for word, count in word_count.<a href="functions_descriptions.html#method-items" class="func-link" target="_blank">items</a>():
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"  {word}: {count}")
+
+# Самое частое слово
+most_common = <a href="functions_descriptions.html#func-max" class="func-link" target="_blank">max</a>(word_count, key=word_count.<a href="functions_descriptions.html#method-get" class="func-link" target="_blank">get</a>)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"Самое частое: '{most_common}' — {word_count[most_common]} раз(а)")</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Магия <code>max(dict, key=dict.get)</code>:</strong> находит ключ с максимальным значением. <code>key=dict.get</code> говорит: «сравнивай не ключи, а значения, которые по этим ключам лежат».</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 6 ==================== -->
+  <h2>Часть 6. Группировка данных</h2>
+
+  <div class="code-block">
+    <pre># Группировка учеников по классу
+students = [("Анна", 10), ("Борис", 11), ("Виктор", 10),
+            ("Галина", 11), ("Дмитрий", 10), ("Елена", 9)]
+
+by_class = {}
+for name, grade in students:
+    if grade not in by_class:
+        by_class[grade] = []
+    by_class[grade].<a href="functions_descriptions.html#method-append" class="func-link" target="_blank">append</a>(name)
+
+for grade in <a href="functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted</a>(by_class):
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"{grade} класс: {', '.<a href="functions_descriptions.html#method-join" class="func-link" target="_blank">join</a>(by_class[grade])}")</pre>
+  </div>
+
+  <!-- ==================== ЗАДАНИЯ ==================== -->
+  <div class="task-section">
+    <h2>📝 Задания для практики (домашняя работа)</h2>
+    <p>Перед уроком реши эти задачи. Если что-то не получается — приходи с вопросами.</p>
+
+    <div class="task-block">
+      <h3>Блок A. Создание и базовые операции</h3>
+      <ol>
+        <li>Создай словарь <code>translations</code> с 5–7 парами «русское слово → английское слово». Выведи перевод слова «кошка». Добавь ещё два слова. Удали одно слово и выведи итоговый словарь.</li>
+        <li>Создай словарь <code>phone_book</code> с именами и номерами (5 записей). Запроси имя и выведи номер, используя <a href="functions_descriptions.html#method-get" class="func-link" target="_blank"><code>.get()</code></a>. Если имени нет — выведи «Не найден».</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок Б. Подсчёт и группировка</h3>
+      <ol>
+        <li>Дана строка: <code>"собака кошка собака хомяк кошка кошка попугай собака"</code>. Подсчитай, сколько раз встречается каждое слово.</li>
+        <li>Дана строка: <code>"абракадабра"</code>. Подсчитай, сколько раз встречается каждая буква. Выведи буквы и их количество в алфавитном порядке.</li>
+        <li>Создай словарь, где ключи — названия предметов, а значения — списки оценок. Посчитай и выведи средний балл по каждому предмету.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок В. Задачи в стиле ЕГЭ</h3>
+      <ol>
+        <li>Дан список учеников с баллами ЕГЭ: <code>[("Анна", 85), ("Борис", 92), ("Виктор", 78)]</code>. Найди ученика с максимальным баллом и выведи средний балл.</li>
+        <li class="star-task">★ Дан список IP-адресов с повторениями. Подсчитай, сколько раз встретился каждый IP, и найди IP с максимальным количеством посещений.</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет репетитора.</strong> Словарь — самый полезный тип данных для задач ЕГЭ. Освой паттерн «подсчёт через <code>.get()</code>» до автоматизма — он понадобится в 9 из 10 задач на обработку данных. Увидимся на уроке!
+  </div>
+
+</body>
+</html>

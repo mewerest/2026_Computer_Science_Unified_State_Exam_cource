@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Разбор заданий ЕГЭ по информатике</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --accent-light: #eaf3f9;
+      --border: #e0e0e0;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .subtitle {
+      color: #555;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    p {
+      margin-bottom: 0.8rem;
+    }
+
+    .tasks-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .tasks-table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    .tasks-table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+    }
+
+    .tasks-table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .tasks-table a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .tasks-table a:hover {
+      text-decoration: underline;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15em 0.5em;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background-color: #e0e8f0;
+      color: #3a6080;
+    }
+
+    .badge.done {
+      background-color: #d4edda;
+      color: #2a5a3a;
+    }
+
+    .badge.soon {
+      background-color: #fff3cd;
+      color: #8a6d00;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #888;
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .tasks-table {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../index.html" class="back-link">← На главную страницу курса</a>
+
+  <h1>📝 Разбор заданий ЕГЭ по информатике</h1>
+  <p class="subtitle">Пошаговые алгоритмы решения всех 27 заданий с примерами на Python</p>
+
+  <p>В этом разделе собраны подробные разборы всех заданий ЕГЭ по информатике. Для каждого задания приведён алгоритм решения, примеры кода на Python, типовые ошибки и тренировочные варианты для самостоятельной практики.</p>
+
+  <p><strong>Рекомендация:</strong> перед тем как приступать к решению задач ЕГЭ, освойте <a href="../base_of_programming/base_of_programming_index.html">основы программирования на Python</a>. Задания используют все конструкции языка, изученные в базовом разделе.</p>
+
+  <table class="tasks-table">
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Тема задания</th>
+        <th>Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><a href="task1.html">Анализ информационных моделей</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="task2.html">Таблицы истинности логических выражений</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><a href="task3.html">Поиск и сортировка в базах данных</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><a href="task4.html">Кодирование и декодирование информации</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><a href="task5.html">Анализ алгоритмов для исполнителей</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><a href="task6.html">Анализ программ с циклами</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><a href="task7.html">Кодирование графической и звуковой информации</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><a href="task8.html">Комбинаторика</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><a href="task9.html">Обработка данных в электронных таблицах</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><a href="task10.html">Поиск слов в текстовом документе</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td><a href="task11.html">Вычисление количества информации</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td><a href="task12.html">Алгоритмы редактирования строк</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td><a href="task13.html">Адресация в компьютерных сетях</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td><a href="task14.html">Системы счисления</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td><a href="task15.html">Логические выражения и отрезки</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td><a href="task16.html">Рекурсивные алгоритмы</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td><a href="task17.html">Обработка числовых последовательностей</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td><a href="task18.html">Динамическое программирование в электронных таблицах</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td><a href="task19.html">Теория игр (одна куча)</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td><a href="task20.html">Теория игр (две кучи)</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td><a href="task21.html">Теория игр (три кучи)</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td><a href="task22.html">Многопроцессорные системы</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td><a href="task23.html">Динамическое программирование (количество программ)</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td><a href="task24.html">Обработка символьных строк</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td><a href="task25.html">Обработка целочисленной информации</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>26</td>
+        <td><a href="task26.html">Обработка данных с сортировкой</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+      <tr>
+        <td>27</td>
+        <td><a href="task27.html">Сложная обработка данных</a></td>
+        <td><span class="badge soon">Скоро</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    Материалы раздела постепенно дополняются · Актуально для ЕГЭ 2025–2026
+  </div>
+
+</body>
+</html>

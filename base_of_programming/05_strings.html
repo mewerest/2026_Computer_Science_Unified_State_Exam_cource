@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: строки — методичка репетитора</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .theory-block p {
+      margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.95rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .func-intro {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .func-intro .func-name {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .func-intro .more-link {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .task-section {
+      background-color: #f9f9f9;
+      border: 2px dashed #ccc;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1.2rem 0;
+    }
+
+    .task-section h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .task-block {
+      margin-bottom: 1.4rem;
+    }
+
+    .task-block h3 {
+      margin-top: 0.8rem;
+      color: #1a5f8a;
+    }
+
+    .star-task {
+      color: #c96f0d;
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .visual-demo {
+      background-color: #f5f5f5;
+      border: 2px solid #bbb;
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 1.1rem;
+      line-height: 2.2;
+      overflow-x: auto;
+      letter-spacing: 2px;
+    }
+
+    .visual-demo .hl-positive {
+      background-color: #b3d9ff;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .visual-demo .hl-negative {
+      background-color: #ffccb3;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .visual-demo .hl-result {
+      background-color: #c6f0c6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+      .visual-demo {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>🔤 Python: строки</h1>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем виртуозно владеть текстом.</p>
+
+  <!-- ==================== ЧАСТЬ 1 ==================== -->
+  <h2>Часть 1. Строки как последовательности символов</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Мы уже знаем, что строка (<code>str</code>) — это тип данных для хранения текста. Но строка в Python — это не просто «кусок текста», а <strong>упорядоченная последовательность символов</strong>, где каждый символ имеет свой индекс. Как и в списках, индексация начинается с нуля.</p>
+    <p>Это значит, что к строке можно применять многие операции, знакомые нам по спискам: узнавать длину через <a href="functions_descriptions.html#func-len" class="func-link" target="_blank"><code>len()</code></a>, обращаться к отдельным символам по индексу, использовать отрицательные индексы.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>word = "Python"
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Строка:", word)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Длина:", <a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(word))   # 6
+
+# Доступ к отдельным символам
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(word[0])    # P
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(word[-1])   # n
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(word[-2])   # o</pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Важное отличие строк от списков:</strong> строки в Python <strong>неизменяемы</strong>. Нельзя заменить один символ: <code>word[0] = "J"</code> вызовет ошибку. Чтобы «изменить» строку, нужно создать новую.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 2 ==================== -->
+  <h2>Часть 2. Срезы строк</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> <strong>Срез (slice)</strong> — это механизм, позволяющий извлечь часть строки. Синтаксис точно такой же, как у срезов списков: <code>строка[начало:конец:шаг]</code>. Символ с индексом <code>конец</code> не включается.</p>
+  </div>
+
+  <div class="visual-demo">
+    Строка: &nbsp;&nbsp;&nbsp;
+    <span class="hl-positive">P</span>
+    <span class="hl-positive">y</span>
+    <span class="hl-positive">t</span>
+    <span class="hl-positive">h</span>
+    <span class="hl-positive">o</span>
+    <span class="hl-positive">n</span>
+    <br>
+    Индексы (+): &nbsp;
+    <span class="hl-positive">0</span>
+    <span class="hl-positive">1</span>
+    <span class="hl-positive">2</span>
+    <span class="hl-positive">3</span>
+    <span class="hl-positive">4</span>
+    <span class="hl-positive">5</span>
+    <br>
+    Индексы (−): &nbsp;
+    <span class="hl-negative">−6</span>
+    <span class="hl-negative">−5</span>
+    <span class="hl-negative">−4</span>
+    <span class="hl-negative">−3</span>
+    <span class="hl-negative">−2</span>
+    <span class="hl-negative">−1</span>
+  </div>
+
+  <div class="code-block">
+    <pre>text = "программирование"
+
+# Базовые срезы
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(text[:7])      # програм
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(text[7:])      # мирование
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(text[-7:])     # рование (последние 7 символов)
+
+# Срезы с шагом
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(text[::2])      # каждый второй символ
+
+# Знаменитый трюк — переворот строки
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(text[::-1])     # еинавориммаргорп</pre>
+  </div>
+
+  <div class="code-block">
+    <pre># Проверка на палиндром — применение переворота
+word = "казак"
+if word == word[::-1]:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"'{word}' — палиндром!")
+else:
+    <a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f"'{word}' — не палиндром.")</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 3 ==================== -->
+  <h2>Часть 3. Методы строк</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> У строк есть множество встроенных методов — готовых функций, которые выполняют полезные операции. Поскольку строки неизменяемы, методы <strong>не меняют исходную строку</strong>, а возвращают новую.</p>
+  </div>
+
+  <!-- Первое упоминание методов строк -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#method-upper" class="func-link" target="_blank">.upper()</a></span> — все буквы заглавные. <span class="func-name"><a href="functions_descriptions.html#method-lower" class="func-link" target="_blank">.lower()</a></span> — все строчные.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-strip" class="func-link" target="_blank">.strip()</a></span> — убирает пробелы и переносы строк по краям.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-replace" class="func-link" target="_blank">.replace()</a></span> — заменяет подстроку на другую.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-find" class="func-link" target="_blank">.find()</a></span> — ищет подстроку, возвращает индекс или −1. <span class="func-name"><a href="functions_descriptions.html#method-count" class="func-link" target="_blank">.count()</a></span> — считает вхождения.</p>
+    <p class="more-link"><a href="functions_descriptions.html#cat-str" class="func-link" target="_blank">Все методы строк в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre>text = "  Привет, Python! Python — это круто.  "
+
+clean = text.<a href="functions_descriptions.html#method-strip" class="func-link" target="_blank">strip</a>()
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("После strip:", clean)
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("upper:", clean.<a href="functions_descriptions.html#method-upper" class="func-link" target="_blank">upper</a>())
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("lower:", clean.<a href="functions_descriptions.html#method-lower" class="func-link" target="_blank">lower</a>())
+
+replaced = clean.<a href="functions_descriptions.html#method-replace" class="func-link" target="_blank">replace</a>("Python", "Кот")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("replace:", replaced)
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("find:", clean.<a href="functions_descriptions.html#method-find" class="func-link" target="_blank">find</a>("Python"))
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("count:", clean.<a href="functions_descriptions.html#method-count" class="func-link" target="_blank">count</a>("Python"))</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 4 ==================== -->
+  <h2>Часть 4. split() и join() — разборка и сборка строк</h2>
+
+  <!-- Первое упоминание split() и join() -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#method-split" class="func-link" target="_blank">.split()</a></span> — разбивает строку по разделителю и возвращает список подстрок. Без аргумента — разбивает по пробелам.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-join" class="func-link" target="_blank">.join()</a></span> — собирает список строк в одну, вставляя разделитель между элементами. Обратная операция к <code>.split()</code>.</p>
+    <p class="more-link"><a href="functions_descriptions.html#method-split" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre># split() — разбиение на слова
+sentence = "Python — отличный язык программирования"
+words = sentence.<a href="functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Слова:", words)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Количество слов:", <a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(words))
+
+# split() с разделителем
+data = "Анна,25,Москва"
+parts = data.<a href="functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>(",")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Части:", parts)  # ['Анна', '25', 'Москва']
+
+# join() — склеивание списка в строку
+fruits = ["яблоко", "банан", "апельсин"]
+result = ", ".<a href="functions_descriptions.html#method-join" class="func-link" target="_blank">join</a>(fruits)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(result)  # "яблоко, банан, апельсин"</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 5 ==================== -->
+  <h2>Часть 5. Преобразование типов данных</h2>
+
+  <!-- Первое упоминание int(), float(), str(), list() — все уже были, но здесь в контексте строк -->
+  <div class="theory-block">
+    <p><strong>Теория.</strong> В программировании постоянно нужно преобразовывать данные из одного типа в другой. Особенно это важно при работе со строками: данные из файла или пользовательского ввода всегда приходят строками, и их нужно превращать в числа.</p>
+  </div>
+
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#func-int" class="func-link" target="_blank">int()</a></span> — преобразует строку в целое число. <span class="func-name"><a href="functions_descriptions.html#func-float" class="func-link" target="_blank">float()</a></span> — в число с плавающей точкой.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#func-str" class="func-link" target="_blank">str()</a></span> — преобразует любой объект в строку. <span class="func-name"><a href="functions_descriptions.html#func-list" class="func-link" target="_blank">list()</a></span> — создаёт список из итерируемого объекта.</p>
+    <p class="more-link"><a href="functions_descriptions.html#func-int" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre># Строку в число
+num_str = "123"
+num = <a href="functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(num_str)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(num + 7)  # 130
+
+# Число в строку
+age = 16
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Мне " + <a href="functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(age) + " лет")
+
+# Строку в список символов
+chars = <a href="functions_descriptions.html#func-list" class="func-link" target="_blank">list</a>("Python")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(chars)  # ['P', 'y', 't', 'h', 'o', 'n']</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Обработка ошибок при преобразовании:</strong> не каждая строка может стать числом. Используй <a href="functions_descriptions.html#method-isdigit" class="func-link" target="_blank"><code>.isdigit()</code></a> для проверки, состоит ли строка только из цифр, или конструкцию <a href="functions_descriptions.html#keyword-try" class="func-link" target="_blank"><code>try...except</code></a> для безопасного преобразования.</p>
+  </div>
+
+  <!-- ==================== ЗАДАНИЯ ==================== -->
+  <div class="task-section">
+    <h2>📝 Задания для практики (домашняя работа)</h2>
+    <p>Перед уроком реши эти задачи. Если что-то не получается — приходи с вопросами.</p>
+
+    <div class="task-block">
+      <h3>Блок A. Индексация и срезы</h3>
+      <ol>
+        <li>Дана строка <code>text = "информатика"</code>. С помощью срезов получи и выведи первые 5 букв, последние 4 буквы и буквы с 3-й по 7-ю.</li>
+        <li>Дана строка <code>word = "Электричество"</code>. Выведи её перевёрнутую версию и каждый второй символ.</li>
+        <li>Дана строка <code>s = "0123456789"</code>. С помощью срезов получи все чётные цифры, все цифры в обратном порядке и цифры с 5-й по 3-ю в обратном порядке.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок Б. Методы строк и split</h3>
+      <ol>
+        <li>Дана строка <code>text = "  пРиВеТ, мИр!  "</code>. Приведи её к нормальному виду: убери пробелы по краям, сделай все буквы строчными, первую букву сделай заглавной с помощью <a href="functions_descriptions.html#method-capitalize" class="func-link" target="_blank"><code>.capitalize()</code></a>.</li>
+        <li>Дана строка <code>data = "Иван,25,Москва,инженер"</code>. Разбей её по запятым и выведи информацию в читаемом формате.</li>
+        <li>Дана строка <code>sentence = "Python — это мощный, гибкий и удобный язык"</code>. Разбей на слова, посчитай количество слов и выведи самое длинное слово.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок В. Преобразование типов и комплексные задачи</h3>
+      <ol>
+        <li>Дана строка с числами: <code>"12 45 78 23 90 56 34"</code>. Преобразуй её в список целых чисел и найди сумму, минимум и максимум.</li>
+        <li>Напиши программу, которая проверяет, является ли строка палиндромом, используя срез. Проверь слова «казак» и «программирование».</li>
+        <li class="star-task">★ Дана строка с путём к файлу: <code>"/home/user/documents/report_2024.txt"</code>. Используя срезы и методы, получи имя файла без расширения, расширение и название папки.</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет репетитора.</strong> Строки — это 90% повседневной работы программиста: логи, данные, пользовательский ввод. Чем лучше ты освоишь срезы и методы сейчас, тем легче будут даваться реальные проекты и задачи ЕГЭ. Увидимся на уроке!
+  </div>
+
+</body>
+</html>

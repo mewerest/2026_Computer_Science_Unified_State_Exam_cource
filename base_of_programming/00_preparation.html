@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: подготовка к работе — методичка репетитора</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    ol {
+      margin: 0.5rem 0 1rem 1.5rem;
+    }
+
+    ol li {
+      margin-bottom: 0.6rem;
+    }
+
+    .step-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.2rem 0;
+    }
+
+    .step-block h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .step-block img {
+      max-width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin: 0.8rem 0;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .resources-block {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .resources-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #4a2a7a;
+    }
+
+    .resources-block a {
+      color: #4a2a7a;
+      font-weight: 500;
+      word-break: break-all;
+    }
+
+    .resources-block ul {
+      margin: 0.5rem 0 0 1.2rem;
+    }
+
+    .resources-block li {
+      margin-bottom: 0.5rem;
+    }
+
+    .download-link {
+      display: inline-block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1.2rem;
+      background-color: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+
+    .download-link:hover {
+      background-color: #134b6e;
+    }
+
+    .download-link.secondary {
+      background-color: #5a8a3a;
+    }
+
+    .download-link.secondary:hover {
+      background-color: #3d6a28;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>🛠️ Python: подготовка к работе</h1>
+  <p class="subtitle">Методичка ученика · Установка Python и среды разработки для программирования</p>
+
+  <!-- ==================== ЧАСТЬ 1 ==================== -->
+  <h2>Часть 1. Что нужно для программирования на Python</h2>
+
+  <div class="theory-block" style="background-color: #fff8e7; border: 1px solid #f0d98c; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0;">
+    <p>Для того чтобы писать и запускать программы на Python, на компьютере должны быть установлены две вещи:</p>
+    <ol>
+      <li><strong>Интерпретатор Python</strong> — программа, которая выполняет код на языке Python.</li>
+      <li><strong>Среда разработки (IDE)</strong> — программа, в которой удобно писать код, запускать его и находить ошибки.</li>
+    </ol>
+  </div>
+
+  <div class="info-block">
+    <p><strong>💡 Важное примечание для начала:</strong> интерпретатор Python и стандартная среда IDLE устанавливаются вместе. После этого можно <strong>по выбору</strong> установить одну из более продвинутых сред разработки: PyCharm или Wing IDE 101. На первое время достаточно IDLE — она уже есть сразу после установки Python.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 2 ==================== -->
+  <h2>Часть 2. Установка Python и IDLE</h2>
+
+  <div class="step-block">
+    <h3>Шаг 1. Скачивание установщика</h3>
+    <ol>
+      <li>Перейди на официальный сайт Python:<br>
+        <a href="https://www.python.org/downloads/" target="_blank" class="download-link">python.org/downloads →</a>
+      </li>
+      <li>Сайт автоматически предложит последнюю версию Python для твоей операционной системы.</li>
+      <li>Нажми на жёлтую кнопку <strong>«Download Python 3.x.x»</strong> (где x.x — номер версии, например 3.12).</li>
+      <li>Дождись окончания загрузки файла (обычно это занимает меньше минуты).</li>
+    </ol>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 2. Установка Python</h3>
+    <ol>
+      <li>Запусти скачанный файл (двойным кликом).</li>
+      <li><strong>Обязательно поставь галочку ✅ «Add Python to PATH»</strong> в нижней части окна установщика. Это важно — без неё Python может не запуститься из командной строки.</li>
+      <li>Нажми <strong>«Install Now»</strong>.</li>
+      <li>Дождись завершения установки. Появится окно «Setup was successful» — установка завершена.</li>
+    </ol>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 3. Первый запуск IDLE</h3>
+    <p>IDLE — это стандартная среда разработки, которая устанавливается вместе с Python. Она простая, но для начала идеально подходит.</p>
+    <ol>
+      <li>Нажми клавишу <strong>Windows</strong> (или открой меню «Пуск»).</li>
+      <li>Начни вводить слово <strong>«IDLE»</strong>.</li>
+      <li>В результатах поиска появится <strong>«IDLE (Python 3.x 64-bit)»</strong> — запусти его.</li>
+      <li>Откроется окно с заголовком «Python Shell» — это интерактивная консоль. Знак <code>&gt;&gt;&gt;</code> означает, что Python готов к работе.</li>
+      <li>Попробуй написать <code>print("Привет, мир!")</code> и нажать Enter — ты увидишь результат.</li>
+    </ol>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 4. Создание первого файла в IDLE</h3>
+    <ol>
+      <li>В окне IDLE выбери меню <strong>File → New File</strong> (или нажми Ctrl+N).</li>
+      <li>Откроется новое окно — это редактор кода. Здесь можно писать программу из нескольких строк.</li>
+      <li>Напиши простую программу:
+        <pre style="background-color: #f4f4f4; padding: 0.5rem; border-radius: 4px; margin: 0.5rem 0; font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;">print("Это моя первая программа!")
+name = input("Как тебя зовут? ")
+print("Привет,", name)</pre>
+      </li>
+      <li>Сохрани файл: <strong>File → Save</strong> (Ctrl+S), дай имя, например <code>first_program.py</code>.</li>
+      <li>Запусти программу: <strong>Run → Run Module</strong> (F5).</li>
+      <li>Результат выполнения появится в окне Python Shell.</li>
+    </ol>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 3 ==================== -->
+  <h2>Часть 3. Что такое IDE и зачем она нужна</h2>
+
+  <div class="theory-block" style="background-color: #fff8e7; border: 1px solid #f0d98c; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0;">
+    <p><strong>IDE (Integrated Development Environment)</strong> — это интегрированная среда разработки. Простыми словами — программа-помощник для написания кода.</p>
+    <p><strong>Что даёт IDE:</strong></p>
+    <ul>
+      <li><strong>Подсветка синтаксиса</strong> — код раскрашивается, его легче читать.</li>
+      <li><strong>Автодополнение</strong> — IDE подсказывает, какие команды доступны.</li>
+      <li><strong>Подсказки об ошибках</strong> — выделяет строки с ошибками, часто ещё до запуска.</li>
+      <li><strong>Удобный запуск</strong> — не нужно переключаться между редактором и консолью.</li>
+      <li><strong>Отладчик</strong> — возможность выполнять программу по шагам, чтобы найти ошибку.</li>
+    </ul>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Выбор IDE — это дело вкуса.</strong> Достаточно установить <strong>одну</strong> среду разработки, в которой тебе удобнее всего работать. Можно начать с IDLE (она уже есть), а позже перейти на PyCharm или Wing IDE. Ниже — инструкции по установке каждой из них.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 4 ==================== -->
+  <h2>Часть 4. Установка PyCharm Community Edition</h2>
+
+  <div class="info-block">
+    <p><strong>PyCharm</strong> — одна из самых популярных профессиональных сред разработки для Python. Версия Community Edition — бесплатная и содержит всё необходимое для подготовки к ЕГЭ.</p>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 1. Скачивание</h3>
+    <ol>
+      <li>Перейди на официальный сайт JetBrains:<br>
+        <a href="https://www.jetbrains.com/pycharm/download/?section=windows" target="_blank" class="download-link secondary">jetbrains.com/pycharm/download →</a>
+      </li>
+      <li>На странице две версии: Professional (платная) и Community (бесплатная).</li>
+      <li>Нажми на кнопку <strong>«Download»</strong> под надписью <strong>«Community Edition»</strong>.</li>
+      <li>Дождись окончания загрузки.</li>
+    </ol>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 2. Установка</h3>
+    <ol>
+      <li>Запусти скачанный установщик.</li>
+      <li>Нажимай <strong>«Next»</strong>, принимая настройки по умолчанию.</li>
+      <li>На шаге «Installation Options» рекомендуется отметить:
+        <ul>
+          <li>✅ <strong>Add "Open Folder as Project"</strong></li>
+          <li>✅ <strong>Add launchers dir to the PATH</strong></li>
+        </ul>
+      </li>
+      <li>Нажми <strong>«Install»</strong> и дождись завершения.</li>
+      <li>После установки выбери <strong>«Reboot now»</strong> (перезагрузка рекомендуется, но не обязательна).</li>
+    </ol>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 3. Первый запуск и создание проекта</h3>
+    <ol>
+      <li>Запусти PyCharm (найди в меню «Пуск»).</li>
+      <li>При первом запуске прими условия использования.</li>
+      <li>Нажми <strong>«New Project»</strong>.</li>
+      <li>Укажи папку для проекта (например, <code>C:\Users\ТвоёИмя\PycharmProjects\my_first_project</code>).</li>
+      <li>Убедись, что в поле «Interpreter» выбран установленный Python.</li>
+      <li>Нажми <strong>«Create»</strong>.</li>
+      <li>В левой панели кликни правой кнопкой по папке проекта → <strong>New → Python File</strong>. Назови файл, например <code>main</code>.</li>
+      <li>Напиши код и запусти его: зелёный треугольник ▶ в правом верхнем углу или Shift+F10.</li>
+    </ol>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 5 ==================== -->
+  <h2>Часть 5. Установка Wing IDE 101</h2>
+
+  <div class="info-block">
+    <p><strong>Wing IDE 101</strong> — простая и лёгкая среда разработки, специально ориентированная на начинающих. Хороший выбор, если не хочется разбираться в сложном интерфейсе PyCharm.</p>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 1. Скачивание</h3>
+    <ol>
+      <li>Перейди на официальный сайт Wingware:<br>
+        <a href="https://wingware.com/downloads" target="_blank" class="download-link" style="background-color: #8a5a3a;">wingware.com/downloads →</a>
+      </li>
+      <li>На странице три версии. Нас интересует <strong>«Wing IDE 101»</strong> — она бесплатная.</li>
+      <li>Нажми на кнопку <strong>«Download»</strong> под Wing IDE 101.</li>
+      <li>Выбери версию для своей операционной системы (Windows, macOS или Linux).</li>
+      <li>Дождись окончания загрузки.</li>
+    </ol>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 2. Установка</h3>
+    <ol>
+      <li>Запусти скачанный установщик.</li>
+      <li>Следуй инструкциям установщика: принимай лицензионное соглашение, выбирай папку для установки (можно оставить по умолчанию).</li>
+      <li>Нажимай <strong>«Next»</strong> до завершения установки.</li>
+    </ol>
+  </div>
+
+  <div class="step-block">
+    <h3>Шаг 3. Первый запуск и создание файла</h3>
+    <ol>
+      <li>Запусти Wing IDE 101 (найди в меню «Пуск»).</li>
+      <li>При первом запуске может появиться окно с предложением настроить редактор — можно просто закрыть его или принять настройки по умолчанию.</li>
+      <li>Напиши код в центральном окне редактора.</li>
+      <li>Сохрани файл: <strong>File → Save</strong>, выбери папку и имя с расширением <code>.py</code>.</li>
+      <li>Запусти программу: зелёная стрелка ▶ на панели инструментов или F5.</li>
+      <li>Результат появится в нижнем окне «Shell».</li>
+    </ol>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 6 ==================== -->
+  <h2>Часть 6. Онлайн-платформы — программирование без установки</h2>
+
+  <div class="info-block">
+    <p><strong>Если нет возможности установить Python на компьютер</strong> (например, работаешь с чужого устройства или возникли проблемы с установкой), можно использовать онлайн-платформы. Они работают прямо в браузере и не требуют установки.</p>
+  </div>
+
+  <p>Примеры онлайн-платформ для программирования на Python:</p>
+  <ul>
+    <li><strong><a href="https://www.online-python.com/" target="_blank">online-python.com</a></strong> — простой онлайн-редактор и интерпретатор Python. Заходишь на сайт, пишешь код, нажимаешь «Run» — и видишь результат.</li>
+    <li>Существуют и другие аналогичные сервисы: <strong>Replit</strong>, <strong>Google Colab</strong>, <strong>Programiz</strong>.</li>
+  </ul>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Важное предупреждение:</strong> на ЕГЭ по информатике <strong>нет доступа к интернету</strong>, поэтому онлайн-платформы на экзамене недоступны. При подготовке обязательно научись работать в офлайн-среде (IDLE, PyCharm или Wing IDE) — именно она будет установлена на экзаменационном компьютере. Онлайн-платформы используй только как временное решение или для быстрой проверки идей.</p>
+  </div>
+
+  <!-- ==================== ПОЛЕЗНЫЕ МАТЕРИАЛЫ ==================== -->
+  <div class="resources-block">
+    <h2>📚 Полезные материалы</h2>
+    <ul>
+      <li>
+        <strong><a href="https://bank-zadach.ru/handbooks/python-dlya-ege-po-informatike" target="_blank">Python для ЕГЭ по информатике — справочник BankZadach</a></strong><br>
+        Подробные инструкции по установке Python и IDE, а также полный справочник по темам ЕГЭ с примерами кода.
+      </li>
+      <li>
+        <strong><a href="https://www.online-python.com/" target="_blank">Online-Python.com</a></strong><br>
+        Онлайн-интерпретатор Python — позволяет писать и запускать код прямо в браузере без установки.
+      </li>
+      <li>
+        <strong>Перечень версий ПО на ЕГЭ по информатике (2026)</strong><br>
+        <a href="https://rcoi.mcko.ru/resources/upload/RichFilemanager/documents/2025-2026/org_metod/11/Перечень_версий_ПО_ЕГЭ_ИНФ-2026.pdf" target="_blank">Скачать PDF-файл</a> — документ со списком программного обеспечения, которое устанавливалось на экзаменационных компьютерах ЕГЭ по информатике 2026. Полезно свериться, что версии Python и IDE, которые ты используешь при подготовке, соответствуют экзаменационным.
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Итог.</strong> После прочтения этой методички у тебя должны быть установлены: <strong>Python + IDLE</strong> (обязательно) и одна из сред разработки на выбор — <strong>PyCharm Community</strong> или <strong>Wing IDE 101</strong>. Теперь ты готов перейти к первой теме — «Переменные и типы данных».
+  </div>
+
+</body>
+</html>

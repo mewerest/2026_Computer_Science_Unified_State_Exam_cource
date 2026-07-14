@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python: списки — методичка репетитора</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .theory-block p {
+      margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.95rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .func-intro {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .func-intro .func-name {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .func-intro .more-link {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .task-section {
+      background-color: #f9f9f9;
+      border: 2px dashed #ccc;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0 1.2rem 0;
+    }
+
+    .task-section h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .task-block {
+      margin-bottom: 1.4rem;
+    }
+
+    .task-block h3 {
+      margin-top: 0.8rem;
+      color: #1a5f8a;
+    }
+
+    .star-task {
+      color: #c96f0d;
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>📋 Python: списки</h1>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем управлять коллекциями данных.</p>
+
+  <!-- ==================== ЧАСТЬ 1 ==================== -->
+  <h2>Часть 1. Введение в списки — что это и зачем</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> До сих пор мы хранили в переменных одно значение: одно число, одну строку. Но в реальных программах почти всегда нужно работать с наборами данных: списком учеников, набором оценок, перечнем товаров в корзине.</p>
+    <p><strong>Список (list)</strong> — это упорядоченная коллекция элементов. Представь пронумерованные ячейки, в каждой из которых может лежать что угодно: числа, строки, даже другие списки. Список создаётся с помощью квадратных скобок <code>[]</code>, а элементы внутри разделяются запятыми.</p>
+  </div>
+
+  <div class="code-block">
+    <pre># Создаём списки
+empty_list = []                          # Пустой список
+fruits = ["яблоко", "банан", "апельсин", "киви"]
+numbers = [10, 20, 30, 40, 50]
+mixed = ["текст", 42, 3.14, True]        # В одном списке могут быть разные типы
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(fruits)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(numbers)</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 2 ==================== -->
+  <h2>Часть 2. Индексация — как добраться до элемента</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> У каждого элемента в списке есть свой номер — <strong>индекс</strong>. Индексация в Python начинается с нуля: первый элемент имеет индекс <code>0</code>, второй — <code>1</code>, и так далее. Чтобы получить элемент, пишем имя списка и индекс в квадратных скобках.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>fruits = ["яблоко", "банан", "апельсин", "киви"]
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(fruits[0])   # яблоко
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(fruits[1])   # банан
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(fruits[-1])  # киви (отрицательный индекс — с конца)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(fruits[-2])  # апельсин</pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Ошибка новичка:</strong> если запросить индекс, которого в списке нет (например, <code>fruits[4]</code> в списке из четырёх элементов), Python выдаст ошибку <code>IndexError: list index out of range</code>.</p>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 3 ==================== -->
+  <h2>Часть 3. Срезы — получаем часть списка</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> <strong>Срез (slice)</strong> позволяет получить сразу несколько элементов. Синтаксис: <code>список[начало:конец]</code>. Элемент с индексом <code>конец</code> <strong>не включается</strong>. Можно также указать шаг: <code>список[начало:конец:шаг]</code>.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>numbers = [10, 20, 30, 40, 50, 60]
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(numbers[0:3])   # [10, 20, 30] — индексы 0,1,2
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(numbers[:4])    # [10, 20, 30, 40] — от начала до индекса 3
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(numbers[3:])    # [40, 50, 60] — от индекса 3 до конца
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(numbers[::2])   # [10, 30, 50] — каждый второй
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(numbers[::-1])  # [60, 50, 40, 30, 20, 10] — переворот</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 4 ==================== -->
+  <h2>Часть 4. Изменение элементов и основные методы</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Списки в Python <strong>изменяемы</strong> — можно заменить элемент по индексу. Также у списков есть встроенные методы — функции, которые вызываются через точку.</p>
+  </div>
+
+  <!-- Первое упоминание методов списков -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#method-append" class="func-link" target="_blank">.append()</a></span> — добавляет элемент в конец списка.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-insert" class="func-link" target="_blank">.insert()</a></span> — вставляет элемент на указанную позицию по индексу.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-remove" class="func-link" target="_blank">.remove()</a></span> — удаляет первое вхождение указанного значения.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-pop" class="func-link" target="_blank">.pop()</a></span> — удаляет элемент по индексу и возвращает его. Без индекса — удаляет последний.</p>
+    <p class="more-link"><a href="functions_descriptions.html#cat-list" class="func-link" target="_blank">Все методы списков в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre>heroes = ["Человек-паук", "Бэтмен"]
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Исходный:", heroes)
+
+# .append() — добавление в конец
+heroes.<a href="functions_descriptions.html#method-append" class="func-link" target="_blank">append</a>("Супермен")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("После append:", heroes)
+
+# .insert() — вставка на позицию
+heroes.<a href="functions_descriptions.html#method-insert" class="func-link" target="_blank">insert</a>(1, "Чудо-женщина")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("После insert:", heroes)
+
+# Изменение по индексу
+heroes[2] = "Флэш"
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("После замены:", heroes)
+
+# .remove() — удаление по значению
+heroes.<a href="functions_descriptions.html#method-remove" class="func-link" target="_blank">remove</a>("Супермен")
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("После remove:", heroes)
+
+# .pop() — удаление по индексу
+removed = heroes.<a href="functions_descriptions.html#method-pop" class="func-link" target="_blank">pop</a>(1)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Удалён:", removed)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("После pop:", heroes)</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 5 ==================== -->
+  <h2>Часть 5. Полезные функции и сортировка</h2>
+
+  <!-- Первое упоминание len(), min(), max(), sum() для списков -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len()</a></span> — возвращает количество элементов в списке.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#func-min" class="func-link" target="_blank">min()</a></span> и <span class="func-name"><a href="functions_descriptions.html#func-max" class="func-link" target="_blank">max()</a></span> — возвращают минимальный и максимальный элемент.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#func-sum" class="func-link" target="_blank">sum()</a></span> — возвращает сумму всех элементов (только для чисел).</p>
+    <p class="more-link"><a href="functions_descriptions.html#cat-builtins" class="func-link" target="_blank">Все встроенные функции в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre>scores = [85, 92, 78, 95, 88]
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Длина:", <a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(scores))
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Мин:", <a href="functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>(scores))
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Макс:", <a href="functions_descriptions.html#func-max" class="func-link" target="_blank">max</a>(scores))
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Сумма:", <a href="functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>(scores))
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Среднее:", <a href="functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>(scores) / <a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(scores))</pre>
+  </div>
+
+  <!-- Первое упоминание sorted() и .sort() -->
+  <div class="func-intro">
+    <p><span class="func-name"><a href="functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted()</a></span> — возвращает новый отсортированный список, не меняя исходный.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-sort" class="func-link" target="_blank">.sort()</a></span> — сортирует список на месте (изменяет его). <code>reverse=True</code> — по убыванию.</p>
+    <p class="more-link"><a href="functions_descriptions.html#func-sorted" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre>nums = [5, 2, 9, 1, 5, 6]
+
+# sorted() — не меняет исходный
+sorted_nums = <a href="functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted</a>(nums)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Исходный:", nums)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Новый отсорт.:", sorted_nums)
+
+# .sort() — меняет исходный
+nums.<a href="functions_descriptions.html#method-sort" class="func-link" target="_blank">sort</a>()
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("После sort():", nums)
+
+nums.<a href="functions_descriptions.html#method-sort" class="func-link" target="_blank">sort</a>(reverse=True)
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("По убыванию:", nums)</pre>
+  </div>
+
+  <!-- ==================== ЧАСТЬ 6 ==================== -->
+  <h2>Часть 6. Циклы и списки</h2>
+
+  <div class="theory-block">
+    <p><strong>Теория.</strong> Списки и циклы — идеальная пара. Мы уже умеем перебирать список в цикле <code>for</code>. Теперь научимся формировать новые списки в цикле.</p>
+  </div>
+
+  <div class="code-block">
+    <pre># Заполнение списка в цикле
+squares = []                     # Пустой список
+for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 11):
+    squares.<a href="functions_descriptions.html#method-append" class="func-link" target="_blank">append</a>(i ** 2)
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Квадраты:", squares)</pre>
+  </div>
+
+  <div class="code-block">
+    <pre># Формируем список только из чётных чисел
+numbers = [3, 8, 1, 6, 12, 9, 4, 7]
+even_numbers = []
+
+for num in numbers:
+    if num % 2 == 0:
+        even_numbers.<a href="functions_descriptions.html#method-append" class="func-link" target="_blank">append</a>(num)
+
+<a href="functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>("Чётные:", even_numbers)</pre>
+  </div>
+
+  <!-- ==================== ЗАДАНИЯ ==================== -->
+  <div class="task-section">
+    <h2>📝 Задания для практики (домашняя работа)</h2>
+    <p>Перед уроком реши эти задачи. Если что-то не получается — приходи с вопросами.</p>
+
+    <div class="task-block">
+      <h3>Блок A. Создание и индексация</h3>
+      <ol>
+        <li>Создай список из пяти своих любимых фильмов или книг. Выведи первый и последний элемент (используй отрицательный индекс для последнего).</li>
+        <li>Создай список чисел <code>[10, 20, 30, 40, 50]</code>. Замени средний элемент (индекс 2) на число <code>99</code> и выведи изменённый список.</li>
+        <li>Дан список <code>colors = ["красный", "оранжевый", "жёлтый", "зелёный", "голубой", "синий", "фиолетовый"]</code>. С помощью среза получи и выведи первые три цвета и последние три цвета.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок Б. Методы списков</h3>
+      <ol>
+        <li>Создай пустой список <code>todo</code>. Добавь в него три дела с помощью <a href="functions_descriptions.html#method-append" class="func-link" target="_blank"><code>.append()</code></a>. Затем добавь ещё одно дело в начало списка с помощью <a href="functions_descriptions.html#method-insert" class="func-link" target="_blank"><code>.insert()</code></a>.</li>
+        <li>Дан список покупок: <code>["хлеб", "молоко", "яйца", "сахар", "мука"]</code>. Удали <code>"сахар"</code> с помощью <a href="functions_descriptions.html#method-remove" class="func-link" target="_blank"><code>.remove()</code></a>, затем удали последний элемент с помощью <a href="functions_descriptions.html#method-pop" class="func-link" target="_blank"><code>.pop()</code></a> и сохрани его в переменную. Выведи, что было удалено, и итоговый список.</li>
+      </ol>
+    </div>
+
+    <div class="task-block">
+      <h3>Блок В. Функции, сортировка и циклы</h3>
+      <ol>
+        <li>Дан список чисел: <code>[45, 12, 89, 33, 67, 10, 54]</code>. Найди и выведи минимальное, максимальное значение и сумму всех чисел. Затем выведи этот же список, но отсортированный по возрастанию (не изменяя исходный).</li>
+        <li>Создай пустой список. С помощью цикла и <code>range()</code> заполни его числами от 1 до 15, которые делятся на 3. Выведи результат.</li>
+        <li class="star-task">★ Дан список чисел <code>[4, 7, 2, 9, 1, 5, 8, 3, 6]</code>. Напиши программу, которая находит и выводит сумму только чётных чисел из этого списка.</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет репетитора.</strong> Списки — это твой первый шаг к настоящему программированию. Поиграй с ними: создавай, меняй, перебирай в циклах. Попробуй выполнить все задания из <strong>Блока В</strong> без подсказок — если получится, ты уже на шаг впереди большинства новичков.
+  </div>
+
+</body>
+</html>

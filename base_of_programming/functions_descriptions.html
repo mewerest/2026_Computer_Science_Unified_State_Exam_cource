@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Справочник функций Python</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --accent-light: #eaf3f9;
+      --border: #e0e0e0;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .subtitle {
+      color: #555;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Алфавитный указатель */
+    .index-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .index-nav a {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      background-color: var(--accent-light);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-width: 2rem;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+
+    .index-nav a:hover {
+      background-color: #c0d8ec;
+    }
+
+    /* Категории */
+    .category {
+      margin-top: 2rem;
+    }
+
+    .category h2 {
+      font-size: 1.3rem;
+      color: var(--accent);
+      padding: 0.3rem 0.6rem;
+      background-color: var(--accent-light);
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* Карточка функции */
+    .func-card {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin-bottom: 0.8rem;
+      scroll-margin-top: 1rem;
+    }
+
+    .func-card h3 {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 1.05rem;
+      color: #1a5f8a;
+      margin-bottom: 0.3rem;
+    }
+
+    .func-card .syntax {
+      background-color: #f4f4f4;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+      border: 1px solid #ddd;
+    }
+
+    .func-card .desc {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.3rem;
+    }
+
+    .func-card .example {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 0.4rem 0.7rem;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .func-card .see-also {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.3rem;
+    }
+
+    .func-card .see-also a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .func-card .see-also a:hover {
+      text-decoration: underline;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.7rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
+
+  <h1>📖 Справочник функций и методов Python</h1>
+  <p class="subtitle">Краткие описания встроенных функций, операторов и методов, используемых в методичках</p>
+
+  <!-- Алфавитный указатель -->
+  <div class="index-nav">
+    <a href="#cat-builtins">Встроенные</a>
+    <a href="#cat-str">Строки</a>
+    <a href="#cat-list">Списки</a>
+    <a href="#cat-dict">Словари</a>
+    <a href="#cat-file">Файлы</a>
+    <a href="#cat-other">Другое</a>
+  </div>
+
+  <!-- ==================== ВСТРОЕННЫЕ ФУНКЦИИ ==================== -->
+  <div class="category" id="cat-builtins">
+    <h2>🔧 Встроенные функции</h2>
+
+    <div class="func-card" id="func-print">
+      <h3>print()</h3>
+      <div class="syntax">print(*объекты, sep=" ", end="\n")</div>
+      <div class="desc">Выводит переданные объекты на экран (в консоль). <code>sep</code> — разделитель между объектами, <code>end</code> — что вывести в конце.</div>
+      <div class="example">print("Привет,", "мир!")        # Привет, мир!
+print("Без переноса", end="")     # не переводит строку</div>
+    </div>
+
+    <div class="func-card" id="func-type">
+      <h3>type()</h3>
+      <div class="syntax">type(объект)</div>
+      <div class="desc">Возвращает тип переданного объекта. Полезно для отладки и проверки, с каким типом данных мы работаем.</div>
+      <div class="example">type(42)        # &lt;class 'int'&gt;
+type("abc")    # &lt;class 'str'&gt;
+type([1,2,3])  # &lt;class 'list'&gt;</div>
+    </div>
+
+    <div class="func-card" id="func-len">
+      <h3>len()</h3>
+      <div class="syntax">len(коллекция)</div>
+      <div class="desc">Возвращает длину (количество элементов) коллекции: строки, списка, словаря, кортежа, множества.</div>
+      <div class="example">len("Python")   # 6
+len([1,2,3])   # 3
+len({"a": 1})  # 1</div>
+    </div>
+
+    <div class="func-card" id="func-range">
+      <h3>range()</h3>
+      <div class="syntax">range(конец)<br>range(начало, конец)<br>range(начало, конец, шаг)</div>
+      <div class="desc">Генерирует последовательность целых чисел. Используется в циклах <code>for</code>. Число <code>конец</code> не включается в последовательность.</div>
+      <div class="example">range(5)         # 0, 1, 2, 3, 4
+range(2, 6)      # 2, 3, 4, 5
+range(0, 10, 2)  # 0, 2, 4, 6, 8
+range(5, 0, -1)  # 5, 4, 3, 2, 1</div>
+    </div>
+
+    <div class="func-card" id="func-int">
+      <h3>int()</h3>
+      <div class="syntax">int(строка_или_число)</div>
+      <div class="desc">Преобразует строку или число с плавающей точкой в целое число. Если строка содержит нечисловые символы — ошибка <code>ValueError</code>.</div>
+      <div class="example">int("42")      # 42
+int(3.14)     # 3
+int("101", 2) # 5 (двоичная система)</div>
+      <div class="see-also">См. также: <a href="#func-float">float()</a>, <a href="#func-str">str()</a></div>
+    </div>
+
+    <div class="func-card" id="func-float">
+      <h3>float()</h3>
+      <div class="syntax">float(строка_или_число)</div>
+      <div class="desc">Преобразует строку или целое число в число с плавающей точкой.</div>
+      <div class="example">float("3.14")  # 3.14
+float(5)       # 5.0</div>
+      <div class="see-also">См. также: <a href="#func-int">int()</a>, <a href="#func-str">str()</a></div>
+    </div>
+
+    <div class="func-card" id="func-str">
+      <h3>str()</h3>
+      <div class="syntax">str(объект)</div>
+      <div class="desc">Преобразует любой объект в строковое представление. Необходимо, когда нужно объединить число с текстом.</div>
+      <div class="example">str(42)        # "42"
+str(3.14)      # "3.14"
+str([1,2,3])   # "[1, 2, 3]"</div>
+      <div class="see-also">См. также: <a href="#func-int">int()</a>, <a href="#func-float">float()</a></div>
+    </div>
+
+    <div class="func-card" id="func-bool">
+      <h3>bool()</h3>
+      <div class="syntax">bool(значение)</div>
+      <div class="desc">Преобразует значение в логический тип <code>True</code> или <code>False</code>. «Пустые» значения (0, "", [], {}) дают <code>False</code>.</div>
+      <div class="example">bool(1)       # True
+bool(0)       # False
+bool("")      # False
+bool([1,2])   # True</div>
+    </div>
+
+    <div class="func-card" id="func-min">
+      <h3>min()</h3>
+      <div class="syntax">min(коллекция)</div>
+      <div class="desc">Возвращает минимальный элемент коллекции (списка, строки, словаря — по ключам).</div>
+      <div class="example">min([5, 2, 9, 1])  # 1
+min("python")      # 'h'</div>
+      <div class="see-also">См. также: <a href="#func-max">max()</a>, <a href="#func-sum">sum()</a></div>
+    </div>
+
+    <div class="func-card" id="func-max">
+      <h3>max()</h3>
+      <div class="syntax">max(коллекция)<br>max(коллекция, key=функция)</div>
+      <div class="desc">Возвращает максимальный элемент коллекции. С аргументом <code>key</code> можно сравнивать по определённому признаку (например, <code>max(dict, key=dict.get)</code> — ключ с максимальным значением).</div>
+      <div class="example">max([5, 2, 9, 1])  # 9
+max(d, key=d.get)    # ключ с макс. значением</div>
+      <div class="see-also">См. также: <a href="#func-min">min()</a>, <a href="#func-sum">sum()</a></div>
+    </div>
+
+    <div class="func-card" id="func-sum">
+      <h3>sum()</h3>
+      <div class="syntax">sum(коллекция_чисел, начальное=0)</div>
+      <div class="desc">Возвращает сумму всех элементов коллекции. Работает только с числами. Можно указать начальное значение вторым аргументом.</div>
+      <div class="example">sum([1, 2, 3, 4, 5])  # 15
+sum([1, 2, 3], 10)      # 16</div>
+      <div class="see-also">См. также: <a href="#func-min">min()</a>, <a href="#func-max">max()</a></div>
+    </div>
+
+    <div class="func-card" id="func-sorted">
+      <h3>sorted()</h3>
+      <div class="syntax">sorted(коллекция, reverse=False)</div>
+      <div class="desc">Возвращает новый отсортированный список из элементов коллекции. Исходная коллекция не изменяется. <code>reverse=True</code> — по убыванию.</div>
+      <div class="example">sorted([3, 1, 2])          # [1, 2, 3]
+sorted([3, 1, 2], reverse=True)  # [3, 2, 1]</div>
+      <div class="see-also">См. также: <a href="#method-sort">.sort()</a></div>
+    </div>
+
+    <div class="func-card" id="func-list">
+      <h3>list()</h3>
+      <div class="syntax">list(итерируемый_объект)</div>
+      <div class="desc">Создаёт список из переданного итерируемого объекта (строки, range, другого списка).</div>
+      <div class="example">list("abc")     # ['a', 'b', 'c']
+list(range(3))  # [0, 1, 2]</div>
+    </div>
+
+    <div class="func-card" id="func-dict">
+      <h3>dict()</h3>
+      <div class="syntax">dict()  или  dict(ключ=значение, ...)</div>
+      <div class="desc">Создаёт словарь. Может создавать пустой словарь или из именованных аргументов.</div>
+      <div class="example">dict()                  # {}
+dict(x=1, y=2)         # {'x': 1, 'y': 2}
+dict([("a", 1), ("b", 2)])  # {'a': 1, 'b': 2}</div>
+    </div>
+
+    <div class="func-card" id="func-open">
+      <h3>open()</h3>
+      <div class="syntax">open(путь, режим, encoding="utf-8")</div>
+      <div class="desc">Открывает файл и возвращает файловый объект для чтения или записи. Режимы: <code>'r'</code> — чтение, <code>'w'</code> — запись, <code>'a'</code> — добавление. Рекомендуется использовать с <code>with</code>.</div>
+      <div class="example">with open("file.txt", "r", encoding="utf-8") as f:
+    text = f.read()</div>
+      <div class="see-also">См. также: <a href="#keyword-with">with</a></div>
+    </div>
+
+    <div class="func-card" id="func-input">
+      <h3>input()</h3>
+      <div class="syntax">input(подсказка)</div>
+      <div class="desc">Запрашивает у пользователя ввод с клавиатуры и возвращает введённую строку. Необязательный аргумент — текст-подсказка.</div>
+      <div class="example">name = input("Введите имя: ")
+age = int(input("Введите возраст: "))</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== МЕТОДЫ СТРОК ==================== -->
+  <div class="category" id="cat-str">
+    <h2>📝 Методы строк</h2>
+
+    <div class="func-card" id="method-strip">
+      <h3>.strip()</h3>
+      <div class="syntax">строка.strip()</div>
+      <div class="desc">Удаляет пробельные символы (пробелы, табуляции, переносы строк) в начале и в конце строки. Исходная строка не изменяется.</div>
+      <div class="example">"  привет  ".strip()   # "привет"
+"  текст\n".strip()       # "текст"</div>
+    </div>
+
+    <div class="func-card" id="method-split">
+      <h3>.split()</h3>
+      <div class="syntax">строка.split(разделитель)</div>
+      <div class="desc">Разбивает строку по указанному разделителю и возвращает список подстрок. Если разделитель не указан — разбивает по пробельным символам.</div>
+      <div class="example">"a,b,c".split(",")     # ['a', 'b', 'c']
+"один два три".split()  # ['один', 'два', 'три']</div>
+      <div class="see-also">См. также: <a href="#method-join">.join()</a></div>
+    </div>
+
+    <div class="func-card" id="method-join">
+      <h3>.join()</h3>
+      <div class="syntax">разделитель.join(список_строк)</div>
+      <div class="desc">Собирает список строк в одну строку, вставляя между элементами указанный разделитель. Обратная операция к <code>.split()</code>.</div>
+      <div class="example">", ".join(["a", "b", "c"])  # "a, b, c"
+"".join(['P', 'y'])          # "Py"</div>
+      <div class="see-also">См. также: <a href="#method-split">.split()</a></div>
+    </div>
+
+    <div class="func-card" id="method-upper">
+      <h3>.upper()</h3>
+      <div class="syntax">строка.upper()</div>
+      <div class="desc">Возвращает новую строку, в которой все буквы преобразованы в заглавные.</div>
+      <div class="example">"привет".upper()   # "ПРИВЕТ"
+"Python".upper()   # "PYTHON"</div>
+      <div class="see-also">См. также: <a href="#method-lower">.lower()</a></div>
+    </div>
+
+    <div class="func-card" id="method-lower">
+      <h3>.lower()</h3>
+      <div class="syntax">строка.lower()</div>
+      <div class="desc">Возвращает новую строку, в которой все буквы преобразованы в строчные.</div>
+      <div class="example">"ПРИВЕТ".lower()   # "привет"
+"Python".lower()   # "python"</div>
+      <div class="see-also">См. также: <a href="#method-upper">.upper()</a></div>
+    </div>
+
+    <div class="func-card" id="method-replace">
+      <h3>.replace()</h3>
+      <div class="syntax">строка.replace(старое, новое, количество)</div>
+      <div class="desc">Заменяет все вхождения подстроки <code>старое</code> на <code>новое</code>. Необязательный третий аргумент ограничивает количество замен.</div>
+      <div class="example">"мама".replace("м", "п")       # "папа"
+"аааа".replace("а", "б", 2)  # "ббаа"</div>
+    </div>
+
+    <div class="func-card" id="method-find">
+      <h3>.find()</h3>
+      <div class="syntax">строка.find(подстрока, начало=0, конец=len)</div>
+      <div class="desc">Ищет подстроку в строке и возвращает индекс первого вхождения. Если подстрока не найдена — возвращает <code>-1</code>.</div>
+      <div class="example">"Python".find("th")    # 2
+"Python".find("x")      # -1</div>
+    </div>
+
+    <div class="func-card" id="method-count">
+      <h3>.count()</h3>
+      <div class="syntax">строка.count(подстрока)</div>
+      <div class="desc">Подсчитывает, сколько раз подстрока встречается в строке (непересекающиеся вхождения).</div>
+      <div class="example">"бананан".count("на")  # 2
+"ааа".count("аа")     # 1</div>
+    </div>
+
+    <div class="func-card" id="method-startswith">
+      <h3>.startswith()</h3>
+      <div class="syntax">строка.startswith(префикс)</div>
+      <div class="desc">Проверяет, начинается ли строка с указанного префикса. Возвращает <code>True</code> или <code>False</code>.</div>
+      <div class="example">"Python".startswith("Py")  # True
+"Python".startswith("Ja")  # False</div>
+      <div class="see-also">См. также: <a href="#method-endswith">.endswith()</a></div>
+    </div>
+
+    <div class="func-card" id="method-endswith">
+      <h3>.endswith()</h3>
+      <div class="syntax">строка.endswith(суффикс)</div>
+      <div class="desc">Проверяет, заканчивается ли строка указанным суффиксом. Возвращает <code>True</code> или <code>False</code>.</div>
+      <div class="example">"file.txt".endswith(".txt")  # True
+"file.txt".endswith(".py")   # False</div>
+      <div class="see-also">См. также: <a href="#method-startswith">.startswith()</a></div>
+    </div>
+
+    <div class="func-card" id="method-capitalize">
+      <h3>.capitalize()</h3>
+      <div class="syntax">строка.capitalize()</div>
+      <div class="desc">Возвращает строку, в которой первый символ — заглавная буква, а остальные — строчные.</div>
+      <div class="example">"пИтОН".capitalize()  # "Питон"</div>
+    </div>
+
+    <div class="func-card" id="method-title">
+      <h3>.title()</h3>
+      <div class="syntax">строка.title()</div>
+      <div class="desc">Возвращает строку, в которой каждое слово начинается с заглавной буквы.</div>
+      <div class="example">"привет мир".title()  # "Привет Мир"</div>
+    </div>
+
+    <div class="func-card" id="method-isdigit">
+      <h3>.isdigit()</h3>
+      <div class="syntax">строка.isdigit()</div>
+      <div class="desc">Проверяет, состоит ли строка только из цифр. Возвращает <code>True</code> или <code>False</code>.</div>
+      <div class="example">"12345".isdigit()   # True
+"12a45".isdigit()   # False</div>
+    </div>
+
+    <div class="func-card" id="method-isalpha">
+      <h3>.isalpha()</h3>
+      <div class="syntax">строка.isalpha()</div>
+      <div class="desc">Проверяет, состоит ли строка только из букв. Возвращает <code>True</code> или <code>False</code>.</div>
+      <div class="example">"abc".isalpha()     # True
+"abc123".isalpha()  # False</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== МЕТОДЫ СПИСКОВ ==================== -->
+  <div class="category" id="cat-list">
+    <h2>📋 Методы списков</h2>
+
+    <div class="func-card" id="method-append">
+      <h3>.append()</h3>
+      <div class="syntax">список.append(элемент)</div>
+      <div class="desc">Добавляет элемент в конец списка. Изменяет исходный список.</div>
+      <div class="example">lst = [1, 2, 3]
+lst.append(4)   # [1, 2, 3, 4]</div>
+    </div>
+
+    <div class="func-card" id="method-insert">
+      <h3>.insert()</h3>
+      <div class="syntax">список.insert(индекс, элемент)</div>
+      <div class="desc">Вставляет элемент на указанную позицию. Элементы справа сдвигаются. Изменяет исходный список.</div>
+      <div class="example">lst = [1, 2, 3]
+lst.insert(1, 99)  # [1, 99, 2, 3]</div>
+    </div>
+
+    <div class="func-card" id="method-remove">
+      <h3>.remove()</h3>
+      <div class="syntax">список.remove(значение)</div>
+      <div class="desc">Удаляет первое вхождение указанного значения. Если значение не найдено — ошибка <code>ValueError</code>.</div>
+      <div class="example">lst = [1, 2, 3, 2]
+lst.remove(2)   # [1, 3, 2]</div>
+    </div>
+
+    <div class="func-card" id="method-pop">
+      <h3>.pop()</h3>
+      <div class="syntax">список.pop(индекс)</div>
+      <div class="desc">Удаляет элемент по индексу и возвращает его. Если индекс не указан — удаляет последний элемент.</div>
+      <div class="example">lst = [1, 2, 3]
+x = lst.pop()     # x=3, lst=[1,2]
+y = lst.pop(0)    # y=1, lst=[2]</div>
+    </div>
+
+    <div class="func-card" id="method-sort">
+      <h3>.sort()</h3>
+      <div class="syntax">список.sort(reverse=False)</div>
+      <div class="desc">Сортирует список на месте (изменяет исходный). <code>reverse=True</code> — по убыванию.</div>
+      <div class="example">lst = [3, 1, 2]
+lst.sort()        # [1, 2, 3]
+lst.sort(reverse=True)  # [3, 2, 1]</div>
+      <div class="see-also">См. также: <a href="#func-sorted">sorted()</a></div>
+    </div>
+
+    <div class="func-card" id="method-index-list">
+      <h3>.index()</h3>
+      <div class="syntax">список.index(значение)</div>
+      <div class="desc">Возвращает индекс первого вхождения указанного значения. Если не найдено — ошибка <code>ValueError</code>.</div>
+      <div class="example">[10, 20, 30].index(20)  # 1</div>
+    </div>
+
+    <div class="func-card" id="method-count-list">
+      <h3>.count() (списки)</h3>
+      <div class="syntax">список.count(значение)</div>
+      <div class="desc">Подсчитывает, сколько раз значение встречается в списке.</div>
+      <div class="example">[1, 2, 1, 3, 1].count(1)  # 3</div>
+    </div>
+
+    <div class="func-card" id="method-clear">
+      <h3>.clear()</h3>
+      <div class="syntax">список.clear()</div>
+      <div class="desc">Удаляет все элементы из списка. Список становится пустым.</div>
+      <div class="example">lst = [1, 2, 3]
+lst.clear()   # []</div>
+    </div>
+
+    <div class="func-card" id="method-copy">
+      <h3>.copy()</h3>
+      <div class="syntax">список.copy()</div>
+      <div class="desc">Создаёт поверхностную копию списка. Изменения копии не затрагивают оригинал.</div>
+      <div class="example">a = [1, 2, 3]
+b = a.copy()  # b = [1, 2, 3]</div>
+    </div>
+
+    <div class="func-card" id="method-extend">
+      <h3>.extend()</h3>
+      <div class="syntax">список.extend(другой_список)</div>
+      <div class="desc">Добавляет все элементы из другого списка в конец текущего. Изменяет исходный список.</div>
+      <div class="example">a = [1, 2]
+a.extend([3, 4])  # [1, 2, 3, 4]</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== МЕТОДЫ СЛОВАРЕЙ ==================== -->
+  <div class="category" id="cat-dict">
+    <h2>📖 Методы словарей</h2>
+
+    <div class="func-card" id="method-get">
+      <h3>.get()</h3>
+      <div class="syntax">словарь.get(ключ, значение_по_умолчанию)</div>
+      <div class="desc">Безопасно получает значение по ключу. Если ключ не найден — возвращает <code>None</code> или указанное значение по умолчанию. Не вызывает ошибку <code>KeyError</code>.</div>
+      <div class="example">d = {"a": 1}
+d.get("a")       # 1
+d.get("b")       # None
+d.get("b", 0)    # 0</div>
+    </div>
+
+    <div class="func-card" id="method-keys">
+      <h3>.keys()</h3>
+      <div class="syntax">словарь.keys()</div>
+      <div class="desc">Возвращает объект со всеми ключами словаря. Можно перебирать в цикле <code>for</code>.</div>
+      <div class="example">for key in d.keys():
+    print(key)</div>
+    </div>
+
+    <div class="func-card" id="method-values">
+      <h3>.values()</h3>
+      <div class="syntax">словарь.values()</div>
+      <div class="desc">Возвращает объект со всеми значениями словаря.</div>
+      <div class="example">for val in d.values():
+    print(val)</div>
+    </div>
+
+    <div class="func-card" id="method-items">
+      <h3>.items()</h3>
+      <div class="syntax">словарь.items()</div>
+      <div class="desc">Возвращает объект с парами <code>(ключ, значение)</code>. Самый популярный метод для перебора словаря.</div>
+      <div class="example">for key, val in d.items():
+    print(key, "→", val)</div>
+    </div>
+
+    <div class="func-card" id="method-pop-dict">
+      <h3>.pop() (словари)</h3>
+      <div class="syntax">словарь.pop(ключ, значение_по_умолчанию)</div>
+      <div class="desc">Удаляет ключ из словаря и возвращает его значение. Если ключ не найден и указано умолчание — возвращает его, иначе ошибка <code>KeyError</code>.</div>
+      <div class="example">d = {"a": 1, "b": 2}
+val = d.pop("a")     # val=1, d={"b":2}
+val = d.pop("c", 0)  # val=0 (ключа нет)</div>
+    </div>
+
+    <div class="func-card" id="method-update">
+      <h3>.update()</h3>
+      <div class="syntax">словарь.update(другой_словарь)</div>
+      <div class="desc">Добавляет все пары из другого словаря. Если ключи совпадают — значения перезаписываются.</div>
+      <div class="example">d = {"a": 1}
+d.update({"b": 2, "c": 3})  # {'a':1, 'b':2, 'c':3}</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== МЕТОДЫ ФАЙЛОВ ==================== -->
+  <div class="category" id="cat-file">
+    <h2>📂 Методы файлов</h2>
+
+    <div class="func-card" id="method-read">
+      <h3>.read()</h3>
+      <div class="syntax">файл.read()</div>
+      <div class="desc">Читает всё содержимое файла и возвращает его в виде одной строки.</div>
+      <div class="example">with open("f.txt", "r") as f:
+    text = f.read()</div>
+    </div>
+
+    <div class="func-card" id="method-readline">
+      <h3>.readline()</h3>
+      <div class="syntax">файл.readline()</div>
+      <div class="desc">Читает из файла одну строку (до символа <code>\n</code> включительно). При достижении конца файла возвращает пустую строку.</div>
+      <div class="example">line = f.readline()</div>
+    </div>
+
+    <div class="func-card" id="method-readlines">
+      <h3>.readlines()</h3>
+      <div class="syntax">файл.readlines()</div>
+      <div class="desc">Читает все строки файла и возвращает список строк (каждая с <code>\n</code> на конце).</div>
+      <div class="example">lines = f.readlines()
+# ['строка1\n', 'строка2\n', ...]</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== КЛЮЧЕВЫЕ СЛОВА И ОПЕРАТОРЫ ==================== -->
+  <div class="category" id="cat-other">
+    <h2>🔑 Ключевые слова и операторы</h2>
+
+    <div class="func-card" id="keyword-with">
+      <h3>with ... as</h3>
+      <div class="syntax">with open(...) as переменная:</div>
+      <div class="desc">Конструкция для безопасной работы с файлами. Гарантирует автоматическое закрытие файла после выхода из блока, даже если возникла ошибка.</div>
+      <div class="example">with open("file.txt", "r") as f:
+    data = f.read()
+# Файл автоматически закрыт</div>
+    </div>
+
+    <div class="func-card" id="keyword-def">
+      <h3>def</h3>
+      <div class="syntax">def имя(параметры):</div>
+      <div class="desc">Ключевое слово для создания (определения) функции. После <code>def</code> идёт имя функции, круглые скобки с параметрами и двоеточие.</div>
+      <div class="example">def add(a, b):
+    return a + b</div>
+      <div class="see-also">См. также: <a href="#keyword-return">return</a></div>
+    </div>
+
+    <div class="func-card" id="keyword-return">
+      <h3>return</h3>
+      <div class="syntax">return значение</div>
+      <div class="desc">Завершает выполнение функции и возвращает указанное значение в место вызова. Если <code>return</code> не указан, функция возвращает <code>None</code>.</div>
+      <div class="example">def add(a, b):
+    return a + b</div>
+    </div>
+
+    <div class="func-card" id="keyword-pass">
+      <h3>pass</h3>
+      <div class="syntax">pass</div>
+      <div class="desc">Пустая операция-заглушка. Используется там, где синтаксис требует кода, но по логике там пока ничего нет (заглушка функции, пустой класс, пустой <code>if</code>).</div>
+      <div class="example">def future_function():
+    pass  # Реализую позже</div>
+    </div>
+
+    <div class="func-card" id="keyword-in">
+      <h3>in</h3>
+      <div class="syntax">элемент in коллекция</div>
+      <div class="desc">Оператор проверки вхождения. Возвращает <code>True</code>, если элемент есть в коллекции (списке, строке, словаре — проверяются ключи).</div>
+      <div class="example">"a" in "abc"          # True
+3 in [1, 2, 3]       # True
+"x" in {"x": 1}      # True (ключ)
+1 in {"x": 1}        # False (значения не проверяются)</div>
+    </div>
+
+    <div class="func-card" id="keyword-break">
+      <h3>break</h3>
+      <div class="syntax">break</div>
+      <div class="desc">Немедленно прерывает выполнение цикла. Управление передаётся на первую строку после цикла.</div>
+      <div class="example">for i in range(10):
+    if i == 5:
+        break       # Выход из цикла при i=5</div>
+      <div class="see-also">См. также: <a href="#keyword-continue">continue</a></div>
+    </div>
+
+    <div class="func-card" id="keyword-continue">
+      <h3>continue</h3>
+      <div class="syntax">continue</div>
+      <div class="desc">Пропускает оставшуюся часть текущей итерации цикла и переходит к следующей итерации.</div>
+      <div class="example">for i in range(5):
+    if i == 2:
+        continue    # Пропустить i=2
+    print(i)        # 0, 1, 3, 4</div>
+      <div class="see-also">См. также: <a href="#keyword-break">break</a></div>
+    </div>
+
+    <div class="func-card" id="keyword-try">
+      <h3>try...except</h3>
+      <div class="syntax">try:
+    # опасный код
+except ТипОшибки:
+    # что делать при ошибке
+finally:
+    # выполнится всегда (необязательно)</div>
+      <div class="desc">Конструкция для обработки ошибок. Код в <code>try</code> выполняется; если возникает ошибка указанного типа — выполняется <code>except</code>. Блок <code>finally</code> (если есть) выполняется всегда.</div>
+      <div class="example">try:
+    x = int("abc")
+except ValueError:
+    print("Не число!")</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
