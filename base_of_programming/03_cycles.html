@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -207,29 +208,36 @@
       body {
         padding: 1.2rem 0.8rem;
       }
+
       h1 {
         font-size: 1.9rem;
       }
     }
   </style>
 </head>
+
 <body>
 
   <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
 
   <h1>🔁 Python: циклы</h1>
-  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем повторять, пока не получится.</p>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры и выполняй домашние задания.</p>
 
   <!-- ==================== ЧАСТЬ 1 ==================== -->
   <h2>Часть 1. Введение в циклы — зачем они нужны</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Представь, что тебе нужно вывести числа от 1 до 100. Писать сто строк с <a href="functions_descriptions.html#func-print" class="func-link" target="_blank"><code>print()</code></a> — это долго и скучно. А если нужно вывести числа до миллиона? Вот тут на помощь приходят <strong>циклы</strong>.</p>
-    <p><strong>Цикл</strong> — это конструкция, которая позволяет выполнить один и тот же блок кода много раз. Вместо копирования строк мы описываем правило один раз, а компьютер повторяет его столько, сколько нужно.</p>
+    <p><strong>Теория.</strong> Представь, что тебе нужно вывести числа от 1 до 100. Писать сто строк с <a
+        href="functions_descriptions.html#func-print" class="func-link" target="_blank"><code>print()</code></a> — это
+      долго и скучно. А если нужно вывести числа до миллиона? Вот тут на помощь приходят <strong>циклы</strong>.</p>
+    <p><strong>Цикл</strong> — это конструкция, которая позволяет выполнить один и тот же блок кода много раз. Вместо
+      копирования строк мы описываем правило один раз, а компьютер повторяет его столько, сколько нужно.</p>
     <p>В Python два основных вида циклов:</p>
     <ul>
-      <li><strong>Цикл <code>for</code></strong> — используется, когда мы <strong>заранее знаем</strong>, сколько повторений нужно, или когда нужно перебрать элементы коллекции (списка, строки и т.д.).</li>
-      <li><strong>Цикл <code>while</code></strong> — используется, когда количество повторений <strong>заранее неизвестно</strong> и зависит от условия. Он повторяется, пока условие остаётся истинным.</li>
+      <li><strong>Цикл <code>for</code></strong> — используется, когда мы <strong>заранее знаем</strong>, сколько
+        повторений нужно, или когда нужно перебрать элементы коллекции (списка, строки и т.д.).</li>
+      <li><strong>Цикл <code>while</code></strong> — используется, когда количество повторений <strong>заранее
+          неизвестно</strong> и зависит от условия. Он повторяется, пока условие остаётся истинным.</li>
     </ul>
   </div>
 
@@ -237,7 +245,9 @@
   <h2>Часть 2. Структура цикла for</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Цикл <code>for</code> последовательно перебирает элементы коллекции. На каждом шаге он берёт очередной элемент, присваивает его переменной и выполняет тело цикла. Когда элементы заканчиваются — цикл завершается.</p>
+    <p><strong>Теория.</strong> Цикл <code>for</code> последовательно перебирает элементы коллекции. На каждом шаге он
+      берёт очередной элемент, присваивает его переменной и выполняет тело цикла. Когда элементы заканчиваются — цикл
+      завершается.</p>
     <p><strong>Структура:</strong></p>
     <ul>
       <li>Ключевое слово <code>for</code>.</li>
@@ -272,13 +282,20 @@ for letter in word:
   <h2>Часть 3. Функция range() — числовые последовательности</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Чтобы выполнить цикл определённое количество раз, не создавая список вручную, используют функцию <code>range()</code>. Она генерирует последовательность чисел «на лету», не занимая лишнюю память.</p>
+    <p><strong>Теория.</strong> Чтобы выполнить цикл определённое количество раз, не создавая список вручную, используют
+      функцию <code>range()</code>. Она генерирует последовательность чисел «на лету», не занимая лишнюю память.</p>
   </div>
 
   <!-- Первое упоминание range() — с описанием -->
-  <div class="func-intro" style="background-color: #eaf3f9; border: 1px solid #b0c8dc; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0; font-size: 0.95rem;">
-    <p><span style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range()</a></span> — генерирует последовательность целых чисел. Число <code>конец</code> никогда не включается. Может принимать от 1 до 3 аргументов.</p>
-    <p style="font-size: 0.85rem; margin-top: 0.3rem;"><a href="functions_descriptions.html#func-range" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  <div class="func-intro"
+    style="background-color: #eaf3f9; border: 1px solid #b0c8dc; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0; font-size: 0.95rem;">
+    <p><span
+        style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a
+          href="functions_descriptions.html#func-range" class="func-link" target="_blank">range()</a></span> —
+      генерирует последовательность целых чисел. Число <code>конец</code> никогда не включается. Может принимать от 1 до
+      3 аргументов.</p>
+    <p style="font-size: 0.85rem; margin-top: 0.3rem;"><a href="functions_descriptions.html#func-range"
+        class="func-link" target="_blank">Подробнее в справочнике →</a></p>
   </div>
 
   <table>
@@ -313,7 +330,8 @@ for letter in word:
   </table>
 
   <div class="warn-block">
-    <p><strong>⚠️ Ключевое правило:</strong> число <code>конец</code> <strong>никогда не включается</strong> в результат. <code>range(5)</code> — это числа 0, 1, 2, 3, 4 (пять чисел, но пятый индекс не включается).</p>
+    <p><strong>⚠️ Ключевое правило:</strong> число <code>конец</code> <strong>никогда не включается</strong> в
+      результат. <code>range(5)</code> — это числа 0, 1, 2, 3, 4 (пять чисел, но пятый индекс не включается).</p>
   </div>
 
   <div class="code-block">
@@ -339,15 +357,20 @@ for i in <a href="functions_descriptions.html#func-range" class="func-link" targ
   </div>
 
   <div class="note-block">
-    <p><strong>💡 Перебор индексов:</strong> <code>for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(<a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(список))</code> — перебирает индексы от 0 до длины-1. Полезно, когда нужно знать позицию элемента или изменить его.</p>
+    <p><strong>💡 Перебор индексов:</strong>
+      <code>for i in <a href="functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(<a href="functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(список))</code>
+      — перебирает индексы от 0 до длины-1. Полезно, когда нужно знать позицию элемента или изменить его.
+    </p>
   </div>
 
   <!-- ==================== ЧАСТЬ 4 ==================== -->
   <h2>Часть 4. Цикл while — повторяем, пока условие истинно</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Цикл <code>while</code> (с английского — «пока») выполняет блок кода до тех пор, пока условие остаётся истинным (<code>True</code>). Как только условие становится ложным — цикл останавливается.</p>
-    <p>Цикл <code>while</code> удобен, когда мы не знаем заранее, сколько именно шагов потребуется: например, запрашиваем пароль у пользователя, пока он не введёт правильный, или ждём определённого события в игре.</p>
+    <p><strong>Теория.</strong> Цикл <code>while</code> (с английского — «пока») выполняет блок кода до тех пор, пока
+      условие остаётся истинным (<code>True</code>). Как только условие становится ложным — цикл останавливается.</p>
+    <p>Цикл <code>while</code> удобен, когда мы не знаем заранее, сколько именно шагов потребуется: например,
+      запрашиваем пароль у пользователя, пока он не введёт правильный, или ждём определённого события в игре.</p>
   </div>
 
   <div class="code-block">
@@ -375,21 +398,36 @@ while number > 0:
   </div>
 
   <div class="warn-block">
-    <p><strong>⚠️ Осторожно — бесконечный цикл!</strong> Если условие в <code>while</code> никогда не станет ложным, цикл будет выполняться бесконечно, и программа зависнет. Например: <code>while True: print("Бесконечность...")</code>. Всегда проверяй, что внутри цикла есть код, который в какой-то момент изменит условие на <code>False</code>.</p>
+    <p><strong>⚠️ Осторожно — бесконечный цикл!</strong> Если условие в <code>while</code> никогда не станет ложным,
+      цикл будет выполняться бесконечно, и программа зависнет. Например:
+      <code>while True: print("Бесконечность...")</code>. Всегда проверяй, что внутри цикла есть код, который в какой-то
+      момент изменит условие на <code>False</code>.
+    </p>
   </div>
 
   <!-- ==================== ЧАСТЬ 5 ==================== -->
   <h2>Часть 5. Прерывание цикла — break и continue</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Иногда нужно не просто дождаться конца цикла, а прервать его досрочно или пропустить отдельные итерации. Для этого есть два оператора:</p>
+    <p><strong>Теория.</strong> Иногда нужно не просто дождаться конца цикла, а прервать его досрочно или пропустить
+      отдельные итерации. Для этого есть два оператора:</p>
   </div>
 
   <!-- Первое упоминание break и continue — с описанием -->
-  <div class="func-intro" style="background-color: #eaf3f9; border: 1px solid #b0c8dc; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0; font-size: 0.95rem;">
-    <p><span style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></span> — немедленно прерывает выполнение цикла. Программа выходит из цикла и продолжает выполнение с первой строки после него.</p>
-    <p style="margin-top: 0.5rem;"><span style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a href="functions_descriptions.html#keyword-continue" class="func-link" target="_blank">continue</a></span> — пропускает оставшуюся часть <strong>текущей итерации</strong> и переходит к следующей. Цикл не прерывается полностью.</p>
-    <p style="font-size: 0.85rem; margin-top: 0.3rem;"><a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+  <div class="func-intro"
+    style="background-color: #eaf3f9; border: 1px solid #b0c8dc; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0; font-size: 0.95rem;">
+    <p><span
+        style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a
+          href="functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></span> —
+      немедленно прерывает выполнение цикла. Программа выходит из цикла и продолжает выполнение с первой строки после
+      него.</p>
+    <p style="margin-top: 0.5rem;"><span
+        style="font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-weight: 700; color: var(--accent); font-size: 1.05rem;"><a
+          href="functions_descriptions.html#keyword-continue" class="func-link" target="_blank">continue</a></span> —
+      пропускает оставшуюся часть <strong>текущей итерации</strong> и переходит к следующей. Цикл не прерывается
+      полностью.</p>
+    <p style="font-size: 0.85rem; margin-top: 0.3rem;"><a href="functions_descriptions.html#keyword-break"
+        class="func-link" target="_blank">Подробнее в справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -420,7 +458,8 @@ for num in numbers:
   <h2>Часть 6. Проверка нескольких условий в цикле</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Внутри цикла можно использовать любые конструкции: условные операторы, вложенные циклы, логические операторы. Это позволяет строить сложную логику обработки данных.</p>
+    <p><strong>Теория.</strong> Внутри цикла можно использовать любые конструкции: условные операторы, вложенные циклы,
+      логические операторы. Это позволяет строить сложную логику обработки данных.</p>
   </div>
 
   <div class="code-block">
@@ -479,8 +518,10 @@ while health > 0:
     <div class="task-block">
       <h3>Блок A. Цикл for и range()</h3>
       <ol>
-        <li>С помощью цикла <code>for</code> и <a href="functions_descriptions.html#func-range" class="func-link" target="_blank"><code>range()</code></a> выведи все числа от 1 до 20 включительно.</li>
-        <li>Выведи все чётные числа от 2 до 30 включительно. <em>(Подсказка: используй <code>range</code> с шагом.)</em></li>
+        <li>С помощью цикла <code>for</code> и <a href="functions_descriptions.html#func-range" class="func-link"
+            target="_blank"><code>range()</code></a> выведи все числа от 1 до 20 включительно.</li>
+        <li>Выведи все чётные числа от 2 до 30 включительно. <em>(Подсказка: используй <code>range</code> с шагом.)</em>
+        </li>
         <li>Выведи таблицу умножения для числа 7: от «7 × 1 = 7» до «7 × 10 = 70».</li>
       </ol>
     </div>
@@ -488,18 +529,30 @@ while health > 0:
     <div class="task-block">
       <h3>Блок Б. Цикл while</h3>
       <ol>
-        <li>Напиши программу, которая выводит числа от 10 до 1 в обратном порядке (обратный отсчёт). Используй цикл <code>while</code>.</li>
-        <li>Создай переменную <code>balance = 1000</code> (баланс в рублях). Напиши цикл <code>while</code>, который на каждом шаге уменьшает баланс на 150 рублей и выводит остаток. Цикл должен остановиться, когда баланс станет меньше 150 рублей.</li>
-        <li class="star-task">★ Напиши программу, которая запрашивает у пользователя число и выводит его факториал. Например, для 5: 5! = 1 × 2 × 3 × 4 × 5 = 120.</li>
+        <li>Напиши программу, которая выводит числа от 10 до 1 в обратном порядке (обратный отсчёт). Используй цикл
+          <code>while</code>.
+        </li>
+        <li>Создай переменную <code>balance = 1000</code> (баланс в рублях). Напиши цикл <code>while</code>, который на
+          каждом шаге уменьшает баланс на 150 рублей и выводит остаток. Цикл должен остановиться, когда баланс станет
+          меньше 150 рублей.</li>
+        <li class="star-task">★ Напиши программу, которая запрашивает у пользователя число и выводит его факториал.
+          Например, для 5: 5! = 1 × 2 × 3 × 4 × 5 = 120.</li>
       </ol>
     </div>
 
     <div class="task-block">
       <h3>Блок В. break, continue и несколько условий</h3>
       <ol>
-        <li>Дан список чисел: <code>[12, 45, 7, 30, 89, 23, 5, 68]</code>. Напиши цикл, который ищет первое число больше 50 и выводит его. Как только нашёл — прерывай цикл с помощью <a href="functions_descriptions.html#keyword-break" class="func-link" target="_blank"><code>break</code></a>.</li>
-        <li>Дан список чисел: <code>[8, -3, 15, 0, -7, 22, -1, 9]</code>. Напиши цикл, который выводит только положительные числа, а отрицательные и ноль пропускает с помощью <a href="functions_descriptions.html#keyword-continue" class="func-link" target="_blank"><code>continue</code></a>.</li>
-        <li>Напиши программу, которая находит и выводит сумму всех чисел от 1 до 100, которые делятся на 3 или на 5.</li>
+        <li>Дан список чисел: <code>[12, 45, 7, 30, 89, 23, 5, 68]</code>. Напиши цикл, который ищет первое число больше
+          50 и выводит его. Как только нашёл — прерывай цикл с помощью <a
+            href="functions_descriptions.html#keyword-break" class="func-link" target="_blank"><code>break</code></a>.
+        </li>
+        <li>Дан список чисел: <code>[8, -3, 15, 0, -7, 22, -1, 9]</code>. Напиши цикл, который выводит только
+          положительные числа, а отрицательные и ноль пропускает с помощью <a
+            href="functions_descriptions.html#keyword-continue" class="func-link"
+            target="_blank"><code>continue</code></a>.</li>
+        <li>Напиши программу, которая находит и выводит сумму всех чисел от 1 до 100, которые делятся на 3 или на 5.
+        </li>
       </ol>
     </div>
   </div>
@@ -507,8 +560,11 @@ while health > 0:
   <hr>
 
   <div class="footer-note">
-    📌 <strong>Совет репетитора.</strong> Циклы — это то, ради чего и придумали компьютеры: делать однообразную работу быстро и без ошибок. Попробуй <strong>мысленно пройти</strong> каждый пример из методички, записывая значения переменных на бумаге на каждом шаге. Это лучший способ понять, как работает цикл изнутри.
+    📌 <strong>Совет.</strong> Циклы — это то, ради чего и придумали компьютеры: делать однообразную работу быстро и без
+    ошибок. Попробуй <strong>мысленно пройти</strong> каждый пример из методички, записывая значения переменных на
+    бумаге на каждом шаге. Это лучший способ понять, как работает цикл изнутри.
   </div>
 
 </body>
+
 </html>

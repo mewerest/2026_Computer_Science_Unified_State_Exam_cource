@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -243,11 +244,13 @@
       padding: 2px 4px;
       border-radius: 4px;
     }
+
     .visual-demo .hl-negative {
       background-color: #ffccb3;
       padding: 2px 4px;
       border-radius: 4px;
     }
+
     .visual-demo .hl-result {
       background-color: #c6f0c6;
       padding: 2px 6px;
@@ -259,9 +262,11 @@
       body {
         padding: 1.2rem 0.8rem;
       }
+
       h1 {
         font-size: 1.9rem;
       }
+
       .visual-demo {
         font-size: 0.9rem;
         letter-spacing: 1px;
@@ -269,19 +274,25 @@
     }
   </style>
 </head>
+
 <body>
 
   <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
 
   <h1>🔤 Python: строки</h1>
-  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем виртуозно владеть текстом.</p>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры и выполняй домашние задания.
+  </p>
 
   <!-- ==================== ЧАСТЬ 1 ==================== -->
   <h2>Часть 1. Строки как последовательности символов</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Мы уже знаем, что строка (<code>str</code>) — это тип данных для хранения текста. Но строка в Python — это не просто «кусок текста», а <strong>упорядоченная последовательность символов</strong>, где каждый символ имеет свой индекс. Как и в списках, индексация начинается с нуля.</p>
-    <p>Это значит, что к строке можно применять многие операции, знакомые нам по спискам: узнавать длину через <a href="functions_descriptions.html#func-len" class="func-link" target="_blank"><code>len()</code></a>, обращаться к отдельным символам по индексу, использовать отрицательные индексы.</p>
+    <p><strong>Теория.</strong> Мы уже знаем, что строка (<code>str</code>) — это тип данных для хранения текста. Но
+      строка в Python — это не просто «кусок текста», а <strong>упорядоченная последовательность символов</strong>, где
+      каждый символ имеет свой индекс. Как и в списках, индексация начинается с нуля.</p>
+    <p>Это значит, что к строке можно применять многие операции, знакомые нам по спискам: узнавать длину через <a
+        href="functions_descriptions.html#func-len" class="func-link" target="_blank"><code>len()</code></a>, обращаться
+      к отдельным символам по индексу, использовать отрицательные индексы.</p>
   </div>
 
   <div class="code-block">
@@ -297,14 +308,18 @@
   </div>
 
   <div class="warn-block">
-    <p><strong>⚠️ Важное отличие строк от списков:</strong> строки в Python <strong>неизменяемы</strong>. Нельзя заменить один символ: <code>word[0] = "J"</code> вызовет ошибку. Чтобы «изменить» строку, нужно создать новую.</p>
+    <p><strong>⚠️ Важное отличие строк от списков:</strong> строки в Python <strong>неизменяемы</strong>. Нельзя
+      заменить один символ: <code>word[0] = "J"</code> вызовет ошибку. Чтобы «изменить» строку, нужно создать новую.</p>
   </div>
 
   <!-- ==================== ЧАСТЬ 2 ==================== -->
   <h2>Часть 2. Срезы строк</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> <strong>Срез (slice)</strong> — это механизм, позволяющий извлечь часть строки. Синтаксис точно такой же, как у срезов списков: <code>строка[начало:конец:шаг]</code>. Символ с индексом <code>конец</code> не включается.</p>
+    <p><strong>Теория.</strong> <strong>Срез (slice)</strong> — это механизм, позволяющий извлечь часть строки.
+      Синтаксис точно такой же, как у срезов списков: <code>строка[начало:конец:шаг]</code>. Символ с индексом
+      <code>конец</code> не включается.
+    </p>
   </div>
 
   <div class="visual-demo">
@@ -361,16 +376,26 @@ else:
   <h2>Часть 3. Методы строк</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> У строк есть множество встроенных методов — готовых функций, которые выполняют полезные операции. Поскольку строки неизменяемы, методы <strong>не меняют исходную строку</strong>, а возвращают новую.</p>
+    <p><strong>Теория.</strong> У строк есть множество встроенных методов — готовых функций, которые выполняют полезные
+      операции. Поскольку строки неизменяемы, методы <strong>не меняют исходную строку</strong>, а возвращают новую.</p>
   </div>
 
   <!-- Первое упоминание методов строк -->
   <div class="func-intro">
-    <p><span class="func-name"><a href="functions_descriptions.html#method-upper" class="func-link" target="_blank">.upper()</a></span> — все буквы заглавные. <span class="func-name"><a href="functions_descriptions.html#method-lower" class="func-link" target="_blank">.lower()</a></span> — все строчные.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-strip" class="func-link" target="_blank">.strip()</a></span> — убирает пробелы и переносы строк по краям.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-replace" class="func-link" target="_blank">.replace()</a></span> — заменяет подстроку на другую.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-find" class="func-link" target="_blank">.find()</a></span> — ищет подстроку, возвращает индекс или −1. <span class="func-name"><a href="functions_descriptions.html#method-count" class="func-link" target="_blank">.count()</a></span> — считает вхождения.</p>
-    <p class="more-link"><a href="functions_descriptions.html#cat-str" class="func-link" target="_blank">Все методы строк в справочнике →</a></p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-upper" class="func-link"
+          target="_blank">.upper()</a></span> — все буквы заглавные. <span class="func-name"><a
+          href="functions_descriptions.html#method-lower" class="func-link" target="_blank">.lower()</a></span> — все
+      строчные.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-strip" class="func-link"
+          target="_blank">.strip()</a></span> — убирает пробелы и переносы строк по краям.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-replace" class="func-link"
+          target="_blank">.replace()</a></span> — заменяет подстроку на другую.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-find" class="func-link"
+          target="_blank">.find()</a></span> — ищет подстроку, возвращает индекс или −1. <span class="func-name"><a
+          href="functions_descriptions.html#method-count" class="func-link" target="_blank">.count()</a></span> —
+      считает вхождения.</p>
+    <p class="more-link"><a href="functions_descriptions.html#cat-str" class="func-link" target="_blank">Все методы
+        строк в справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -394,9 +419,14 @@ replaced = clean.<a href="functions_descriptions.html#method-replace" class="fun
 
   <!-- Первое упоминание split() и join() -->
   <div class="func-intro">
-    <p><span class="func-name"><a href="functions_descriptions.html#method-split" class="func-link" target="_blank">.split()</a></span> — разбивает строку по разделителю и возвращает список подстрок. Без аргумента — разбивает по пробелам.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-join" class="func-link" target="_blank">.join()</a></span> — собирает список строк в одну, вставляя разделитель между элементами. Обратная операция к <code>.split()</code>.</p>
-    <p class="more-link"><a href="functions_descriptions.html#method-split" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-split" class="func-link"
+          target="_blank">.split()</a></span> — разбивает строку по разделителю и возвращает список подстрок. Без
+      аргумента — разбивает по пробелам.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-join" class="func-link"
+          target="_blank">.join()</a></span> — собирает список строк в одну, вставляя разделитель между элементами.
+      Обратная операция к <code>.split()</code>.</p>
+    <p class="more-link"><a href="functions_descriptions.html#method-split" class="func-link" target="_blank">Подробнее
+        в справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -422,13 +452,22 @@ result = ", ".<a href="functions_descriptions.html#method-join" class="func-link
 
   <!-- Первое упоминание int(), float(), str(), list() — все уже были, но здесь в контексте строк -->
   <div class="theory-block">
-    <p><strong>Теория.</strong> В программировании постоянно нужно преобразовывать данные из одного типа в другой. Особенно это важно при работе со строками: данные из файла или пользовательского ввода всегда приходят строками, и их нужно превращать в числа.</p>
+    <p><strong>Теория.</strong> В программировании постоянно нужно преобразовывать данные из одного типа в другой.
+      Особенно это важно при работе со строками: данные из файла или пользовательского ввода всегда приходят строками, и
+      их нужно превращать в числа.</p>
   </div>
 
   <div class="func-intro">
-    <p><span class="func-name"><a href="functions_descriptions.html#func-int" class="func-link" target="_blank">int()</a></span> — преобразует строку в целое число. <span class="func-name"><a href="functions_descriptions.html#func-float" class="func-link" target="_blank">float()</a></span> — в число с плавающей точкой.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#func-str" class="func-link" target="_blank">str()</a></span> — преобразует любой объект в строку. <span class="func-name"><a href="functions_descriptions.html#func-list" class="func-link" target="_blank">list()</a></span> — создаёт список из итерируемого объекта.</p>
-    <p class="more-link"><a href="functions_descriptions.html#func-int" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+    <p><span class="func-name"><a href="functions_descriptions.html#func-int" class="func-link"
+          target="_blank">int()</a></span> — преобразует строку в целое число. <span class="func-name"><a
+          href="functions_descriptions.html#func-float" class="func-link" target="_blank">float()</a></span> — в число с
+      плавающей точкой.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#func-str" class="func-link"
+          target="_blank">str()</a></span> — преобразует любой объект в строку. <span class="func-name"><a
+          href="functions_descriptions.html#func-list" class="func-link" target="_blank">list()</a></span> — создаёт
+      список из итерируемого объекта.</p>
+    <p class="more-link"><a href="functions_descriptions.html#func-int" class="func-link" target="_blank">Подробнее в
+        справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -447,7 +486,10 @@ chars = <a href="functions_descriptions.html#func-list" class="func-link" target
   </div>
 
   <div class="note-block">
-    <p><strong>💡 Обработка ошибок при преобразовании:</strong> не каждая строка может стать числом. Используй <a href="functions_descriptions.html#method-isdigit" class="func-link" target="_blank"><code>.isdigit()</code></a> для проверки, состоит ли строка только из цифр, или конструкцию <a href="functions_descriptions.html#keyword-try" class="func-link" target="_blank"><code>try...except</code></a> для безопасного преобразования.</p>
+    <p><strong>💡 Обработка ошибок при преобразовании:</strong> не каждая строка может стать числом. Используй <a
+        href="functions_descriptions.html#method-isdigit" class="func-link" target="_blank"><code>.isdigit()</code></a>
+      для проверки, состоит ли строка только из цифр, или конструкцию <a href="functions_descriptions.html#keyword-try"
+        class="func-link" target="_blank"><code>try...except</code></a> для безопасного преобразования.</p>
   </div>
 
   <!-- ==================== ЗАДАНИЯ ==================== -->
@@ -458,27 +500,37 @@ chars = <a href="functions_descriptions.html#func-list" class="func-link" target
     <div class="task-block">
       <h3>Блок A. Индексация и срезы</h3>
       <ol>
-        <li>Дана строка <code>text = "информатика"</code>. С помощью срезов получи и выведи первые 5 букв, последние 4 буквы и буквы с 3-й по 7-ю.</li>
+        <li>Дана строка <code>text = "информатика"</code>. С помощью срезов получи и выведи первые 5 букв, последние 4
+          буквы и буквы с 3-й по 7-ю.</li>
         <li>Дана строка <code>word = "Электричество"</code>. Выведи её перевёрнутую версию и каждый второй символ.</li>
-        <li>Дана строка <code>s = "0123456789"</code>. С помощью срезов получи все чётные цифры, все цифры в обратном порядке и цифры с 5-й по 3-ю в обратном порядке.</li>
+        <li>Дана строка <code>s = "0123456789"</code>. С помощью срезов получи все чётные цифры, все цифры в обратном
+          порядке и цифры с 5-й по 3-ю в обратном порядке.</li>
       </ol>
     </div>
 
     <div class="task-block">
       <h3>Блок Б. Методы строк и split</h3>
       <ol>
-        <li>Дана строка <code>text = "  пРиВеТ, мИр!  "</code>. Приведи её к нормальному виду: убери пробелы по краям, сделай все буквы строчными, первую букву сделай заглавной с помощью <a href="functions_descriptions.html#method-capitalize" class="func-link" target="_blank"><code>.capitalize()</code></a>.</li>
-        <li>Дана строка <code>data = "Иван,25,Москва,инженер"</code>. Разбей её по запятым и выведи информацию в читаемом формате.</li>
-        <li>Дана строка <code>sentence = "Python — это мощный, гибкий и удобный язык"</code>. Разбей на слова, посчитай количество слов и выведи самое длинное слово.</li>
+        <li>Дана строка <code>text = "  пРиВеТ, мИр!  "</code>. Приведи её к нормальному виду: убери пробелы по краям,
+          сделай все буквы строчными, первую букву сделай заглавной с помощью <a
+            href="functions_descriptions.html#method-capitalize" class="func-link"
+            target="_blank"><code>.capitalize()</code></a>.</li>
+        <li>Дана строка <code>data = "Иван,25,Москва,инженер"</code>. Разбей её по запятым и выведи информацию в
+          читаемом формате.</li>
+        <li>Дана строка <code>sentence = "Python — это мощный, гибкий и удобный язык"</code>. Разбей на слова, посчитай
+          количество слов и выведи самое длинное слово.</li>
       </ol>
     </div>
 
     <div class="task-block">
       <h3>Блок В. Преобразование типов и комплексные задачи</h3>
       <ol>
-        <li>Дана строка с числами: <code>"12 45 78 23 90 56 34"</code>. Преобразуй её в список целых чисел и найди сумму, минимум и максимум.</li>
-        <li>Напиши программу, которая проверяет, является ли строка палиндромом, используя срез. Проверь слова «казак» и «программирование».</li>
-        <li class="star-task">★ Дана строка с путём к файлу: <code>"/home/user/documents/report_2024.txt"</code>. Используя срезы и методы, получи имя файла без расширения, расширение и название папки.</li>
+        <li>Дана строка с числами: <code>"12 45 78 23 90 56 34"</code>. Преобразуй её в список целых чисел и найди
+          сумму, минимум и максимум.</li>
+        <li>Напиши программу, которая проверяет, является ли строка палиндромом, используя срез. Проверь слова «казак» и
+          «программирование».</li>
+        <li class="star-task">★ Дана строка с путём к файлу: <code>"/home/user/documents/report_2024.txt"</code>.
+          Используя срезы и методы, получи имя файла без расширения, расширение и название папки.</li>
       </ol>
     </div>
   </div>
@@ -486,8 +538,10 @@ chars = <a href="functions_descriptions.html#func-list" class="func-link" target
   <hr>
 
   <div class="footer-note">
-    📌 <strong>Совет репетитора.</strong> Строки — это 90% повседневной работы программиста: логи, данные, пользовательский ввод. Чем лучше ты освоишь срезы и методы сейчас, тем легче будут даваться реальные проекты и задачи ЕГЭ. Увидимся на уроке!
+    📌 <strong>Совет.</strong> Строки — это 90% повседневной работы программиста: логи, данные, пользовательский ввод.
+    Чем лучше ты освоишь срезы и методы сейчас, тем легче будут даваться реальные проекты и задачи ЕГЭ.
   </div>
 
 </body>
+
 </html>

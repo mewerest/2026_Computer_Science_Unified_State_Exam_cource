@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -265,9 +266,11 @@
       body {
         padding: 1.2rem 0.8rem;
       }
+
       h1 {
         font-size: 1.9rem;
       }
+
       .dict-diagram .pair {
         display: block;
         margin: 8px auto;
@@ -276,26 +279,32 @@
     }
   </style>
 </head>
+
 <body>
 
   <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
 
   <h1>📖 Python: словари</h1>
-  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем работать с парами «ключ-значение».</p>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры и выполняй домашние задания.</p>
 
   <!-- ==================== ЧАСТЬ 1 ==================== -->
   <h2>Часть 1. Что такое словарь и зачем он нужен</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Список хранит элементы по порядку, и чтобы найти нужный, мы должны знать его индекс. Но часто данные удобнее хранить не по номеру, а по <strong>ключу</strong> — осмысленному имени.</p>
-    <p><strong>Словарь (dict)</strong> — это коллекция пар <strong>«ключ → значение»</strong>. Как настоящий словарь: ищешь слово (ключ) — получаешь его определение (значение). Ключи уникальны, значения могут повторяться.</p>
+    <p><strong>Теория.</strong> Список хранит элементы по порядку, и чтобы найти нужный, мы должны знать его индекс. Но
+      часто данные удобнее хранить не по номеру, а по <strong>ключу</strong> — осмысленному имени.</p>
+    <p><strong>Словарь (dict)</strong> — это коллекция пар <strong>«ключ → значение»</strong>. Как настоящий словарь:
+      ищешь слово (ключ) — получаешь его определение (значение). Ключи уникальны, значения могут повторяться.</p>
   </div>
 
   <div class="dict-diagram">
     <strong>Словарь: ключ → значение</strong><br><br>
-    <div class="pair"><span class="key">"яблоко"</span> <span class="arrow-mini">→</span> <span class="value">"фрукт"</span></div>
-    <div class="pair"><span class="key">"огурец"</span> <span class="arrow-mini">→</span> <span class="value">"овощ"</span></div>
-    <div class="pair"><span class="key">"арбуз"</span> <span class="arrow-mini">→</span> <span class="value">"ягода"</span></div>
+    <div class="pair"><span class="key">"яблоко"</span> <span class="arrow-mini">→</span> <span
+        class="value">"фрукт"</span></div>
+    <div class="pair"><span class="key">"огурец"</span> <span class="arrow-mini">→</span> <span
+        class="value">"овощ"</span></div>
+    <div class="pair"><span class="key">"арбуз"</span> <span class="arrow-mini">→</span> <span
+        class="value">"ягода"</span></div>
   </div>
 
   <div class="code-block">
@@ -313,7 +322,9 @@ products = {
   <h2>Часть 2. Создание словаря и базовые операции</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Словарь создаётся с помощью фигурных скобок <code>{}</code>. Внутри — пары <code>ключ: значение</code>. Ключом может быть любой неизменяемый тип (строки, числа), значением — что угодно.</p>
+    <p><strong>Теория.</strong> Словарь создаётся с помощью фигурных скобок <code>{}</code>. Внутри — пары
+      <code>ключ: значение</code>. Ключом может быть любой неизменяемый тип (строки, числа), значением — что угодно.
+    </p>
   </div>
 
   <div class="code-block">
@@ -339,7 +350,8 @@ del student["класс"]</pre>
   </div>
 
   <div class="warn-block">
-    <p><strong>⚠️ Ошибка KeyError:</strong> если обратиться к несуществующему ключу — <code>student["адрес"]</code> — будет ошибка. Используй <code>.get()</code> для безопасного доступа.</p>
+    <p><strong>⚠️ Ошибка KeyError:</strong> если обратиться к несуществующему ключу — <code>student["адрес"]</code> —
+      будет ошибка. Используй <code>.get()</code> для безопасного доступа.</p>
   </div>
 
   <!-- ==================== ЧАСТЬ 3 ==================== -->
@@ -347,9 +359,16 @@ del student["класс"]</pre>
 
   <!-- Первое упоминание in для словарей и .get() -->
   <div class="func-intro">
-    <p><span class="func-name"><a href="functions_descriptions.html#keyword-in" class="func-link" target="_blank">in</a></span> — проверяет, есть ли ключ в словаре. Возвращает <code>True</code> или <code>False</code>.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-get" class="func-link" target="_blank">.get()</a></span> — безопасно получает значение по ключу. Если ключа нет — возвращает <code>None</code> или указанное значение по умолчанию.</p>
-    <p class="more-link"><a href="functions_descriptions.html#method-get" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+    <p><span class="func-name"><a href="functions_descriptions.html#keyword-in" class="func-link"
+          target="_blank">in</a></span> — проверяет, есть ли ключ в словаре. Возвращает <code>True</code> или
+      <code>False</code>.
+    </p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-get" class="func-link"
+          target="_blank">.get()</a></span> — безопасно получает значение по ключу. Если ключа нет — возвращает
+      <code>None</code> или указанное значение по умолчанию.
+    </p>
+    <p class="more-link"><a href="functions_descriptions.html#method-get" class="func-link" target="_blank">Подробнее в
+        справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -371,10 +390,15 @@ city = student.<a href="functions_descriptions.html#method-get" class="func-link
 
   <!-- Первое упоминание .keys(), .values(), .items() -->
   <div class="func-intro">
-    <p><span class="func-name"><a href="functions_descriptions.html#method-keys" class="func-link" target="_blank">.keys()</a></span> — возвращает все ключи словаря.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-values" class="func-link" target="_blank">.values()</a></span> — возвращает все значения словаря.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-items" class="func-link" target="_blank">.items()</a></span> — возвращает пары <code>(ключ, значение)</code>. Самый популярный метод для перебора.</p>
-    <p class="more-link"><a href="functions_descriptions.html#cat-dict" class="func-link" target="_blank">Все методы словарей в справочнике →</a></p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-keys" class="func-link"
+          target="_blank">.keys()</a></span> — возвращает все ключи словаря.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-values" class="func-link"
+          target="_blank">.values()</a></span> — возвращает все значения словаря.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-items" class="func-link"
+          target="_blank">.items()</a></span> — возвращает пары <code>(ключ, значение)</code>. Самый популярный метод
+      для перебора.</p>
+    <p class="more-link"><a href="functions_descriptions.html#cat-dict" class="func-link" target="_blank">Все методы
+        словарей в справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -397,7 +421,8 @@ for name, cals in fruits.<a href="functions_descriptions.html#method-items" clas
   <h2>Часть 5. Главный паттерн — подсчёт частоты</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Самая частая задача на словари в ЕГЭ — <strong>подсчёт частоты</strong>: сколько раз каждый элемент встретился в наборе данных. Словарь идеально подходит: ключ — элемент, значение — счётчик.</p>
+    <p><strong>Теория.</strong> Самая частая задача на словари в ЕГЭ — <strong>подсчёт частоты</strong>: сколько раз
+      каждый элемент встретился в наборе данных. Словарь идеально подходит: ключ — элемент, значение — счётчик.</p>
   </div>
 
   <div class="code-block">
@@ -419,7 +444,9 @@ most_common = <a href="functions_descriptions.html#func-max" class="func-link" t
   </div>
 
   <div class="note-block">
-    <p><strong>💡 Магия <code>max(dict, key=dict.get)</code>:</strong> находит ключ с максимальным значением. <code>key=dict.get</code> говорит: «сравнивай не ключи, а значения, которые по этим ключам лежат».</p>
+    <p><strong>💡 Магия <code>max(dict, key=dict.get)</code>:</strong> находит ключ с максимальным значением.
+      <code>key=dict.get</code> говорит: «сравнивай не ключи, а значения, которые по этим ключам лежат».
+    </p>
   </div>
 
   <!-- ==================== ЧАСТЬ 6 ==================== -->
@@ -448,25 +475,33 @@ for grade in <a href="functions_descriptions.html#func-sorted" class="func-link"
     <div class="task-block">
       <h3>Блок A. Создание и базовые операции</h3>
       <ol>
-        <li>Создай словарь <code>translations</code> с 5–7 парами «русское слово → английское слово». Выведи перевод слова «кошка». Добавь ещё два слова. Удали одно слово и выведи итоговый словарь.</li>
-        <li>Создай словарь <code>phone_book</code> с именами и номерами (5 записей). Запроси имя и выведи номер, используя <a href="functions_descriptions.html#method-get" class="func-link" target="_blank"><code>.get()</code></a>. Если имени нет — выведи «Не найден».</li>
+        <li>Создай словарь <code>translations</code> с 5–7 парами «русское слово → английское слово». Выведи перевод
+          слова «кошка». Добавь ещё два слова. Удали одно слово и выведи итоговый словарь.</li>
+        <li>Создай словарь <code>phone_book</code> с именами и номерами (5 записей). Запроси имя и выведи номер,
+          используя <a href="functions_descriptions.html#method-get" class="func-link"
+            target="_blank"><code>.get()</code></a>. Если имени нет — выведи «Не найден».</li>
       </ol>
     </div>
 
     <div class="task-block">
       <h3>Блок Б. Подсчёт и группировка</h3>
       <ol>
-        <li>Дана строка: <code>"собака кошка собака хомяк кошка кошка попугай собака"</code>. Подсчитай, сколько раз встречается каждое слово.</li>
-        <li>Дана строка: <code>"абракадабра"</code>. Подсчитай, сколько раз встречается каждая буква. Выведи буквы и их количество в алфавитном порядке.</li>
-        <li>Создай словарь, где ключи — названия предметов, а значения — списки оценок. Посчитай и выведи средний балл по каждому предмету.</li>
+        <li>Дана строка: <code>"собака кошка собака хомяк кошка кошка попугай собака"</code>. Подсчитай, сколько раз
+          встречается каждое слово.</li>
+        <li>Дана строка: <code>"абракадабра"</code>. Подсчитай, сколько раз встречается каждая буква. Выведи буквы и их
+          количество в алфавитном порядке.</li>
+        <li>Создай словарь, где ключи — названия предметов, а значения — списки оценок. Посчитай и выведи средний балл
+          по каждому предмету.</li>
       </ol>
     </div>
 
     <div class="task-block">
       <h3>Блок В. Задачи в стиле ЕГЭ</h3>
       <ol>
-        <li>Дан список учеников с баллами ЕГЭ: <code>[("Анна", 85), ("Борис", 92), ("Виктор", 78)]</code>. Найди ученика с максимальным баллом и выведи средний балл.</li>
-        <li class="star-task">★ Дан список IP-адресов с повторениями. Подсчитай, сколько раз встретился каждый IP, и найди IP с максимальным количеством посещений.</li>
+        <li>Дан список учеников с баллами ЕГЭ: <code>[("Анна", 85), ("Борис", 92), ("Виктор", 78)]</code>. Найди ученика
+          с максимальным баллом и выведи средний балл.</li>
+        <li class="star-task">★ Дан список IP-адресов с повторениями. Подсчитай, сколько раз встретился каждый IP, и
+          найди IP с максимальным количеством посещений.</li>
       </ol>
     </div>
   </div>
@@ -474,8 +509,10 @@ for grade in <a href="functions_descriptions.html#func-sorted" class="func-link"
   <hr>
 
   <div class="footer-note">
-    📌 <strong>Совет репетитора.</strong> Словарь — самый полезный тип данных для задач ЕГЭ. Освой паттерн «подсчёт через <code>.get()</code>» до автоматизма — он понадобится в 9 из 10 задач на обработку данных. Увидимся на уроке!
+    📌 <strong>Совет.</strong> Словарь — самый полезный тип данных для задач ЕГЭ. Освой паттерн «подсчёт через
+    <code>.get()</code>» до автоматизма — он понадобится в 9 из 10 задач на обработку данных.
   </div>
 
 </body>
+
 </html>

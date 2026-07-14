@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -269,31 +270,41 @@
       body {
         padding: 1.2rem 0.8rem;
       }
+
       h1 {
         font-size: 1.9rem;
       }
     }
   </style>
 </head>
+
 <body>
 
   <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
 
   <h1>📂 Python: чтение файлов</h1>
-  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры — на занятии будем учиться работать с данными из файлов.</p>
+  <p class="subtitle">Методичка ученика · Прочитай теорию, разбери примеры и выполняй домашние задания.</p>
 
   <!-- ==================== ЧАСТЬ 1 ==================== -->
   <h2>Часть 1. Открытие и чтение файла</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> До сих пор мы хранили данные прямо в коде. Но в реальных программах информация чаще всего находится <strong>в файлах</strong>. Python умеет читать файлы с диска — для этого есть встроенная функция <code>open()</code>.</p>
+    <p><strong>Теория.</strong> До сих пор мы хранили данные прямо в коде. Но в реальных программах информация чаще
+      всего находится <strong>в файлах</strong>. Python умеет читать файлы с диска — для этого есть встроенная функция
+      <code>open()</code>.
+    </p>
   </div>
 
   <!-- Первое упоминание open() и with -->
   <div class="func-intro">
-    <p><span class="func-name"><a href="functions_descriptions.html#func-open" class="func-link" target="_blank">open()</a></span> — открывает файл и возвращает файловый объект. Параметры: путь к файлу, режим (<code>'r'</code> — чтение), кодировка (<code>encoding="utf-8"</code>).</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#keyword-with" class="func-link" target="_blank">with ... as</a></span> — конструкция для безопасной работы с файлами. Гарантирует, что файл будет закрыт автоматически.</p>
-    <p class="more-link"><a href="functions_descriptions.html#func-open" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+    <p><span class="func-name"><a href="functions_descriptions.html#func-open" class="func-link"
+          target="_blank">open()</a></span> — открывает файл и возвращает файловый объект. Параметры: путь к файлу,
+      режим (<code>'r'</code> — чтение), кодировка (<code>encoding="utf-8"</code>).</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#keyword-with" class="func-link" target="_blank">with
+          ... as</a></span> — конструкция для безопасной работы с файлами. Гарантирует, что файл будет закрыт
+      автоматически.</p>
+    <p class="more-link"><a href="functions_descriptions.html#func-open" class="func-link" target="_blank">Подробнее в
+        справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -307,21 +318,27 @@
   </div>
 
   <div class="file-content">Привет, мир!
-Это мой первый файл.
-Python — это круто!</div>
+    Это мой первый файл.
+    Python — это круто!</div>
 
   <div class="warn-block">
-    <p><strong>⚠️ Важно:</strong> <code>encoding="utf-8"</code> — указывает кодировку. UTF-8 поддерживает русские буквы. Без этого параметра на Windows кириллица может отображаться некорректно.</p>
+    <p><strong>⚠️ Важно:</strong> <code>encoding="utf-8"</code> — указывает кодировку. UTF-8 поддерживает русские буквы.
+      Без этого параметра на Windows кириллица может отображаться некорректно.</p>
   </div>
 
   <!-- ==================== ЧАСТЬ 2 ==================== -->
   <h2>Часть 2. Методы чтения файла</h2>
 
   <div class="func-intro">
-    <p><span class="func-name"><a href="functions_descriptions.html#method-read" class="func-link" target="_blank">.read()</a></span> — читает весь файл одной строкой.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-readline" class="func-link" target="_blank">.readline()</a></span> — читает одну строку (до <code>\n</code>). При следующем вызове — следующую.</p>
-    <p><span class="func-name"><a href="functions_descriptions.html#method-readlines" class="func-link" target="_blank">.readlines()</a></span> — читает все строки и возвращает список строк.</p>
-    <p class="more-link"><a href="functions_descriptions.html#cat-file" class="func-link" target="_blank">Все методы файлов в справочнике →</a></p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-read" class="func-link"
+          target="_blank">.read()</a></span> — читает весь файл одной строкой.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-readline" class="func-link"
+          target="_blank">.readline()</a></span> — читает одну строку (до <code>\n</code>). При следующем вызове —
+      следующую.</p>
+    <p><span class="func-name"><a href="functions_descriptions.html#method-readlines" class="func-link"
+          target="_blank">.readlines()</a></span> — читает все строки и возвращает список строк.</p>
+    <p class="more-link"><a href="functions_descriptions.html#cat-file" class="func-link" target="_blank">Все методы
+        файлов в справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -333,16 +350,17 @@ Python — это круто!</div>
   </div>
 
   <div class="file-content">яблоко
-банан
-апельсин
-киви
-манго</div>
+    банан
+    апельсин
+    киви
+    манго</div>
 
   <!-- ==================== ЧАСТЬ 3 ==================== -->
   <h2>Часть 3. Перебор файла в цикле for</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Файловый объект можно перебирать в цикле <code>for</code> — на каждой итерации будет получаться очередная строка. Это самый элегантный и популярный способ построчной обработки.</p>
+    <p><strong>Теория.</strong> Файловый объект можно перебирать в цикле <code>for</code> — на каждой итерации будет
+      получаться очередная строка. Это самый элегантный и популярный способ построчной обработки.</p>
   </div>
 
   <div class="code-block">
@@ -371,10 +389,10 @@ students = []
   </div>
 
   <div class="file-content">Анна Петрова
-Борис Иванов
-Виктор Сидоров
-Галина Смирнова
-Дмитрий Кузнецов</div>
+    Борис Иванов
+    Виктор Сидоров
+    Галина Смирнова
+    Дмитрий Кузнецов</div>
 
   <h3>4.1 Обработка числовых данных из файла</h3>
   <div class="code-block">
@@ -392,19 +410,21 @@ scores = []
   </div>
 
   <div class="file-content">85
-92
-78
-95
-88
-73
-90
-84</div>
+    92
+    78
+    95
+    88
+    73
+    90
+    84</div>
 
   <!-- ==================== ЧАСТЬ 5 ==================== -->
   <h2>Часть 5. Обработка CSV-подобных файлов</h2>
 
   <div class="theory-block">
-    <p><strong>Теория.</strong> Часто данные структурированы: каждая строка содержит несколько значений, разделённых запятой. Это называется CSV (Comma-Separated Values). Разбираем такие строки с помощью уже знакомого метода <a href="functions_descriptions.html#method-split" class="func-link" target="_blank"><code>.split()</code></a>.</p>
+    <p><strong>Теория.</strong> Часто данные структурированы: каждая строка содержит несколько значений, разделённых
+      запятой. Это называется CSV (Comma-Separated Values). Разбираем такие строки с помощью уже знакомого метода <a
+        href="functions_descriptions.html#method-split" class="func-link" target="_blank"><code>.split()</code></a>.</p>
   </div>
 
   <div class="code-block">
@@ -421,18 +441,21 @@ scores = []
   </div>
 
   <div class="file-content">Анна,25,Москва
-Борис,30,Питер
-Виктор,22,Казань
-Галина,28,Сочи
-Дмитрий,35,Омск</div>
+    Борис,30,Питер
+    Виктор,22,Казань
+    Галина,28,Сочи
+    Дмитрий,35,Омск</div>
 
   <!-- ==================== ЧАСТЬ 6 ==================== -->
   <h2>Часть 6. Обработка ошибок при чтении</h2>
 
   <!-- Первое упоминание try-except -->
   <div class="func-intro">
-    <p><span class="func-name"><a href="functions_descriptions.html#keyword-try" class="func-link" target="_blank">try...except</a></span> — конструкция для обработки ошибок. Код в <code>try</code> выполняется; если возникает ошибка — выполняется <code>except</code>. Программа не падает.</p>
-    <p class="more-link"><a href="functions_descriptions.html#keyword-try" class="func-link" target="_blank">Подробнее в справочнике →</a></p>
+    <p><span class="func-name"><a href="functions_descriptions.html#keyword-try" class="func-link"
+          target="_blank">try...except</a></span> — конструкция для обработки ошибок. Код в <code>try</code>
+      выполняется; если возникает ошибка — выполняется <code>except</code>. Программа не падает.</p>
+    <p class="more-link"><a href="functions_descriptions.html#keyword-try" class="func-link" target="_blank">Подробнее в
+        справочнике →</a></p>
   </div>
 
   <div class="code-block">
@@ -453,24 +476,31 @@ scores = []
     <div class="task-block">
       <h3>Блок A. Простое чтение</h3>
       <ol>
-        <li>Создай файл <code>quote.txt</code> с любимой цитатой (2–3 строки). Напиши программу, которая читает его целиком и выводит на экран.</li>
-        <li>Создай файл <code>colors.txt</code> с 5–7 цветами (по одному на строку). Прочитай файл построчно и выведи каждый цвет с приставкой «Мой любимый цвет — …».</li>
+        <li>Создай файл <code>quote.txt</code> с любимой цитатой (2–3 строки). Напиши программу, которая читает его
+          целиком и выводит на экран.</li>
+        <li>Создай файл <code>colors.txt</code> с 5–7 цветами (по одному на строку). Прочитай файл построчно и выведи
+          каждый цвет с приставкой «Мой любимый цвет — …».</li>
       </ol>
     </div>
 
     <div class="task-block">
       <h3>Блок Б. Списки и числовые данные</h3>
       <ol>
-        <li>Создай файл <code>animals.txt</code> с 8+ животными. Прочитай все строки в список, очисти от <code>\n</code>, выведи количество и отсортированный список.</li>
-        <li>Создай файл <code>numbers.txt</code> с числами от 1 до 10. Прочитай их в список как числа и выведи сумму и произведение.</li>
+        <li>Создай файл <code>animals.txt</code> с 8+ животными. Прочитай все строки в список, очисти от
+          <code>\n</code>, выведи количество и отсортированный список.
+        </li>
+        <li>Создай файл <code>numbers.txt</code> с числами от 1 до 10. Прочитай их в список как числа и выведи сумму и
+          произведение.</li>
       </ol>
     </div>
 
     <div class="task-block">
       <h3>Блок В. CSV и комплексные задачи</h3>
       <ol>
-        <li>Создай файл <code>products.txt</code> в формате: <code>название,цена,количество</code> (5–6 товаров). Выведи название и стоимость каждого товара, посчитай общую стоимость.</li>
-        <li class="star-task">★ Используя тот же файл, найди самый дорогой товар (по цене за единицу) и товар с самым большим количеством на складе.</li>
+        <li>Создай файл <code>products.txt</code> в формате: <code>название,цена,количество</code> (5–6 товаров). Выведи
+          название и стоимость каждого товара, посчитай общую стоимость.</li>
+        <li class="star-task">★ Используя тот же файл, найди самый дорогой товар (по цене за единицу) и товар с самым
+          большим количеством на складе.</li>
       </ol>
     </div>
   </div>
@@ -482,54 +512,56 @@ scores = []
 
     <h3>hello.txt</h3>
     <div class="file-content">Привет, мир!
-Это мой первый файл.
-Python — это круто!</div>
+      Это мой первый файл.
+      Python — это круто!</div>
 
     <h3>fruits.txt</h3>
     <div class="file-content">яблоко
-банан
-апельсин
-киви
-манго</div>
+      банан
+      апельсин
+      киви
+      манго</div>
 
     <h3>students.txt</h3>
     <div class="file-content">Анна Петрова
-Борис Иванов
-Виктор Сидоров
-Галина Смирнова
-Дмитрий Кузнецов</div>
+      Борис Иванов
+      Виктор Сидоров
+      Галина Смирнова
+      Дмитрий Кузнецов</div>
 
     <h3>scores.txt</h3>
     <div class="file-content">85
-92
-78
-95
-88
-73
-90
-84</div>
+      92
+      78
+      95
+      88
+      73
+      90
+      84</div>
 
     <h3>users.txt</h3>
     <div class="file-content">Анна,25,Москва
-Борис,30,Питер
-Виктор,22,Казань
-Галина,28,Сочи
-Дмитрий,35,Омск</div>
+      Борис,30,Питер
+      Виктор,22,Казань
+      Галина,28,Сочи
+      Дмитрий,35,Омск</div>
 
     <h3>products.txt (для заданий Блока В)</h3>
     <div class="file-content">Хлеб,45,20
-Молоко,80,15
-Яйца,120,30
-Сыр,250,8
-Шоколад,95,25
-Масло,180,12</div>
+      Молоко,80,15
+      Яйца,120,30
+      Сыр,250,8
+      Шоколад,95,25
+      Масло,180,12</div>
   </div>
 
   <hr>
 
   <div class="footer-note">
-    📌 <strong>Совет репетитора.</strong> Работа с файлами открывает путь к настоящим проектам: обработка данных, парсинг логов, создание отчётов. На занятии разберём все ошибки и напишем ещё более крутые штуки!
+    📌 <strong>Совет.</strong> Работа с файлами открывает путь к настоящим проектам: обработка данных, парсинг логов,
+    создание отчётов.
   </div>
 
 </body>
+
 </html>
