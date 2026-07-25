@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 5 ЕГЭ: теория систем счисления и алгоритмов</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+
+    .definition strong {
+      color: #4a2a7a;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      text-align: center;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="task5.html" class="back-link">← К заданию 5</a>
+
+  <h1>🔢 Задание 5 ЕГЭ: системы счисления и алгоритмы</h1>
+  <p class="subtitle">Теория · Позиционные системы счисления, перевод чисел, обработка записей, работа с цифрами</p>
+
+  <!-- ==================== СИСТЕМЫ СЧИСЛЕНИЯ ==================== -->
+  <h2 id="numeral-systems">Системы счисления</h2>
+
+  <div class="definition">
+    <p><strong>Система счисления</strong> — способ представления чисел с помощью определённого набора символов (цифр).
+      Основание системы определяет, сколько различных цифр используется.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>В задании 5 ЕГЭ используются четыре основные системы счисления:</p>
+    <ul>
+      <li><strong>Десятичная (основание 10)</strong> — цифры 0–9, повседневная система.</li>
+      <li><strong>Двоичная (основание 2)</strong> — цифры 0 и 1, основа работы компьютеров.</li>
+      <li><strong>Восьмеричная (основание 8)</strong> — цифры 0–7, одна цифра = 3 двоичных разряда.</li>
+      <li><strong>Шестнадцатеричная (основание 16)</strong> — цифры 0–9 и буквы A–F, одна цифра = 4 двоичных разряда.</li>
+    </ul>
+    <p>В общем случае для оснований больше 10 используются буквы латинского алфавита: A=10, B=11, ..., Z=35.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Взаимосвязь систем:</strong> восьмеричная и шестнадцатеричная системы напрямую связаны с двоичной. Это
+      позволяет быстро переводить числа между ними без вычислений.</p>
+  </div>
+
+  <!-- ==================== ПЕРЕВОД ЧИСЕЛ ==================== -->
+  <h2 id="conversion">Перевод чисел в различные системы счисления</h2>
+
+  <h3 id="manual-conversion">Ручной метод</h3>
+
+  <div class="theory-block">
+    <p>Перевод из десятичной системы в другие осуществляется методом <strong>последовательного деления</strong> на
+      основание новой системы с записью остатков в обратном порядке.</p>
+  </div>
+
+  <div class="step-block"
+    style="background-color: #fafafa; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1rem 0;">
+    <p><span class="step-num"
+        style="display: inline-block; background-color: var(--accent); color: #fff; width: 26px; height: 26px; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-weight: 700; font-size: 0.9rem; line-height: 26px;">1</span>
+      Делим число на основание N, записываем остаток.</p>
+    <p><span class="step-num"
+        style="display: inline-block; background-color: var(--accent); color: #fff; width: 26px; height: 26px; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-weight: 700; font-size: 0.9rem; line-height: 26px;">2</span>
+      Частное снова делим на N, записываем следующий остаток.</p>
+    <p><span class="step-num"
+        style="display: inline-block; background-color: var(--accent); color: #fff; width: 26px; height: 26px; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-weight: 700; font-size: 0.9rem; line-height: 26px;">3</span>
+      Повторяем, пока частное не станет равно 0.</p>
+    <p><span class="step-num"
+        style="display: inline-block; background-color: var(--accent); color: #fff; width: 26px; height: 26px; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-weight: 700; font-size: 0.9rem; line-height: 26px;">4</span>
+      Читаем остатки снизу вверх — это и есть число в новой системе.</p>
+  </div>
+
+  <p><strong>Пример:</strong> 42₁₀ → двоичная система</p>
+  <div class="code-block">
+    <pre>42 ÷ 2 = 21 (остаток 0)
+21 ÷ 2 = 10 (остаток 1)
+10 ÷ 2 = 5  (остаток 0)
+5 ÷ 2 = 2   (остаток 1)
+2 ÷ 2 = 1   (остаток 0)
+1 ÷ 2 = 0   (остаток 1)
+→ 101010₂</pre>
+  </div>
+
+  <h3 id="python-conversion">Перевод в Python</h3>
+
+  <div class="theory-block">
+    <p>Python предоставляет несколько способов перевода чисел между системами счисления:</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Направление</th>
+        <th>Функция / метод</th>
+        <th>Пример</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Строка → десятичное</td>
+        <td><a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link"
+            target="_blank"><code>int(строка, основание)</code></a></td>
+        <td><code>int('101010', 2) → 42</code></td>
+      </tr>
+      <tr>
+        <td>Десятичное → двоичное</td>
+        <td><a href="../../base_of_programming/functions_descriptions.html#func-bin" class="func-link"
+            target="_blank"><code>bin(число)</code></a></td>
+        <td><code>bin(42) → '0b101010'</code></td>
+      </tr>
+      <tr>
+        <td>Десятичное → восьмеричное</td>
+        <td><a href="../../base_of_programming/functions_descriptions.html#func-oct" class="func-link"
+            target="_blank"><code>oct(число)</code></a></td>
+        <td><code>oct(42) → '0o52'</code></td>
+      </tr>
+      <tr>
+        <td>Десятичное → шестнадцатеричное</td>
+        <td><a href="../../base_of_programming/functions_descriptions.html#func-hex" class="func-link"
+            target="_blank"><code>hex(число)</code></a></td>
+        <td><code>hex(42) → '0x2a'</code></td>
+      </tr>
+      <tr>
+        <td>Десятичное → любая (без префикса)</td>
+        <td><a href="../../base_of_programming/functions_descriptions.html#func-format" class="func-link"
+            target="_blank"><code>format(число, 'b/o/x')</code></a></td>
+        <td><code>format(42, 'b') → '101010'</code></td>
+      </tr>
+      <tr>
+        <td>Десятичное → любая (f-строка)</td>
+        <td><a href="../../base_of_programming/functions_descriptions.html#func-f-strings" class="func-link"
+            target="_blank"><code>f"{число:b/o/x}"</code></a></td>
+        <td><code>f'{42:b}' → '101010'</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note-block">
+    <p><strong>💡 Совет:</strong> <code>bin()</code>, <code>oct()</code>, <code>hex()</code> добавляют префиксы
+      <code>0b</code>, <code>0o</code>, <code>0x</code>. Чтобы убрать префикс, используйте срез <code>[2:]</code> или
+      <code>format()</code>/f-строки.</p>
+  </div>
+
+  <!-- ==================== СОБСТВЕННАЯ ФУНКЦИЯ ПЕРЕВОДА ==================== -->
+  <h2 id="custom-convert">Собственная функция перевода (основания 2–36)</h2>
+
+  <div class="theory-block">
+    <p>Для систем счисления, отличных от 2, 8, 16 (например, троичной, четверичной), в Python нет встроенных функций.
+      Нужно написать свою — по тому же алгоритму последовательного деления.</p>
+  </div>
+
+  <h3>Универсальная функция</h3>
+
+  <div class="code-block">
+    <pre>from string import <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a>, <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> convert(num, base):
+    alph = <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a> + <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+    result = ''
+    while num:
+        result += alph[num % base]
+        num //= base
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> result[::-1]</pre>
+  </div>
+
+  <div class="theory-block">
+    <p><strong>Как это работает:</strong> <code>num % base</code> даёт остаток — индекс символа в алфавите.
+      <code>num //= base</code> уменьшает число. В конце переворачиваем строку — остатки записаны от последнего к
+      первому.</p>
+  </div>
+
+  <div class="info-block">
+    <p><strong>🔍 Частный случай — троичная система:</strong> если в задаче всегда одна и та же система (например, троичная), можно упростить:</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> to_ternary(num):
+    result = ''
+    while num:
+        result += <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(num % 3)
+        num //= 3
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> result[::-1]</pre>
+  </div>
+
+  <!-- ==================== ТИПОВЫЕ ПРИЁМЫ: СИСТЕМЫ СЧИСЛЕНИЯ ==================== -->
+  <h2 id="common-techniques">Типовые приёмы в задании 5</h2>
+
+  <h3 id="replace-chars">Замена символов в записи</h3>
+
+  <div class="theory-block">
+    <p>В некоторых задачах нужно заменить все вхождения одного символа на другой (например, каждую «1» на «11»). Используем метод <a href="../../base_of_programming/functions_descriptions.html#method-replace" class="func-link" target="_blank"><code>.replace()</code></a>:</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Замена каждой единицы на 11</span>
+R = R.<a href="../../base_of_programming/functions_descriptions.html#method-replace" class="func-link" target="_blank">replace</a>('1', '11')
+
+<span style="color: #888;"># Замена каждого нуля на 00</span>
+R = R.<a href="../../base_of_programming/functions_descriptions.html#method-replace" class="func-link" target="_blank">replace</a>('0', '00')</pre>
+  </div>
+
+  <h3 id="left-digits">Замена левых разрядов</h3>
+
+  <div class="theory-block">
+    <p>Если нужно заменить два левых разряда на «11» или «10», используем срез: <code>R = '11' + R[2:]</code> — заменяем первые два символа на «11», остальное без изменений.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Замена двух левых разрядов на 11</span>
+R = '11' + R[2:]
+
+<span style="color: #888;"># Замена двух левых разрядов на 10</span>
+R = '10' + R[2:]</pre>
+  </div>
+
+  <h3 id="insert-middle">Вставка в середину строки</h3>
+
+  <div class="theory-block">
+    <p>Если нужно вставить символ в середину двоичной записи: находим середину через <code>len(R) // 2</code> и склеиваем три части.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Вставка '1' в середину строки R</span>
+mid = <a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(R) // 2
+R = R[:mid] + '1' + R[mid:]</pre>
+  </div>
+
+  <h3 id="reverse-copy">Копия или переворот записи</h3>
+
+  <div class="theory-block">
+    <p>Иногда нужно дописать справа саму запись (<code>R += R</code>) или её перевёрнутую версию (<code>R += R[::-1]</code>).</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Дописать справа саму запись</span>
+R += R
+
+<span style="color: #888;"># Дописать справа перевёрнутую запись</span>
+R += R[::-1]</pre>
+  </div>
+
+  <h3 id="even-count">Подсчёт чётных цифр в записи</h3>
+
+  <div class="theory-block">
+    <p>Часто в задании нужно определить, сколько чётных цифр в записи числа.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Функция подсчёта чётных цифр в строке num (запись в системе base)</span>
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> count_evens(num, base):
+    evens = <a href="../../base_of_programming/functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>([1 for d in num
+                 if <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(d, base) % 2 == 0])
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> evens</pre>
+  </div>
+
+  <h3 id="digit-sum">Сумма цифр в записи</h3>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Сумма цифр строки R (любая система)</span>
+sum_d = <a href="../../base_of_programming/functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>(<a href="../../base_of_programming/functions_descriptions.html#func-map" class="func-link" target="_blank">map</a>(<a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>, R))</pre>
+  </div>
+
+  <div class="theory-block">
+    <p><a href="../../base_of_programming/functions_descriptions.html#func-map" class="func-link"
+        target="_blank"><code>map(int, R)</code></a> применяет <code>int()</code> к каждому символу строки R, превращая
+      его в число. <a href="../../base_of_programming/functions_descriptions.html#func-sum" class="func-link"
+        target="_blank"><code>sum()</code></a> суммирует полученные числа.</p>
+  </div>
+
+  <!-- ==================== РАБОТА С ЦИФРАМИ ==================== -->
+  <h2 id="decimal-digits">Работа с цифрами десятичного числа</h2>
+
+  <div class="definition">
+    <p>Отдельный класс задач в задании 5 — алгоритмы, работающие <strong>напрямую с десятичными цифрами</strong> исходного числа. Системы счисления здесь не используются.</p>
+  </div>
+
+  <h3 id="extract-digits">Извлечение цифр числа</h3>
+
+  <div class="theory-block">
+    <p>Самый простой способ получить все цифры числа — перевести его в строку: <code>s = str(N)</code>. После этого с каждым символом можно работать как с отдельной цифрой, преобразуя обратно в число через <code>int()</code>.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Извлечение цифр числа N</span>
+s = <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(N)
+digits = [<a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(d) for d in s]</pre>
+  </div>
+
+  <h3 id="digit-operations">Операции с цифрами</h3>
+
+  <div class="theory-block">
+    <p>Над извлечёнными цифрами можно выполнять любые операции: находить сумму, произведение, минимум, максимум, суммы квадратов, произведения пар и т.д.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>digits = [<a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(d) for d in <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(N)]
+
+<span style="color: #888;"># Сумма цифр</span>
+s = <a href="../../base_of_programming/functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>(digits)
+
+<span style="color: #888;"># Произведение цифр</span>
+p = 1
+for d in digits:
+    p *= d
+
+<span style="color: #888;"># Максимальная и минимальная цифры</span>
+max_d = <a href="../../base_of_programming/functions_descriptions.html#func-max" class="func-link" target="_blank">max</a>(digits)
+min_d = <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>(digits)
+
+<span style="color: #888;"># Суммы квадратов соседних цифр (для трёхзначного числа)</span>
+a, b, c = digits
+sum1 = a**2 + b**2
+sum2 = b**2 + c**2</pre>
+  </div>
+
+  <h3 id="compose-result">Составление результата из вычисленных значений</h3>
+
+  <div class="theory-block">
+    <p>Результат обычно формируется склеиванием полученных чисел в порядке возрастания или убывания. Для сортировки используем <a href="../../base_of_programming/functions_descriptions.html#func-sorted" class="func-link" target="_blank"><code>sorted()</code></a>, для склеивания — <a href="../../base_of_programming/functions_descriptions.html#method-join" class="func-link" target="_blank"><code>.join()</code></a> или f-строки.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Два числа: 40 и 5 → склеиваем в порядке невозрастания</span>
+result = <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(40) + <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(5)  <span style="color: #888;"># '405'</span>
+
+<span style="color: #888;"># Универсально: сортируем и склеиваем</span>
+vals = [40, 5]
+vals_sorted = <a href="../../base_of_programming/functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted</a>(vals, reverse=True)  <span style="color: #888;"># по убыванию</span>
+result = ''.<a href="../../base_of_programming/functions_descriptions.html#method-join" class="func-link" target="_blank">join</a>(<a href="../../base_of_programming/functions_descriptions.html#func-map" class="func-link" target="_blank">map</a>(<a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>, vals_sorted))  <span style="color: #888;"># '405'</span></pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Незначащие нули:</strong> если в начале результата оказались нули, их нужно отбросить: <code>result = result.lstrip('0')</code> или <code>result = str(int(result))</code>.</p>
+  </div>
+
+  <h3 id="generator">Генератор двоичных чисел</h3>
+
+  <div class="theory-block">
+    <p>Для работы с очень большими числами можно использовать генератор — он выдаёт значения по одному, не загружая память:</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> bin_generator():
+    n = 1
+    while True:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-yield" class="func-link" target="_blank">yield</a> f'{n:b}'
+        n += 1</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 <code>yield</code></strong> — ключевое слово, превращающее функцию в генератор. Вместо
+      <code>return</code> (который завершает функцию) <code>yield</code> «замораживает» её состояние до следующего
+      вызова. В ЕГЭ генераторы используются редко, но могут быть полезны.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» мы разберём задачи на построение и обработку записей чисел в разных системах счисления, а также задачи на прямую работу с десятичными цифрами.
+  </div>
+
+</body>
+</html>
