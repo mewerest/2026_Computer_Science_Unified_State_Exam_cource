@@ -56,7 +56,6 @@
       text-decoration: underline;
     }
 
-    /* Алфавитный указатель */
     .index-nav {
       display: flex;
       flex-wrap: wrap;
@@ -82,7 +81,6 @@
       background-color: #c0d8ec;
     }
 
-    /* Категории */
     .category {
       margin-top: 2rem;
     }
@@ -97,7 +95,6 @@
       margin-bottom: 1rem;
     }
 
-    /* Карточка функции */
     .func-card {
       background-color: #fafafa;
       border: 1px solid var(--border);
@@ -180,13 +177,14 @@
   <h1>📖 Справочник функций и методов Python</h1>
   <p class="subtitle">Краткие описания встроенных функций, операторов и методов, используемых в методичках</p>
 
-  <!-- Алфавитный указатель -->
   <div class="index-nav">
     <a href="#cat-builtins">Встроенные</a>
     <a href="#cat-str">Строки</a>
     <a href="#cat-list">Списки</a>
     <a href="#cat-dict">Словари</a>
+    <a href="#cat-set">Множества</a>
     <a href="#cat-file">Файлы</a>
+    <a href="#cat-string-module">Модуль string</a>
     <a href="#cat-other">Другое</a>
   </div>
 
@@ -232,12 +230,13 @@ range(5, 0, -1)  # 5, 4, 3, 2, 1</div>
 
     <div class="func-card" id="func-int">
       <h3>int()</h3>
-      <div class="syntax">int(строка_или_число)</div>
-      <div class="desc">Преобразует строку или число с плавающей точкой в целое число. Если строка содержит нечисловые символы — ошибка <code>ValueError</code>.</div>
-      <div class="example">int("42")      # 42
-int(3.14)     # 3
-int("101", 2) # 5 (двоичная система)</div>
-      <div class="see-also">См. также: <a href="#func-float">float()</a>, <a href="#func-str">str()</a></div>
+      <div class="syntax">int(строка_или_число)<br>int(строка, основание)</div>
+      <div class="desc">Преобразует строку или число с плавающей точкой в целое число. Если передан второй аргумент — <strong>основание системы счисления</strong> (от 2 до 36), то строка интерпретируется как число в этой системе.</div>
+      <div class="example">int("42")        # 42
+int(3.14)       # 3
+int("101", 2)   # 5 (двоичная → десятичная)
+int("1A3", 16)  # 419 (шестнадцатеричная → десятичная)</div>
+      <div class="see-also">См. также: <a href="#func-float">float()</a>, <a href="#func-str">str()</a>, <a href="#func-bin">bin()</a></div>
     </div>
 
     <div class="func-card" id="func-float">
@@ -339,6 +338,60 @@ dict([("a", 1), ("b", 2)])  # {'a': 1, 'b': 2}</div>
 age = int(input("Введите возраст: "))</div>
     </div>
 
+    <div class="func-card" id="func-bin">
+      <h3>bin()</h3>
+      <div class="syntax">bin(число)</div>
+      <div class="desc">Переводит целое десятичное число в строку с его <strong>двоичным представлением</strong>. Результат начинается с префикса <code>'0b'</code>.</div>
+      <div class="example">bin(255)    # '0b11111111'
+bin(10)    # '0b1010'
+bin(2**10) # '0b10000000000'</div>
+      <div class="see-also">См. также: <a href="#func-oct">oct()</a>, <a href="#func-hex">hex()</a>, <a href="#func-int">int()</a></div>
+    </div>
+
+    <div class="func-card" id="func-oct">
+      <h3>oct()</h3>
+      <div class="syntax">oct(число)</div>
+      <div class="desc">Переводит целое десятичное число в строку с его <strong>восьмеричным представлением</strong>. Результат начинается с префикса <code>'0o'</code>.</div>
+      <div class="example">oct(255)   # '0o377'
+oct(64)    # '0o100'</div>
+      <div class="see-also">См. также: <a href="#func-bin">bin()</a>, <a href="#func-hex">hex()</a>, <a href="#func-int">int()</a></div>
+    </div>
+
+    <div class="func-card" id="func-hex">
+      <h3>hex()</h3>
+      <div class="syntax">hex(число)</div>
+      <div class="desc">Переводит целое десятичное число в строку с его <strong>шестнадцатеричным представлением</strong>. Результат начинается с префикса <code>'0x'</code>.</div>
+      <div class="example">hex(255)   # '0xff'
+hex(16)    # '0x10'</div>
+      <div class="see-also">См. также: <a href="#func-bin">bin()</a>, <a href="#func-oct">oct()</a>, <a href="#func-int">int()</a></div>
+    </div>
+
+    <div class="func-card" id="func-all">
+      <h3>all()</h3>
+      <div class="syntax">all(итерируемый_объект)</div>
+      <div class="desc">Возвращает <code>True</code>, если <strong>все</strong> элементы переданной коллекции истинны (или коллекция пуста). Если хотя бы один элемент ложен — <code>False</code>.</div>
+      <div class="example">all([True, True, True])   # True
+all([True, False, True])  # False
+all([])                   # True (пустая коллекция)</div>
+    </div>
+
+        <div class="func-card" id="func-abs">
+      <h3>abs()</h3>
+      <div class="syntax">abs(x)</div>
+      <div class="desc">Возвращает <strong>абсолютное значение</strong> (модуль) числа. Для целых и вещественных чисел — просто отбрасывает знак минус.</div>
+      <div class="example">abs(-5)    # 5
+abs(3.14)  # 3.14
+abs(-2.7)  # 2.7</div>
+    </div>
+
+    <div class="func-card" id="func-zip">
+      <h3>zip()</h3>
+      <div class="syntax">zip(итерируемый1, итерируемый2, ...)</div>
+      <div class="desc">Объединяет элементы из нескольких коллекций в кортежи. Возвращает итератор. Останавливается на самой короткой коллекции.</div>
+      <div class="example">list(zip('ABC', [1, 2, 3]))  # [('A', 1), ('B', 2), ('C', 3)]
+list(zip('xyz', [10, 20]))   # [('x', 10), ('y', 20)] — по короткой</div>
+    </div>
+
   </div>
 
   <!-- ==================== МЕТОДЫ СТРОК ==================== -->
@@ -408,9 +461,10 @@ age = int(input("Введите возраст: "))</div>
     <div class="func-card" id="method-count">
       <h3>.count()</h3>
       <div class="syntax">строка.count(подстрока)</div>
-      <div class="desc">Подсчитывает, сколько раз подстрока встречается в строке (непересекающиеся вхождения).</div>
+      <div class="desc">Подсчитывает, сколько раз подстрока или символ встречается в строке (непересекающиеся вхождения). Работает и для подсчёта отдельных символов: <code>"hello".count('l')</code> → <strong>2</strong>.</div>
       <div class="example">"бананан".count("на")  # 2
-"ааа".count("аа")     # 1</div>
+"hello".count('l')    # 2
+"010110".count('1')   # 3 — подсчёт единиц в двоичной строке</div>
     </div>
 
     <div class="func-card" id="method-startswith">
@@ -607,6 +661,42 @@ d.update({"b": 2, "c": 3})  # {'a':1, 'b':2, 'c':3}</div>
 
   </div>
 
+  <!-- ==================== МЕТОДЫ МНОЖЕСТВ ==================== -->
+  <div class="category" id="cat-set">
+    <h2>🔮 Множества</h2>
+
+    <div class="func-card" id="func-set">
+      <h3>set()</h3>
+      <div class="syntax">set()<br>set(итерируемый_объект)</div>
+      <div class="desc">Создаёт <strong>множество</strong> — неупорядоченную коллекцию уникальных элементов. Если передан итерируемый объект (список, строка), дубликаты будут удалены. Пустое множество создаётся только через <code>set()</code>, а <code>{}</code> — это словарь.</div>
+      <div class="example">set()                  # set() — пустое множество
+set([1, 2, 2, 3])    # {1, 2, 3} — дубликат удалён
+set("hello")          # {'h', 'e', 'l', 'o'}</div>
+      <div class="see-also">См. также: <a href="#method-add">.add()</a>, <a href="#method-remove-set">.remove()</a></div>
+    </div>
+
+    <div class="func-card" id="method-add">
+      <h3>.add()</h3>
+      <div class="syntax">множество.add(элемент)</div>
+      <div class="desc">Добавляет элемент в множество. Если элемент уже есть — ничего не происходит. Изменяет исходное множество.</div>
+      <div class="example">s = {1, 2, 3}
+s.add(4)    # {1, 2, 3, 4}
+s.add(2)    # {1, 2, 3, 4} — уже есть, без изменений</div>
+      <div class="see-also">См. также: <a href="#func-set">set()</a>, <a href="#method-remove-set">.remove()</a></div>
+    </div>
+
+    <div class="func-card" id="method-remove-set">
+      <h3>.remove()</h3>
+      <div class="syntax">множество.remove(элемент)</div>
+      <div class="desc">Удаляет указанный элемент из множества. Если элемента нет — возникает ошибка <code>KeyError</code>. Для безопасного удаления используйте <code>.discard()</code>.</div>
+      <div class="example">s = {1, 2, 3}
+s.remove(2)   # {1, 3}
+# s.remove(5)  # KeyError!</div>
+      <div class="see-also">См. также: <a href="#method-add">.add()</a></div>
+    </div>
+
+  </div>
+
   <!-- ==================== МЕТОДЫ ФАЙЛОВ ==================== -->
   <div class="category" id="cat-file">
     <h2>📂 Методы файлов</h2>
@@ -632,6 +722,32 @@ d.update({"b": 2, "c": 3})  # {'a':1, 'b':2, 'c':3}</div>
       <div class="desc">Читает все строки файла и возвращает список строк (каждая с <code>\n</code> на конце).</div>
       <div class="example">lines = f.readlines()
 # ['строка1\n', 'строка2\n', ...]</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== МОДУЛЬ STRING ==================== -->
+  <div class="category" id="cat-string-module">
+    <h2>📦 Модуль string</h2>
+
+    <div class="func-card" id="func-digits">
+      <h3>string.digits</h3>
+      <div class="syntax">from string import digits</div>
+      <div class="desc">Строка, содержащая все десятичные цифры: <code>'0123456789'</code>. Используется для формирования алфавита системы счисления вместе с <code>ascii_uppercase</code>.</div>
+      <div class="example">from string import digits
+print(digits)  # '0123456789'
+len(digits)   # 10</div>
+      <div class="see-also">См. также: <a href="#func-ascii-uppercase">ascii_uppercase</a></div>
+    </div>
+
+    <div class="func-card" id="func-ascii-uppercase">
+      <h3>string.ascii_uppercase</h3>
+      <div class="syntax">from string import ascii_uppercase</div>
+      <div class="desc">Строка, содержащая все заглавные буквы латинского алфавита: <code>'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</code>. Используется для формирования алфавита систем счисления с основанием больше 10.</div>
+      <div class="example">from string import ascii_uppercase
+print(ascii_uppercase)  # 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+len(ascii_uppercase)   # 26</div>
+      <div class="see-also">См. также: <a href="#func-digits">digits</a></div>
     </div>
 
   </div>
@@ -677,11 +793,11 @@ d.update({"b": 2, "c": 3})  # {'a':1, 'b':2, 'c':3}</div>
     <div class="func-card" id="keyword-in">
       <h3>in</h3>
       <div class="syntax">элемент in коллекция</div>
-      <div class="desc">Оператор проверки вхождения. Возвращает <code>True</code>, если элемент есть в коллекции (списке, строке, словаре — проверяются ключи).</div>
+      <div class="desc">Оператор проверки вхождения. Возвращает <code>True</code>, если элемент есть в коллекции (списке, строке, словаре — проверяются ключи, множестве).</div>
       <div class="example">"a" in "abc"          # True
 3 in [1, 2, 3]       # True
 "x" in {"x": 1}      # True (ключ)
-1 in {"x": 1}        # False (значения не проверяются)</div>
+1 in {1, 2, 3}       # True (множество)</div>
     </div>
 
     <div class="func-card" id="keyword-break">

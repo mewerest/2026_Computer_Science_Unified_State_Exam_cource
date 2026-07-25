@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 2 ЕГЭ: теория алгебры логики</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+
+    .definition strong { color: #4a2a7a; }
+
+    .operation-card {
+      background-color: #fafafa;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .operation-card h3 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.3rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .operation-card .alt-names {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 0.8rem;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      text-align: center;
+    }
+
+    table tr:nth-child(even) td { background-color: #fafafa; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="task2.html" class="back-link">← К заданию 2</a>
+
+  <h1>🔢 Задание 2 ЕГЭ: алгебра логики</h1>
+  <p class="subtitle">Теория · Логические операции, таблицы истинности и их реализация в Python</p>
+
+  <!-- ==================== АЛГЕБРА ЛОГИКИ ==================== -->
+  <h2>Что такое алгебра логики</h2>
+
+  <div class="definition">
+    <p><strong>Алгебра логики (булева алгебра)</strong> — это раздел математики, который изучает операции с логическими величинами и законы, которым они подчиняются. Она лежит в основе работы всех цифровых устройств: от процессора в твоём телефоне до серверов, обрабатывающих запросы в интернете.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>В основе алгебры логики лежит простая идея: <strong>утверждения могут быть только истинными или ложными</strong>. Никаких промежуточных значений — только «да» (1, True) или «нет» (0, False). Из этих двух значений, как из кирпичиков, строятся все логические выражения.</p>
+  </div>
+
+  <!-- ==================== ОПЕРАЦИИ ==================== -->
+  <h2>Основные операции алгебры логики</h2>
+
+  <div class="theory-block">
+    <p>В задании 2 ЕГЭ используются пять логических операций. Разберём каждую: как работает, как записывается в математике и как реализуется в Python.</p>
+  </div>
+
+  <!-- ИНВЕРСИЯ -->
+  <div class="operation-card">
+    <h3>1. Инверсия (отрицание, НЕ)</h3>
+    <div class="alt-names">Математика: ¬A или Ā · Python: <code>not</code></div>
+    <p>Меняет значение на противоположное: истина → ложь, ложь → истина.</p>
+
+    <table>
+      <thead><tr><th>A</th><th>¬A</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td></tr>
+      </tbody>
+    </table>
+
+    <div class="image-block">
+      <img src="task2_theory_6.webp" alt="Таблица истинности и диаграмма Венна для инверсии">
+      <div class="caption">Таблица истинности и диаграмма Венна для инверсии</div>
+    </div>
+
+    <div class="code-block">
+      <pre>a = True
+b = not a
+print(b)
+>>> False</pre>
+    </div>
+  </div>
+
+  <!-- КОНЪЮНКЦИЯ -->
+  <div class="operation-card">
+    <h3>2. Конъюнкция (логическое умножение, И)</h3>
+    <div class="alt-names">Математика: A ∧ B или A · B · Python: <code>and</code></div>
+    <p>Истинна <strong>только когда оба аргумента истинны</strong>. Хотя бы один ложен — результат ложь.</p>
+
+    <table>
+      <thead><tr><th>A</th><th>B</th><th>A ∧ B</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td></tr>
+      </tbody>
+    </table>
+
+    <div class="image-block">
+      <img src="task2_theory_7.webp" alt="Таблица истинности и диаграмма Венна для конъюнкции">
+      <div class="caption">Таблица истинности и диаграмма Венна для конъюнкции</div>
+    </div>
+
+    <div class="code-block">
+      <pre>a = True
+b = False
+result = a and b
+print(result)
+>>> False</pre>
+    </div>
+  </div>
+
+  <!-- ДИЗЪЮНКЦИЯ -->
+  <div class="operation-card">
+    <h3>3. Дизъюнкция (логическое сложение, ИЛИ)</h3>
+    <div class="alt-names">Математика: A ∨ B или A + B · Python: <code>or</code></div>
+    <p>Истинна, если <strong>хотя бы один аргумент истинен</strong>. Ложь — только когда оба ложны.</p>
+
+    <table>
+      <thead><tr><th>A</th><th>B</th><th>A ∨ B</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td></tr>
+      </tbody>
+    </table>
+
+    <div class="image-block">
+      <img src="task2_theory_8.webp" alt="Таблица истинности и диаграмма Венна для дизъюнкции">
+      <div class="caption">Таблица истинности и диаграмма Венна для дизъюнкции</div>
+    </div>
+
+    <div class="code-block">
+      <pre>a = True
+b = False
+result = a or b
+print(result)
+>>> True</pre>
+    </div>
+  </div>
+
+  <!-- ИМПЛИКАЦИЯ -->
+  <div class="operation-card">
+    <h3>4. Импликация (логическое следование)</h3>
+    <div class="alt-names">Математика: A → B · Python: <code>not A or B</code> или <code>A &lt;= B</code></div>
+    <p>Ложна <strong>только в одном случае</strong>: когда из истины следует ложь (A=1, B=0). Во всех остальных — истина.</p>
+    <p style="color: #888;">Простой способ запомнить: «из истины нельзя получить ложь».</p>
+
+    <table>
+      <thead><tr><th>A</th><th>B</th><th>A → B</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td></tr>
+      </tbody>
+    </table>
+
+    <div class="image-block">
+      <img src="task2_theory_9.webp" alt="Таблица истинности и диаграмма Венна для импликации">
+      <div class="caption">Таблица истинности и диаграмма Венна для импликации</div>
+    </div>
+
+    <div class="note-block">
+      <p><strong>🔑 Лайфхак:</strong> импликацию A → B можно заменить на <code>A &lt;= B</code>. Смотри: импликация ложна только при A=1, B=0 — то есть когда A > B. Значит, когда A ≤ B — она истинна.</p>
+    </div>
+
+    <div class="code-block">
+      <pre># Способ 1: через not и or
+result = not a or b
+
+# Способ 2: через <= (компактнее)
+result = a <= b</pre>
+    </div>
+  </div>
+
+  <!-- ЭКВИВАЛЕНТНОСТЬ -->
+  <div class="operation-card">
+    <h3>5. Эквивалентность (равнозначность)</h3>
+    <div class="alt-names">Математика: A ↔ B или A ≡ B · Python: <code>==</code></div>
+    <p>Истинна, если <strong>оба аргумента одинаковы</strong>. Различаются — ложь.</p>
+
+    <table>
+      <thead><tr><th>A</th><th>B</th><th>A ≡ B</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td></tr>
+      </tbody>
+    </table>
+
+    <div class="image-block">
+      <img src="task2_theory_10.webp" alt="Таблица истинности и диаграмма Венна для эквивалентности">
+      <div class="caption">Таблица истинности и диаграмма Венна для эквивалентности</div>
+    </div>
+
+    <div class="code-block">
+      <pre>result = a == b</pre>
+    </div>
+  </div>
+
+  <!-- ==================== ПОРЯДОК ОПЕРАЦИЙ ==================== -->
+  <h2>Порядок операций — критическое различие!</h2>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Порядок операций в алгебре логики и в Python не совпадает.</strong> Это главная причина ошибок в задании 2.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+    <div class="theory-block" style="margin: 0;">
+      <h3 style="margin-top: 0;">Алгебра логики</h3>
+      <ol>
+        <li>Скобки</li>
+        <li>Инверсия (¬)</li>
+        <li>Конъюнкция (∧)</li>
+        <li>Дизъюнкция (∨)</li>
+        <li>Импликация (→)</li>
+        <li>Эквивалентность (≡)</li>
+      </ol>
+    </div>
+    <div class="theory-block" style="margin: 0;">
+      <h3 style="margin-top: 0;">Python</h3>
+      <ol>
+        <li>Скобки</li>
+        <li>Импликация (&lt;=) и Эквивалентность (==)</li>
+        <li>Инверсия (not)</li>
+        <li>Конъюнкция (and)</li>
+        <li>Дизъюнкция (or)</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <p><strong>💡 Причина:</strong> в Python импликация и эквивалентность — это операторы <strong>сравнения</strong> (<code>&lt;=</code>, <code>==</code>). Они выполняются <strong>раньше</strong> логических операторов (<code>not</code>, <code>and</code>, <code>or</code>). Поэтому при переводе логических выражений в код <strong>всегда используй скобки</strong>.</p>
+  </div>
+
+  <!-- ==================== ПРИМЕР 1 ==================== -->
+  <h2>Пример 1. Перевод выражения со скобками</h2>
+
+  <div class="theory-block">
+    <p style="text-align: center; font-size: 1.1rem;"><strong>F(x, y, z, w) = ((x ≡ y) ∧ ¬z) ∨ (w → x)</strong></p>
+  </div>
+
+  <p><strong>Порядок в алгебре логики:</strong></p>
+  <ol>
+    <li>x ≡ y</li>
+    <li>¬z</li>
+    <li>(x ≡ y) ∧ ¬z</li>
+    <li>w → x</li>
+    <li>∨ — вся дизъюнкция</li>
+  </ol>
+
+  <p><strong>Запись в Python:</strong></p>
+  <div class="code-block">
+    <pre>result = ((x == y) and (not z)) or (w <= x)</pre>
+  </div>
+
+  <p>Проверим при x=True, y=False, z=True, w=False:</p>
+  <div class="code-block">
+    <pre>x = True; y = False; z = True; w = False
+
+result = ((x == y) and (not z)) or (w <= x)
+print(result)
+>>> True</pre>
+  </div>
+
+  <!-- ==================== ПРИМЕР 2 ==================== -->
+  <h2>Пример 2. Когда скобки решают всё</h2>
+
+  <div class="theory-block">
+    <p style="text-align: center; font-size: 1.1rem;"><strong>F(x, y, z, w) = x ≡ y ∧ z → w</strong></p>
+    <p>В алгебре логики: сначала ∧, потом →, потом ≡.</p>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>❌ Неправильно:</strong></p>
+    <pre style="margin: 0.5rem 0;">result = x == y and z <= w</pre>
+    <p>Python сначала выполнит оба сравнения, потом <code>and</code> — порядок нарушен!</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>✅ Правильно:</strong></p>
+    <pre style="margin: 0.5rem 0;">result = x == ((y and z) <= w)</pre>
+    <p>Скобки принудительно задают порядок: сначала <code>(y and z)</code>, затем <code><= w</code>, затем <code>x == ...</code>.</p>
+  </div>
+
+    <!-- ==================== АВТОКОД (ДОП. МАТЕРИАЛ) ==================== -->
+  <div class="extra-block" style="background-color: #fdfaf0; border: 2px dashed #d4c048; border-radius: var(--radius); padding: 1.2rem 1.5rem; margin: 2rem 0;">
+    <span style="display: inline-block; background-color: #fff3cd; color: #8a6d00; padding: 0.2rem 0.7rem; border-radius: 12px; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.8rem;">📖 Дополнительный материал</span>
+    <h2 id="autocode" style="margin-top: 0; border-left: none; padding-left: 0; color: #8a6d00;">Автокод для полного решения задания 2</h2>
+
+    <div class="theory-block">
+      <p>Этот раздел — для тех, кто хочет решать задание 2 <strong>полностью программно</strong>, не анализируя таблицу вручную. Код перебирает все возможные комбинации значений в пустых ячейках и все перестановки переменных, находя единственно верный вариант. <strong>Внимание:</strong> автокод универсален, но требует аккуратной настройки под конкретную задачу.</p>
+    </div>
+
+    <h3>Полный код</h3>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Импортируем все функции из itertools (product, permutations)</span>
+from itertools import *
+
+<span style="color: #888;"># Логическая функция из условия — её нужно переписать на Python</span>
+def f(x, y, z, w):
+    return (x == (not y)) <= ((z <= (not w)) and (w <= y))
+
+<span style="color: #888;"># Перебираем все комбинации 0/1 для неизвестных ячеек таблицы</span>
+<span style="color: #888;"># repeat = количество пустых ячеек в таблице (здесь их 5)</span>
+for a in <a href="../task_functions.html#func-product" class="func-link" target="_blank">product</a>([0, 1], repeat=5):
+    <span style="color: #888;"># Таблица из условия: каждая строка — набор (x, y, z, w, F)</span>
+    <span style="color: #888;"># a[0], a[1], ... — подставляем на места неизвестных</span>
+    table = ((1, 1, 0, 1, 1),
+             (0, a[0], 0, a[1], 0),
+             (a[2], a[3], a[4], 0, 0))
+
+    <span style="color: #888;"># Проверяем, что все строки таблицы уникальны</span>
+    if <a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(table) == <a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(<a href="../../base_of_programming/functions_descriptions.html#func-set" class="func-link" target="_blank">set</a>(table)):
+        <span style="color: #888;"># Перебираем все перестановки имён переменных</span>
+        for p in <a href="../task_functions.html#func-permutations" class="func-link" target="_blank">permutations</a>('xyzw', r=4):
+            <span style="color: #888;"># Проверяем: для каждой строки таблицы значение функции</span>
+            <span style="color: #888;"># совпадает с последним столбцом (F)</span>
+            if <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(f(**<a href="../../base_of_programming/functions_descriptions.html#func-dict" class="func-link" target="_blank">dict</a>(<a href="../../base_of_programming/functions_descriptions.html#func-zip" class="func-link" target="_blank">zip</a>(p, line))) == line[-1] for line in table):
+                <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(*p)</pre>
+    </div>
+
+    <h3>Что нужно изменить под свою задачу</h3>
+
+    <table>
+      <thead><tr><th>Строка кода</th><th>Что меняется</th></tr></thead>
+      <tbody>
+        <tr><td><code>def f(x, y, z, w):</code></td><td>Имена и количество аргументов — как в условии (может быть 3, 4 или 5 переменных)</td></tr>
+        <tr><td><code>return ...</code></td><td>Логическая функция из условия, записанная на Python (следя за приоритетом операций!)</td></tr>
+        <tr><td><code>repeat=5</code></td><td>Количество пустых (неизвестных) ячеек в таблице из условия</td></tr>
+        <tr><td><code>table = (...)</code></td><td>Таблица из условия. Каждая строка — кортеж из значений переменных + значение F на последнем месте. Пустые ячейки заменяем на <code>a[0], a[1], ...</code></td></tr>
+        <tr><td><code>'xyzw'</code></td><td>Буквы переменных (без пробелов и запятых), в алфавитном порядке</td></tr>
+        <tr><td><code>r=4</code></td><td>Количество переменных в функции</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note-block">
+      <p><strong>💡 Как работает:</strong></p>
+      <ol>
+        <li><strong>product([0, 1], repeat=N)</strong> генерирует все возможные комбинации из N нулей и единиц — это значения для пустых ячеек таблицы.</li>
+        <li>Для каждой комбинации проверяется, что все строки таблицы <strong>уникальны</strong> (иначе задача не имеет смысла).</li>
+        <li><strong>permutations('xyzw', r=4)</strong> перебирает все 24 способа сопоставить буквы (x, y, z, w) со столбцами таблицы.</li>
+        <li><strong>dict(zip(p, line))</strong> создаёт словарь: буква → значение в этой строке таблицы. Например: <code>{'x': 1, 'y': 1, 'z': 0, 'w': 1}</code>.</li>
+        <li><strong>f(**dict)</strong> вызывает функцию f с этими аргументами и сравнивает результат с последним столбцом таблицы (F).</li>
+        <li>Если для всех строк условие выполнилось — перестановка найдена верно, выводим её.</li>
+      </ol>
+    </div>
+
+    <div class="warn-block">
+      <p><strong>⚠️ Важно:</strong> автокод — мощный, но небезопасный инструмент. Если в таблице есть строки, которые не различаются (даже после подстановки a[...]), условие <code>len(table) == len(set(table))</code> отсеет такие комбинации. Если логическая функция записана с ошибкой в приоритете операций — ответ будет неверным. Всегда проверяйте результат ручным анализом!</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» разберём пошаговый алгоритм решения задания 2 и научимся заполнять таблицы истинности с помощью Python.
+  </div>
+
+</body>
+</html>

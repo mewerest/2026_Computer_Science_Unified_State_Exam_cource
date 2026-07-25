@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 23 ЕГЭ — разбор и практика</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .theory-link {
+      display: inline-block;
+      margin-bottom: 1.8rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: 8px;
+      color: #4a2a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+    .theory-link:hover { background-color: #e8ddf5; }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .task-full {
+      background-color: #fefefe;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+    }
+    .task-full .task-label {
+      font-weight: 700;
+      color: #888;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .answer-block {
+      background-color: #e8f4e8;
+      border: 2px solid #4a8a4a;
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      color: #fff;
+    }
+    .type-0 { background-color: #888; }
+    .type-1 { background-color: #4a9a4a; }
+    .type-2 { background-color: #3a7aca; }
+    .type-3 { background-color: #c98a30; }
+    .type-special { background-color: #6a3a8a; }
+
+    .homework-block {
+      background-color: #fffdf5;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
+      text-align: center;
+    }
+    .homework-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+    .homework-block .placeholder { color: #aaa; font-style: italic; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../tasks_index.html" class="back-link">← К списку заданий</a>
+
+  <h1>📝 Задание 23 ЕГЭ</h1>
+  <p class="subtitle">Динамическое программирование · Исполнители · Подсчёт количества программ</p>
+
+  <a href="task23_theory.html" class="theory-link">📖 Открыть теорию к заданию 23 →</a>
+
+  <!-- ==================== О ЗАДАНИИ ==================== -->
+  <h2>О задании</h2>
+
+  <div class="theory-block">
+    <p>Задание 23 проверяет умение <strong>подсчитывать количество программ</strong> для исполнителя, преобразующего число набором команд. Решается рекурсивной функцией: на каждом шаге пробуем все команды, суммируем успешные пути. Основные типы: простой подсчёт, траектория содержит/не содержит число, комбинация, количество уникальных результатов, ограничение на повторение команд.</p>
+  </div>
+
+  <!-- ==================== ТИП 0: ПРОСТОЙ ПОДСЧЁТ ==================== -->
+  <h2><span class="type-badge type-0">Тип 0</span> Простой подсчёт (без условий)</h2>
+
+  <div class="theory-block">
+    <p>Базовый случай: просто считаем количество программ, без обязательных и запрещённых точек. Идеально для понимания шаблона рекурсивной функции.</p>
+  </div>
+
+  <h3>Задача №1</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>У исполнителя Калькулятор три команды, которым присвоены номера:<br>
+    1. прибавь 1<br>
+    2. прибавь 3<br>
+    3. умножь на 2</p>
+    <p>Сколько есть программ, которые число 1 преобразуют в число 5?</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y):
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x > y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x < y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f(x + 1, y) + f(x + 3, y) + f(x * 2, y)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(1, 5))</pre>
+  </div>
+  <div class="note-block">
+    <p><strong>💡 Это базовый шаблон:</strong> три команды — три рекурсивных вызова. Сумма результатов даёт общее количество программ. С этого шаблона начинаются все задачи 23.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>7</strong></div>
+
+  <!-- ==================== ТИП 1 ==================== -->
+  <h2><span class="type-badge type-1">Тип 1</span> Траектория содержит число</h2>
+
+  <div class="theory-block">
+    <p>Траектория разбивается на две части: от начала до обязательной точки A и от A до конца. Результаты перемножаются. <a href="task23_theory.html#type1">Подробнее в теории →</a></p>
+  </div>
+
+  <h3>Задача №2</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Исполнитель преобразует число на экране. У исполнителя есть две команды, которым присвоены номера:<br>
+    1. Прибавить 1<br>
+    2. Умножить на 2</p>
+    <p>Сколько существует программ, для которых при исходном числе 1 результатом является число 20, и при этом траектория вычислений содержит число 10?</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y):
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x > y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x < y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f(x + 1, y) + f(x * 2, y)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(1, 10) * f(10, 20))</pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>28</strong></div>
+
+  <h3>Задача №3</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Исполнитель преобразует число на экране. У исполнителя есть две команды, которым присвоены номера:<br>
+    1. Вычти 2<br>
+    2. Найди целую часть от деления на 2</p>
+    <p>Сколько существует программ, для которых при исходном числе 28 результатом является число 1, и при этом траектория вычислений содержит число 10?</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y):
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x < y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x > y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f(x - 2, y) + f(x // 2, y)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(28, 10) * f(10, 1))</pre>
+  </div>
+  <div class="note-block">
+    <p><strong>💡 Движение вниз:</strong> здесь идём от большего к меньшему, поэтому условие тупика — <code>if x < y</code>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>36</strong></div>
+
+  <!-- ==================== ТИП 2 ==================== -->
+  <h2><span class="type-badge type-2">Тип 2</span> Траектория не содержит число</h2>
+
+  <div class="theory-block">
+    <p>Добавляем запрещённое число в условие «тупика». В отличие от типа 1, здесь не нужно разбивать траекторию на части — просто вызываем функцию с начальным и конечным значением. <a href="task23_theory.html#type2">Подробнее в теории →</a></p>
+  </div>
+
+  <h3>Задача №4</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Исполнитель преобразует число на экране. У исполнителя есть три команды, которые обозначены латинскими буквами:<br>
+    A. Прибавить 1<br>
+    B. Умножить на 2<br>
+    C. Возвести в квадрат</p>
+    <p>Сколько существует программ, для которых при исходном числе 2 результатом является число 20, при этом траектория вычислений не содержит числа 11?</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y):
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x > y or x == 11:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x < y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f(x + 1, y) + f(x * 2, y) + f(x ** 2, y)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(2, 20))</pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>37</strong></div>
+
+  <h3>Задача №5</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Исполнитель преобразует число на экране. У исполнителя есть три команды, которые обозначены латинскими буквами:<br>
+    А. Вычесть 1<br>
+    В. Вычесть 2<br>
+    С. Найти целую часть от деления на 3</p>
+    <p>Сколько существует программ, для которых при исходном числе 19 результатом является число 3, при этом траектория вычислений не содержит чисел 9 и 16?</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y):
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x < y or x == 9 or x == 16:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x > y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f(x - 1, y) + f(x - 2, y) + f(x // 3, y)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(19, 3))</pre>
+  </div>
+  <div class="note-block">
+    <p><strong>💡 Исключение нескольких чисел:</strong> <code>if x < y or x == 9 or x == 16</code> — можно перечислить сколько угодно запрещённых точек через <code>or</code>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>180</strong></div>
+
+  <!-- ==================== ТИП 3 ==================== -->
+  <h2><span class="type-badge type-3">Тип 3</span> Комбинация: содержит и не содержит</h2>
+
+  <div class="theory-block">
+    <p>Сочетаем оба подхода: исключаем число в условии, а траекторию с обязательной точкой разбиваем на части. <a href="task23_theory.html#type3">Подробнее в теории →</a></p>
+  </div>
+
+  <h3>Задача №6</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Исполнитель преобразует число на экране. У исполнителя есть три команды, которым присвоены номера:<br>
+    1. Прибавить 2<br>
+    2. Прибавить 3<br>
+    3. Умножить на 2</p>
+    <p>Сколько существует программ, для которых при исходном числе 3 результатом является число 25, и при этом траектория вычислений содержит число 10 и не содержит 17?</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y):
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x > y or x == 17:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x < y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f(x + 2, y) + f(x + 3, y) + f(x * 2, y)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(3, 10) * f(10, 25))</pre>
+  </div>
+  <div class="note-block">
+    <p><strong>💡 Обрати внимание:</strong> число 17 исключено в условии <code>x == 17</code>. Траектория разбита по точке 10: f(3, 10) × f(10, 25).</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>90</strong></div>
+
+  <h3>Задача №7</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Исполнитель преобразует число на экране. У исполнителя есть три команды, которые обозначены латинскими буквами:<br>
+    A. Вычесть 1<br>
+    B. Вычесть 2<br>
+    C. Найти целую часть от деления на 3</p>
+    <p>Сколько существует программ, для которых при исходном числе 19 результатом является число 4, при этом траектория вычислений содержит число 6 и не содержит 13?</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y):
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x < y or x == 13:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x > y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f(x - 1, y) + f(x - 2, y) + f(x // 3, y)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(19, 6) * f(6, 4))</pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>212</strong></div>
+
+  <!-- ==================== ТИП 4: КОЛИЧЕСТВО УНИКАЛЬНЫХ РЕЗУЛЬТАТОВ ==================== -->
+  <h2><span class="type-badge type-special">Особый тип</span> Количество уникальных результатов</h2>
+
+  <div class="theory-block">
+    <p>Не «сколько программ из A в B», а «сколько различных чисел можно получить за N команд». Решается через <strong>множество (set)</strong>. <a href="task23_theory.html#unique-results">Подробнее в теории →</a></p>
+  </div>
+
+  <h3>Задача №8</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Исполнитель преобразует число на экране. У исполнителя есть две команды, которым присвоены номера:<br>
+    1. Удвоить<br>
+    2. Удвоить и прибавить</p>
+    <p>Первая команда умножает число на экране на 2, вторая — умножает его на 2, а затем прибавляет 1. Программа для исполнителя — это последовательность команд. Например, программа 121 при исходном числе 3 последовательно получит числа 6, 13 и 26. Результатом программы будет число 26.</p>
+    <p>Сколько различных результатов можно получить из исходного числа 1 после выполнения программы, содержащей ровно 9 команд?</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Команды: ×2 и ×2+1, исходное число 1, ровно 9 команд</span>
+results = {1}
+for _ in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(9):
+    new_results = <a href="../../base_of_programming/functions_descriptions.html#func-set" class="func-link" target="_blank">set</a>()
+    for x in results:
+        new_results.<a href="../../base_of_programming/functions_descriptions.html#method-add" class="func-link" target="_blank">add</a>(x * 2)       <span style="color: #888;"># команда 1: удвоить</span>
+        new_results.<a href="../../base_of_programming/functions_descriptions.html#method-add" class="func-link" target="_blank">add</a>(x * 2 + 1)   <span style="color: #888;"># команда 2: удвоить и прибавить</span>
+    results = new_results
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(results))</pre>
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Почему множество:</strong> разные последовательности команд могут привести к одному и тому же числу. Множество автоматически убирает дубликаты.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>512</strong></div>
+
+  <!-- ==================== ТИП 5: ОГРАНИЧЕНИЕ НА ПОВТОРЕНИЕ КОМАНД ==================== -->
+  <h2><span class="type-badge type-special">Особый случай</span> Ограничение на повторение команд</h2>
+
+  <div class="theory-block">
+    <p>Когда запрещено повторять команду более N раз подряд, добавляем третий параметр — строку с историей команд. <a href="task23_theory.html#repeat-limit">Подробнее в теории →</a></p>
+  </div>
+
+  <h3>Задача №9</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Исполнитель преобразует число на экране. У исполнителя есть две команды, которые обозначены латинскими буквами:<br>
+    A. Прибавить 1<br>
+    B. Умножить на 2</p>
+    <p>Сколько существует программ, которые преобразуют исходное число 1 в число 24, и при этом никакая команда не повторяется более двух раз подряд? Траектория вычислений программы — это последовательность результатов выполнения всех команд программы. Например, для программы BAB при исходном числе 1 траектория состоит из чисел 2, 3, 6.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y, path=""):
+    if "AAA" in path or "BBB" in path:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x > y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x < y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> (f(x + 1, y, path + "A") +
+                f(x * 2, y, path + "B"))
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(1, 24))</pre>
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Как это работает:</strong> при вызове команды A дописываем «A» в path, при B — «B». Если в path появилось «AAA» или «BBB» — возвращаем 0 (этот путь запрещён). Остальное — как в обычной задаче.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>6</strong></div>
+
+  <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+  <div class="homework-block">
+    <h2>📋 Домашнее задание</h2>
+    <p class="placeholder">Материалы для самостоятельной практики появятся здесь позже.</p>
+    <p class="placeholder">Здесь будут размещены дополнительные варианты заданий для отработки навыков.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет:</strong> для задания 23 используйте одну и ту же структуру рекурсивной функции. Меняются только команды в последней строке и условия проверки. Доведите этот шаблон до автоматизма.
+  </div>
+
+</body>
+</html>

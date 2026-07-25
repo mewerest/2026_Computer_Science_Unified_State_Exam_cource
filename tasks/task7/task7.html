@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 7 ЕГЭ — разбор и практика</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .theory-link {
+      display: inline-block;
+      margin-bottom: 1.8rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: 8px;
+      color: #4a2a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+    .theory-link:hover { background-color: #e8ddf5; }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .task-full {
+      background-color: #fefefe;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+    }
+    .task-full .task-label {
+      font-weight: 700;
+      color: #888;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .task-brief {
+      background-color: #f9f9f9;
+      border-left: 3px solid var(--accent);
+      padding: 0.6rem 1rem;
+      margin: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    .task-brief strong { color: var(--accent); }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .step-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .step-block .step-num {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 26px;
+    }
+
+    .answer-block {
+      background-color: #e8f4e8;
+      border: 2px solid #4a8a4a;
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      color: #fff;
+    }
+    .type-img { background-color: #4a9a4a; }
+    .type-sound { background-color: #3a7aca; }
+
+    .homework-block {
+      background-color: #fffdf5;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
+      text-align: center;
+    }
+    .homework-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+    .homework-block .placeholder { color: #aaa; font-style: italic; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../tasks_index.html" class="back-link">← К списку заданий</a>
+
+  <h1>📝 Задание 7 ЕГЭ</h1>
+  <p class="subtitle">Объём памяти · Передача данных · Изображения и звук</p>
+
+  <a href="task7_theory.html" class="theory-link">📖 Открыть теорию к заданию 7 →</a>
+
+  <!-- ==================== О ЗАДАНИИ ==================== -->
+  <h2>О задании</h2>
+
+  <div class="theory-block">
+    <p>Задание 7 проверяет умение определять <strong>объём памяти</strong> для хранения информации и вычислять <strong>время передачи данных</strong>. Для решения используются три основные формулы:</p>
+    <ul>
+      <li><a href="task7_theory.html#color-depth">N = 2ⁱ</a> — количество цветов / уровней через глубину кодирования</li>
+      <li><a href="task7_theory.html#image-volume">V = h·w·i</a> — объём изображения; <a href="task7_theory.html#sound-volume">V = k·t·i·η</a> — объём звука</li>
+      <li><a href="task7_theory.html#transfer">V = q·t</a> — объём переданных данных</li>
+    </ul>
+    <p>Решать можно на бумаге или программно на Python — программный способ надёжнее, исключает арифметические ошибки.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Главный принцип:</strong> вычисления не должны быть громоздкими. Во всех решениях ниже мы <strong>выделяем степени двойки</strong> — тогда всё сводится к сложению и вычитанию показателей степеней. Никакой длинной арифметики.</p>
+  </div>
+
+  <!-- ==================== ЗАДАЧИ НА ИЗОБРАЖЕНИЯ ==================== -->
+  <h2><span class="type-badge type-img">Изображения</span> Задачи №1–10</h2>
+
+  <!-- Задачи 1–9 — без изменений -->
+  <!-- Задача 1 -->
+  <h3>Задача №1</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Мастер сделал милый мем про своего преподавателя Вику в виде изображения размером 128 на 320 пикселей, объем которого занимает ровно 40 Кбайт. Определите максимальное количество цветов в палитре, которое может встречаться в этом изображении. В ответе укажите только число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> изображение 128×320, объём — 40 Кбайт. Найти: N<sub>max</sub> (количество цветов).
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Объём в битах через степени двойки:<br>
+    V = 40 Кбайт = 40 × 2¹³ бит = 5 × 8 × 2¹³ = <strong>5 × 2¹⁶</strong> бит.</p>
+    <p><span class="step-num">2</span> Количество пикселей через степени двойки:<br>
+    h·w = 128 × 320 = 2⁷ × (5 × 2⁶) = <strong>5 × 2¹³</strong>.</p>
+    <p><span class="step-num">3</span> Вес одного пикселя:<br>
+    i = V / (h·w) = (5 × 2¹⁶) / (5 × 2¹³) = 2³ = <strong>8</strong> бит.</p>
+    <p><span class="step-num">4</span> Количество цветов: N = 2⁸ = <strong>256</strong>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>256</strong></div>
+
+  <!-- Задачи 2–9 без изменений -->
+  <!-- Задача 2 -->
+  <h3>Задача №2</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Какой минимальный объём памяти (в Кбайт) нужно зарезервировать, чтобы можно было сохранить любое изображение размером 64 на 256 пикселей при условии, что в изображении глубина кодирования равна 7?</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> изображение 64×256, i = 7 бит. Найти: V<sub>min</sub> в Кбайт.
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Количество пикселей через степени двойки: h·w = 64 × 256 = 2⁶ × 2⁸ = <strong>2¹⁴</strong>.</p>
+    <p><span class="step-num">2</span> Объём в битах: V = 2¹⁴ × 7 = 7 × 2¹⁴ бит.</p>
+    <p><span class="step-num">3</span> Переводим в Кбайты: V = (7 × 2¹⁴) / 2¹³ = 7 × 2 = <strong>14</strong> Кбайт.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>14</strong></div>
+
+  <!-- Задача 3 -->
+  <h3>Задача №3</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Фотокамера «Ак Барс» создает изображения, которые используют 2³⁰ цветов (2³⁰ = 1 073 741 824). Средний объем изображения, созданного этой фотокамерой, составляет 50 Мбайт. Фотографии преобразуют в другой формат, содержащий 32768 цветов. Сколько мегабайт составляет средний объем преобразованной фотографии?</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> N₁ = 2³⁰ (i₁ = 30), V₁ = 50 Мбайт. N₂ = 32768 = 2¹⁵ (i₂ = 15). Найти: V₂.
+  </div>
+  <div class="step-block">
+    <p>Меняется только глубина цвета — используем метод пропорций.</p>
+    <p><span class="step-num">1</span> Исходная глубина: i₁ = <strong>30</strong> бит (2³⁰ цветов).</p>
+    <p><span class="step-num">2</span> Новая глубина: 32 768 = 2¹⁵ → i₂ = <strong>15</strong> бит.</p>
+    <p><span class="step-num">3</span> Новый объём: V₂ = 50 × (15/30) = 50 / 2 = <strong>25</strong> Мбайт.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>25</strong></div>
+
+  <!-- Задача 4 -->
+  <h3>Задача №4</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Никита и Софья сохранили на своем компьютере отсканированные фотографии с разрешением 600 ppi и палитрой цветов, состоящей из 2²⁴ = 16 777 216 цветов. Ради экономии места в памяти они решили использовать другое разрешение — 300 ppi и палитру, содержащую 8 цветов. Объем фотографии с изменёнными параметрами составляет в среднем 256 Кбайт. Определите количество мегабайт, которое будет составлять средний размер фотографии до изменения.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> исходное: 600 ppi, N₁ = 2²⁴ (i₁ = 24). Изменённое: 300 ppi, N₂ = 8 (i₂ = 3), V₂ = 256 Кбайт. Найти: V₁ в Мбайт.
+  </div>
+  <div class="step-block">
+    <p>Разрешение изменилось в (300/600)² = (1/2)² = <strong>1/4</strong> раза (ppi — линейная плотность, пиксели — площадь).</p>
+    <p>Глубина: i₁ = 24 бит, i₂ = <strong>3</strong> бита. Отношение глубин: 3/24 = <strong>1/8</strong>.</p>
+    <p>Итоговый коэффициент: (1/4) × (1/8) = <strong>1/32</strong>. Исходный файл в 32 раза больше.</p>
+    <p>V₁ = 256 Кбайт × 32 = 2⁸ × 2⁵ Кбайт = 2¹³ Кбайт = <strong>8</strong> Мбайт (2¹³ Кбайт / 2¹⁰ = 2³ = 8).</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>8</strong></div>
+
+  <!-- Задача 5 -->
+  <h3>Задача №5</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Прибор автоматической фиксации нарушений правил дорожного поведения делает цветные фотографии размером 1024×768 пикселей, используя палитру из 4096 цветов. Для передачи снимки группируются в пакеты по 256 штук. Определите размер одного пакета фотографий в Мбайт. В ответе запишите только число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> изображение 1024×768, N = 4096 (i = 12), пакет — 256 штук. Найти: V пакета в Мбайт.
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Глубина цвета: 4096 = 2¹² → i = <strong>12</strong> бит.</p>
+    <p><span class="step-num">2</span> Размеры через степени двойки: 1024 = 2¹⁰, 768 = 3 × 256 = <strong>3 × 2⁸</strong>.</p>
+    <p><span class="step-num">3</span> Вес одного снимка в битах: V₁ = 2¹⁰ × (3 × 2⁸) × 12 = 3 × 2¹⁸ × 12 = <strong>36 × 2¹⁸</strong> бит.</p>
+    <p><span class="step-num">4</span> Вес пакета: 256 = 2⁸ штук. V = 36 × 2¹⁸ × 2⁸ = 36 × 2²⁶ бит.</p>
+    <p><span class="step-num">5</span> Переводим в Мбайты: 36 × 2²⁶ / 2²³ = 36 × 2³ = 36 × 8 = <strong>288</strong> Мбайт.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>288</strong></div>
+
+  <!-- Задача 6 -->
+  <h3>Задача №6</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Сколько секунд потребуется обычному модему, передающему сообщения со скоростью 32768 бит/с, чтобы передать цветное растровое изображение размером 2560 на 1440 пикселей, при условии, что цвет каждого пикселя кодируется 2 байтами?</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> изображение 2560×1440, i = 2 байта = 16 бит, q = 32768 бит/с. Найти: t (секунд).
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Глубина цвета: i = 2 байта = <strong>16</strong> бит = 2⁴.</p>
+    <p><span class="step-num">2</span> Скорость передачи: q = 32768 = <strong>2¹⁵</strong> бит/с.</p>
+    <p><span class="step-num">3</span> Размеры: 2560 = 5 × 512 = 5 × 2⁹, 1440 = 45 × 32 = 45 × 2⁵.</p>
+    <p><span class="step-num">4</span> Объём: V = (5 × 2⁹) × (45 × 2⁵) × 2⁴ = 5 × 45 × 2¹⁸ = 225 × 2¹⁸ бит.</p>
+    <p><span class="step-num">5</span> Время: t = (225 × 2¹⁸) / 2¹⁵ = 225 × 2³ = 225 × 8 = <strong>1800</strong> секунд.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>1800</strong></div>
+
+  <!-- Задача 7 -->
+  <h3>Задача №7</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Прибор автоматической фиксации нарушений правил дорожного движения делает цветные фотографии размером 1280×1024 пикселей. Снимки сохраняются в памяти камеры, группируются в пакеты по 39 штук, затем передаются в центр обработки информации со скоростью передачи данных 1 966 080 бит/с. Каково максимально возможное количество цветов в палитре изображения, если на передачу одного пакета отводится не более 280 секунд? В ответе запишите целое число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> изображение 1280×1024, 39 штук в пакете, q = 1 966 080 бит/с, t ≤ 280 с. Найти: N<sub>max</sub>.
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Размеры: 1280 = 5 × 256 = 5 × 2⁸, 1024 = 2¹⁰. Всего пикселей: 5 × 2¹⁸.</p>
+    <p><span class="step-num">2</span> Максимальный объём пакета: V<sub>p</sub> = q × t = 1 966 080 × 280 бит.</p>
+    <p><span class="step-num">3</span> Максимальный объём одного снимка: V₁ = V<sub>p</sub> / 39. Округляем вниз.</p>
+    <p><span class="step-num">4</span> Вес одного пикселя: i = V₁ / (5 × 2¹⁸) ≈ 10,76 → <strong>10</strong> бит (округляем вниз — это максимум).</p>
+    <p><span class="step-num">5</span> Количество цветов: N = 2¹⁰ = <strong>1024</strong>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>1024</strong></div>
+
+  <!-- Задача 8 -->
+  <h3>Задача №8</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Для хранения сжатого произвольного растрового изображения размером 192 на 960 пикселей отведено 90 Кбайт памяти без учёта размера заголовка файла. При сжатии объём файла уменьшается на 35%. Для кодирования цвета каждого пикселя используется одинаковое количество бит, коды пикселей записываются в файл один за другим без промежутков. Какое максимальное количество цветов можно использовать в изображении?</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> изображение 192×960, сжатый объём — 90 Кбайт, сжатие на 35%. Найти: N<sub>max</sub>.
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Объём до сжатия: V<sub>исх</sub> = 90 / 0,65 ≈ <strong>138,46</strong> Кбайт.</p>
+    <p><span class="step-num">2</span> В битах: 138,46 × 2¹³ бит. Пикселей: 192 × 960 = (3 × 2⁶) × (15 × 2⁶) = 45 × 2¹².</p>
+    <p><span class="step-num">3</span> Вес пикселя: i = (138,46 × 2¹³) / (45 × 2¹²) ≈ 6,15 → <strong>6</strong> бит (округляем вниз).</p>
+    <p><span class="step-num">4</span> Количество цветов: N = 2⁶ = <strong>64</strong>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>64</strong></div>
+
+  <!-- Задача 9 -->
+  <h3>Задача №9 <span style="color: #c96f0d; font-weight: 600;">★ с альфа-каналом</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Для хранения произвольного растрового изображения размером 512 на 360 пикселей отведено 230 Кбайт памяти без учёта размера заголовка файла. При кодировании каждого пикселя используется 7 бит для определения степени прозрачности и одинаковое количество бит для указания его цвета. Коды пикселей записываются в файл один за другим без промежутков. Какое максимальное количество цветов (без учёта степени прозрачности) можно использовать в изображении?</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> изображение 512×360, V = 230 Кбайт, 7 бит прозрачности + i<sub>цвет</sub>. Найти: N<sub>max</sub> цветов (без прозрачности).
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Это задача с <a href="task7_theory.html#alpha-channel">альфа-каналом</a>:</strong> глубина пикселя = биты цвета + биты прозрачности. Биты прозрачности нельзя использовать для цвета.</p>
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Объём в битах: V = 230 × 2¹³ = 115 × 2¹⁴ бит.</p>
+    <p><span class="step-num">2</span> Пикселей: 512 × 360 = 2⁹ × (45 × 8) = 2⁹ × 45 × 2³ = <strong>45 × 2¹²</strong>.</p>
+    <p><span class="step-num">3</span> Полная глубина: i<sub>полн</sub> = (115 × 2¹⁴) / (45 × 2¹²) ≈ 10,22 → <strong>10</strong> бит.</p>
+    <p><span class="step-num">4</span> На цвет: i<sub>цвет</sub> = 10 − 7 = <strong>3</strong> бита. N = 2³ = <strong>8</strong>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>8</strong></div>
+
+  <!-- ===== НОВАЯ ЗАДАЧА 10: БИТ КОНТРОЛЯ ЧЁТНОСТИ ===== -->
+  <h3>Задача №10 <span style="color: #c96f0d; font-weight: 600;">★ с битом чётности</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Для хранения произвольного растрового изображения размером 480 на 768 пикселей отведено 405 Кбайт памяти без учёта размера заголовка файла. При кодировании цвета каждого пикселя используется одинаковое количество бит, при этом для каждых двух бит цвета дописывается дополнительный бит контроля чётности. Коды пикселей записываются в файл один за другим без промежутков. Какое максимальное количество цветов можно использовать в изображении?</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> изображение 480×768, V = 405 Кбайт, на каждые 2 бита цвета +1 бит чётности. Найти: N<sub>max</sub>.
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Это задача с <a href="task7_theory.html#parity-bit">битом контроля чётности</a>:</strong> i<sub>полн</sub> = i<sub>цвет</sub> + ⌈i<sub>цвет</sub> / 2⌉. Полная глубина пикселя = биты цвета + дополнительный бит на каждые 2 бита цвета.</p>
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Объём в битах: V = 405 × 2¹³ бит.</p>
+    <p><span class="step-num">2</span> Пикселей: 480 × 768 = (15 × 32) × (3 × 256) = 15 × 2⁵ × 3 × 2⁸ = <strong>45 × 2¹³</strong>.</p>
+    <p><span class="step-num">3</span> Полная глубина: i<sub>полн</sub> = (405 × 2¹³) / (45 × 2¹³) = 405 / 45 = <strong>9</strong> бит.</p>
+    <p><span class="step-num">4</span> i<sub>полн</sub> = i<sub>цвет</sub> + ⌈i<sub>цвет</sub> / 2⌉. Подбор: i<sub>цвет</sub> = 6 → 6 + 3 = 9. i<sub>цвет</sub> = 5 → 5 + 3 = 8 (мало). <strong>i<sub>цвет</sub> = 6</strong> бит.</p>
+    <p><span class="step-num">5</span> Количество цветов: N = 2⁶ = <strong>64</strong>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>64</strong></div>
+
+  <!-- ==================== ЗАДАЧИ НА ЗВУК ==================== -->
+  <h2><span class="type-badge type-sound">Звук</span> Задачи №11–18</h2>
+
+  <!-- Задачи 11–15 — это бывшие 10–14 без изменений -->
+  <!-- Задача 11 (бывшая 10) -->
+  <h3>Задача №11</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Производится двухканальная (стерео) звукозапись с частотой дискретизации 64 кГц и 24-битным разрешением. В результате был получен файл размером 220 Мбайт без учета заголовка и без сжатия данных. Определите длительность звукозаписи в минутах. В качестве ответа укажите ближайшее к полученному времени целое число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> стерео (k = 2), η = 64 кГц, i = 24 бит, V = 220 Мбайт. Найти: t в минутах.
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Объём в битах: V = 220 × 2²³ = 55 × 4 × 2²³ = <strong>55 × 2²⁵</strong> бит.</p>
+    <p><span class="step-num">2</span> Знаменатель: k × i × η = 2 × 24 × 64 000 = 2 × 24 × (2⁶ × 1000) = 48 × 1000 × 2⁶.</p>
+    <p><span class="step-num">3</span> 48 = 3 × 16 = 3 × 2⁴. Знаменатель: 3 × 2⁴ × 1000 × 2⁶ = <strong>3000 × 2¹⁰</strong>.</p>
+    <p><span class="step-num">4</span> t = (55 × 2²⁵) / (3000 × 2¹⁰) ≈ 600,74 с → <strong>10</strong> минут.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>10</strong></div>
+
+  <!-- Задача 12 (бывшая 11) -->
+  <h3>Задача №12</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Для записи песни использовалась стерео (двухканальная) запись с частотой дискретизации 32 кГц и 32-битным разрешением. Ее сохранили на компьютер с объемом 32 Мбайт. Затем производится повторная запись этого же фрагмента в формате моно (одноканальная) с частотой дискретизации 16 кГц и 32-битным разрешением. Сжатие данных не производилось. Определите количество мегабайт, которое занимает файл при повторной записи.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> исходная: k₁ = 2, η₁ = 32 кГц, i₁ = 32 бит, V₁ = 32 Мбайт. Повторная: k₂ = 1, η₂ = 16 кГц, i₂ = 32 бит. Найти: V₂.
+  </div>
+  <div class="step-block">
+    <p>Метод пропорций:<br>
+    Каналы: 2 → 1 — ÷2.<br>
+    Частота: 32 → 16 — ÷2.<br>
+    Глубина не изменилась.</p>
+    <p>V₂ = 32 / 2 / 2 = <strong>8</strong> Мбайт.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>8</strong></div>
+
+  <!-- Задача 13 (бывшая 12) -->
+  <h3>Задача №13 <span style="color: #c96f0d; font-weight: 600;">★ с темпом</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Для записи песни использовалась двухканальная (стерео) аудиодорожка. Ее сохранили на компьютер с объемом 12 Мбайт. Тот же файл был записан еще раз в формате четырехканальной (квадро) записи с частотой дискретизации в 4 раза меньше, чем в первый раз. При этом при повторной записи темп воспроизведения музыки был уменьшен в 1,5 раза. Определите количество мегабайт, которое занимает файл при повторной записи.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> исходная: k₁ = 2, V₁ = 12 Мбайт. Повторная: k₂ = 4, η₂ = η₁/4, темп уменьшен в 1,5 раза (t₂ = 1,5·t₁). Найти: V₂.
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Темп воспроизведения:</strong> уменьшение темпа в 1,5 раза → длительность увеличивается в 1,5 раза. Подробнее: <a href="task7_theory.html#tempo">темп и длительность</a>.</p>
+  </div>
+  <div class="step-block">
+    <p>Каналы: 2 → 4 — ×2.<br>
+    Частота: ÷4.<br>
+    Длительность (темп): ×1,5.</p>
+    <p>V₂ = 12 × 2 / 4 × 1,5 = 12 × 0,5 × 1,5 = 12 × 0,75 = <strong>9</strong> Мбайт.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>9</strong></div>
+
+  <!-- Задача 14 (бывшая 13) -->
+  <h3>Задача №14</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Илиана произвела двухканальную (стерео) звукозапись с частотой дискретизации 48 кГц и 16-битным разрешением. Запись имеет длительность 90 секунд. Илиана отправила эту запись другу со скоростью 3200 бит в секунду. За сколько секунд отправится эта запись? В ответ запишите число — округленное в большую сторону количество секунд. Единицы измерения писать не нужно.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> стерео (k = 2), η = 48 кГц, i = 16 бит, t = 90 с, q = 3200 бит/с. Найти: время передачи.
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Параметры через степени двойки:<br>
+    k = 2, i = 16 = 2⁴, η = 48 000 = 3 × 16 × 1000 = 3 × 2⁴ × 1000.</p>
+    <p><span class="step-num">2</span> Объём: V = 2 × 90 × 2⁴ × (3 × 2⁴ × 1000) = 540 × 2⁸ × 1000 бит.</p>
+    <p><span class="step-num">3</span> q = 3200 = 100 × 32 = 100 × 2⁵. t = V / q = (540 × 2⁸ × 1000) / (100 × 2⁵) = 540 × 2³ × 10 = 540 × 8 × 10 = <strong>43 200</strong> с.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>43200</strong></div>
+
+  <!-- Задача 15 (бывшая 14) -->
+  <h3>Задача №15</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Маша скачивает из Интернета альбом любимой группы, оцифрованный в формате стерео с частотой дискретизации 48000 Гц и разрешением 34 бит без использования сжатия. В альбоме 13 треков общей длительностью 42 минуты 20 секунд. Каждый трек содержит заголовок объемом 110 Кбайт. Сколько секунд будет скачиваться альбом по каналу связи со скоростью передачи данных 314572800 бит/с? В ответе запишите целую часть полученного числа.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> стерео (k = 2), η = 48 000 Гц, i = 34 бит, 13 треков, t = 2540 с, заголовок — 110 Кбайт/трек, q = 314 572 800 бит/с. Найти: время (целая часть).
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Длительность в секундах: t = 42 × 60 + 20 = <strong>2540</strong> с.</p>
+    <p><span class="step-num">2</span> Объём треков: V<sub>треков</sub> = 2 × 2540 × 34 × 48 000 = 2540 × 34 × 96 000. Сокращаем со скоростью.</p>
+    <p><span class="step-num">3</span> Заголовки: 13 × 110 × 2¹³ = 13 × 110 × 8192 = 11 714 560 бит.</p>
+    <p><span class="step-num">4</span> Общий объём: ≈ 8 302 274 560 бит. t = V / q ≈ 26,39 → целая часть <strong>26</strong>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>26</strong></div>
+
+  <!-- ===== НОВАЯ ЗАДАЧА 16: КВАДРО ===== -->
+  <h3>Задача №16 <span style="color: #c96f0d; font-weight: 600;">★ квадро</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Производилась четырёхканальная (квадро) звукозапись с частотой дискретизации 192 кГц и 16-битным разрешением. В результате был получен файл размером 967 Мбайт, без учёта размера заголовка и без сжатия данных. Определите длительность звукозаписи (в минутах). В качестве ответа укажите ближайшее к полученному времени записи целое число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> квадро (k = 4), η = 192 кГц, i = 16 бит, V = 967 Мбайт. Найти: t в минутах.
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> Объём в битах: V = 967 × 2²³ бит.</p>
+    <p><span class="step-num">2</span> Знаменатель: k × i × η = 4 × 16 × 192 000 = 4 × 16 × (3 × 2⁶ × 1000) = <strong>12 288 000</strong>.</p>
+    <p><span class="step-num">3</span> t = (967 × 2²³) / 12 288 000 ≈ 660,5 с → <strong>11</strong> минут.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>11</strong></div>
+
+  <!-- Задачи 17–18 (бывшие 15–16 с уровнями) -->
+  <!-- Задача 17 (бывшая 15) -->
+  <h3>Задача №17 <span style="color: #c96f0d; font-weight: 600;">★ с уровнями</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Производится двухканальная (стерео) звукозапись с частотой дискретизации 64 кГц и с 2²⁴ уровнями дискретизации. В результате был получен файл размером 220 Мбайт без учета заголовка и без сжатия данных. Определите длительность звукозаписи в минутах. В качестве ответа укажите ближайшее к полученному времени целое число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> стерео (k = 2), η = 64 кГц, уровни = 2²⁴ → i = 24 бита, V = 220 Мбайт. Найти: t в минутах.
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Уровни дискретизации:</strong> 2²⁴ уровней → i = <strong>24 бита</strong>. Подробнее: <a href="task7_theory.html#levels-to-bits">уровни дискретизации → биты</a>.</p>
+  </div>
+  <div class="step-block">
+    <p>Задача идентична №11: те же 220 Мбайт, 64 кГц, 24 бита, стерео.</p>
+    <p>t = (55 × 2²⁵) / (3000 × 2¹⁰) ≈ 600,74 с → <strong>10</strong> минут.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>10</strong></div>
+
+  <!-- Задача 18 (бывшая 16) -->
+  <h3>Задача №18 <span style="color: #c96f0d; font-weight: 600;">★ с уровнями</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Производится двухканальная (стерео) звукозапись с частотой дискретизации 64 кГц и с 16 уровнями дискретизации. В результате был получен файл размером 220 Мбайт без учета заголовка и без сжатия данных. Определите длительность звукозаписи в минутах. В качестве ответа укажите ближайшее к полученному времени целое число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> стерео (k = 2), η = 64 кГц, уровни = 16 → i = 4 бита, V = 220 Мбайт. Найти: t в минутах.
+  </div>
+  <div class="step-block">
+    <p><span class="step-num">1</span> 16 уровней → i = log₂16 = <strong>4</strong> бита.</p>
+    <p><span class="step-num">2</span> Объём в битах: V = 220 × 2²³ = 55 × 2²⁵ бит.</p>
+    <p><span class="step-num">3</span> Знаменатель: k × i × η = 2 × 4 × 64 000 = 8 × (2⁶ × 1000) = <strong>1000 × 2⁹</strong>.</p>
+    <p><span class="step-num">4</span> t = (55 × 2²⁵) / (1000 × 2⁹) = 55 × 2¹⁶ / 1000 = 55 × 65536 / 1000 ≈ 3604,48 с.</p>
+    <p><span class="step-num">5</span> В минутах: 3604,48 / 60 ≈ 60,07 → <strong>60</strong> минут.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>60</strong></div>
+
+  <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+  <div class="homework-block">
+    <h2>📋 Домашнее задание</h2>
+    <p class="placeholder">Материалы для самостоятельной практики появятся здесь позже.</p>
+    <p class="placeholder">Здесь будут размещены дополнительные варианты заданий для отработки навыков.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет:</strong> решайте задачи программно — это надёжнее. Но обязательно освойте метод пропорций для задач с изменениями параметров: он экономит время на экзамене. Оба подхода должны быть в арсенале.
+  </div>
+
+</body>
+</html>

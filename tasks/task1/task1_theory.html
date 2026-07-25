@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 1 ЕГЭ: теория информационных моделей</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+    .theory-block p { margin-bottom: 0.5rem; }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .extra-block {
+      background-color: #fdfaf0;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .extra-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+    .extra-block .extra-label {
+      display: inline-block;
+      background-color: #fff3cd;
+      color: #8a6d00;
+      padding: 0.2rem 0.7rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .definition strong { color: #4a2a7a; }
+
+    .term {
+      background-color: #f0f4f8;
+      border: 1px solid #c0c8d4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .term .term-name {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .example-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .example-block .example-title {
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .step-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .step-block .step-num {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 26px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      text-align: center;
+    }
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.8rem;
+      text-align: center;
+    }
+    table tr:nth-child(even) td { background-color: #fafafa; }
+
+    .summary-block {
+      background-color: #eaf3f9;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .summary-block h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="task1.html" class="back-link">← К заданию 1</a>
+
+  <h1>📊 Задание 1 ЕГЭ: информационные модели</h1>
+  <p class="subtitle">Теория · Графы, таблицы, деревья — учимся читать и анализировать данные</p>
+
+  <!-- ==================== ИНФОРМАЦИОННЫЕ МОДЕЛИ ==================== -->
+  <h2>Информационные модели — что это и зачем</h2>
+
+  <div class="definition">
+    <p><strong>Информационная модель</strong> — это упрощённое представление реального объекта, процесса или явления, которое используется для анализа, прогнозирования и принятия решений.</p>
+    <p>Она позволяет <strong>структурировать информацию</strong>: выделить ключевые свойства и взаимосвязи, отбросив несущественные детали, и представить данные в удобной для обработки форме.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Представь, что ты — завуч школы. У тебя есть огромный список всех учеников с их оценками по всем предметам. Найти среди этого списка оценки по информатике у 11 «А» класса — задача не из лёгких.</p>
+    <p>Гораздо удобнее было бы <strong>структурировать</strong> этот список: разделить учеников по классам, а внутри класса — по предметам. Именно этим и занимаются информационные модели — организуют данные так, чтобы с ними было удобно работать.</p>
+  </div>
+
+  <p>Для структурирования информации используются разные способы, и в задании 1 ЕГЭ вам встретятся три основных: <strong>таблицы</strong>, <strong>деревья</strong> и <strong>графы</strong>. Давай разберём каждый из них.</p>
+
+  <!-- ==================== ТАБЛИЦА ==================== -->
+  <h2>Таблица — данные в строках и столбцах</h2>
+
+  <div class="term">
+    <div class="term-name">📋 Таблица</div>
+    <p>Структура данных, которая представляет информацию в виде <strong>строк и столбцов</strong>. Каждая строка соответствует отдельному объекту, а каждый столбец — определённому свойству этого объекта.</p>
+  </div>
+
+  <p>Вернёмся к примеру со школой. Пусть у нас есть иерархия:</p>
+  <p style="text-align: center; font-style: italic; background-color: #f9f9f9; padding: 0.8rem; border-radius: var(--radius);">
+    Ученики школы → Параллель 11 классов → 11 «А» класс → Оценки по информатике
+  </p>
+
+  <p>Тогда данные об оценках можно представить в виде таблицы:</p>
+
+  <div class="image-block">
+    <img src="task1_theory_table.webp" alt="Таблица с оценками учеников 11А класса по информатике">
+    <div class="caption">Таблица оценок по информатике для 11 «А» класса</div>
+  </div>
+
+  <p>Таблица — самый привычный и понятный способ организации данных. Но откуда берётся сама иерархия? Как показать, что 11 «А» относится именно к параллели 11-х классов, а не к 10-м? Для этого нужна другая структура — <strong>дерево</strong>.</p>
+
+  <!-- ==================== ДЕРЕВО ==================== -->
+  <h2>Дерево — иерархия и вложенность</h2>
+
+  <div class="term">
+    <div class="term-name">🌳 Дерево</div>
+    <p>Иерархическая структура данных, в которой каждый элемент (<strong>узел</strong>) имеет одного <strong>родителя</strong> и может иметь несколько <strong>потомков</strong>. Самый верхний узел называется <strong>корнем</strong>, а узлы без потомков — <strong>листьями</strong>.</p>
+  </div>
+
+  <p>Нашу школьную иерархию можно представить в виде дерева:</p>
+
+  <div class="image-block">
+    <img src="task1_theory_tree.webp" alt="Дерево иерархии: Ученики → 11 класс → 11А → Оценки по информатике">
+    <div class="caption">Иерархическое дерево: от корня «Ученики» до таблицы «Оценки по информатике» (выделено оранжевым)</div>
+  </div>
+
+  <p>На схеме оранжевым выделен путь от корня «Ученики» до нужной нам таблицы «Оценки по информатике». Деревья удобны, когда объекты связаны <strong>строгой иерархией</strong> — каждый элемент находится на своём уровне, и связи между ними предсказуемы.</p>
+
+  <p>Но что делать, если отношения между объектами сложные и запутанные? Например, дороги между городами не образуют иерархию — из любого города можно попасть в любой другой. Здесь на помощь приходят <strong>графы</strong>.</p>
+
+  <!-- ==================== ГРАФ ==================== -->
+  <h2>Граф — вершины и рёбра</h2>
+
+  <div class="definition">
+    <p><strong>Граф</strong> — это математическая абстракция, состоящая из двух компонентов:</p>
+    <ol>
+      <li><strong>Множество вершин</strong> — представляют объекты (на схемах изображаются точками или кружками).</li>
+      <li><strong>Множество рёбер</strong> — описывают связи между объектами (на схемах изображаются линиями или стрелками).</li>
+    </ol>
+  </div>
+
+  <p>Рассмотрим простой граф — схему дорог между четырьмя населёнными пунктами:</p>
+
+  <div class="image-block">
+    <img src="task1_theory_graph.webp" alt="Граф дорог между населёнными пунктами">
+    <div class="caption">Граф дорог: вершины — населённые пункты, рёбра — дороги между ними</div>
+  </div>
+
+  <!-- ==================== ТЕРМИНЫ ГРАФА ==================== -->
+  <h3>Основные термины графа</h3>
+
+  <div class="term">
+    <div class="term-name">🔵 Вершина</div>
+    <p>Основной элемент графа, представляющий объект или сущность. Вершины могут быть пронумерованы или иметь буквенные метки. На рисунке вершины — это населённые пункты: <strong>Колыбелька, Петрово, Васюки и Жогино</strong>.</p>
+  </div>
+
+  <div class="term">
+    <div class="term-name">➖ Ребро</div>
+    <p>Связь между двумя вершинами. Рёбра бывают:</p>
+    <ul>
+      <li><strong>Ненаправленные (неориентированные)</strong> — связь работает в обе стороны, обозначается обычной линией.</li>
+      <li><strong>Направленные (ориентированные)</strong> — связь работает только в одну сторону, обозначается стрелкой.</li>
+    </ul>
+  </div>
+
+  <div class="term">
+    <div class="term-name">📏 Степень вершины</div>
+    <p>Количество рёбер, которые выходят из данной вершины. На графе с четырьмя населёнными пунктами степень каждой вершины равна <strong>2</strong>.</p>
+  </div>
+
+  <!-- ==================== ВЕСОВАЯ МАТРИЦА ==================== -->
+  <h2>Весовая матрица и матрица смежности</h2>
+
+  <div class="theory-block">
+    <p>Дороги между пунктами имеют протяжённость — добавим её к графу. Получится <strong>взвешенный граф</strong>, где каждому ребру присвоено числовое значение (вес). Веса записывают в <strong>весовую матрицу</strong>.</p>
+  </div>
+
+  <div class="definition">
+    <p><strong>Весовая матрица</strong> — квадратная матрица, где элемент <strong>w<sub>ij</sub></strong> — вес ребра между вершинами i и j. Если ребра нет — 0 или прочерк.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_theory_graph_table.webp" alt="Весовая матрица графа дорог">
+    <div class="caption">Весовая матрица: на пересечении строки и столбца — длина дороги</div>
+  </div>
+
+  <div class="example-block">
+    <div class="example-title">📖 Как читать весовую матрицу:</div>
+    <ul>
+      <li>Колыбелька ↔ Петрово: <strong>20</strong></li>
+      <li>Колыбелька ↔ Жогино: <strong>8</strong></li>
+      <li>Петрово ↔ Васюки: <strong>10</strong></li>
+      <li>Васюки ↔ Жогино: <strong>25</strong></li>
+    </ul>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_theory_graph_weight.webp" alt="Взвешенный граф дорог с длинами">
+    <div class="caption">Взвешенный граф: на рёбрах указаны длины дорог</div>
+  </div>
+
+  <div class="info-block">
+    <p><strong>💡 Матрица смежности</strong> — похожая таблица, но вместо весов: <strong>1</strong> — ребро есть, <strong>0</strong> — нет. Иногда вместо 1 и 0 — звёздочки.</p>
+  </div>
+
+  <!-- ==================== ИЗМЕНЕНИЕ ГРАФА ==================== -->
+  <h2>Как меняется граф: пример</h2>
+
+  <div class="theory-block">
+    <p>Между Жогино и Васюками построили <strong>Озерки</strong>, дорогу в Петрово, а старую дорогу Васюки–Жогино убрали:</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_theory_graph_2.webp" alt="Граф после добавления Озерков">
+    <div class="caption">Обновлённый граф: добавилась вершина «Озерки»</div>
+  </div>
+
+  <div class="note-block">
+    <p><strong>📊 Степени вершин:</strong> Петрово и Озерки — 3, остальные — 2. Степень вершины — ключевой признак при сопоставлении таблицы и графа.</p>
+  </div>
+
+  <!-- ==================== АЛГОРИТМ ДЕЙКСТРЫ (ДОП. МАТЕРИАЛ) ==================== -->
+    <!-- ==================== АЛГОРИТМ ДЕЙКСТРЫ (ДОП. МАТЕРИАЛ) ==================== -->
+  <div class="extra-block">
+    <span class="extra-label">📖 Дополнительный материал</span>
+    <h2 id="dijkstra">Алгоритм Дейкстры — поиск кратчайшего пути</h2>
+
+    <div class="theory-block">
+      <p>Этот раздел — для расширения кругозора. <strong>В задании 1 ЕГЭ граф маленький (4–8 вершин), и кратчайший путь быстрее и надёжнее найти ручным перебором</strong> — просто просмотреть 3–5 возможных маршрутов и сложить длины рёбер. Алгоритм Дейкстры здесь избыточен.</p>
+      <p>Однако в задачах на графы большего размера (например, задание 27) алгоритм Дейкстры — незаменимый инструмент. Полезно знать, как он устроен.</p>
+    </div>
+
+    <div class="definition">
+      <p><strong>Алгоритм Дейкстры</strong> — алгоритм поиска <strong>кратчайшего пути</strong> от одной вершины графа до всех остальных. Работает только с <strong>неотрицательными весами</strong> рёбер.</p>
+    </div>
+
+    <div class="theory-block">
+      <p>Идея: на каждом шаге выбираем <strong>ближайшую непосещённую вершину</strong> и обновляем расстояния до её соседей. Если путь через текущую вершину короче уже известного — запоминаем новый.</p>
+    </div>
+
+    <h3>Шаги алгоритма</h3>
+
+    <div class="step-block">
+      <p><span class="step-num">1</span> <strong>Инициализация.</strong> Для начальной вершины расстояние = 0. Для всех остальных — ∞ (бесконечность). Все вершины помечаются как непосещённые.</p>
+      <p><span class="step-num">2</span> <strong>Выбор ближайшей.</strong> Среди непосещённых вершин выбираем ту, расстояние до которой минимально. На первом шаге это начальная вершина (0).</p>
+      <p><span class="step-num">3</span> <strong>Обновление соседей.</strong> Для каждого соседа выбранной вершины вычисляем: <code>новое_расстояние = расстояние_до_текущей + вес_ребра</code>. Если это значение меньше уже известного расстояния до соседа — обновляем его.</p>
+      <p><span class="step-num">4</span> <strong>Пометка.</strong> Текущую вершину помечаем как посещённую — больше к ней не возвращаемся.</p>
+      <p><span class="step-num">5</span> <strong>Повторение.</strong> Если остались непосещённые вершины — возвращаемся к шагу 2. Иначе — алгоритм завершён, кратчайшие расстояния до всех вершин найдены.</p>
+    </div>
+
+    <div class="note-block">
+      <p><strong>💡 Ключевой момент — шаг 3:</strong> алгоритм может найти более короткий путь к вершине, которая уже имеет какое-то расстояние. Например, к Васюкам сначала был известен путь длиной 33 (через Жогино), но на следующем шаге через Петрово нашёлся путь длиной 30 — и алгоритм обновил расстояние, выбрав минимум.</p>
+    </div>
+
+    <h3>Пошаговый пример</h3>
+
+    <p>Найдём кратчайший путь от <strong>Колыбельки</strong> до <strong>Васюков</strong>. Веса: К↔П=20, К↔Ж=8, П↔В=10, Ж↔В=25.</p>
+
+    <table>
+      <thead><tr><th>Шаг</th><th>Текущая</th><th>Колыбелька</th><th>Петрово</th><th>Жогино</th><th>Васюки</th></tr></thead>
+      <tbody>
+        <tr><td>Старт</td><td>—</td><td><strong>0</strong></td><td>∞</td><td>∞</td><td>∞</td></tr>
+        <tr><td>1</td><td>Колыбелька</td><td>0 ✓</td><td><strong>20</strong></td><td><strong>8</strong></td><td>∞</td></tr>
+        <tr><td>2</td><td>Жогино (8)</td><td>✓</td><td>20</td><td>8 ✓</td><td>33</td></tr>
+        <tr><td>3</td><td>Петрово (20)</td><td>✓</td><td>20 ✓</td><td>✓</td><td><strong>30</strong></td></tr>
+        <tr><td>4</td><td>Васюки (30)</td><td>✓</td><td>✓</td><td>✓</td><td>30 ✓</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note-block">
+      <p><strong>Результат:</strong> кратчайший путь = <strong>30</strong> (через Петрово: 20+10). Через Жогино длиннее: 8+25=33.</p>
+      <p>На шаге 3 алгоритм сравнил два пути до Васюков: уже известный (33 через Жогино) и новый (30 через Петрово) — и выбрал минимум.</p>
+    </div>
+
+    <h3 id="dijkstra-code">Реализация на Python</h3>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Функция поиска кратчайших расстояний от start до всех вершин</span>
+<span style="color: #888;"># graph: словарь вида {вершина: [(сосед, вес), ...]}</span>
+<span style="color: #888;"># возвращает: словарь {вершина: кратчайшее_расстояние}</span>
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> dijkstra(graph, start):
+    <span style="color: #888;"># Шаг 1: инициализация — все расстояния = ∞, start = 0</span>
+    distances = {vertex: float('inf') for vertex in graph}
+    distances[start] = 0
+    visited = <a href="../../base_of_programming/functions_descriptions.html#func-set" class="func-link" target="_blank">set</a>()
+    
+    <span style="color: #888;"># Пока не посетили все вершины</span>
+    while <a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(visited) < <a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(graph):
+        <span style="color: #888;"># Шаг 2: ближайшая непосещённая вершина</span>
+        current = <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>(
+            {v: d for v, d in distances.<a href="../../base_of_programming/functions_descriptions.html#method-items" class="func-link" target="_blank">items</a>() if v not in visited},
+            key=distances.<a href="../../base_of_programming/functions_descriptions.html#method-get" class="func-link" target="_blank">get</a>
+        )
+        
+        <span style="color: #888;"># Шаг 3: обновляем расстояния до соседей</span>
+        for neighbor, weight in graph[current]:
+            if neighbor not in visited:
+                new_dist = distances[current] + weight
+                if new_dist < distances[neighbor]:
+                    distances[neighbor] = new_dist
+        
+        <span style="color: #888;"># Шаг 4: помечаем текущую как посещённую</span>
+        visited.<a href="../../base_of_programming/functions_descriptions.html#method-add" class="func-link" target="_blank">add</a>(current)
+    
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> distances</pre>
+    </div>
+
+    <div class="info-block">
+      <p><strong>💡 Как использовать:</strong> после того как граф построен и веса определены, функция <code>dijkstra(graph, 'A')</code> вернёт кратчайшие расстояния от вершины A до всех остальных. До нужной вершины — просто берём значение по ключу.</p>
+    </div>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Пример: граф из четырёх городов</span>
+graph = {
+    'Колыбелька': [('Петрово', 20), ('Жогино', 8)],
+    'Петрово': [('Колыбелька', 20), ('Васюки', 10)],
+    'Жогино': [('Колыбелька', 8), ('Васюки', 25)],
+    'Васюки': [('Петрово', 10), ('Жогино', 25)]
+}
+
+distances = dijkstra(graph, 'Колыбелька')
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(distances['Васюки'])  <span style="color: #888;"># 30</span></pre>
+    </div>
+  </div>
+
+  <!-- ==================== ИТОГ ==================== -->
+  <div class="summary-block">
+    <h3>📌 Что нужно запомнить для задания 1</h3>
+    <ol>
+      <li><strong>Информационная модель</strong> — способ структурирования данных: таблицы, деревья, графы.</li>
+      <li><strong>Граф</strong> — вершины (объекты) + рёбра (связи). Рёбра бывают направленными и ненаправленными.</li>
+      <li><strong>Степень вершины</strong> — количество рёбер из неё. Главный признак для сопоставления таблицы и графа.</li>
+      <li><strong>Весовая матрица</strong> — веса рёбер. <strong>Матрица смежности</strong> — наличие/отсутствие рёбер.</li>
+      <li>Задание решается <strong>аналитически</strong>: сопоставлением графа и таблицы. Программный перебор — вспомогательный инструмент.</li>
+      <li><strong>Кратчайший путь</strong> в задании 1 ищется ручным перебором (граф маленький). Алгоритм Дейкстры — для больших графов, в задании 1 избыточен.</li>
+    </ol>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» разберём пошаговый алгоритм решения задания 1 и типовые примеры из ЕГЭ.
+  </div>
+
+</body>
+</html>
