@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 11 ЕГЭ — разбор и практика</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .theory-link {
+      display: inline-block;
+      margin-bottom: 1.8rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: 8px;
+      color: #4a2a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+    .theory-link:hover { background-color: #e8ddf5; }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .task-full {
+      background-color: #fefefe;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+    }
+    .task-full .task-label {
+      font-weight: 700;
+      color: #888;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .task-brief {
+      background-color: #f9f9f9;
+      border-left: 3px solid var(--accent);
+      padding: 0.6rem 1rem;
+      margin: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    .task-brief strong { color: var(--accent); }
+
+    /* Вкладки */
+    .tab-container {
+      margin: 1rem 0;
+    }
+    .tab-buttons {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--accent);
+    }
+    .tab-btn {
+      padding: 0.5rem 1.2rem;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #888;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .tab-btn:hover { color: var(--accent); }
+    .tab-content {
+      display: none;
+      padding: 1rem 0 0 0;
+    }
+    .tab-content.active { display: block; }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .step-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .step-block .step-num {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 26px;
+    }
+
+    .answer-block {
+      background-color: #e8f4e8;
+      border: 2px solid #4a8a4a;
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      color: #fff;
+    }
+    .type-1 { background-color: #4a9a4a; }
+    .type-2 { background-color: #3a7aca; }
+    .type-3 { background-color: #c98a30; }
+    .type-4 { background-color: #6a3a8a; }
+    .type-5 { background-color: #b84a4a; }
+
+    .homework-block {
+      background-color: #fffdf5;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
+      text-align: center;
+    }
+    .homework-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+    .homework-block .placeholder { color: #aaa; font-style: italic; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+  <script>
+    function switchTab(event, tabId) {
+      const container = event.target.closest('.tab-container');
+      container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
+</head>
+<body>
+
+  <a href="../tasks_index.html" class="back-link">← К списку заданий</a>
+
+  <h1>📝 Задание 11 ЕГЭ</h1>
+  <p class="subtitle">Кодирование текстовой информации · Объём сообщения · Длина и мощность алфавита · Составные идентификаторы</p>
+
+  <a href="task11_theory.html" class="theory-link">📖 Открыть теорию к заданию 11 →</a>
+
+  <!-- ==================== О ЗАДАНИИ ==================== -->
+  <h2>О задании</h2>
+
+  <div class="theory-block">
+    <p>Задание 11 проверяет умение <strong>подсчитывать информационный объём текстового сообщения</strong>. В отличие от задания 7, здесь мы работаем с текстовой информацией: серийными номерами, идентификаторами, паролями. Используются формулы: <a href="task11_theory.html#hartley">N = 2ⁱ</a> (вес символа) и <a href="task11_theory.html#text-volume">I = L·i</a> (объём сообщения). Вся сложность — в правильном <a href="task11_theory.html#rounding">округлении</a>.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Типы заданий 11:</strong></p>
+    <ul>
+      <li><strong>Тип 1:</strong> найти длину серийного номера / идентификатора (задача №8).</li>
+      <li><strong>Тип 2:</strong> найти объём памяти для хранения (задачи №2, №3, №4).</li>
+      <li><strong>Тип 3:</strong> найти мощность алфавита (задачи №1, №9).</li>
+      <li><strong>Тип 4:</strong> найти количество пользователей (задача №6).</li>
+      <li><strong>Тип 5:</strong> составные идентификаторы — несколько независимых полей (задачи №5, №7).</li>
+    </ul>
+  </div>
+
+  <!-- ==================== ТИП 3. МОЩНОСТЬ АЛФАВИТА ==================== -->
+  <h2><span class="type-badge type-3">Тип 3</span> Мощность алфавита</h2>
+
+  <div class="theory-block">
+    <p>Даны объём и длина сообщения. Нужно найти <strong>мощность алфавита</strong>. Алгоритм: V → I (объём одного символа) → i → N = 2ⁱ.</p>
+  </div>
+
+  <!-- Задача 1 -->
+  <h3>Задача №1</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Артур отправил Вике сообщение о переносе вебинара, оно состоит из 1024 символов и занимает 2 Кбайт памяти. Определите мощность алфавита, из которого составлено данное сообщение.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> L = 1024 символа, V = 2 Кбайт. Найти: N.
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol1-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol1-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol1-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> Объём в битах: V = 2 × 2¹³ = <strong>2¹⁴</strong> бит.</p>
+        <p><span class="step-num">2</span> Вес одного символа: i = V / L = 2¹⁴ / 1024 = 2¹⁴ / 2¹⁰ = 2⁴ = <strong>16</strong> бит.</p>
+        <p><span class="step-num">3</span> Мощность алфавита: N = 2¹⁶ = <strong>65 536</strong>.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol1-code">
+      <div class="code-block">
+        <pre><span style="color: #888;"># V = 2 Кбайт = 2 * 2^13 бит, L = 1024 = 2^10</span>
+<span style="color: #888;"># i = V / L = 2^14 / 2^10 = 2^4 = 16 бит</span>
+<span style="color: #888;"># N = 2^16</span>
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(2 ** 16)  <span style="color: #888;"># 65536</span></pre>
+      </div>
+      <div class="note-block">
+        <p><strong>💡 Пояснение:</strong> задача решается в одну строку — все числа уже являются степенями двойки. Аналитическое решение здесь проще и быстрее программного.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>65536</strong></div>
+
+  <!-- ==================== ТИП 2. ОБЪЁМ ПАМЯТИ ==================== -->
+  <h2><span class="type-badge type-2">Тип 2</span> Объём памяти для хранения</h2>
+
+  <div class="theory-block">
+    <p>Даны: мощность алфавита, длина сообщения, количество сообщений (иногда + доп. информация). Нужно найти <strong>объём памяти</strong> для хранения всех сообщений.</p>
+  </div>
+
+  <!-- Задача 2 -->
+  <h3>Задача №2</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Для регистрации на образовательной платформе обязательно создание пароля длиной 6 символов. Для символов допущено использование заглавных букв (всего используется 26 букв) и десятичных цифр в любом порядке. В данном случае используется посимвольное кодирование паролей, что обеспечивает кодировку всех символов равным минимально возможным количеством бит. Пароли заносятся в единую базу, каждый занимает равное минимально возможное целое возможное количество байт. В качестве задания вычислите, сколько байт понадобится для хранения 20 паролей.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> L = 6, алфавит: 26 букв + 10 цифр = 36 символов, 20 паролей. Найти: V в байтах.
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol2-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol2-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol2-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> N = 26 + 10 = <strong>36</strong>. log₂36 ≈ 5,17 → i = <strong>6</strong> бит.</p>
+        <p><span class="step-num">2</span> Вес одного пароля в битах: I₁ = 6 × 6 = 36 бит.</p>
+        <p><span class="step-num">3</span> В байтах: 36 / 8 = 4,5 → округляем вверх → <strong>5</strong> байт.</p>
+        <p><span class="step-num">4</span> Для 20 паролей: 5 × 20 = <strong>100</strong> байт.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol2-code">
+      <div class="code-block">
+        <pre>from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+L = 6
+N = 26 + 10
+Q = 20
+
+i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N))
+V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8)
+V_all = V1 * Q
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(V_all)</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>100</strong></div>
+
+  <!-- Задача 3 -->
+  <h3>Задача №3</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Для регистрации в сети обязательно создание пароля длиной 32 символа. Пароль должен состоять из десятичных цифр и символов из 240-символьного специального алфавита в нижнем регистре. Пароли запоминаются в единую базу, для этого отведено равное минимально возможное целое возможное количество байт. В пароле используется посимвольное кодирование, что означает кодировку всех символов равным минимально возможным количеством бит. Вычислите, сколько нужно объема для сохранения информации о 3200 пользователях. Запишите ответ в Кбайтах.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> L = 32, N = 10 + 240 = 250, пользователей — 3200. Найти: V в Кбайт.
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol3-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol3-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol3-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> N = 250. log₂250 ≈ 7,97 → i = <strong>8</strong> бит.</p>
+        <p><span class="step-num">2</span> Вес одного пароля в битах: I₁ = 32 × 8 = 256 бит = <strong>32</strong> байта (256 / 8 = 32, ровно).</p>
+        <p><span class="step-num">3</span> Для 3200 пользователей: 32 × 3200 = 102 400 байт = 102 400 / 2¹⁰ = <strong>100</strong> Кбайт.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol3-code">
+      <div class="code-block">
+        <pre>from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+L = 32
+N = 10 + 240
+Q = 3200
+
+i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N))
+V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8)
+V_all = V1 * Q
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(V_all // 1024)</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>100</strong></div>
+
+  <!-- Задача 4 -->
+  <h3>Задача №4</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>При регистрации в компьютерной системе каждому объекту присваивается идентификатор, состоящий из 20 символов и содержащий только символы из 26-символьного латинского алфавита от A до Z без учёта регистра. В базе данных для хранения сведений о каждом идентификаторе отведено одинаковое и минимально возможное целое число байт. При этом используется посимвольное кодирование идентификаторов, все символы кодируются одинаковым и минимально возможным количеством бит. Определите объём памяти (в байтах), необходимый для хранения сведений о 50 объектах. В ответе запишите только целое число — количество байт.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> L = 20, N = 26, объектов — 50. Найти: V в байтах.
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol4-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol4-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol4-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> N = 26. log₂26 ≈ 4,7 → i = <strong>5</strong> бит.</p>
+        <p><span class="step-num">2</span> Вес одного идентификатора в битах: I₁ = 20 × 5 = 100 бит.</p>
+        <p><span class="step-num">3</span> В байтах: 100 / 8 = 12,5 → <strong>13</strong> байт.</p>
+        <p><span class="step-num">4</span> Для 50 объектов: 13 × 50 = <strong>650</strong> байт.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol4-code">
+      <div class="code-block">
+        <pre>from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+L = 20
+N = 26
+Q = 50
+
+i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N))
+V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8)
+V_all = V1 * Q
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(V_all)</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>650</strong></div>
+
+  <!-- ==================== ТИП 5. СОСТАВНЫЕ ИДЕНТИФИКАТОРЫ ==================== -->
+  <h2><span class="type-badge type-5">Тип 5</span> Составные идентификаторы</h2>
+
+  <div class="theory-block">
+    <p>Идентификатор состоит из <strong>нескольких независимых полей</strong>. Каждое поле кодируется отдельно: свой алфавит (или диапазон чисел), свой вес i, своё округление до байт. <a href="task11_theory.html#composite">Подробнее в теории →</a></p>
+  </div>
+
+  <!-- Задача 5 -->
+  <h3>Задача №5</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>В одной компании новым работникам выдается цифровой пропуск, который включает в себя личный код и дополнительную информацию. Личный код длиной 11 символов включает в себя буквы латинского алфавита, причем только прописные, а также значения из диапазона [0, 9]. Под личные коды выделено равное минимально возможное целое количество байт. Стоит отметить, что в личном коде используется посимвольное кодирование, это обеспечивает кодировку всех символов равным минимально возможным количеством бит. Кроме собственно пароля, для каждого пользователя в системе хранятся дополнительные сведения, для чего выделено целое число байт; это число одно и то же для всех пользователей. Для хранения сведений о 30 пользователях потребовалось 750 байт. Вычислите объем памяти (в целых байтах), нужный для хранения дополнительных сведений об одном пользователе. Примечание: латинский алфавит содержит в себе 26 символов.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> личный код: L = 11, N = 26 + 10 = 36. 30 пользователей → 750 байт всего. Найти: доп. сведения на одного пользователя (в байтах).
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol5-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol5-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol5-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> N = 36. log₂36 ≈ 5,17 → i = <strong>6</strong> бит.</p>
+        <p><span class="step-num">2</span> Вес личного кода в битах: 11 × 6 = 66 бит. В байтах: 66 / 8 = 8,25 → <strong>9</strong> байт.</p>
+        <p><span class="step-num">3</span> Всего на одного: 750 / 30 = <strong>25</strong> байт (ровно).</p>
+        <p><span class="step-num">4</span> Доп. сведения на одного: 25 − 9 = <strong>16</strong> байт.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol5-code">
+      <div class="code-block">
+        <pre>from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+L = 11
+N = 26 + 10
+Q = 30
+V_total = 750
+
+i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N))
+V_code = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8)
+V_per_user = V_total // Q
+V_extra = V_per_user - V_code
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(V_extra)</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>16</strong></div>
+
+  <!-- ==================== ТИП 4. КОЛИЧЕСТВО ПОЛЬЗОВАТЕЛЕЙ ==================== -->
+  <h2><span class="type-badge type-4">Тип 4</span> Количество пользователей</h2>
+
+  <div class="theory-block">
+    <p>Обратная задача: известен общий объём, нужно найти <strong>максимальное количество объектов</strong>. Формула: Q = ⌊V<sub>общ</sub> / I₁⌋. <a href="task11_theory.html#reverse">Подробнее в теории →</a></p>
+  </div>
+
+  <!-- Задача 6 -->
+  <h3>Задача №6</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Для регистрации в сети обязательно создание пароля из 9 символов. Для символов пароля допущены только 26 символов местного алфавита в обоих регистрах и значения из диапазона [0, 9]. Пароли заносятся в единую базу, для каждого пароля выделено равное минимально возможное целое число байт. В пароле используется посимвольное кодирование, что обеспечивает кодировку всех символов одинаковым минимально возможным количеством бит. Плюсом к паролю база хранит дополнительную информацию (18 байт) для каждого зарегистрировавшегося пользователя. Для хранения информации о всех пользователях выделено 1 Кбайт. Определите наибольшее количество пользователей, о которых возможно сохранить информацию.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> пароль: L = 9, N = 26×2 + 10 = 62. Доп. информация — 18 байт/чел. Всего памяти — 1 Кбайт = 1024 байта. Найти: макс. количество пользователей.
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol6-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol6-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol6-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> N = 26×2 + 10 = <strong>62</strong>. log₂62 ≈ 5,95 → i = <strong>6</strong> бит.</p>
+        <p><span class="step-num">2</span> Вес пароля в битах: 9 × 6 = 54 бита. В байтах: 54 / 8 = 6,75 → <strong>7</strong> байт.</p>
+        <p><span class="step-num">3</span> Всего на одного: 7 + 18 = <strong>25</strong> байт.</p>
+        <p><span class="step-num">4</span> Количество пользователей: 1024 / 25 = 40,96 → округляем вниз → <strong>40</strong>.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol6-code">
+      <div class="code-block">
+        <pre>from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+L = 9
+N = 26 * 2 + 10
+extra = 18
+V_total = 1024  <span style="color: #888;"># 1 Кбайт</span>
+
+i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N))
+V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8) + extra
+Q = V_total // V1  <span style="color: #888;"># целочисленное деление — округление вниз</span>
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(Q)</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>40</strong></div>
+
+  <!-- Задача 7 -->
+  <h3>Задача №7 <span style="color: #c96f0d; font-weight: 600;">★ составной с диапазоном</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>В одной компании новым работникам выдается цифровой пропуск, который включает в себя личный код, номер подразделения и дополнительную информацию. Личный код длиной 17 символов включает в себя буквы латинского алфавита, причем обоих регистров, а также значения из диапазона [0, 9] и любые символы из набора @#$%^&*(). Под личные коды выделено равное минимально возможное количество байт. В личном коде используется посимвольное кодирование, номер подразделения — это целое значение в диапазоне [1, 1200], также номер подразделения кодируется независимо от личного кода и занимает минимально возможным количеством байт. Вычислите, какой объем (в байтах) нужно зарезервировать под дополнительную информацию, при условии, что всего для цифрового пропуска выделено 48 байт.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> личный код: L = 17, N = 26×2 + 10 + 10 = 72. Номер подразделения: диапазон [1, 1200] (N = 1200). Всего на пропуск — 48 байт. Найти: доп. информация в байтах.
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Номер подразделения — диапазон чисел:</strong> N = 1200 − 1 + 1 = 1200. log₂1200 ≈ 10,23 → i = <strong>11</strong> бит. Подробнее: <a href="task11_theory.html#number-encoding">кодирование чисел</a>.</p>
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol7-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol7-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol7-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> Личный код. N = 52 + 10 + 10 = <strong>72</strong>. log₂72 ≈ 6,17 → i₁ = <strong>7</strong> бит.</p>
+        <p><span class="step-num">2</span> Вес личного кода: 17 × 7 = 119 бит → 119 / 8 = 14,875 → <strong>15</strong> байт.</p>
+        <p><span class="step-num">3</span> Номер подразделения. N = 1200. log₂1200 ≈ 10,23 → i₂ = <strong>11</strong> бит.</p>
+        <p><span class="step-num">4</span> Вес номера: 11 / 8 = 1,375 → <strong>2</strong> байта.</p>
+        <p><span class="step-num">5</span> Доп. информация = 48 − 15 − 2 = <strong>31</strong> байт.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol7-code">
+      <div class="code-block">
+        <pre>from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+<span style="color: #888;"># Поле 1: личный код</span>
+N1 = 26 * 2 + 10 + 10  <span style="color: #888;"># буквы обоих регистров + цифры + спецсимволы</span>
+i1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N1))
+V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((17 * i1) / 8)
+
+<span style="color: #888;"># Поле 2: номер подразделения [1, 1200]</span>
+N2 = 1200  <span style="color: #888;"># 1200 - 1 + 1</span>
+i2 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N2))
+V2 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(i2 / 8)
+
+V_total = 48
+V_extra = V_total - V1 - V2
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(V_extra)</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>31</strong></div>
+
+  <!-- ==================== ТИП 1. ДЛИНА НОМЕРА ==================== -->
+  <h2><span class="type-badge type-1">Тип 1</span> Длина серийного номера</h2>
+
+  <div class="theory-block">
+    <p>Даны: мощность алфавита, количество сообщений, объём памяти. Нужно найти <strong>максимальную длину</strong> одного сообщения. Формула: L = I₁ / i.</p>
+  </div>
+
+  <!-- Задача 8 -->
+  <h3>Задача №8</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На предприятии каждой изготовленной детали присваивают серийный номер, содержащий десятичные цифры, 52 латинские буквы (с учётом регистра) и символы из 963-символьного специального алфавита. В базе данных для хранения каждого серийного номера отведено одинаковое и минимально возможное число байт. При этом используется посимвольное кодирование серийных номеров, все символы кодируются одинаковым и минимально возможным числом бит. Известно, что для хранения 2000 серийных номеров отведено не более 693 Кбайт памяти. Определите максимально возможную длину серийного номера. В ответе запишите только целое число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> N = 10 + 52 + 963 = 1025. 2000 номеров, V ≤ 693 Кбайт. Найти: L<sub>max</sub>.
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol8-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol8-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol8-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> N = <strong>1025</strong>. log₂1025 ≈ 10,001 → 2¹⁰ = 1024 не хватает → i = <strong>11</strong> бит.</p>
+        <p><span class="step-num">2</span> Память на 2000 номеров: 693 × 2¹⁰ = <strong>709 632</strong> байт.</p>
+        <p><span class="step-num">3</span> Вес одного номера: I₁ = 709 632 / 2000 ≈ 354,8 → «не более» → округляем <strong>вниз</strong> → <strong>354</strong> байта.</p>
+        <p><span class="step-num">4</span> Длина: L = 354 × 8 / 11 ≈ 257,45 → округляем вниз → <strong>257</strong>.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol8-code">
+      <div class="code-block">
+        <pre>from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+N = 10 + 52 + 963
+i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N))
+Q = 2000
+V_lim = 693 * 1024  <span style="color: #888;"># Кбайт → байты</span>
+
+<span style="color: #888;"># «не более» → ищем максимальную длину</span>
+for L in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000)[::-1]:
+    V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8)
+    if V1 * Q <= V_lim:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(L)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>257</strong></div>
+
+  <!-- ==================== ТИП 3 (ПРОДОЛЖЕНИЕ) ==================== -->
+  <h2><span class="type-badge type-3">Тип 3</span> Мощность алфавита (продолжение)</h2>
+
+  <!-- Задача 9 -->
+  <h3>Задача №9</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На предприятии каждой изготовленной детали присваивают серийный номер, состоящий из 261 символов. Для его хранения отведено одинаковое и минимально возможное число байт. При этом используется посимвольное кодирование серийных номеров, все символы кодируются одинаковым и минимально возможным числом бит. Известно, что для хранения 252500 серийных номеров отведено более 32 Мбайт памяти. Определите минимально возможную мощность алфавита, из которого составляются серийные номера. В ответе запишите только число.</p>
+  </div>
+  <div class="task-brief">
+    <strong>📌 Кратко:</strong> L = 261, 252 500 номеров, V > 32 Мбайт. Найти: N<sub>min</sub>.
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol9-analytic')">🧠 Аналитическое решение</button>
+      <button class="tab-btn" onclick="switchTab(event, 'sol9-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol9-analytic">
+      <div class="step-block">
+        <p><span class="step-num">1</span> Память на все номера: 32 × 2²⁰ = <strong>33 554 432</strong> байт.</p>
+        <p><span class="step-num">2</span> Вес одного номера: I₁ = 33 554 432 / 252 500 ≈ 132,89 → «более» → округляем <strong>вверх</strong> → <strong>133</strong> байта.</p>
+        <p><span class="step-num">3</span> Вес символа: i = 133 × 8 / 261 ≈ 4,076 → «более» → округляем <strong>вверх</strong> → <strong>5</strong> бит.</p>
+        <p><span class="step-num">4</span> Минимальная мощность: N<sub>min</sub> = 2⁴ + 1 = <strong>17</strong>.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="sol9-code">
+      <div class="code-block">
+        <pre>from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+L = 261
+Q = 252_500
+V_lim = 32 * 1024 * 1024  <span style="color: #888;"># Мбайт → байты</span>
+
+<span style="color: #888;"># Перебираем мощность алфавита</span>
+for n in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000):
+    i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(n))
+    V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8)
+    if V1 * Q > V_lim:  <span style="color: #888;"># «более»</span>
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(n)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>17</strong></div>
+
+  <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+  <div class="homework-block">
+    <h2>📋 Домашнее задание</h2>
+    <p class="placeholder">Материалы для самостоятельной практики появятся здесь позже.</p>
+    <p class="placeholder">Здесь будут размещены дополнительные варианты заданий для отработки навыков.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет:</strong> обратите особое внимание на задачи с составными идентификаторами (№5, №7) — каждое поле считается независимо и округляется до целого числа байт по отдельности. Это частая ошибка на экзамене.
+  </div>
+
+</body>
+</html>

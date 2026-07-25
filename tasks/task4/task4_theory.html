@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 4 ЕГЭ: теория кодирования</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+
+    .definition strong { color: #4a2a7a; }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .example-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+
+    .example-block .example-title {
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.9rem; }
+      .comparison { grid-template-columns: 1fr; }
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="task4.html" class="back-link">← К заданию 4</a>
+
+  <h1>📡 Задание 4 ЕГЭ: кодирование информации</h1>
+  <p class="subtitle">Теория · Как информация хранится в компьютере, кодирование и декодирование, условие Фано, двоичные деревья</p>
+
+  <!-- ==================== ФИЗИЧЕСКОЕ ХРАНЕНИЕ ==================== -->
+  <h2>Как информация хранится физически</h2>
+
+  <div class="theory-block">
+    <p>Память компьютера — жёсткий диск, SSD, оперативная память — хранит данные только в двоичном виде. Любая информация (текст, изображения, звук) представлена последовательностью сигналов двух уровней: высокого и низкого. Эти сигналы интерпретируются как <strong>0</strong> и <strong>1</strong>.</p>
+  </div>
+
+  <h3>Жёсткий диск (HDD)</h3>
+  <p>В HDD информация хранится на магнитных пластинах. Каждый бит представлен <strong>направлением вектора намагниченности</strong> микроскопического участка:</p>
+  <ul>
+    <li>Вектор вверх → высокий уровень → <strong>1</strong></li>
+    <li>Вектор вниз → низкий уровень → <strong>0</strong></li>
+  </ul>
+
+  <div class="image-block">
+    <img src="task4_theory_1.webp" alt="Направление вектора намагниченности: вверх — 1, вниз — 0">
+    <div class="caption">Направление намагниченности определяет значение бита</div>
+  </div>
+
+  <p>Поверхность пластины разбита на <strong>дорожки</strong> (концентрические окружности), дорожки — на <strong>сектора</strong> (минимальная единица чтения, обычно 512 или 4096 байт). Дорожки на разных пластинах, расположенные друг над другом, образуют <strong>цилиндры</strong>.</p>
+
+  <div class="image-block">
+    <img src="task4_theory_2.webp" alt="Структура жёсткого диска: пластины, дорожки, головки">
+    <div class="caption">Пластины (1) и головки чтения/записи (2)</div>
+  </div>
+
+  <h3>SSD и оперативная память</h3>
+  <p>В твердотельных накопителях каждая ячейка памяти — транзистор, удерживающий заряд. Компьютер сравнивает напряжение с порогом:</p>
+  <ul>
+    <li>Напряжение выше порога → <strong>1</strong></li>
+    <li>Напряжение ниже порога → <strong>0</strong></li>
+  </ul>
+
+  <div class="image-block">
+    <img src="task4_theory_3.webp" alt="Цифровой сигнал: высокий уровень — 1, низкий — 0">
+    <div class="caption">Аналоговый сигнал дискретизируется в 0 и 1</div>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Главное:</strong> независимо от носителя, информация всегда сводится к последовательности нулей и единиц. Цифровой подход устойчив к помехам: пока сигнал выше или ниже порога, бит интерпретируется корректно.</p>
+  </div>
+
+  <!-- ==================== ДЕКОДИРОВАНИЕ ==================== -->
+  <h2>Декодирование</h2>
+
+  <div class="definition">
+    <p><strong>Декодирование</strong> — процесс, обратный кодированию: преобразование закодированной информации (нулей и единиц) обратно в исходный вид (символы, текст, изображения).</p>
+  </div>
+
+  <p>Например, слово «Привет» в кодировке UTF-8:</p>
+  <div class="code-block">11010000 10011111 11010001 10000000 11010000 10111000 11010000 10110010 11010000 10110101 11010001 10000010</div>
+  <p>Каждый блок из 8 бит — байт. Комбинации байтов кодируют конкретные символы. При выводе на экран компьютер декодирует эти байты обратно в текст.</p>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Декодирование возможно только при знании исходной кодировки.</strong> Если кодировка не совпадает — на экране появляются непонятные символы.</p>
+  </div>
+
+  <!-- ==================== ОДНОЗНАЧНОЕ ДЕКОДИРОВАНИЕ ==================== -->
+  <h2>Однозначное декодирование</h2>
+
+  <div class="definition">
+    <p><strong>Однозначное декодирование</strong> — свойство кода, при котором каждая последовательность битов соответствует ровно одному символу или сообщению, без двусмысленности.</p>
+  </div>
+
+  <div class="example-block">
+    <div class="example-title">✅ Однозначный код:</div>
+    <p>A → 0, Б → 10, В → 11. Последовательность <strong>010</strong> расшифровывается однозначно: 0 → A, 10 → Б. Результат: <strong>АБ</strong>.</p>
+  </div>
+
+  <div class="example-block">
+    <div class="example-title">❌ Неоднозначный код:</div>
+    <p>A → 0, Б → 01, В → 1. Последовательность <strong>011</strong> может быть расшифрована как АВВ (0-1-1) или БВ (01-1). Однозначное восстановление невозможно.</p>
+  </div>
+
+  <!-- ==================== РАВНОМЕРНОЕ И НЕРАВНОМЕРНОЕ ==================== -->
+  <h2>Равномерное и неравномерное кодирование</h2>
+
+  <div class="comparison">
+    <div class="theory-block" style="margin: 0;">
+      <h3 style="margin-top: 0;">Равномерное кодирование</h3>
+      <p>Все символы кодируются <strong>одинаковым количеством битов</strong>. Просто реализовать, удобно для передачи данных, но <strong>неэффективно по памяти</strong>: редкие символы занимают столько же места, сколько частые.</p>
+    </div>
+    <div class="theory-block" style="margin: 0;">
+      <h3 style="margin-top: 0;">Неравномерное кодирование</h3>
+      <p>Символы имеют <strong>разную длину кода</strong> в зависимости от частоты. Частые символы — короткий код, редкие — длинный. <strong>Экономит память</strong>, но требует защиты от неоднозначности.</p>
+    </div>
+  </div>
+
+  <div class="example-block">
+    <div class="example-title">Пример для алфавита A, B, C:</div>
+    <p>A (частый) → 1 бит, B → 2 бита, C (редкий) → 3 бита.<br>
+    Сообщение «ACABAB»: неравномерным кодом — <strong>10 бит</strong>, равномерным (по 3 бита) — <strong>18 бит</strong>. Экономия почти вдвое!</p>
+  </div>
+
+  <!-- ==================== УСЛОВИЕ ФАНО ==================== -->
+  <h2>Условие Фано</h2>
+
+  <div class="definition">
+    <p><strong>Условие Фано (прямое):</strong> никакое кодовое слово не может быть <strong>началом</strong> другого кодового слова.</p>
+    <p><strong>Обратное условие Фано:</strong> никакое кодовое слово не может быть <strong>концом</strong> другого кодового слова.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Соблюдение условия Фано гарантирует <strong>однозначное декодирование</strong> даже при неравномерном кодировании. Компьютер всегда знает, где заканчивается один символ и начинается следующий.</p>
+  </div>
+
+  <div class="example-block">
+    <div class="example-title">❌ Нарушение условия Фано:</div>
+    <p>А → 0, Б → 01. Код «А» (0) является началом кода «Б» (01). Последовательность 01 невозможно декодировать однозначно.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Код, удовлетворяющий условию Фано, называется префиксным.</strong> Код, удовлетворяющий обратному условию — постфиксным. В задании 4 ЕГЭ используются оба варианта.</p>
+  </div>
+
+  <!-- ==================== ДВОИЧНЫЕ ДЕРЕВЬЯ ==================== -->
+  <h2>Двоичные деревья</h2>
+
+  <div class="definition">
+    <p><strong>Двоичное дерево</strong> — структура данных, где каждый узел имеет не более двух потомков. Левая ветвь условно считается «0», правая — «1». Путь от корня до узла даёт его двоичный код.</p>
+  </div>
+
+  <h3>Основные понятия</h3>
+  <ul>
+    <li><strong>Корень</strong> — начальный узел, не имеет предков.</li>
+    <li><strong>Узел</strong> — точка соединения ветвей, содержит данные и ссылки на потомков.</li>
+    <li><strong>Лист</strong> — узел без потомков.</li>
+    <li><strong>Уровень узла</strong> — расстояние от корня (корень — уровень 0).</li>
+    <li><strong>Высота дерева</strong> — максимальное расстояние от корня до листа.</li>
+  </ul>
+
+  <div class="image-block">
+    <img src="task4_theory_4.webp" alt="Пример дерева с узлами A-H">
+    <div class="caption">Дерево: A — корень, E, F, G, H — листья, высота = 3</div>
+  </div>
+
+  <h3>Построение двоичного дерева для префиксного кода</h3>
+  <p>Дописываем новые значения <strong>в конец</strong> кода. Левая ветвь — добавляем 0, правая — добавляем 1.</p>
+
+  <div class="image-block">
+    <img src="task4_theory_5.webp" alt="Построение двоичного дерева для префиксного кода">
+    <div class="caption">Дерево для префиксного кода: каждый уровень добавляет бит в конец</div>
+  </div>
+
+  <h3>Какие коды доступны при использованном коде «110»</h3>
+  <p>Если код «110» уже занят, то <strong>недоступны</strong>:</p>
+  <ul>
+    <li>Все коды, начинающиеся с «110» — потомки узла: 1100, 1101, ...</li>
+    <li>Все коды-предки: «11» и «1» (они сами являются началом кода «110»).</li>
+  </ul>
+
+  <div class="image-block">
+    <img src="task4_theory_6.webp" alt="Занятые и свободные коды при использованном 110">
+    <div class="caption">Оранжевые — недоступны (нарушают условие Фано), зелёные — доступны</div>
+  </div>
+
+  <h3>Построение для постфиксного кода (обратное условие Фано)</h3>
+  <p>Дописываем новые значения <strong>в начало</strong> кода.</p>
+
+  <div class="image-block">
+    <img src="task4_theory_7.webp" alt="Построение двоичного дерева для постфиксного кода">
+    <div class="caption">Дерево для постфиксного кода: каждый уровень добавляет бит в начало</div>
+  </div>
+
+  <h3>Какие коды доступны при использованном коде «010» (постфикс)</h3>
+  <p>Если код «010» уже занят, то <strong>недоступны</strong>:</p>
+  <ul>
+    <li>Все коды, оканчивающиеся на «010» — потомки: 0010, 1010.</li>
+    <li>Предки: «10» и «0» (они сами являются окончанием кода «010»).</li>
+  </ul>
+
+  <div class="image-block">
+    <img src="task4_theory_8.webp" alt="Занятые и свободные коды при использованном 010 (постфикс)">
+    <div class="caption">Оранжевые — недоступны, зелёные — доступны для обратного условия Фано</div>
+  </div>
+
+  <div class="info-block" style="background-color: #eaf3f9; border: 1px solid #b0c8dc; border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1.2rem 0;">
+    <p><strong>📌 Алгоритм для задания 4:</strong> строим двоичное дерево, исключаем занятые коды и их предков/потомков (в зависимости от прямого или обратного условия Фано), находим свободные коды нужной длины. Подробный разбор — в разделе «Практика».</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» мы разберём пошаговый алгоритм решения задания 4 и научимся находить кратчайшие кодовые слова с помощью двоичных деревьев.
+  </div>
+
+</body>
+</html>

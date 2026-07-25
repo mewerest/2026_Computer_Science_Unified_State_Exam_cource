@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 1 ЕГЭ — разбор и практика</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .theory-link {
+      display: inline-block;
+      margin-bottom: 1.8rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: 8px;
+      color: #4a2a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .theory-link:hover {
+      background-color: #e8ddf5;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.3rem;
+      color: #444;
+    }
+
+    p, li {
+      margin-bottom: 0.8rem;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .func-intro {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .func-intro .func-name {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .func-intro .more-link {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .step-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+
+    .step-block .step-num {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 26px;
+    }
+
+    .answer-block {
+      background-color: #e8f4e8;
+      border: 2px solid #4a8a4a;
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      color: #fff;
+    }
+
+    .type-1 { background-color: #4a9a4a; }
+    .type-2 { background-color: #c98a30; }
+    .type-3 { background-color: #b84a4a; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      text-align: center;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    .homework-block {
+      background-color: #fffdf5;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
+      text-align: center;
+    }
+
+    .homework-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+
+    .homework-block .placeholder {
+      color: #aaa;
+      font-style: italic;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../tasks_index.html" class="back-link">← К списку заданий</a>
+
+  <h1>📝 Задание 1 ЕГЭ</h1>
+  <p class="subtitle">Анализ информационных моделей · Графы и таблицы</p>
+
+  <a href="task1_theory.html" class="theory-link">📖 Открыть теорию к заданию 1 →</a>
+
+  <!-- ==================== О ЗАДАНИИ ==================== -->
+  <h2>О задании</h2>
+
+  <div class="theory-block">
+    <p>Задание 1 ЕГЭ по информатике проверяет умение <strong>представлять, считывать и анализировать данные</strong> в разных типах информационных моделей. В качестве информационной модели чаще всего используются <strong>графы</strong>.</p>
+    <p>Это задание <strong>базового уровня сложности</strong>, на его решение отводится около <strong>трёх минут</strong>. Вам предстоит проанализировать рисунок графа и таблицу к нему, чтобы однозначно соотнести значения в таблице с информацией на графе.</p>
+  </div>
+
+  <div class="info-block">
+    <p><strong>💡 Как решать?</strong> Задание решается <strong>аналитически</strong> — через сопоставление данных. Программное решение возможно как вспомогательный инструмент для сложных графов, но основная работа — это логический анализ. На экзамене важно уметь рассуждать, а не просто запускать код.</p>
+  </div>
+
+  <!-- ==================== АЛГОРИТМ РЕШЕНИЯ ==================== -->
+  <h2>Три типа заданий</h2>
+
+  <div class="theory-block">
+    <p>В задании 1 ЕГЭ встречаются <strong>три типа формулировок</strong>. Во всех вариантах даётся схема дорог в виде графа и таблица к нему. Таблица может быть:</p>
+    <ul>
+      <li><strong>Матрица смежности</strong> — содержит звёздочки (или другие метки), обозначающие <strong>наличие</strong> дороги между пунктами.</li>
+      <li><strong>Весовая матрица</strong> — содержит числа, обозначающие <strong>протяжённость</strong> дороги между пунктами.</li>
+    </ul>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Тип</th>
+        <th>Что дано</th>
+        <th>Что требуется</th>
+        <th>Сложность</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="type-badge type-1">Тип 1</span></td>
+        <td>Граф + матрица смежности</td>
+        <td>Сопоставить номера пунктов с буквенными обозначениями</td>
+        <td>⭐</td>
+      </tr>
+      <tr>
+        <td><span class="type-badge type-2">Тип 2</span></td>
+        <td>Граф + весовая матрица</td>
+        <td>Сопоставить номера <strong>и</strong> найти сумму длин дорог</td>
+        <td>⭐⭐</td>
+      </tr>
+      <tr>
+        <td><span class="type-badge type-3">Тип 3</span></td>
+        <td>Граф + весовая матрица</td>
+        <td>Сопоставить номера, найти длины <strong>и</strong> кратчайший путь</td>
+        <td>⭐⭐⭐</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== ТИП 1 ==================== -->
+  <h2><span class="type-badge type-1">Тип 1</span> Матрица смежности — сопоставление</h2>
+
+  <div class="theory-block">
+    <p>Самый простой тип. Дан граф и матрица смежности (звёздочки). Нужно определить, какие номера в таблице соответствуют указанным буквам на графе.</p>
+  </div>
+
+  <h3>Разбор задания</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «На рисунке схема дорог N-ского района изображена в виде графа, в таблице звёздочкой обозначено наличие дороги. Каждому населённому пункту на схеме соответствует его номер в таблице, но неизвестно, какой именно номер. Определите, какие номера могут соответствовать пунктам <strong>B и E</strong>. В ответе запишите эти два номера в возрастающем порядке без пробелов и знаков препинания.»</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type1_1.webp" alt="Граф и таблица к заданию типа 1">
+    <div class="caption">Граф и матрица смежности для задания типа 1</div>
+  </div>
+
+  <h4>Шаг 1. Расставляем степени вершин</h4>
+  <p>Степень вершины — это количество дорог, выходящих из неё. На рисунке обозначим степени оранжевым цветом.</p>
+
+  <div class="image-block">
+    <img src="task1_practice_type1_2.webp" alt="Граф с расставленными степенями вершин">
+    <div class="caption">Степени вершин: D — 5, A — 3, остальные — по 2</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">1</span> Вершина <strong>D</strong> — единственная со степенью <strong>5</strong>. Ищем в таблице строку с 5 звёздами — это строка <strong>7</strong>. Значит, D = 7.</p>
+    <p><span class="step-num">2</span> Вершина <strong>A</strong> — единственная со степенью <strong>3</strong>. Находим строку с 3 звёздами — это строка <strong>3</strong>. Значит, A = 3.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type1_3.webp" alt="Найденные вершины D(7) и A(3)">
+    <div class="caption">Определили: D = 7, A = 3</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">3</span> Вершины <strong>C и G</strong> обе имеют степень 2 и связаны с A и D. В таблице ищем столбцы, пересекающиеся и с 3, и с 7 — это столбцы <strong>1 и 4</strong>. Точно какая из них C, а какая G — пока неясно (граф симметричен).</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type1_4.webp" alt="Найденные вершины C и G (1 и 4)">
+    <div class="caption">C и G — это номера 1 и 4 (порядок пока неизвестен)</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">4</span> Вершина <strong>F</strong> — единственная, которая <strong>не соединена</strong> с уже известными вершинами 3, 7, 1, 4. Смотрим в таблицу: строка <strong>5</strong> не пересекается с ними. Значит, F = 5.</p>
+    <p><span class="step-num">5</span> Оставшиеся вершины — <strong>B и E</strong>. Обе имеют степень 2 и связаны с D и F. В таблице это строки <strong>2 и 6</strong>.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type1_5.webp" alt="Найденные вершины B и E (2 и 6)">
+    <div class="caption">B и E — это номера 2 и 6</div>
+  </div>
+
+  <div class="answer-block">
+    Ответ: <strong>26</strong> (в порядке возрастания)
+  </div>
+
+  <h3>Пример 2 — программное решение</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «Определите, какие номера могут соответствовать пунктам <strong>G и D</strong>. В ответе запишите эти два номера в возрастающем порядке.»</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type1_6.webp" alt="Граф и таблица для примера 2 типа 1">
+    <div class="caption">Более сложный граф — анализировать долго, используем программу</div>
+  </div>
+
+  <div class="info-block">
+    <p><strong>💡 Когда граф сложный и нет очевидных «особенных» вершин</strong>, можно использовать <strong>программный перебор</strong>. Программа сама переберёт все возможные сопоставления букв и номеров и найдёт единственно верное.</p>
+  </div>
+
+  <!-- Первое упоминание permutations и itertools -->
+  <div class="func-intro">
+    <p>В этом решении мы используем функцию <span class="func-name"><a href="../task_functions.html#func-permutations" class="func-link" target="_blank">permutations()</a></span> из модуля <code>itertools</code>. Она генерирует <strong>все возможные перестановки</strong> переданных элементов — в нашем случае, все варианты сопоставления букв вершин с номерами.</p>
+    <p>Чтобы использовать функцию, нужно <strong>импортировать</strong> её из модуля: <code>from itertools import permutations</code>. Импорт — это способ сказать Python: «загрузи готовый код из библиотеки itertools и дай мне доступ к функции permutations».</p>
+    <p class="more-link"><a href="../task_functions.html#func-permutations" class="func-link" target="_blank">Подробнее о permutations() в справочнике →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Импортируем функцию permutations из модуля itertools</span>
+from itertools import <a href="../task_functions.html#func-permutations" class="func-link" target="_blank">permutations</a>
+
+<span style="color: #888;"># Список рёбер графа: каждая пара букв — связь между вершинами</span>
+graph = 'BE EF FD DC CA AG GB BA CF'.<a href="../../base_of_programming/functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()
+
+<span style="color: #888;"># Матрица смежности: для каждой строки — номера столбцов со звёздочкой</span>
+matrix = '246 26 57 15 347 127 356'.<a href="../../base_of_programming/functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(*<a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 8))
+
+<span style="color: #888;"># Перебираем все перестановки букв и ищем подходящую</span>
+for i in <a href="../task_functions.html#func-permutations" class="func-link" target="_blank">permutations</a>('ABCDEFG'):
+    if all(<a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(i.index(x) + 1) in matrix[i.index(y)] for x, y in graph):
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(*i)</pre>
+  </div>
+
+  <div class="theory-block">
+    <p><strong>Как работает программа:</strong></p>
+    <ul>
+      <li><strong>graph</strong> — список всех рёбер графа. Каждая пара букв (например, «BE») означает, что вершины B и E соединены дорогой. Для создания списка используем знакомый метод <a href="../../base_of_programming/functions_descriptions.html#method-split" class="func-link" target="_blank"><code>.split()</code></a>.</li>
+      <li><strong>matrix</strong> — матрица смежности, записанная особым образом: для строки 1 указаны номера столбцов, где стоит звёздочка. «246» означает, что вершина 1 связана с вершинами 2, 4 и 6.</li>
+      <li><strong>permutations('ABCDEFG')</strong> — перебирает все 5040 возможных расстановок букв по номерам от 1 до 7.</li>
+      <li><strong>Условие проверяет:</strong> для каждого ребра (x, y) номер вершины x должен быть в списке соседей вершины y. Если условие выполняется для всех рёбер — перестановка найдена верно.</li>
+    </ul>
+  </div>
+
+  <p>Программа выдаст:</p>
+  <div class="code-block">
+    <pre>1 2 3 4 5 6 7
+B G D E F A C</pre>
+  </div>
+
+  <p>Следовательно: <strong>G = 2, D = 3</strong>.</p>
+
+  <div class="answer-block">
+    Ответ: <strong>23</strong>
+  </div>
+
+  <!-- ==================== ТИП 2 ==================== -->
+  <h2><span class="type-badge type-2">Тип 2</span> Весовая матрица — сопоставление и сумма длин</h2>
+
+  <div class="theory-block">
+    <p>В этом типе заданий дана <strong>весовая матрица</strong> (числа — длины дорог). Нужно не только сопоставить номера с буквами, но и найти сумму длин указанных дорог.</p>
+  </div>
+
+  <h3>Разбор задания</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «Определите, какова сумма протяжённостей дорог из пункта <strong>D в G</strong> и из пункта <strong>A в C</strong>.»</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_1.webp" alt="Граф и таблица к заданию типа 2">
+    <div class="caption">Граф и весовая матрица для задания типа 2</div>
+  </div>
+
+  <h4>Шаг 1. Расставляем степени вершин</h4>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_2.webp" alt="Граф с расставленными степенями вершин">
+    <div class="caption">Степени: E, A, B — по 2; F, C, D, G — по 3</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">1</span> Вершина <strong>E</strong> (степень 2) соединяется с двумя тройными вершинами. В таблице находим строку с двумя числами, где оба соседа — тройные. Это строка <strong>7</strong>. E = 7.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_3.webp" alt="Весовая матрица с подписанной вершиной E(7)">
+    <div class="caption">E = 7, подписываем в первой строке матрицы</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">2</span> Вершина <strong>G</strong> (степень 3) соединяется с тремя тройными вершинами. Ищем строку с тремя числами, где все соседи тройные — это <strong>5</strong>. G = 5.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_4.webp" alt="Весовая матрица с подписанными вершинами E(7) и G(5)">
+    <div class="caption">G = 5</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">3</span> Вершины <strong>F и C</strong> — обе тройные и обе связаны с E(7) и G(5). Смотрим:</p>
+    <ul>
+      <li>Вершина <strong>C</strong> должна пересекаться с двумя двойными и одной тройной — это строка <strong>1</strong>.</li>
+      <li>Вершина <strong>F</strong> пересекается с двумя тройными и одной двойной — это строка <strong>3</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_5.webp" alt="Весовая матрица с подписанными C(1) и F(3)">
+    <div class="caption">C = 1, F = 3</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">4</span> Оставшаяся тройная вершина <strong>D</strong> — это <strong>6</strong>.</p>
+    <p><span class="step-num">5</span> Вершины <strong>A и B</strong> — оставшиеся двойные: <strong>B = 2</strong> (связана с D(6)), <strong>A = 4</strong> (связана с C(1)).</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_6.webp" alt="Весовая матрица со всеми подписанными вершинами">
+    <div class="caption">Все вершины определены</div>
+  </div>
+
+  <h4>Шаг 2. Находим длины дорог</h4>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_7.webp" alt="Поиск длин дорог AC и DG в матрице">
+    <div class="caption">На пересечении A(4) и C(1) — 30; на пересечении D(6) и G(5) — 8</div>
+  </div>
+
+  <p>AC = 30, DG = 8. Сумма = 38.</p>
+
+  <div class="answer-block">
+    Ответ: <strong>38</strong>
+  </div>
+
+  <h3>Пример 2 — программное решение</h3>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_8.webp" alt="Граф и таблица для примера 2 типа 2">
+    <div class="caption">Снова сложный граф — используем программу</div>
+  </div>
+
+  <div class="code-block">
+    <pre>from itertools import <a href="../task_functions.html#func-permutations" class="func-link" target="_blank">permutations</a>
+
+graph = 'BD DG GA AF FH HC CB BE ED EH GF'.<a href="../../base_of_programming/functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()
+matrix = '234 157 147 138 268 58 23 456'.<a href="../../base_of_programming/functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(*<a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 9))
+
+for i in <a href="../task_functions.html#func-permutations" class="func-link" target="_blank">permutations</a>('ABCDEFGH'):
+    if all(<a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(i.index(x) + 1) in matrix[i.index(y)] for x, y in graph):
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(*i)</pre>
+  </div>
+
+  <p>Программа выдаст:</p>
+  <div class="code-block">
+    <pre>1 2 3 4 5 6 7 8
+E H B D F A C G</pre>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type2_9.webp" alt="Весовая матрица с подписанными вершинами">
+    <div class="caption">Ищем: A(6) ∩ G(8) = 7, D(4) ∩ E(1) = 4</div>
+  </div>
+
+  <p>AG = 7, DE = 4. Сумма = 11.</p>
+
+  <div class="answer-block">
+    Ответ: <strong>11</strong>
+  </div>
+
+  <!-- ==================== ТИП 3 ==================== -->
+  <h2><span class="type-badge type-3">Тип 3</span> Кратчайший путь</h2>
+
+  <div class="theory-block">
+    <p>Самый редкий и объёмный тип. Нужно сопоставить номера с буквами, определить длины дорог <strong>и найти кратчайший путь</strong> между двумя пунктами. Решается ручным перебором вариантов (обычно 3–4 пути).</p>
+  </div>
+
+  <h3>Разбор задания</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «Определите длину кратчайшего пути из пункта <strong>А в C</strong>. В ответе запишите целое число — длину пути в километрах.»</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type3_1.webp" alt="Граф и таблица к заданию типа 3">
+    <div class="caption">Граф и весовая матрица для задания типа 3</div>
+  </div>
+
+  <h4>Шаг 1. Определяем нумерацию программно</h4>
+
+  <div class="code-block">
+    <pre>from itertools import <a href="../task_functions.html#func-permutations" class="func-link" target="_blank">permutations</a>
+
+graph = 'AB BD DG EA BC CD CE EF DF FG'.<a href="../../base_of_programming/functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()
+matrix = '245 136 2567 16 137 234 35'.<a href="../../base_of_programming/functions_descriptions.html#method-split" class="func-link" target="_blank">split</a>()
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(*<a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 8))
+
+for i in <a href="../task_functions.html#func-permutations" class="func-link" target="_blank">permutations</a>('ABCDEFG'):
+    if all(<a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(i.index(x) + 1) in matrix[i.index(y)] for x, y in graph):
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(*i)</pre>
+  </div>
+
+  <p>Результат:</p>
+  <div class="code-block">
+    <pre>1 2 3 4 5 6 7
+E C D A F B G</pre>
+  </div>
+
+  <div class="image-block">
+    <img src="task1_practice_type3_2.webp" alt="Весовая матрица с подписанными вершинами">
+    <div class="caption">Подписываем вершины в матрице</div>
+  </div>
+
+  <h4>Шаг 2. Ищем кратчайший путь от A до C</h4>
+
+  <p>Рассмотрим несколько вариантов:</p>
+
+  <div class="step-block">
+    <p><strong>Путь 1: A → B → C</strong></p>
+  </div>
+  <div class="image-block">
+    <img src="task1_practice_type3_3.webp" alt="Путь A-B-C на графе">
+    <div class="caption">A–B–C: AB = 10, BC = 9</div>
+  </div>
+  <p>Длина: 10 + 9 = <strong>19</strong> км.</p>
+
+  <div class="step-block">
+    <p><strong>Путь 2: A → E → C</strong></p>
+  </div>
+  <div class="image-block">
+    <img src="task1_practice_type3_4.webp" alt="Путь A-E-C на графе">
+    <div class="caption">A–E–C: AE = 11, EC = 8</div>
+  </div>
+  <p>Длина: 11 + 8 = <strong>19</strong> км.</p>
+
+  <div class="step-block">
+    <p><strong>Путь 3: A → B → D → C</strong></p>
+  </div>
+  <div class="image-block">
+    <img src="task1_practice_type3_5.webp" alt="Путь A-B-D-C на графе">
+    <div class="caption">A–B–D–C: AB = 10, BD = 5, DC = 2</div>
+  </div>
+  <p>Длина: 10 + 5 + 2 = <strong>17</strong> км.</p>
+
+  <div class="note-block">
+    <p><strong>💡 Важный вывод:</strong> путь из трёх рёбер (A–B–D–C) оказался короче, чем пути из двух рёбер (A–B–C и A–E–C). <strong>Меньше рёбер — не всегда короче!</strong> Всегда проверяй все возможные маршруты.</p>
+  </div>
+
+  <div class="answer-block">
+    Ответ: <strong>17</strong>
+  </div>
+
+  <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+  <div class="homework-block">
+    <h2>📋 Домашнее задание</h2>
+    <p class="placeholder">Материалы для самостоятельной практики появятся здесь позже.</p>
+    <p class="placeholder">Здесь будут размещены реальные варианты заданий для отработки навыков.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет:</strong> сначала освой ручной анализ графа на задачах типа 1. Программное решение с <a href="../task_functions.html#func-permutations" class="func-link" target="_blank"><code>permutations</code></a> используй как вспомогательный инструмент для сложных случаев. На экзамене важно уметь и то, и другое.
+  </div>
+
+</body>
+</html>

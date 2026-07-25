@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 16 ЕГЭ: теория рекурсии и мемоизации</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .definition strong { color: #4a2a7a; }
+
+    .formula-block {
+      background-color: #fafafa;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      font-size: 1.2rem;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    }
+    .formula-block .formula-desc {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+    }
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    table tr:nth-child(even) td { background-color: #fafafa; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="task16.html" class="back-link">← К заданию 16</a>
+
+  <h1>🔄 Задание 16 ЕГЭ: рекурсия и мемоизация</h1>
+  <p class="subtitle">Теория · Рекурсивные функции, стек вызовов, мемоизация, декоратор @lru_cache</p>
+
+  <!-- ==================== РЕКУРСИЯ ==================== -->
+  <h2 id="recursion">Рекурсия</h2>
+
+  <div class="definition">
+    <p><strong>Рекурсия</strong> — это процесс, при котором функция вызывает саму себя. Такая функция решает большую задачу, разбивая её на более мелкие подзадачи того же типа.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Классический пример — вычисление факториала:</p>
+    <p style="text-align: center;"><strong>n! = n × (n−1)!</strong>, &nbsp; <strong>1! = 1</strong></p>
+    <p>Здесь <strong>n × (n−1)!</strong> — <strong>рекурсивный случай</strong> (функция вызывает себя с меньшим аргументом), а <strong>1! = 1</strong> — <strong>базовый случай</strong> (условие остановки рекурсии). Без базового случая функция будет вызывать себя бесконечно.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> factorial(n):
+    <span style="color: #888;"># Базовый случай</span>
+    if n == 1:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    <span style="color: #888;"># Рекурсивный случай</span>
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> n * factorial(n - 1)</pre>
+  </div>
+
+  <h3 id="call-stack">Стек вызовов</h3>
+
+  <div class="theory-block">
+    <p>Каждый вызов функции помещается в <strong>стек вызовов</strong> — специальную область памяти. Стек работает по принципу <strong>LIFO</strong> (last in – first out): последняя вызванная функция выполняется первой.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task16_theory_1.webp" alt="Стек вызовов функций A → B → C">
+    <div class="caption">Последовательность вызовов: A() вызывает B(), B() вызывает C()</div>
+  </div>
+
+  <div class="image-block">
+    <img src="task16_theory_2.webp" alt="Стек вызовов: принцип LIFO">
+    <div class="caption">Стек работает по принципу «последним зашёл — первым вышел»</div>
+  </div>
+
+  <div class="image-block">
+    <img src="task16_theory_3.webp" alt="Рекурсивные вызовы factorial(5) в стеке">
+    <div class="caption">Рекурсивные вызовы factorial(5): каждый вызов ждёт завершения внутреннего</div>
+  </div>
+
+  <h3 id="recursion-limit">Ограничение глубины рекурсии</h3>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Стек вызовов не бесконечен.</strong> В Python максимальная глубина рекурсии по умолчанию — <strong>1000 вызовов</strong>. Если рекурсия глубже — возникает ошибка <code>RecursionError: maximum recursion depth exceeded</code>.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>import sys
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="../task_functions.html#func-getrecursionlimit" class="func-link" target="_blank">sys.getrecursionlimit</a>())  <span style="color: #888;"># 1000</span></pre>
+  </div>
+
+  <h3 id="increase-limit">Увеличение глубины рекурсии</h3>
+
+  <div class="theory-block">
+    <p>Глубину можно увеличить с помощью <a href="../task_functions.html#func-setrecursionlimit" class="func-link" target="_blank"><code>sys.setrecursionlimit()</code></a>. Это простой способ, который позволяет не менять структуру рекурсивной функции — достаточно добавить одну строку перед её вызовом.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>import sys
+<a href="../task_functions.html#func-setrecursionlimit" class="func-link" target="_blank">sys.setrecursionlimit</a>(2025)</pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Осторожно:</strong> слишком большое значение может привести к переполнению стека и аварийному завершению программы. Однако в задачах ЕГЭ глубина рекурсии редко превышает 10 000–20 000, и такая проблема практически не встречается.</p>
+  </div>
+
+  <!-- ==================== ИТЕРАТИВНЫЙ ПОДХОД (ДП) ==================== -->
+  <h2 id="iterative">Итеративный подход — избавляемся от рекурсии</h2>
+
+  <div class="definition">
+    <p><strong>Итеративный подход</strong> — это способ вычисления рекуррентной функции без использования рекурсии. Вместо того чтобы вызывать функцию многократно, мы <strong>один раз</strong> проходим циклом от базового случая до нужного n и сохраняем все значения в список.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Этот подход является частным случаем <strong>динамического программирования снизу вверх</strong> (bottom-up DP). Мы начинаем с базовых значений, уже известных по условию, и последовательно вычисляем каждое следующее, опираясь на ранее сохранённые. Никакой рекурсии — только цикл и список.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Главное преимущество:</strong> итеративный подход <strong>полностью избавляет от проблем с глубиной рекурсии</strong>. Даже если n = 100 000, программа отработает без ошибок — мы не используем стек вызовов, только обычный цикл.</p>
+  </div>
+
+  <h3>Пример: вычисление F(n) = (n+3) × F(n−2)</h3>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Условие: F(n) = 1 при n ≤ 3, F(n) = (n+3) × F(n−2) при n > 3</span>
+
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f_iter(n):
+    if n <= 3:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    <span style="color: #888;"># Список для хранения значений: F(0), F(1), F(2), F(3)</span>
+    cache = [1, 1, 1, 1]
+    <span style="color: #888;"># Вычисляем от 4 до n</span>
+    for i in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(4, n + 1):
+        cache.append((i + 3) * cache[i - 2])
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> cache[n]
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f_iter(2028) // f_iter(2024))  <span style="color: #888;"># работает без рекурсии</span></pre>
+  </div>
+
+  <div class="info-block">
+    <p><strong>🔍 Сравнение с рекурсивным подходом:</strong> и рекурсия с мемоизацией, и итеративный подход дают одинаковый результат. Разница в том, <strong>как</strong> мы обходим граф вычислений: рекурсия идёт «сверху вниз» (от большого n к базовому случаю), а итеративный подход — «снизу вверх» (от базового случая к большому n). В задачах ЕГЭ оба подхода работают, но итеративный не требует настройки глубины рекурсии.</p>
+  </div>
+
+  <!-- ==================== ОСОБЫЕ СЛУЧАИ ==================== -->
+  <h2 id="special-cases">Особые случаи рекурсии</h2>
+
+  <div class="theory-block">
+    <p>В задании 16 встречаются нестандартные формулировки, для которых стандартный подход нужно адаптировать. Ниже — примеры с обычными рекурсивными функциями и увеличением глубины рекурсии через <code>sys.setrecursionlimit()</code>.</p>
+  </div>
+
+  <h3 id="upward-recursion">Рекурсия «вверх» — когда аргумент растёт</h3>
+
+  <div class="definition">
+    <p>В некоторых задачах F(n) зависит от F(n+k), где k > 0 — аргумент <strong>увеличивается</strong> с каждым шагом, а базовый случай находится при больших n. Например: F(n) = n при n ≥ 2025, иначе F(n) = n + F(n+2).</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Здесь рекурсия идёт не вниз (к меньшим n), а вверх (к большим n). Это не меняет сути: мы так же переписываем функцию по условию, увеличиваем глубину рекурсии и вызываем для нужного аргумента.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>import sys
+<a href="../task_functions.html#func-setrecursionlimit" class="func-link" target="_blank">sys.setrecursionlimit</a>(3000)
+
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> F(n):
+    if n >= 2025:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> n
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> n + F(n + 2)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(F(2020) - F(2023))</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Ничего принципиально нового:</strong> рекурсивная функция записывается точно так же, как и в обычных задачах. Единственное отличие — аргумент в рекурсивном вызове больше текущего, а не меньше. Увеличение глубины рекурсии работает одинаково в обоих случаях.</p>
+  </div>
+
+  <h3 id="mutual-recursion">Взаимная рекурсия — две функции</h3>
+
+  <div class="definition">
+    <p><strong>Взаимная рекурсия</strong> — ситуация, когда функция F(n) вызывает G(n), а G(n) вызывает F(n−1). Две функции ссылаются друг на друга, и для вычисления одной нужно знать значение другой.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Решение: записываем обе функции по условию, увеличиваем глубину рекурсии и вызываем нужные значения. Python сам разберётся с порядком вычислений — каждая функция будет вызывать другую, и стек вызовов отработает корректно.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>import sys
+<a href="../task_functions.html#func-setrecursionlimit" class="func-link" target="_blank">sys.setrecursionlimit</a>(3000)
+
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> F(n):
+    if n == 1:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 2 * G(n) + 3 * n
+
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> G(n):
+    if n == 1:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> F(n - 1) + 5 * n
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(abs(F(4) - G(5)))</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Ключевой момент:</strong> функции F и G просто вызывают друг друга. Никакой специальной обработки не требуется — стандартное увеличение глубины рекурсии решает проблему. Порядок определения функций не важен, так как на момент вызова обе уже определены.</p>
+  </div>
+
+  <!-- ==================== МЕМОИЗАЦИЯ ==================== -->
+  <h2 id="memoization">Мемоизация</h2>
+
+  <div class="definition">
+    <p><strong>Мемоизация</strong> — техника оптимизации, при которой результаты выполнения функции сохраняются в кеше. При повторном вызове с теми же аргументами результат берётся из кеша, а не вычисляется заново.</p>
+  </div>
+
+  <div class="theory-block">
+    <p><strong>Мемоизация vs кеширование:</strong> мемоизация — частный случай кеширования, применяемый для оптимизации <strong>вычислений в функциях</strong>. Кеширование — более общая техника для ускорения доступа к данным (веб-страницы, базы данных).</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task16_theory_4.webp" alt="Схема работы кеширования">
+    <div class="caption">Кеширование: при повторном запросе данные берутся из кеша, а не из базы данных</div>
+  </div>
+
+  <h3>Пример: числа Фибоначчи</h3>
+
+  <div class="theory-block">
+    <p>Без мемоизации вычисление 35-го числа Фибоначчи занимает <strong>~3 секунды</strong> — каждый вызов порождает два новых, и количество вызовов растёт экспоненциально.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task16_theory_5.webp" alt="Дерево вызовов fib(5)">
+    <div class="caption">Дерево вызовов fib(5): одни и те же значения вычисляются многократно</div>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 С мемоизацией:</strong> каждое значение вычисляется <strong>один раз</strong> и сохраняется. Время вычисления 35-го числа сокращается с 3 секунд до <strong>0,05 миллисекунды</strong> — ускорение в ~68 000 раз.</p>
+  </div>
+
+  <!-- ==================== ДЕКОРАТОР @lru_cache ==================== -->
+  <h2 id="lru-cache">Декоратор @lru_cache</h2>
+
+  <div class="definition">
+    <p><strong>@lru_cache</strong> — готовый декоратор из модуля <code>functools</code>, реализующий мемоизацию со стратегией вытеснения <strong>LRU</strong> (Least Recently Used — «наименее недавно использованный»).</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Стратегия LRU: когда кеш заполнен, удаляется элемент, который не использовался дольше всего. Это интуитивно понятная стратегия: если элемент давно не запрашивали — он, вероятно, не понадобится и в будущем.</p>
+  </div>
+
+  <h3>Параметры декоратора</h3>
+
+  <table>
+    <thead><tr><th>Параметр</th><th>По умолчанию</th><th>Описание</th></tr></thead>
+    <tbody>
+      <tr><td><code>maxsize</code></td><td>128</td><td>Максимальное количество кешируемых результатов. <code>None</code> — без ограничений.</td></tr>
+      <tr><td><code>typed</code></td><td>False</td><td>Если <code>True</code>, аргументы разных типов (1 и 1.0) кешируются раздельно.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="code-block">
+    <pre>from functools import <a href="../task_functions.html#func-lru-cache" class="func-link" target="_blank">lru_cache</a>
+
+@<a href="../task_functions.html#func-lru-cache" class="func-link" target="_blank">lru_cache</a>()
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> fib(n):
+    if n < 2:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> n
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> fib(n - 1) + fib(n - 2)
+
+<span style="color: #888;"># Прогреваем кеш — вычисляем все значения от 0 до 3500</span>
+for i in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(3501):
+    fib(i)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(fib(3500))  <span style="color: #888;"># мгновенно, без мемоизации — не дождётесь</span></pre>
+  </div>
+
+  <h3>Дополнительные методы</h3>
+
+  <div class="theory-block">
+    <p>После применения декоратора у функции появляются:</p>
+    <ul>
+      <li><code>.cache_info()</code> — статистика: hits (попадания в кеш), misses (промахи), maxsize, currsize.</li>
+      <li><code>.cache_clear()</code> — полная очистка кеша.</li>
+    </ul>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Рекомендация для ЕГЭ:</strong> для задания 16 используйте <code>@lru_cache</code> с <strong>прогревом кеша в цикле</strong> — вызовите функцию для всех значений от базового случая до максимального аргумента. Это самый надёжный способ: он работает быстро и не требует вручную увеличивать глубину рекурсии. Альтернативно можно использовать <strong>итеративный подход</strong> — он полностью избавляет от рекурсии и проблем с глубиной стека.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» мы разберём все типы задания 16: ручное решение, итеративный подход, взаимную рекурсию, рекурсию «вверх», перебор на отрезке — с решениями на Python.
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 4 ЕГЭ — разбор и практика</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .theory-link {
+      display: inline-block;
+      margin-bottom: 1.8rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: 8px;
+      color: #4a2a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .theory-link:hover { background-color: #e8ddf5; }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.3rem;
+      color: #444;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .step-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+
+    .step-block .step-num {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 26px;
+    }
+
+    .answer-block {
+      background-color: #e8f4e8;
+      border: 2px solid #4a8a4a;
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      color: #fff;
+    }
+
+    .type-1 { background-color: #4a9a4a; }
+    .type-2 { background-color: #3a7aca; }
+
+    .calc-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .homework-block {
+      background-color: #fffdf5;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
+      text-align: center;
+    }
+
+    .homework-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+
+    .homework-block .placeholder { color: #aaa; font-style: italic; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="../tasks_index.html" class="back-link">← К списку заданий</a>
+
+  <h1>📝 Задание 4 ЕГЭ</h1>
+  <p class="subtitle">Кодирование информации · Двоичные деревья · Условие Фано</p>
+
+  <a href="task4_theory.html" class="theory-link">📖 Открыть теорию к заданию 4 →</a>
+
+  <!-- ==================== О ЗАДАНИИ ==================== -->
+  <h2>О задании</h2>
+
+  <div class="theory-block">
+    <p>В задании 4 дан алфавит из нескольких букв, для большинства из которых известны кодовые слова. Требуется найти кодовое слово для определённой буквы (или для нескольких букв), удовлетворяющее <strong>условию Фано</strong>. Часто дополнительное условие — <strong>минимальная длина</strong> кодового слова.</p>
+    <p>Задание решается <strong>построением двоичного дерева</strong> на листе бумаги. Программное решение нецелесообразно — здесь нужен анализ структуры кодов.</p>
+  </div>
+
+  <div class="info-block">
+    <p><strong>💡 Два типа задания 4:</strong></p>
+    <ul>
+      <li><strong>Тип 1:</strong> найти кодовое слово для одной буквы.</li>
+      <li><strong>Тип 2:</strong> найти количество двоичных знаков для кодирования целого слова (требуется подобрать коды для нескольких букв).</li>
+    </ul>
+  </div>
+
+  <!-- ==================== ТИП 1 ==================== -->
+  <h2><span class="type-badge type-1">Тип 1</span> Кодовое слово для одной буквы</h2>
+
+  <div class="theory-block">
+    <p>Алгоритм: строим двоичное дерево до нужного уровня, отмечаем занятые коды и коды, нарушающие условие Фано. Свободные листы — кандидаты для новой буквы. Выбираем кратчайший (или с наименьшим/наибольшим числовым значением — по условию).</p>
+  </div>
+
+  <h3>Разбор задания</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «По каналу связи передаются сообщения, содержащие только десять букв: А, B, C, D, E, F, S, X, Y, Z. Для кодирования используется неравномерный двоичный код. Укажите кратчайшее кодовое слово для буквы <strong>B</strong>, при котором код удовлетворяет условию Фано. Если таких кодов несколько, укажите код с наименьшим числовым значением.»</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_1.webp" alt="Таблица кодовых слов из условия">
+    <div class="caption">Таблица известных кодовых слов</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">1</span> Анализируем таблицу: больше всего кодов на «правой» стороне дерева, максимальный уровень — четвёртый. Строим дерево до 3-го уровня слева и до 4-го справа.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_2.webp" alt="Построенное двоичное дерево">
+    <div class="caption">Двоичное дерево до нужных уровней</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">2</span> Отмечаем занятые коды из таблицы.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_3.webp" alt="Дерево с отмеченными занятыми кодами">
+    <div class="caption">Занятые коды отмечены</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">3</span> Свободен только один лист — с кодом <strong>1000</strong>. На него и помещаем букву B.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_4.webp" alt="Буква B размещена на свободном листе 1000">
+    <div class="caption">Буква B получает код 1000</div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>1000</strong></div>
+
+  <h3>Пример 1</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «Укажите кратчайшее кодовое слово для буквы <strong>А</strong>, при котором код удовлетворяет условию Фано. Если таких кодов несколько, укажите код с наименьшим числовым значением.»</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_5.webp" alt="Таблица кодовых слов для примера 1">
+    <div class="caption">Таблица известных кодов</div>
+  </div>
+
+  <div class="step-block">
+    <p>Больше узлов на левой «нулевой» части. Строим дерево до 4-го уровня, отмечаем занятые коды. Свободен лист <strong>10</strong>.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_6.webp" alt="Построенное дерево для примера 1">
+    <div class="caption">Дерево до 4-го уровня</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_7.webp" alt="Занятые коды отмечены">
+    <div class="caption">Занятые коды отмечены, виден свободный лист</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_8.webp" alt="Буква А на листе 10">
+    <div class="caption">Буква А получает код 10</div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>10</strong></div>
+
+  <h3>Пример 2 — задача посложнее</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «Для букв А, Б, В используются кодовые слова: А – 0; Б – 1100; В – 1000. Укажите кратчайшее кодовое слово для буквы <strong>Г</strong>, при котором код допускает однозначное декодирование. Если таких слов несколько, укажите код с <strong>наибольшим</strong> числовым значением.»</p>
+  </div>
+
+  <div class="step-block">
+    <p>Слева только код 0 (буква А). Справа строим дерево до 4-го уровня. Отмечаем занятые коды (Б — 1100, В — 1000) и коды, нарушающие условие Фано. Свободны листы <strong>101</strong> и <strong>111</strong>. По условию выбираем наибольший — <strong>111</strong>.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_9.webp" alt="Дерево для примера 2">
+    <div class="caption">Дерево до 4-го уровня, слева только код 0</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_10.webp" alt="Занятые и недоступные коды">
+    <div class="caption">Занятые коды и коды, нарушающие условие Фано</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_11.webp" alt="Свободные листы 101 и 111">
+    <div class="caption">Свободны 101 и 111 — выбираем 111</div>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>111</strong></div>
+
+  <!-- ==================== ТИП 2 ==================== -->
+  <h2><span class="type-badge type-2">Тип 2</span> Количество двоичных знаков для слова</h2>
+
+  <div class="theory-block">
+    <p>Здесь нужно не просто найти код для одной буквы, а подобрать коды для <strong>нескольких букв</strong> так, чтобы закодированное слово имело <strong>минимальную длину</strong>. Правило: чем чаще буква встречается в слове, тем короче должен быть её код.</p>
+  </div>
+
+  <h3>Разбор задания</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «Кодовые слова известны: Б – 1001, К – 11. Для букв Л, Н, О кодовые слова неизвестны. Какое <strong>наименьшее</strong> количество двоичных знаков требуется для кодирования слова <strong>КОЛОКОЛ</strong>?»</p>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">1</span> Считаем частоту букв в слове КОЛОКОЛ: К — 2, О — 3, Л — 2. Буква О самая частая — ей нужен самый короткий код.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_12.webp" alt="Построенное дерево">
+    <div class="caption">Строим двоичное дерево</div>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_13.webp" alt="Занятые и недоступные коды">
+    <div class="caption">Отмечаем занятые коды Б и К, а также недоступные</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">2</span> Свободны листы: <strong>0</strong> (самый короткий), <strong>101</strong> и <strong>1000</strong>. Самый короткий (0) отдаём букве О. Букве Л даём 101 (покороче), букве Н — оставшийся 1000.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_14.webp" alt="Свободные листы">
+    <div class="caption">Свободные листы: 0, 101, 1000</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_15.webp" alt="Буквы расставлены по листам">
+    <div class="caption">О → 0, Л → 101, Н → 1000</div>
+  </div>
+
+  <div class="step-block">
+    <p><span class="step-num">3</span> Считаем длину слова КОЛОКОЛ:</p>
+  </div>
+  <div class="calc-block">
+    К (2 раза) — код «11» (2 бита) → 2 × 2 = 4<br>
+    О (3 раза) — код «0» (1 бит) → 3 × 1 = 3<br>
+    Л (2 раза) — код «101» (3 бита) → 2 × 3 = 6<br>
+    <strong>Итого: 4 + 3 + 6 = 13</strong>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>13</strong></div>
+
+  <h3>Пример 1</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «Кодовые слова известны: Б – 10, Н – 110, Р – 000. Для букв К и О кодовые слова неизвестны. Какое количество двоичных знаков требуется для кодирования слова <strong>КОРОБОК</strong> минимально возможным количеством знаков?»</p>
+  </div>
+
+  <div class="step-block">
+    <p>Частоты: К — 2, О — 3, Р — 1, Б — 1. Строим дерево, отмечаем занятые коды. Свободны листы: <strong>01</strong>, <strong>001</strong>, <strong>111</strong>. Самый короткий (01) — букве О. Для К выбираем любой из оставшихся (оба по 3 бита), например 111.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_16.webp" alt="Дерево для примера 1 типа 2">
+    <div class="caption">Симметричное двоичное дерево</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_17.webp" alt="Занятые коды Б, Н, Р">
+    <div class="caption">Отмечаем Б, Н, Р</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_18.webp" alt="Свободные листы">
+    <div class="caption">Свободны: 01, 001, 111</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_19.webp" alt="Буквы расставлены">
+    <div class="caption">О → 01, К → 111</div>
+  </div>
+
+  <div class="calc-block">
+    К (2 раза) — «111» (3 бита) → 6<br>
+    О (3 раза) — «01» (2 бита) → 6<br>
+    Р (1 раз) — «000» (3 бита) → 3<br>
+    Б (1 раз) — «10» (2 бита) → 2<br>
+    <strong>Итого: 6 + 6 + 3 + 2 = 17</strong>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>17</strong></div>
+
+  <h3>Пример 2 — с вариантами размещения</h3>
+
+  <div class="theory-block">
+    <p><strong>Формулировка:</strong> «Кодовые слова известны: В – 1, М – 001. Для букв Е, Н, Р кодовые слова неизвестны. Какое количество двоичных знаков потребуется для кодирования слова <strong>ВЕРМЕЕР</strong> минимально возможным количеством знаков?»</p>
+  </div>
+
+  <div class="step-block">
+    <p>Частоты: В — 1, Е — 3, Р — 2, М — 1. Правую ветку не строим — там только код 1 (буква В). Строим только «нулевую» часть.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_20.webp" alt="Дерево только с нулевой веткой">
+    <div class="caption">Строим только левую часть дерева</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_21.webp" alt="Отмечен код буквы М">
+    <div class="caption">Код буквы М (001) отмечен</div>
+  </div>
+
+  <div class="step-block">
+    <p>Свободны 6 листов. Но одновременно занять можно либо «01» + «0000» + «0001», либо «010» + «011» + «000».</p>
+    <p><strong>Вариант 1:</strong> Е → «01» (2 бита), Р → «0001» (4 бита), Н → «0000» (4 бита).<br>
+    Длина для Е и Р: 2×3 + 4×2 = <strong>14</strong>.</p>
+    <p><strong>Вариант 2:</strong> Е → «010» (3 бита), Р → «011» (3 бита).<br>
+    Длина для Е и Р: 3×3 + 3×2 = <strong>15</strong>.</p>
+    <p>Выбираем вариант 1 — он короче.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task4_practice_22.webp" alt="Два варианта размещения">
+    <div class="caption">Два возможных варианта размещения букв</div>
+  </div>
+  <div class="image-block">
+    <img src="task4_practice_23.webp" alt="Выбран оптимальный вариант">
+    <div class="caption">Выбран вариант с Е → 01, Р → 0001</div>
+  </div>
+
+  <div class="calc-block">
+    В (1 раз) — «1» (1 бит) → 1<br>
+    Е (3 раза) — «01» (2 бита) → 6<br>
+    Р (2 раза) — «0001» (4 бита) → 8<br>
+    М (1 раз) — «001» (3 бита) → 3<br>
+    <strong>Итого: 1 + 6 + 8 + 3 = 18</strong>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>18</strong></div>
+
+  <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+  <div class="homework-block">
+    <h2>📋 Домашнее задание</h2>
+    <p class="placeholder">Материалы для самостоятельной практики появятся здесь позже.</p>
+    <p class="placeholder">Здесь будут размещены реальные варианты заданий для отработки навыков.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет:</strong> всегда начинайте с подсчёта частоты букв в слове. Самая частая буква должна получить самый короткий код. Если есть несколько вариантов размещения — просчитайте суммарную длину для каждого и выберите минимальную.
+  </div>
+
+</body>
+</html>

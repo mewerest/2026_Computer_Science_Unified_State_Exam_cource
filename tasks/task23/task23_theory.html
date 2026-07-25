@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 23 ЕГЭ: теория динамического программирования</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p,
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+
+    a.func-link:hover {
+      border-bottom-style: solid;
+    }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+
+    .definition strong {
+      color: #4a2a7a;
+    }
+
+    .formula-block {
+      background-color: #fafafa;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      font-size: 1.2rem;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    }
+
+    .formula-block .formula-desc {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+    }
+
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #fafafa;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="task23.html" class="back-link">← К заданию 23</a>
+
+  <h1>🧮 Задание 23 ЕГЭ: динамическое программирование</h1>
+  <p class="subtitle">Теория · Исполнители, рекурсивные алгоритмы, подсчёт количества программ</p>
+
+  <!-- ==================== ДИНАМИЧЕСКОЕ ПРОГРАММИРОВАНИЕ ==================== -->
+  <h2 id="dp">Динамическое программирование</h2>
+
+  <div class="definition">
+    <p><strong>Динамическое программирование (ДП)</strong> — способ оптимизации решения сложных задач путём разбиения на
+      более мелкие подзадачи, результаты которых сохраняются и используются повторно.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>ДП основано на трёх принципах:</p>
+    <ol>
+      <li><strong>Определение подзадач</strong> — задача разбивается на более мелкие, которые проще решить.</li>
+      <li><strong>Рекуррентное соотношение</strong> — связь между решением задачи и решениями её подзадач.</li>
+      <li><strong>Хранение результатов</strong> — результаты подзадач сохраняются (в кеше, словаре, списке), чтобы
+        избежать повторных вычислений.</li>
+    </ol>
+  </div>
+
+  <h3 id="dp-approaches">Два подхода: нисходящий и восходящий</h3>
+
+  <div class="theory-block">
+    <p><strong>Нисходящий подход (top-down):</strong> начинаем с большой задачи, рекурсивно разбиваем на подзадачи,
+      результаты кешируем (мемоизация).</p>
+    <p><strong>Восходящий подход (bottom-up):</strong> начинаем с самых маленьких подзадач, последовательно строим
+      решение более крупных. Обычно реализуется через итерации и табулирование.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Для задания 23:</strong> большинство задач решаются нисходящим подходом с рекурсией — это просто и
+      лаконично. Для сложных случаев (ограничения на повторение команд) используется восходящий подход с табулированием.
+    </p>
+  </div>
+
+  <h3>Пример: числа Фибоначчи через табулирование</h3>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> fibonacci(n):
+    dp = [0] * (n + 1)
+    dp[0], dp[1] = 0, 1
+    for i in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> dp[n]
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(fibonacci(35))  <span style="color: #888;"># 9227465</span></pre>
+  </div>
+
+  <div class="theory-block">
+    <p>Список <code>dp</code> — это таблица (отсюда термин «табулирование»). Индекс = номер числа Фибоначчи, значение =
+      само число. Мы не можем «с ходу» сказать, чему равно 35-е число — нужно последовательно вычислить все предыдущие.
+    </p>
+  </div>
+
+  <!-- ==================== БАЗОВЫЙ АЛГОРИТМ ==================== -->
+  <h2 id="basic-algorithm">Базовый алгоритм для задания 23</h2>
+
+  <div class="theory-block">
+    <p>Рассмотрим упрощённую задачу: «У исполнителя две команды: <strong>прибавить 3</strong> и <strong>умножить на
+        2</strong>. Сколько существует программ для преобразования числа 1 в число 8?»</p>
+  </div>
+
+  <h3>Аналитическое решение «сверху вниз»</h3>
+
+  <p>Идём от 8 к 1, применяя обратные операции (вычесть 3, разделить на 2):</p>
+
+  <div class="image-block">
+    <img src="task23_theory_1.webp" alt="Шаг 1: из 8 получаем 4 и 5">
+    <div class="caption">Шаг 1: 8 → 4 (÷2) и 5 (−3)</div>
+  </div>
+
+  <div class="image-block">
+    <img src="task23_theory_2.webp" alt="Шаг 2: из 5 получаем 2">
+    <div class="caption">Шаг 2: 5 → 2 (−3), деление на 2 не даёт целого</div>
+  </div>
+
+  <div class="image-block">
+    <img src="task23_theory_3.webp" alt="Шаг 3: из 2 получаем 1">
+    <div class="caption">Шаг 3: 2 → 1 (÷2) — путь найден</div>
+  </div>
+
+  <div class="image-block">
+    <img src="task23_theory_4.webp" alt="Шаг 4: из 4 получаем 1 и 2">
+    <div class="caption">Шаг 4: 4 → 1 (−3) и 2 (÷2)</div>
+  </div>
+
+  <div class="image-block">
+    <img src="task23_theory_5.webp" alt="Шаг 5: из 2 получаем 1">
+    <div class="caption">Шаг 5: 2 → 1 (÷2) — ещё один путь</div>
+  </div>
+
+  <p>Всего найдено <strong>3</strong> способа.</p>
+
+  <h3 id="code-basic">Реализация на Python</h3>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y):
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1           <span style="color: #888;"># Дошли до цели — +1 способ</span>
+    if x > y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0           <span style="color: #888;"># Перескочили — тупик</span>
+    <span style="color: #888;"># Ещё не дошли — пробуем обе команды</span>
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> f(x + 3, y) + f(x * 2, y)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(1, 8))  <span style="color: #888;"># 3</span></pre>
+  </div>
+
+  <div class="image-block">
+    <img src="task23_theory_6.webp" alt="Дерево вызовов f(1, 8)">
+    <div class="caption">Дерево рекурсивных вызовов: левая ветка — +3, правая — ×2</div>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Как это работает:</strong> функция вызывает саму себя для каждой команды. Если дошли до цели (x == y)
+      — возвращаем 1 (нашли один способ). Если перескочили (x > y) — возвращаем 0 (тупик). Результаты складываются —
+      получаем общее количество способов.</p>
+  </div>
+
+  <!-- ==================== ТИПЫ ЗАДАНИЙ ==================== -->
+  <h2 id="task-types">Типы заданий 23</h2>
+
+  <div class="theory-block">
+    <p>Все задания 23 сводятся к четырём типам:</p>
+    <ol>
+      <li><strong>Траектория содержит число A</strong> — обязательная промежуточная точка.</li>
+      <li><strong>Траектория не содержит число B</strong> — запрещённая точка.</li>
+      <li><strong>Комбинация:</strong> содержит A и не содержит B.</li>
+      <li><strong>Количество различных результатов</strong> — сколько уникальных чисел можно получить за N команд.</li>
+    </ol>
+  </div>
+
+  <h3 id="type1">Тип 1: траектория содержит число A</h3>
+
+  <div class="theory-block">
+    <p>Траектория разбивается на две части: от начала до A и от A до конца. Количество способов =
+      <strong>произведение</strong> количества способов на каждом участке.</p>
+  </div>
+
+  <div class="formula-block">
+    result = f(начало, A) × f(A, конец)
+    <div class="formula-desc">
+      Если траектория должна пройти через число A, то сначала считаем количество способов добраться от начала до A,
+      затем — от A до конца. Общее количество = произведению этих двух чисел.
+    </div>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(x, A) * f(A, y))</pre>
+  </div>
+
+  <h3 id="type2">Тип 2: траектория не содержит число B</h3>
+
+  <div class="theory-block">
+    <p>Добавляем число B в условие «тупика»: если x равно B, возвращаем 0.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Для движения вверх (от меньшего к большему)</span>
+if x > y or x == B:
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+
+<span style="color: #888;"># Для движения вниз (от большего к меньшему)</span>
+if x < y or x == B:
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Можно исключить несколько чисел:</strong> <code>if x > y or x == B1 or x == B2: return 0</code></p>
+  </div>
+
+  <h3 id="type3">Тип 3: комбинация — содержит A и не содержит B</h3>
+
+  <div class="theory-block">
+    <p>Сочетаем оба подхода: исключаем B в условии тупика, а в print() умножаем результаты для участков с обязательной
+      точкой A.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Внутри функции — исключаем B:</span>
+if x < y or x == B:
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+
+<span style="color: #888;"># При вызове — разбиваем по точке A:</span>
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(f(начало, A) * f(A, конец))</pre>
+  </div>
+
+  <h3 id="repeat-limit">Дополнительно: ограничение на повторение команд</h3>
+
+  <div class="theory-block">
+    <p>В некоторых задачах запрещено повторять одну и ту же команду более N раз подряд. Решение: добавляем третий
+      параметр — строку <code>path</code>, в которой накапливаем историю команд.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(x, y, path=""):
+    <span style="color: #888;"># Проверяем, нет ли в пути запрещённой последовательности</span>
+    if "AAA" in path or "BBB" in path:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    if x == y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 1
+    if x > y:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> 0
+    <span style="color: #888;"># Добавляем букву команды в путь</span>
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> (f(x + 1, y, path + "A") +
+            f(x * 2, y, path + "B"))</pre>
+  </div>
+
+  <div class="info-block">
+    <p><strong>🔍 Как это работает:</strong> при каждом рекурсивном вызове дописываем букву команды в строку
+      <code>path</code>. Если в пути появилась запрещённая последовательность («AAA» или «BBB») — возвращаем 0, этот
+      путь не учитывается.</p>
+  </div>
+
+  <!-- ==================== КОЛИЧЕСТВО РАЗЛИЧНЫХ РЕЗУЛЬТАТОВ ==================== -->
+  <h2 id="unique-results">Количество различных результатов</h2>
+
+  <div class="definition">
+    <p>Особый тип задачи: не <strong>сколько программ</strong> преобразуют A в B, а <strong>сколько различных
+        чисел</strong> можно получить из A, выполнив ровно N команд.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Здесь не работают рекурсивные функции подсчёта путей — нужно отслеживать <strong>все возможные состояния</strong>
+      после каждой команды. Решение: используем <strong>множество (set)</strong> — оно автоматически отсеивает
+      дубликаты.</p>
+  </div>
+
+  <h3>Алгоритм</h3>
+
+  <div class="step-block"
+    style="background-color: #fafafa; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1rem 0;">
+    <p><span class="step-num"
+        style="display: inline-block; background-color: var(--accent); color: #fff; width: 26px; height: 26px; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-weight: 700; font-size: 0.9rem; line-height: 26px;">1</span>
+      Начинаем с множества, содержащего только исходное число: <code>{A}</code>.</p>
+    <p><span class="step-num"
+        style="display: inline-block; background-color: var(--accent); color: #fff; width: 26px; height: 26px; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-weight: 700; font-size: 0.9rem; line-height: 26px;">2</span>
+      На каждом шаге: для каждого числа в множестве применяем все команды, собираем результаты в новое множество.</p>
+    <p><span class="step-num"
+        style="display: inline-block; background-color: var(--accent); color: #fff; width: 26px; height: 26px; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-weight: 700; font-size: 0.9rem; line-height: 26px;">3</span>
+      Повторяем N раз (N — количество команд).</p>
+    <p><span class="step-num"
+        style="display: inline-block; background-color: var(--accent); color: #fff; width: 26px; height: 26px; text-align: center; border-radius: 50%; margin-right: 0.5rem; font-weight: 700; font-size: 0.9rem; line-height: 26px;">4</span>
+      Ответ — количество элементов в итоговом множестве: <code>len(множество)</code>.</p>
+  </div>
+
+  <h3>Пример: две команды, 9 шагов</h3>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Команды: ×2 и ×2+1, исходное число 1, ровно 9 команд</span>
+results = {1}
+for _ in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(9):
+    new_results = <a href="../../base_of_programming/functions_descriptions.html#func-set" class="func-link" target="_blank">set</a>()
+    for x in results:
+        new_results.<a href="../../base_of_programming/functions_descriptions.html#method-add" class="func-link" target="_blank">add</a>(x * 2)       <span style="color: #888;"># команда 1: удвоить</span>
+        new_results.<a href="../../base_of_programming/functions_descriptions.html#method-add" class="func-link" target="_blank">add</a>(x * 2 + 1)   <span style="color: #888;"># команда 2: удвоить и прибавить</span>
+    results = new_results
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(results))</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Почему множество:</strong> разные последовательности команд могут привести к одному и тому же числу.
+      Множество автоматически убирает дубликаты, оставляя только уникальные результаты.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» мы разберём все типы заданий 23: от простого подсчёта до траекторий
+    с условиями и подсчёта уникальных результатов.
+  </div>
+
+</body>
+
+</html>

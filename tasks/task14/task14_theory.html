@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 14 ЕГЭ: теория систем счисления</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .definition strong { color: #4a2a7a; }
+
+    .formula-block {
+      background-color: #fafafa;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      font-size: 1.2rem;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    }
+    .formula-block .formula-desc {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .extra-block {
+      background-color: #fdfaf0;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .extra-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+    .extra-block .extra-label {
+      display: inline-block;
+      background-color: #fff3cd;
+      color: #8a6d00;
+      padding: 0.2rem 0.7rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="task14.html" class="back-link">← К заданию 14</a>
+
+  <h1>🔢 Задание 14 ЕГЭ: системы счисления</h1>
+  <p class="subtitle">Теория · Позиционные системы счисления, перевод чисел, алгоритмы подсчёта цифр, приведение к единому основанию</p>
+
+  <!-- ==================== ОСНОВЫ ==================== -->
+  <h2 id="basics">Позиционные системы счисления</h2>
+
+  <div class="definition">
+    <p><strong>Позиционная система счисления</strong> — система, в которой значение каждой цифры зависит от её позиции (разряда) в записи числа. Основание системы определяет, сколько различных цифр используется.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>В задании 14 ЕГЭ используются системы счисления с основанием от 2 до 36. Важнейшие из них:</p>
+    <ul>
+      <li><strong>Двоичная (основание 2):</strong> цифры 0, 1</li>
+      <li><strong>Восьмеричная (основание 8):</strong> цифры 0–7</li>
+      <li><strong>Шестнадцатеричная (основание 16):</strong> цифры 0–9 и буквы A–F</li>
+    </ul>
+    <p>В общем случае для оснований больше 10 используются буквы латинского алфавита: A=10, B=11, ..., Z=35.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Взаимосвязь систем:</strong> восьмеричная и шестнадцатеричная системы напрямую связаны с двоичной. Одна восьмеричная цифра = 3 двоичных разряда, одна шестнадцатеричная = 4 двоичных разряда. Это позволяет быстро переводить числа между ними без вычислений.</p>
+  </div>
+
+  <!-- ==================== АЛФАВИТ ==================== -->
+  <h2 id="alphabet">Формирование алфавита системы счисления</h2>
+
+  <div class="theory-block">
+    <p>В Python алфавит любой системы счисления (вплоть до 36-ричной) можно сформировать из двух стандартных строк модуля <code>string</code>:</p>
+  </div>
+
+  <div class="code-block">
+    <pre>from string import <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a>, <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+
+<span style="color: #888;"># digits = '0123456789'</span>
+<span style="color: #888;"># ascii_uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>
+alph = <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a> + <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+
+<span style="color: #888;"># Алфавит 19-ричной системы (первые 19 символов):</span>
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(alph[:19])  <span style="color: #888;"># '0123456789ABCDEFGHI'</span></pre>
+  </div>
+
+  <div class="info-block">
+    <p><strong>🔍 Как использовать:</strong> если x — неизвестная цифра в системе с основанием N, то x может принимать значения из <code>alph[:N]</code>. Для перебора от наибольшего к наименьшему используем срез <code>alph[:N][::-1]</code>.</p>
+  </div>
+
+  <!-- ==================== ПЕРЕВОД ЧИСЕЛ ==================== -->
+  <h2 id="conversion">Перевод чисел в Python</h2>
+
+  <div class="theory-block">
+    <p>Python предоставляет встроенные функции для перевода чисел между системами счисления:</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Строка → десятичное число (любое основание от 2 до 36)</span>
+n = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>('1A3', 16)    <span style="color: #888;"># n = 419</span>
+
+<span style="color: #888;"># Десятичное число → строка в двоичной системе</span>
+s = <a href="../../base_of_programming/functions_descriptions.html#func-bin" class="func-link" target="_blank">bin</a>(255)          <span style="color: #888;"># s = '0b11111111'</span>
+
+<span style="color: #888;"># Десятичное число → строка в восьмеричной системе</span>
+s = <a href="../../base_of_programming/functions_descriptions.html#func-oct" class="func-link" target="_blank">oct</a>(255)          <span style="color: #888;"># s = '0o377'</span>
+
+<span style="color: #888;"># Десятичное число → строка в шестнадцатеричной системе</span>
+s = <a href="../../base_of_programming/functions_descriptions.html#func-hex" class="func-link" target="_blank">hex</a>(255)          <span style="color: #888;"># s = '0xff'</span>
+
+<span style="color: #888;"># Для произвольного основания (кроме 2, 8, 16) — только через int()</span>
+<span style="color: #888;"># Прямого аналога bin/oct/hex для других оснований нет</span></pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Важно:</strong> <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank"><code>int()</code></a> позволяет перевести строку с буквами в десятичное число, указав основание вторым аргументом. Например: <code>int('98897A21', 19)</code> — переводит число из 19-ричной системы в десятичную. А <a href="../../base_of_programming/functions_descriptions.html#func-bin" class="func-link" target="_blank"><code>bin()</code></a>, <a href="../../base_of_programming/functions_descriptions.html#func-oct" class="func-link" target="_blank"><code>oct()</code></a>, <a href="../../base_of_programming/functions_descriptions.html#func-hex" class="func-link" target="_blank"><code>hex()</code></a> работают только в направлении «десятичное → строка» и только для оснований 2, 8, 16.</p>
+  </div>
+
+  <!-- ==================== ОСНОВАНИЯ БОЛЬШЕ 36 ==================== -->
+  <h2 id="large-base">Основания больше 36</h2>
+
+  <div class="definition">
+    <p>В некоторых задачах ЕГЭ встречаются системы счисления с основанием <strong>больше 36</strong> (например, 150). Стандартный метод с <code>alph[:N]</code> здесь не работает — в алфавите всего 36 символов.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Для оснований > 36 неизвестная цифра x — это <strong>целое число</strong> от 0 до основания−1. Перевод числа в десятичную систему выполняется по формуле разложения:</p>
+  </div>
+
+  <div class="formula-block">
+    abcde<sub>N</sub> = a·N⁴ + b·N³ + c·N² + d·N¹ + e·N⁰
+    <div class="formula-desc">
+      Каждая цифра умножается на основание в степени, равной её позиции (нумерация справа налево, начиная с 0).
+    </div>
+  </div>
+
+  <h3>Пример: число 51x29₁₅₀</h3>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># 51x29₁₅₀ — позиции цифр справа налево: 0, 1, 2, 3, 4</span>
+<span style="color: #888;"># 9·150⁰ + 2·150¹ + x·150² + 1·150³ + 5·150⁴</span>
+<span style="color: #888;"># Перебираем x от 0 до 149</span>
+
+for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(150)[::-1]:  <span style="color: #888;"># от большего к меньшему</span>
+    n1 = 5 * 150**4 + 1 * 150**3 + x * 150**2 + 2 * 150 + 9
+    n2 = x * 150**3 + 0 * 150**2 + 2 * 150 + 3
+    res = n1 + n2
+    if res % 149 == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(res // 149)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Универсальный подход:</strong> можно написать функцию для автоматического перевода строки с неизвестной цифрой в десятичное число. Но в ЕГЭ проще один раз расписать разряды вручную — это занимает 2 минуты и исключает ошибки.</p>
+  </div>
+
+  <!-- ==================== ПРИВЕДЕНИЕ К ЕДИНОМУ ОСНОВАНИЮ ==================== -->
+  <h2 id="unify-base">Приведение к единому основанию</h2>
+
+  <div class="theory-block">
+    <p>В некоторых задачах выражение состоит из степеней чисел 4, 8, 16, 32, 64, 256, 1024, 4096 и т.д. Все они являются <strong>степенями двойки</strong>. Чтобы анализировать двоичную запись такого выражения, нужно привести все слагаемые к степеням одного основания:</p>
+  </div>
+
+  <div class="formula-block">
+    a = 2ⁿ → a<sup>k</sup> = (2ⁿ)<sup>k</sup> = 2<sup>n·k</sup>
+    <div class="formula-desc">
+      <strong>Примеры:</strong><br>
+      4<sup>k</sup> = (2²)<sup>k</sup> = 2<sup>2k</sup><br>
+      8<sup>k</sup> = 2<sup>3k</sup><br>
+      16<sup>k</sup> = 2<sup>4k</sup><br>
+      64<sup>k</sup> = 2<sup>6k</sup><br>
+      256<sup>k</sup> = 2<sup>8k</sup><br>
+      1024<sup>k</sup> = 2<sup>10k</sup><br>
+      4096<sup>k</sup> = 2<sup>12k</sup>
+    </div>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Зачем это нужно:</strong> после приведения к степеням двойки можно понять, на каких позициях в двоичной записи стоят единицы, а на каких — нули. Это позволяет решать задачи без программирования: единица в степени 2<sup>m</sup> даёт единицу в m-м разряде двоичной записи (разряды считаются с нуля).</p>
+  </div>
+
+  <div class="example-block" style="background-color: #fafafa; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1rem 0;">
+    <div class="example-title" style="font-weight: 700; color: #555; margin-bottom: 0.5rem;">📖 Пример:</div>
+    <p>4¹⁰ + 8⁵ − 2³ = (2²)¹⁰ + (2³)⁵ − 2³ = 2²⁰ + 2¹⁵ − 2³.<br>
+    В двоичной записи: единицы в разрядах 20 и 15, минус единица в разряде 3 (превращается в цепочку единиц из-за заёма).</p>
+  </div>
+
+  <!-- ==================== ПОДСЧЁТ ЦИФР ==================== -->
+  <h2 id="digit-count">Подсчёт цифр в записи числа</h2>
+
+  <div class="theory-block">
+    <p>Для подсчёта количества определённых цифр в числе, записанном в системе счисления с основанием <code>base</code>, используется стандартный алгоритм с последовательным делением:</p>
+  </div>
+
+  <div class="code-block">
+    <pre>count = 0
+while num:
+    if num % base == искомое_значение:
+        count += 1
+    num //= base</pre>
+  </div>
+
+  <div class="theory-block">
+    <p><strong>Как это работает:</strong> <code>num % base</code> даёт последнюю цифру числа в системе с основанием <code>base</code>. <code>num //= base</code> отбрасывает эту цифру. Цикл повторяется, пока число не станет равно 0.</p>
+    <p>Условие внутри цикла можно заменить на любое другое: подсчёт цифр больше/меньше заданного значения, подсчёт ненулевых цифр и т.д.</p>
+  </div>
+
+  <!-- ==================== СУММА ЦИФР ==================== -->
+  <h2 id="digit-sum">Сумма цифр в записи числа</h2>
+
+  <div class="theory-block">
+    <p>Модификация алгоритма подсчёта: вместо увеличения счётчика на 1, прибавляем значение цифры к сумме. Условие может фильтровать цифры (например, «только цифры ≤ 17»), а может отсутствовать — тогда суммируются все цифры.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Сумма всех цифр (без условий)</span>
+summa = 0
+while num:
+    summa += num % base
+    num //= base
+
+<span style="color: #888;"># Сумма цифр с условием (например, только ≤ 17)</span>
+summa = 0
+while num:
+    digit = num % base
+    if digit <= 17:
+        summa += digit
+    num //= base</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Отличие от подсчёта количества:</strong> переменная <code>summa</code> накапливает сумму значений цифр. Если условие не нужно — просто убираем <code>if</code>.</p>
+  </div>
+
+  <!-- ==================== ЗНАЧАЩИЕ И НЕЗНАЧАЩИЕ НУЛИ ==================== -->
+  <h2 id="zeros">Значащие и незначащие нули</h2>
+
+  <div class="definition">
+    <p><strong>Значащие нули</strong> — нули, которые являются частью числа и не могут быть отброшены без изменения его значения.</p>
+    <p><strong>Незначащие нули</strong> — нули, добавленные слева от числа для удобства записи. Их можно отбросить, значение числа не изменится.</p>
+  </div>
+
+  <div class="theory-block">
+    <p><strong>Примеры:</strong></p>
+    <ul>
+      <li>1 = 01 = 001 = 0001 — нули слева <strong>незначащие</strong>.</li>
+      <li>1, 10, 100, 1000 — нули справа <strong>значащие</strong>, они меняют порядок числа.</li>
+      <li>В числе 101 все нули — <strong>значащие</strong> (находятся между ненулевыми цифрами).</li>
+    </ul>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 В программировании:</strong> алгоритм подсчёта цифр через деление (<code>while num: ... num //= base</code>) всегда учитывает только <strong>значащие нули</strong>, так как цикл останавливается, когда число становится равным 0. Незначащие нули слева не сохраняются в числовой переменной.</p>
+  </div>
+
+  <!-- ==================== ПРОГРАММНЫЕ ШАБЛОНЫ ==================== -->
+  <div class="extra-block">
+    <span class="extra-label">📖 Программные шаблоны</span>
+    <h2 id="code-templates">Шаблоны кода для задания 14</h2>
+
+    <div class="theory-block">
+      <p>В этом разделе собраны <strong>универсальные программные шаблоны</strong> для решения задач задания 14. Достаточно подставить данные из условия — и программа найдёт ответ.</p>
+    </div>
+
+    <h3>Шаблон 1: Подсчёт цифр в выражении (без неизвестных)</h3>
+    <p><strong>Когда использовать:</strong> дано конкретное арифметическое выражение, нужно найти количество определённых цифр в его записи в заданной системе счисления.</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Что подставить:</span>
+<span style="color: #888;">#   num — значение выражения (вычислить заранее)</span>
+<span style="color: #888;">#   base — основание системы счисления</span>
+<span style="color: #888;">#   target — какую цифру ищем (или условие: > 10, <= 17 и т.д.)</span>
+
+num = 3 * 3125**8 + 2 * 625**7 - 4 * 625**6 + 3 * 125**5 - 2 * 25**4 - 2025
+base = 25
+target = 0  <span style="color: #888;"># ищем нули</span>
+
+count = 0
+while num:
+    if num % base == target:
+        count += 1
+    num //= base
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(count)</pre>
+    </div>
+
+    <h3>Шаблон 2: Выражение с неизвестным x</h3>
+    <p><strong>Когда использовать:</strong> дано выражение с переменной x (целое число в заданном диапазоне), нужно найти x, при котором в записи числа содержится определённое количество цифр.</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Что подставить:</span>
+<span style="color: #888;">#   выражение — формула с x (например, 7**170 + 7**100 - x)</span>
+<span style="color: #888;">#   base — основание системы счисления</span>
+<span style="color: #888;">#   target — искомое количество цифр</span>
+<span style="color: #888;">#   x_range — диапазон значений x (например, range(1, 2031))</span>
+<span style="color: #888;">#   искать максимум → range(...)[::-1], минимум → range(...)</span>
+
+for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 2031)[::-1]:  <span style="color: #888;"># от большего к меньшему</span>
+    num = 7**170 + 7**100 - x
+    count = 0
+    while num:
+        if num % 7 == 0:
+            count += 1
+        num //= 7
+    if count == 71:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(x)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+    </div>
+
+    <h3>Шаблон 3: Выражение с неизвестной цифрой в числе (основание ≤ 36)</h3>
+    <p><strong>Когда использовать:</strong> в числах выражения одна цифра заменена на x (цифра системы счисления с основанием ≤ 36).</p>
+
+    <div class="code-block">
+      <pre>from string import <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a>, <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+alph = <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a> + <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+
+for x in alph[:19][::-1]:  <span style="color: #888;"># 19-ричная, от большего к меньшему</span>
+    n1 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'98897{x}21', 19)
+    n2 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'2{x}923', 19)
+    res = n1 + n2
+    if res % 18 == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(res // 18)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+    </div>
+
+    <h3>Шаблон 4: Выражение с неизвестной цифрой (основание > 36)</h3>
+    <p><strong>Когда использовать:</strong> основание системы счисления больше 36. Перебираем x как целое число от 0 до основания−1, а числа переводим через разряды.</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Пример для основания 150: 51x29₁₅₀ + x023₁₅₀</span>
+<span style="color: #888;"># Разряды числа 51x29: 9·150⁰ + 2·150¹ + x·150² + 1·150³ + 5·150⁴</span>
+<span style="color: #888;"># Разряды числа x023:  3·150⁰ + 2·150¹ + 0·150² + x·150³</span>
+
+for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(150)[::-1]:  <span style="color: #888;"># от большего к меньшему</span>
+    n1 = 5*150**4 + 1*150**3 + x*150**2 + 2*150 + 9
+    n2 = x*150**3 + 0*150**2 + 2*150 + 3
+    res = n1 + n2
+    if res % 149 == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(res // 149)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+    </div>
+
+    <h3>Шаблон 5: Сумма всех цифр (без условия)</h3>
+    <p><strong>Когда использовать:</strong> нужно найти сумму всех цифр в записи числа, без фильтрации.</p>
+
+    <div class="code-block">
+      <pre>num = 5**20 + 5**10 - 5**13 - 5**3
+base = 5
+summa = 0
+while num:
+    summa += num % base
+    num //= base
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(summa)</pre>
+    </div>
+
+    <h3>Шаблон 6: Поиск x по сумме цифр</h3>
+    <p><strong>Когда использовать:</strong> нужно найти x, при котором сумма цифр в записи выражения равна заданному числу.</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Выражение: 27^7 - 3^11 + 36 - x, троичная система, сумма цифр = 22</span>
+for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 10000):
+    num = 27**7 - 3**11 + 36 - x
+    summa = 0
+    while num:
+        summa += num % 3
+        num //= 3
+    if summa == 22:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(x)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+    </div>
+
+    <h3>Шаблон 7: Поиск x с максимальным количеством цифр</h3>
+    <p><strong>Когда использовать:</strong> нужно найти x, при котором количество определённых цифр максимально (а не равно конкретному числу).</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Выражение: 4^210 + 4^110 - x, x ∈ [1, 3000], четверичная система</span>
+<span style="color: #888;"># Найти x с максимальным количеством нулей</span>
+max_count = -1
+best_x = 0
+for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 3001):
+    num = 4**210 + 4**110 - x
+    count = 0
+    while num:
+        if num % 4 == 0:
+            count += 1
+        num //= 4
+    if count > max_count:
+        max_count = count
+        best_x = x
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(best_x)</pre>
+    </div>
+
+    <div class="note-block">
+      <p><strong>💡 Универсальное правило:</strong> для задач с выражением без x — прямое вычисление и подсчёт. Для задач с x — перебор в цикле. Для задач с x в цифре числа — перебор с f-строками (основание ≤ 36) или через разряды (основание > 36). Для задач с суммой цифр — замена <code>count</code> на <code>summa</code>.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» мы разберём 8 задач, охватывающих все типы задания 14: от подсчёта цифр в двоичной записи до выражений с неизвестной цифрой — с программным решением на Python.
+  </div>
+
+</body>
+</html>

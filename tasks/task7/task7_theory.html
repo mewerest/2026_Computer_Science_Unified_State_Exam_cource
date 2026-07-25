@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 7 ЕГЭ: теория кодирования изображений и звука</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .definition strong { color: #4a2a7a; }
+
+    .formula-block {
+      background-color: #fafafa;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      font-size: 1.2rem;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    }
+    .formula-block .formula-desc {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+    }
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      text-align: center;
+    }
+    table tr:nth-child(even) td { background-color: #fafafa; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="task7.html" class="back-link">← К заданию 7</a>
+
+  <h1>🎨 Задание 7 ЕГЭ: кодирование изображений и звука</h1>
+  <p class="subtitle">Теория · Формулы, растровые изображения, звуковые файлы, передача данных</p>
+
+  <!-- ==================== ОБЩИЕ ПРИНЦИПЫ ==================== -->
+  <h2 id="basics">Общие принципы</h2>
+
+  <div class="theory-block">
+    <p>Задание 7 проверяет умение определять <strong>объём памяти</strong>, необходимый для хранения информации, и вычислять <strong>время передачи данных</strong>. Все величины связаны общими формулами — достаточно знать исходные данные и подставить их.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Главный принцип:</strong> вычисления не должны быть громоздкими. Выделяйте во всех множителях степени двойки — тогда всё сведётся к сложению и вычитанию показателей степеней.</p>
+  </div>
+
+  <h3>Перевод единиц измерения в биты</h3>
+  <table>
+    <thead><tr><th>Единица</th><th>Формула перевода в биты</th></tr></thead>
+    <tbody>
+      <tr><td>1 байт</td><td>8 бит = 2³ бит</td></tr>
+      <tr><td>1 Кбайт</td><td>2¹⁰ байт = 2¹³ бит</td></tr>
+      <tr><td>1 Мбайт</td><td>2¹⁰ Кбайт = 2²⁰ байт = 2²³ бит</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== ИЗОБРАЖЕНИЯ ==================== -->
+  <h2 id="images">Работа с изображениями</h2>
+
+  <div class="theory-block">
+    <p>Изображение состоит из <strong>пикселей</strong> — маленьких квадратных точек. Количество пикселей по горизонтали и вертикали определяет <strong>разрешение</strong>. Каждый пиксель имеет свой цвет, который кодируется в модели <strong>RGB</strong> (красный, зелёный, синий).</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task7_theory_1.svg" alt="Изображение 4×2 пикселя">
+    <div class="caption">Изображение размером 4×2 пикселя</div>
+  </div>
+
+  <div class="image-block">
+    <img src="task7_theory_2.webp" alt="Модель RGB">
+    <div class="caption">Модель RGB: каждый пиксель — смесь красного, зелёного и синего</div>
+  </div>
+
+  <h3 id="color-depth">Глубина цвета и формула Хартли</h3>
+
+  <div class="definition">
+    <p><strong>Глубина цвета (i)</strong> — количество бит, используемое для кодирования цвета одного пикселя. Определяет, сколько различных оттенков может отобразить экран.</p>
+  </div>
+
+  <div class="formula-block">
+    N = 2ⁱ
+    <div class="formula-desc">
+      <strong>N</strong> — количество цветов в палитре<br>
+      <strong>i</strong> — глубина цвета (вес одного пикселя в битах)<br><br>
+      Из этой формулы: <strong>i = log₂N</strong> (формула Хартли)
+    </div>
+  </div>
+
+  <div class="theory-block">
+    <p><strong>Пример:</strong> в модели RGB используется 24-битное кодирование: по 8 бит на каждый из трёх каналов. Один пиксель весит 3 × 8 = 24 бита. Количество цветов: 2²⁴ ≈ 16,7 миллионов.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task7_theory_3.svg" alt="RGB-кодирование: 24 бита на пиксель">
+    <div class="caption">24-битное кодирование RGB: по 8 бит на канал</div>
+  </div>
+
+  <div class="info-block" id="alpha-channel">
+    <p><strong>🔍 Прозрачность (альфа-канал):</strong> иногда вместе с цветом хранится <strong>степень прозрачности</strong> пикселя. В этом случае глубина пикселя складывается из битов цвета и битов прозрачности: <strong>i = i<sub>цвет</sub> + i<sub>прозрачность</sub></strong>. В формуле объёма V = h·w·i используется суммарное значение i.</p>
+  </div>
+
+  <div class="info-block" id="parity-bit">
+    <p><strong>🔍 Бит контроля чётности:</strong> иногда вместе с цветом хранятся дополнительные служебные биты. Например, «на каждые 2 бита цвета дописывается 1 бит контроля чётности». Это означает, что к битам цвета добавляется ещё <strong>i<sub>цвет</sub> / 2</strong> дополнительных бит (с округлением вверх, если число бит цвета нечётное). Полная глубина пикселя: <strong>i<sub>полн</sub> = i<sub>цвет</sub> + ⌈i<sub>цвет</sub> / 2⌉</strong>. В формуле объёма V = h·w·i используется полная глубина i<sub>полн</sub>.</p>
+  </div>
+
+  <h3 id="image-volume">Объём растрового изображения</h3>
+
+  <div class="formula-block">
+    V = h · w · i
+    <div class="formula-desc">
+      <strong>V</strong> — объём изображения в битах<br>
+      <strong>h</strong> — высота в пикселях<br>
+      <strong>w</strong> — ширина в пикселях<br>
+      <strong>i</strong> — вес одного пикселя (полная глубина) в битах
+    </div>
+  </div>
+
+  <!-- ==================== ПЕРЕДАЧА ДАННЫХ ==================== -->
+  <h2 id="transfer">Передача данных</h2>
+
+  <div class="formula-block">
+    V = q · t
+    <div class="formula-desc">
+      <strong>V</strong> — объём файла в битах<br>
+      <strong>q</strong> — скорость передачи данных (бит/с)<br>
+      <strong>t</strong> — время передачи в секундах<br><br>
+      Следствия: <strong>t = V / q</strong>, <strong>q = V / t</strong>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    <p>Если в условии говорится о <strong>сжатии на N процентов</strong>, итоговый объём файла уменьшается на N%: <strong>V<sub>сжат</sub> = V × (1 − N/100)</strong>.</p>
+  </div>
+
+  <!-- ==================== ЗВУК ==================== -->
+  <h2 id="sound">Работа со звуковыми файлами</h2>
+
+  <div class="theory-block">
+    <p>Звук — это волна, распространяющаяся в пространстве. Чтобы компьютер мог с ней работать, аналоговый сигнал превращают в цифровой с помощью <strong>дискретизации</strong>.</p>
+  </div>
+
+  <h3 id="discretization">Дискретизация и квантование</h3>
+
+  <div class="definition">
+    <p><strong>Дискретизация</strong> — процесс преобразования непрерывного аналогового сигнала в набор числовых значений (отсчётов), взятых через равные промежутки времени.</p>
+  </div>
+
+  <ul>
+    <li><strong>Частота дискретизации (η)</strong> — количество отсчётов в секунду. Измеряется в герцах (Гц). Чем выше частота, тем точнее сохранён звук. Типичные значения: 44,1 кГц, 48 кГц, 96 кГц.</li>
+    <li><strong>Квантование</strong> — округление значения амплитуды каждого отсчёта до ближайшего уровня из заданного набора. Количество уровней определяет <strong>глубину кодирования (i)</strong>: 8 бит → 256 уровней, 16 бит → 65 536 уровней.</li>
+  </ul>
+
+  <div class="image-block">
+    <img src="task7_theory_4.svg" alt="Дискретизация звукового сигнала">
+    <div class="caption">Дискретизация: синий график — аналоговый сигнал, точки — отсчёты через равные промежутки</div>
+  </div>
+
+  <div class="info-block" id="levels-to-bits">
+    <p><strong>🔍 Уровни дискретизации вместо битов:</strong> иногда вместо глубины кодирования в битах указывают <strong>количество уровней дискретизации</strong>. Это аналог количества цветов в палитре: <strong>N = 2ⁱ</strong>. Например, «16 уровней» означает i = log₂16 = <strong>4 бита</strong>. «2²⁴ уровней» — i = <strong>24 бита</strong>. Увидев количество уровней, сразу переводите его в биты по формуле Хартли.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Аналогия:</strong> глубина кодирования для звука — то же, что глубина цвета для изображения. Это «вес» одного отсчёта звукового сигнала в битах.</p>
+  </div>
+
+  <h3 id="channels">Количество каналов</h3>
+
+  <ul>
+    <li><strong>Моно</strong> — 1 канал (один источник звука).</li>
+    <li><strong>Стерео</strong> — 2 канала (левый и правый, объёмный звук).</li>
+    <li><strong>Квадро</strong> — 4 канала.</li>
+  </ul>
+
+  <p>Чем больше каналов, тем больше весит файл: каждый канал — это независимая аудиодорожка.</p>
+
+  <h3 id="sound-volume">Объём звукового файла</h3>
+
+  <div class="formula-block">
+    V = k · t · i · η
+    <div class="formula-desc">
+      <strong>V</strong> — объём звукового файла в битах<br>
+      <strong>k</strong> — количество каналов (1, 2 или 4)<br>
+      <strong>t</strong> — длительность записи в секундах<br>
+      <strong>i</strong> — глубина кодирования в битах (разрешение)<br>
+      <strong>η</strong> — частота дискретизации в герцах
+    </div>
+  </div>
+
+  <div class="info-block" id="tempo">
+    <p><strong>🔍 Темп воспроизведения:</strong> изменение темпа влияет на <strong>длительность</strong> звучания. Если темп уменьшен в k раз — длительность увеличивается в k раз (запись звучит медленнее и дольше). Если темп увеличен в k раз — длительность уменьшается. Новый объём вычисляется с учётом изменения длительности: <strong>V<sub>нов</sub> = k<sub>нов</sub> · t<sub>нов</sub> · i<sub>нов</sub> · η<sub>нов</sub></strong>.</p>
+  </div>
+
+  <!-- ==================== ПРОПОРЦИИ ==================== -->
+  <h2 id="proportions">Метод пропорций для задач с изменениями параметров</h2>
+
+  <div class="theory-block">
+    <p>Если параметры файла меняются независимо, можно не пересчитывать всё через формулы, а использовать <strong>метод пропорций</strong>: каждый параметр изменяет объём во столько же раз.</p>
+    <p><strong>Алгоритм:</strong> берём исходный объём и последовательно умножаем или делим его на коэффициенты изменения каждого параметра.</p>
+  </div>
+
+  <div class="formula-block">
+    V<sub>нов</sub> = V<sub>стар</sub> × (k<sub>нов</sub> / k<sub>стар</sub>) × (t<sub>нов</sub> / t<sub>стар</sub>) × (i<sub>нов</sub> / i<sub>стар</sub>) × (η<sub>нов</sub> / η<sub>стар</sub>)
+    <div class="formula-desc">
+      Если какой-то параметр не изменился — его коэффициент равен 1, и его можно не учитывать. Метод работает и для изображений (вместо k, t, η — h, w, i), и для звука.
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» мы разберём задачи, охватывающие все типы задания 7: от простых вычислений объёма до задач с прозрачностью, битами чётности, темпом воспроизведения и уровнями дискретизации.
+  </div>
+
+</body>
+</html>

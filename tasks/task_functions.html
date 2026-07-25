@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Справочник функций для задач ЕГЭ</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --accent-light: #eaf3f9;
+      --border: #e0e0e0;
+      --radius: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .subtitle {
+      color: #555;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .index-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .index-nav a {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      background-color: var(--accent-light);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-width: 2rem;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+
+    .index-nav a:hover {
+      background-color: #c0d8ec;
+    }
+
+    .category {
+      margin-top: 2rem;
+    }
+
+    .category h2 {
+      font-size: 1.3rem;
+      color: var(--accent);
+      padding: 0.3rem 0.6rem;
+      background-color: var(--accent-light);
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .func-card {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin-bottom: 0.8rem;
+      scroll-margin-top: 1rem;
+    }
+
+    .func-card h3 {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 1.05rem;
+      color: #1a5f8a;
+      margin-bottom: 0.3rem;
+    }
+
+    .func-card .syntax {
+      background-color: #f4f4f4;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+      border: 1px solid #ddd;
+    }
+
+    .func-card .desc {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.3rem;
+    }
+
+    .func-card .example {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 0.4rem 0.7rem;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .func-card .see-also {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.3rem;
+    }
+
+    .func-card .see-also a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .func-card .see-also a:hover {
+      text-decoration: underline;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.7rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="tasks_index.html" class="back-link">← К списку заданий</a>
+
+  <h1>📖 Справочник функций для задач ЕГЭ</h1>
+  <p class="subtitle">Функции и модули Python, используемые при программном решении заданий</p>
+
+  <div class="note-block">
+    <p><strong>💡 Как пользоваться:</strong> здесь собраны функции из сторонних модулей (<code>itertools</code>,
+      <code>math</code>, <code>sys</code>, <code>functools</code> и др.), которые применяются в программных решениях задач ЕГЭ. Встроенные функции Python
+      (<code>print()</code>, <code>len()</code>, <code>range()</code> и др.) находятся в <a
+        href="../base_of_programming/functions_descriptions.html">базовом справочнике</a>. Справочник будет пополняться
+      по мере разбора новых заданий.</p>
+  </div>
+
+  <div class="index-nav">
+    <a href="#cat-itertools">itertools</a>
+    <a href="#cat-math">math</a>
+    <a href="#cat-sys">sys</a>
+    <a href="#cat-functools">functools</a>
+  </div>
+
+  <!-- ==================== ITERTOOLS ==================== -->
+  <div class="category" id="cat-itertools">
+    <h2>📦 Модуль itertools</h2>
+
+    <div class="func-card" id="func-permutations">
+      <h3>itertools.permutations()</h3>
+      <div class="syntax">from itertools import permutations<br>permutations(iterable, r=None)</div>
+      <div class="desc">Генерирует <strong>все возможные перестановки</strong> элементов переданной последовательности.
+        Возвращает итератор, который можно обойти в цикле <code>for</code> или преобразовать в список. Если
+        <code>r</code> не указан — длина перестановки равна длине исходной последовательности. Если указан —
+        перестановки будут длиной <code>r</code>.</div>
+      <div class="example">from itertools import permutations
+
+# Все перестановки трёх букв (3! = 6 вариантов)
+for p in permutations('ABC'):
+    print(p)
+# ('A', 'B', 'C')
+# ('A', 'C', 'B')
+# ('B', 'A', 'C')
+# ('B', 'C', 'A')
+# ('C', 'A', 'B')
+# ('C', 'B', 'A')
+
+# Перестановки по 2 элемента из 3
+for p in permutations('ABC', 2):
+    print(p)
+# ('A', 'B'), ('A', 'C'), ('B', 'A'),
+# ('B', 'C'), ('C', 'A'), ('C', 'B')</div>
+      <div class="see-also">Используется в: <a href="task1/task1.html">Задание 1</a> — перебор всех возможных сопоставлений
+        букв вершин с номерами.</div>
+    </div>
+
+    <div class="func-card" id="func-product">
+      <h3>itertools.product()</h3>
+      <div class="syntax">from itertools import product<br>product(*iterables, repeat=1)</div>
+      <div class="desc">Генерирует <strong>декартово произведение</strong> — все возможные комбинации элементов из переданных последовательностей. Если указан <code>repeat</code>, то каждая последовательность повторяется указанное число раз. Возвращает итератор.</div>
+      <div class="example">from itertools import product
+
+# Все комбинации 0 и 1 для трёх переменных (2³ = 8 вариантов)
+for p in product([0, 1], repeat=3):
+    print(p)
+# (0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1),
+# (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)
+
+# Произведение двух списков
+for p in product('AB', 'xy'):
+    print(p)
+# ('A', 'x'), ('A', 'y'), ('B', 'x'), ('B', 'y')</div>
+      <div class="see-also">Используется в: <a href="task2/task2.html">Задание 2</a> — перебор всех возможных значений для неизвестных ячеек таблицы истинности.</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== MATH ==================== -->
+  <div class="category" id="cat-math">
+    <h2>📐 Модуль math</h2>
+
+    <div class="func-card" id="func-ceil">
+      <h3>math.ceil()</h3>
+      <div class="syntax">from math import ceil<br>ceil(x)</div>
+      <div class="desc">Округляет число <strong>вверх</strong> до ближайшего целого. Аналог математического округления «в потолок» (ceiling). Используется, когда нужно найти минимальное целое, не меньшее заданного.</div>
+      <div class="example">from math import ceil
+
+ceil(3.14)    # 4
+ceil(5.0)     # 5
+ceil(-2.3)    # -2
+ceil(11 / 8)  # 2 — для перевода бит в байты (округление вверх)</div>
+      <div class="see-also">Используется в: <a href="task11/task11.html">Задание 11</a> — округление веса сообщения до целого числа байт; <a href="task14/task14.html">Задание 14</a> — округление при вычислении количества бит.</div>
+    </div>
+
+    <div class="func-card" id="func-log2">
+      <h3>math.log2()</h3>
+      <div class="syntax">from math import log2<br>log2(x)</div>
+      <div class="desc">Вычисляет <strong>логарифм по основанию 2</strong> от числа x. Используется в формуле Хартли для определения веса символа: i = ⌈log₂N⌉.</div>
+      <div class="example">from math import log2, ceil
+
+log2(8)       # 3.0 (ровно, так как 2³ = 8)
+log2(10)      # 3.321...
+ceil(log2(36))  # 6 — минимальное число бит для кодирования 36 символов</div>
+      <div class="see-also">Используется в: <a href="task11/task11.html">Задание 11</a> — вычисление веса символа через мощность алфавита; <a href="task7/task7.html">Задание 7</a> — вычисление глубины цвета.</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== SYS ==================== -->
+  <div class="category" id="cat-sys">
+    <h2>⚙️ Модуль sys</h2>
+
+    <div class="func-card" id="func-getrecursionlimit">
+      <h3>sys.getrecursionlimit()</h3>
+      <div class="syntax">import sys<br>sys.getrecursionlimit()</div>
+      <div class="desc">Возвращает <strong>текущую максимальную глубину рекурсии</strong> — максимальное количество вложенных вызовов функций, которое разрешено интерпретатором Python. По умолчанию — <strong>1000</strong>.</div>
+      <div class="example">import sys
+print(sys.getrecursionlimit())  # 1000</div>
+      <div class="see-also">См. также: <a href="#func-setrecursionlimit">sys.setrecursionlimit()</a></div>
+    </div>
+
+    <div class="func-card" id="func-setrecursionlimit">
+      <h3>sys.setrecursionlimit()</h3>
+      <div class="syntax">import sys<br>sys.setrecursionlimit(limit)</div>
+      <div class="desc">Устанавливает <strong>новую максимальную глубину рекурсии</strong>. Принимает целое число — новый лимит. Используется, когда стандартного лимита в 1000 вызовов недостаточно для вычисления рекурсивной функции. <strong>Важно:</strong> слишком большое значение может привести к переполнению стека и аварийному завершению программы.</div>
+      <div class="example">import sys
+sys.setrecursionlimit(2025)  # увеличиваем до 2025</div>
+      <div class="see-also">См. также: <a href="#func-getrecursionlimit">sys.getrecursionlimit()</a> · Используется в: <a href="task16/task16.html">Задание 16</a> — решение рекурсивных задач с большой глубиной.</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== FUNCTOOLS ==================== -->
+  <div class="category" id="cat-functools">
+    <h2>🧩 Модуль functools</h2>
+
+    <div class="func-card" id="func-lru-cache">
+      <h3>@lru_cache</h3>
+      <div class="syntax">from functools import lru_cache<br>@lru_cache(maxsize=128, typed=False)</div>
+      <div class="desc">Декоратор для <strong>мемоизации</strong> — автоматического сохранения результатов вызовов функции. Когда декорированная функция вызывается с теми же аргументами, результат берётся из кеша, а не вычисляется заново. <code>maxsize</code> — максимальное количество сохраняемых результатов (None — без ограничений). <code>typed</code> — если True, аргументы разных типов (1 и 1.0) кешируются раздельно.</div>
+      <div class="example">from functools import lru_cache
+
+@lru_cache()
+def fib(n):
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print(fib(100))  # работает мгновенно, без декоратора — часы</div>
+      <div class="see-also">Используется в: <a href="task16/task16.html">Задание 16</a> — решение рекурсивных задач с мемоизацией.</div>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <p style="text-align: center; color: #999; font-size: 0.9rem;">Справочник будет пополняться по мере разбора новых
+    заданий ЕГЭ</p>
+
+</body>
+
+</html>

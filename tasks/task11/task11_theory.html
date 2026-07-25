@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 11 ЕГЭ: теория кодирования текстовой информации</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .definition strong { color: #4a2a7a; }
+
+    .formula-block {
+      background-color: #fafafa;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      font-size: 1.2rem;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    }
+
+    .formula-block .formula-desc {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .extra-block {
+      background-color: #fdfaf0;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .extra-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+    .extra-block .extra-label {
+      display: inline-block;
+      background-color: #fff3cd;
+      color: #8a6d00;
+      padding: 0.2rem 0.7rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+    }
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    table tr:nth-child(even) td { background-color: #fafafa; }
+
+    .rounding-table th { background-color: #8a6d00; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="task11.html" class="back-link">← К заданию 11</a>
+
+  <h1>📝 Задание 11 ЕГЭ: кодирование текстовой информации</h1>
+  <p class="subtitle">Теория · Двоичная система, биты и байты, формулы Хартли, объём текстового сообщения, составные идентификаторы, программные шаблоны</p>
+
+  <!-- ==================== ДВОИЧНАЯ СИСТЕМА ==================== -->
+  <h2 id="binary">Двоичная система счисления и хранение информации</h2>
+
+  <div class="theory-block">
+    <p>Любой современный компьютер — <strong>цифровое устройство</strong>. В отличие от аналоговых величин, которые могут принимать бесконечное множество значений, цифровые оперируют только фиксированным набором состояний. Основой цифрового мира стали два символа — <strong>0 и 1</strong>. На деле это условные обозначения состояний электрического сигнала: напряжение выше заданного порога или ниже его.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task11_theory_1.webp" alt="Цифровой сигнал: высокий уровень — 1, низкий — 0">
+    <div class="caption">Два состояния цифрового сигнала: высокий уровень (1) и низкий (0)</div>
+  </div>
+
+  <div class="definition">
+    <p><strong>Бит</strong> — минимальная единица измерения информации. Один бит может принимать одно из двух значений: 0 или 1.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>С помощью комбинации нулей и единиц можно закодировать любое значение. Например, оценки от 1 до 5 в двоичной системе: 1 → 1, 2 → 10, 3 → 11, 4 → 100, 5 → 101. Для хранения всех пяти значений нужно минимум <strong>3 бита</strong> — иначе максимальное значение не поместится.</p>
+    <p>Если выделено больше бит, чем нужно, старшие разряды заполняются <strong>незначащими нулями</strong>: число 3 (11₂) в трёх битах запишется как <strong>011</strong>.</p>
+  </div>
+
+  <div class="image-block">
+    <img src="task11_theory_2.webp" alt="Три бита и формула Хартли N = 2^i">
+    <div class="caption">Три бита позволяют закодировать N = 2³ = 8 различных значений</div>
+  </div>
+
+  <!-- ==================== ФОРМУЛА ХАРТЛИ ==================== -->
+  <h2 id="hartley">Формула Хартли</h2>
+
+  <div class="formula-block">
+    N = 2ⁱ
+    <div class="formula-desc">
+      <strong>N</strong> — количество различных вариантов кодирования (мощность алфавита)<br>
+      <strong>i</strong> — используемое количество бит (вес одного символа)<br><br>
+      Следствие: <strong>i = log₂N</strong>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    <p><strong>Пример:</strong> с помощью 3 бит можно закодировать N = 2³ = <strong>8</strong> различных символов (числа от 0 до 7). Если нужно закодировать 5 символов, то i = log₂5 ≈ 2,322. Но количество бит должно быть целым! Округляем <strong>всегда вверх</strong>: i = 3 бита.</p>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Правило округления при вычислении i:</strong> если результат log₂N — дробный, всегда округляем <strong>в большую сторону</strong>. Иначе не все символы алфавита поместятся в отведённое количество бит.</p>
+  </div>
+
+  <div class="info-block">
+    <p><strong>🔍 Мощность алфавита (N)</strong> — количество символов, которые могут использоваться для записи сообщения. Алфавит может включать цифры, буквы, специальные символы. Например, алфавит из 10 цифр + 52 латинских букв + 963 спецсимволов имеет мощность N = 1025.</p>
+  </div>
+
+  <!-- ==================== КОДИРОВАНИЕ ЧИСЕЛ ==================== -->
+  <h2 id="number-encoding">Кодирование чисел (диапазонов)</h2>
+
+  <div class="theory-block">
+    <p>Иногда в задании нужно закодировать не символ алфавита, а <strong>число из заданного диапазона</strong>. Например, «номер подразделения — целое число от 1 до 1200». В этом случае:</p>
+    <ol>
+      <li>Находим <strong>количество возможных значений</strong>: N = верхняя_граница − нижняя_граница + 1.</li>
+      <li>Вычисляем вес в битах: i = ⌈log₂N⌉ (округляем вверх).</li>
+      <li>Далее — как с обычным алфавитом: переводим в байты (делим на 8, округляем вверх).</li>
+    </ol>
+  </div>
+
+  <div class="example-block" style="background-color: #fafafa; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.3rem; margin: 1rem 0;">
+    <div class="example-title" style="font-weight: 700; color: #555; margin-bottom: 0.5rem;">📖 Пример:</div>
+    <p>Номер подразделения от 1 до 1200. Количество значений: N = 1200 − 1 + 1 = <strong>1200</strong>.<br>
+    log₂1200 ≈ 10,23 → i = <strong>11</strong> бит.<br>
+    В байтах: 11 / 8 = 1,375 → <strong>2</strong> байта (округляем вверх).</p>
+  </div>
+
+  <!-- ==================== БИТЫ И БАЙТЫ ==================== -->
+  <h2 id="bytes">Биты, байты и единицы измерения</h2>
+
+  <div class="definition">
+    <p><strong>Байт</strong> — минимальная адресуемая единица памяти. На современных компьютерах 1 байт = <strong>8 бит</strong>. Нельзя сохранить «3 бита информации» — компьютер выделит целый байт.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Единица</th><th>Формула перевода в биты</th></tr></thead>
+    <tbody>
+      <tr><td>1 байт</td><td>8 бит = 2³ бит</td></tr>
+      <tr><td>1 Кбайт</td><td>2¹⁰ байт = 2¹³ бит</td></tr>
+      <tr><td>1 Мбайт</td><td>2²⁰ байт = 2²³ бит</td></tr>
+      <tr><td>1 Гбайт</td><td>2³⁰ байт = 2³³ бит</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Бит (b) и байт (B) — разные единицы!</strong> Бит обозначается маленькой буквой «b», байт — большой «B». Интернет-провайдеры указывают скорость в битах/с (Мбит/с), а объёмы файлов — в байтах (Мбайт). 100 Мбит/с ≈ 12,5 Мбайт/с.</p>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Кибибайты и гибибайты:</strong> в международной практике приставки «кило», «мега» означают умножение на 1000. Для двоичных единиц (1024) ввели отдельные приставки: кибибайт (KiB), мебибайт (MiB), гибибайт (GiB). В ЕГЭ и российских учебниках принято использовать «Кбайт» = 1024 байта.</p>
+  </div>
+
+  <!-- ==================== ОБЪЁМ ТЕКСТОВОГО СООБЩЕНИЯ ==================== -->
+  <h2 id="text-volume">Объём текстового сообщения</h2>
+
+  <div class="formula-block">
+    I = L · i
+    <div class="formula-desc">
+      <strong>I</strong> — объём сообщения в битах<br>
+      <strong>L</strong> — длина сообщения (количество символов)<br>
+      <strong>i</strong> — вес одного символа в битах
+    </div>
+  </div>
+
+  <div class="formula-block">
+    L = I / i
+    <div class="formula-desc">
+      Если нужно найти <strong>максимально возможную длину</strong> сообщения — выражаем L из формулы объёма.
+    </div>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Правило округления L:</strong> если при вычислении длины сообщения получилось дробное число, округляем <strong>в меньшую сторону</strong>. Например, если I/i = 2,322, то вместить 3 символа не получится — берём 2.</p>
+  </div>
+
+  <!-- ==================== СОСТАВНЫЕ ИДЕНТИФИКАТОРЫ ==================== -->
+  <h2 id="composite">Составные идентификаторы (несколько полей)</h2>
+
+  <div class="theory-block">
+    <p>В некоторых задачах идентификатор состоит из <strong>нескольких независимых частей</strong>. Например: личный код + номер подразделения + дополнительная информация. Каждая часть кодируется <strong>отдельно</strong>:</p>
+    <ol>
+      <li>Для каждой части определяем свой алфавит (или диапазон чисел) и вычисляем свой вес символа i.</li>
+      <li>Каждая часть округляется до целого числа байт <strong>независимо</strong>.</li>
+      <li><strong>Общий объём = сумма объёмов всех частей.</strong></li>
+    </ol>
+  </div>
+
+  <div class="formula-block">
+    I<sub>общ</sub> = I₁ + I₂ + ... + I<sub>k</sub>
+    <div class="formula-desc">
+      <strong>I₁, I₂, ..., I<sub>k</sub></strong> — объёмы отдельных полей в байтах (каждое округлено вверх).<br>
+      Если одно из полей — число из диапазона [a, b], его мощность N = b − a + 1, вес i = ⌈log₂N⌉.
+    </div>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Ключевая особенность:</strong> нельзя сложить все символы и биты, а потом поделить на 8. Каждое поле округляется до целого числа байт <strong>по отдельности</strong>, потому что в памяти они хранятся независимо.</p>
+  </div>
+
+  <!-- ==================== ПРАВИЛА ОКРУГЛЕНИЯ ==================== -->
+  <h2 id="rounding">Правила округления в задании 11</h2>
+
+  <div class="theory-block">
+    <p>При решении задания 11 постоянно возникают дробные числа, которые нужно правильно округлять. Все правила собраны в таблице:</p>
+  </div>
+
+  <table class="rounding-table">
+    <thead><tr><th>Что вычисляем</th><th>Куда округляем</th><th>Почему</th></tr></thead>
+    <tbody>
+      <tr><td>Вес символа i = log₂N</td><td>⬆ Вверх</td><td>Иначе не все символы алфавита поместятся</td></tr>
+      <tr><td>Вес сообщения I (если «не более» памяти)</td><td>⬇ Вниз</td><td>Иначе превысим отведённый объём</td></tr>
+      <tr><td>Вес сообщения I (если «более» / «не менее» памяти)</td><td>⬆ Вверх</td><td>Иначе не удовлетворим условию «более»</td></tr>
+      <tr><td>Длина сообщения L</td><td>⬇ Вниз</td><td>Дробное количество символов не вместить</td></tr>
+      <tr><td>Вес сообщения в байтах (всегда)</td><td>⬆ Вверх</td><td>Память выделяется целыми байтами</td></tr>
+      <tr><td><strong>Каждое поле составного идентификатора</strong></td><td>⬆ Вверх (независимо)</td><td>Поля хранятся раздельно, каждое в целых байтах</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-block">
+    <p><strong>💡 Ключевые слова в условии:</strong></p>
+    <ul>
+      <li><strong>«не более»</strong> — округляем объём сообщения <strong>вниз</strong> (иначе превысим лимит).</li>
+      <li><strong>«более» / «не менее»</strong> — округляем объём сообщения <strong>вверх</strong> (нужно больше указанного порога).</li>
+      <li><strong>«номер подразделения кодируется независимо»</strong> — это составной идентификатор, каждое поле считаем отдельно.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== МИНИМАЛЬНАЯ И МАКСИМАЛЬНАЯ МОЩНОСТЬ ==================== -->
+  <h2 id="min-max-power">Минимальная и максимальная мощность алфавита</h2>
+
+  <div class="theory-block">
+    <p>Если по условию найден вес символа i бит, то:</p>
+    <ul>
+      <li><strong>Максимальная мощность:</strong> N<sub>max</sub> = 2ⁱ</li>
+      <li><strong>Минимальная мощность:</strong> N<sub>min</sub> = 2ⁱ⁻¹ + 1</li>
+    </ul>
+    <p>Для минимальной мощности: берём предыдущую степень двойки и прибавляем 1 — ровно столько, чтобы «перешагнуть» в следующий бит.</p>
+  </div>
+
+  <div class="info-block">
+    <p><strong>🔍 Пример:</strong> если i = 8 бит, то N<sub>max</sub> = 256, N<sub>min</sub> = 2⁷ + 1 = 129. Число 129 уже требует 8 бит для кодирования (128 ещё помещается в 7 бит).</p>
+  </div>
+
+  <!-- ==================== ОБРАТНЫЕ ЗАДАЧИ ==================== -->
+  <h2 id="reverse">Обратные задачи: количество пользователей</h2>
+
+  <div class="theory-block">
+    <p>Иногда нужно найти не объём, а <strong>количество объектов</strong> (пользователей, номеров, идентификаторов), которое можно сохранить в отведённом объёме памяти. Алгоритм:</p>
+    <ol>
+      <li>Вычисляем объём <strong>одного</strong> объекта в байтах (I₁) — как обычно, через длину и алфавит.</li>
+      <li>Добавляем дополнительную информацию (если есть) — тоже в байтах, округлённую вверх.</li>
+      <li>Делим <strong>общий отведённый объём</strong> на объём одного объекта: Q = V<sub>общ</sub> / I₁.</li>
+      <li>Округляем <strong>вниз</strong> — дробное количество объектов не бывает.</li>
+    </ol>
+  </div>
+
+  <div class="formula-block">
+    Q = ⌊V<sub>общ</sub> / I₁⌋
+    <div class="formula-desc">
+      <strong>Q</strong> — максимальное количество объектов (округляем вниз)<br>
+      <strong>V<sub>общ</sub></strong> — общий отведённый объём памяти<br>
+      <strong>I₁</strong> — объём одного объекта в тех же единицах (байты, Кбайты)
+    </div>
+  </div>
+
+  <!-- ==================== ПРОГРАММНЫЕ ШАБЛОНЫ ==================== -->
+  <div class="extra-block">
+    <span class="extra-label">📖 Программные шаблоны</span>
+    <h2 id="code-templates">Шаблоны кода для задания 11</h2>
+
+    <div class="theory-block">
+      <p>В этом разделе собраны <strong>универсальные программные шаблоны</strong> для решения задач задания 11. Достаточно подставить данные из условия — и программа найдёт ответ. Все шаблоны используют функции из модуля <code>math</code>: <a href="../task_functions.html#func-ceil" class="func-link" target="_blank"><code>ceil()</code></a> (округление вверх) и <a href="../task_functions.html#func-log2" class="func-link" target="_blank"><code>log2()</code></a> (логарифм по основанию 2).</p>
+    </div>
+
+    <h3>Шаблон 1: Мощность алфавита</h3>
+    <p><strong>Когда использовать:</strong> известны длина сообщения, количество сообщений и ограничение на общий объём. Нужно найти <strong>минимальную мощность алфавита</strong>.</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Что подставить:</span>
+<span style="color: #888;">#   L — длина одного сообщения (символов)</span>
+<span style="color: #888;">#   Q — количество сообщений</span>
+<span style="color: #888;">#   V_lim — ограничение на общий объём (байт)</span>
+<span style="color: #888;">#   Условие: > (более) или < (не более) — выбрать нужное в if</span>
+
+from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+L = 261
+Q = 252_500
+V_lim = 32 * 1024 * 1024  <span style="color: #888;"># перевод Мбайт → байты</span>
+
+for n in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000):
+    i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(n))
+    V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8)
+    V_all = V1 * Q
+    if V_all > V_lim:  <span style="color: #888;"># > для «более», < для «не более»</span>
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(n)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+    </div>
+
+    <h3>Шаблон 2: Длина сообщения</h3>
+    <p><strong>Когда использовать:</strong> известны мощность алфавита, количество сообщений и ограничение на общий объём. Нужно найти <strong>минимальную длину</strong> сообщения.</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Что подставить:</span>
+<span style="color: #888;">#   N — мощность алфавита (сумма всех символов)</span>
+<span style="color: #888;">#   Q — количество сообщений</span>
+<span style="color: #888;">#   V_lim — ограничение на общий объём (байт)</span>
+<span style="color: #888;">#   Условие: > (более) или < (не более) — выбрать нужное в if</span>
+
+from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+N = 10 + 26 + 496  <span style="color: #888;"># мощность алфавита</span>
+i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N))
+Q = 725
+V_lim = 353 * 1024  <span style="color: #888;"># перевод Кбайт → байты</span>
+
+for L in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000):
+    V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8)
+    V_all = V1 * Q
+    if V_all > V_lim:  <span style="color: #888;"># > для «более», < для «не более»</span>
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(L)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+    </div>
+
+    <h3>Шаблон 3: Количество пользователей</h3>
+    <p><strong>Когда использовать:</strong> известны параметры пароля, дополнительная информация и общий объём. Нужно найти <strong>максимальное количество пользователей</strong>.</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Что подставить:</span>
+<span style="color: #888;">#   L — длина пароля (символов)</span>
+<span style="color: #888;">#   N — мощность алфавита</span>
+<span style="color: #888;">#   extra — доп. информация на одного пользователя (байт)</span>
+<span style="color: #888;">#   V_total — общий доступный объём (байт)</span>
+
+from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+L = 9
+N = 26 * 2 + 10  <span style="color: #888;"># буквы обоих регистров + цифры</span>
+i = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N))
+V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((L * i) / 8) + 18  <span style="color: #888;"># пароль + доп. информация</span>
+V_total = 1024  <span style="color: #888;"># 1 Кбайт = 1024 байта</span>
+
+Q = V_total // V1  <span style="color: #888;"># целочисленное деление (округление вниз)</span>
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(Q)</pre>
+    </div>
+
+    <h3>Шаблон 4: Составной идентификатор</h3>
+    <p><strong>Когда использовать:</strong> идентификатор состоит из нескольких полей, каждое кодируется независимо. Нужно найти <strong>объём одной из частей</strong>.</p>
+
+    <div class="code-block">
+      <pre><span style="color: #888;"># Что подставить:</span>
+<span style="color: #888;">#   Для каждого поля: длина (L), мощность алфавита (N)</span>
+<span style="color: #888;">#     или диапазон чисел [a, b] → N = b - a + 1</span>
+<span style="color: #888;">#   V_total — общий объём на один идентификатор (байт)</span>
+<span style="color: #888;">#   Найти: V_extra = V_total - V₁ - V₂ - ...</span>
+
+from math import <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>, <a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>
+
+<span style="color: #888;"># Поле 1: личный код</span>
+N1 = 26 * 2 + 10 + 10  <span style="color: #888;"># буквы обоих регистров + цифры + спецсимволы</span>
+i1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N1))
+V1 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>((17 * i1) / 8)
+
+<span style="color: #888;"># Поле 2: номер подразделения [1, 1200]</span>
+N2 = 1200  <span style="color: #888;"># b - a + 1 = 1200 - 1 + 1</span>
+i2 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(<a href="../task_functions.html#func-log2" class="func-link" target="_blank">log2</a>(N2))
+V2 = <a href="../task_functions.html#func-ceil" class="func-link" target="_blank">ceil</a>(i2 / 8)
+
+V_total = 48  <span style="color: #888;"># всего байт на пропуск</span>
+V_extra = V_total - V1 - V2
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(V_extra)</pre>
+    </div>
+
+    <div class="note-block">
+      <p><strong>💡 Универсальное правило для всех шаблонов:</strong> если в условии «не более» — используйте знак <code>&lt;</code> (или <code>&lt;=</code> для нестрогого). Если «более» / «не менее» — знак <code>&gt;</code> (или <code>&gt;=</code>). В задачах на количество пользователей — целочисленное деление <code>//</code> (оно автоматически округляет вниз).</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» мы разберём все типы заданий 11: длину номера, объём памяти, мощность алфавита, составные идентификаторы и обратные задачи — с аналитическим и программным решением.
+  </div>
+
+</body>
+</html>

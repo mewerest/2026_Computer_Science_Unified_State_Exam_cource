@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 14 ЕГЭ — разбор и практика</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .theory-link {
+      display: inline-block;
+      margin-bottom: 1.8rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: 8px;
+      color: #4a2a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+    .theory-link:hover { background-color: #e8ddf5; }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .task-full {
+      background-color: #fefefe;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+    }
+    .task-full .task-label {
+      font-weight: 700;
+      color: #888;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .task-brief {
+      background-color: #f9f9f9;
+      border-left: 3px solid var(--accent);
+      padding: 0.6rem 1rem;
+      margin: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    .task-brief strong { color: var(--accent); }
+
+    .tab-container { margin: 1rem 0; }
+    .tab-buttons {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--accent);
+    }
+    .tab-btn {
+      padding: 0.5rem 1.2rem;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #888;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .tab-btn:hover { color: var(--accent); }
+    .tab-content {
+      display: none;
+      padding: 1rem 0 0 0;
+    }
+    .tab-content.active { display: block; }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .answer-block {
+      background-color: #e8f4e8;
+      border: 2px solid #4a8a4a;
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      color: #fff;
+    }
+    .type-1 { background-color: #4a9a4a; }
+    .type-2 { background-color: #3a7aca; }
+    .type-3 { background-color: #c98a30; }
+
+    .homework-block {
+      background-color: #fffdf5;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
+      text-align: center;
+    }
+    .homework-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+    .homework-block .placeholder { color: #aaa; font-style: italic; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+  <script>
+    function switchTab(event, tabId) {
+      const container = event.target.closest('.tab-container');
+      container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      container.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
+</head>
+<body>
+
+  <a href="../tasks_index.html" class="back-link">← К списку заданий</a>
+
+  <h1>📝 Задание 14 ЕГЭ</h1>
+  <p class="subtitle">Системы счисления · Арифметические выражения · Подсчёт и сумма цифр</p>
+
+  <a href="task14_theory.html" class="theory-link">📖 Открыть теорию к заданию 14 →</a>
+
+  <!-- ==================== О ЗАДАНИИ ==================== -->
+  <h2>О задании</h2>
+
+  <div class="theory-block">
+    <p>Задание 14 — <strong>повышенного уровня сложности</strong>, на решение отводится около 3 минут. Проверяется умение работать с позиционными системами счисления: вычислять значения арифметических выражений, подсчитывать цифры в записи числа, находить неизвестные параметры.</p>
+    <p>Все задания решаются <strong>программно на Python</strong>. Основной инструмент — алгоритм подсчёта цифр через последовательное деление на основание системы счисления.</p>
+  </div>
+
+  <!-- ==================== ТИП 1: БЕЗ НЕИЗВЕСТНЫХ ==================== -->
+  <h2><span class="type-badge type-2">Тип 1</span> Выражение без неизвестных</h2>
+
+  <div class="theory-block">
+    <p>Дано конкретное арифметическое выражение. Нужно найти количество или сумму определённых цифр в его записи в заданной системе счисления. Самый простой тип — прямое вычисление и подсчёт.</p>
+  </div>
+
+  <!-- Задачи 1–4 — без изменений -->
+  <h3>Задача №1</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Сколько единиц в двоичной записи числа 4096²¹⁰ − 1024⁶⁷ + 256³² − 64?</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> вычислить выражение, перевести в двоичную систему, подсчитать количество единиц.</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol1-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol1-code">
+      <div class="code-block">
+        <pre>num = 4096**210 - 1024**67 + 256**32 - 64
+binary = <a href="../../base_of_programming/functions_descriptions.html#func-bin" class="func-link" target="_blank">bin</a>(num)[2:]
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(binary.<a href="../../base_of_programming/functions_descriptions.html#method-count" class="func-link" target="_blank">count</a>('1'))</pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>2100</strong></div>
+
+  <h3>Задача №2</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Значение арифметического выражения: 9⁸ + 3²⁴ − 3 × 7 записали в системе счисления с основанием 3. Сколько цифр «2» содержится в этой записи?</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> вычислить выражение, в 3-чной записи подсчитать количество цифр «2».</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol2-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol2-code">
+      <div class="code-block">
+        <pre>num = 9**8 + 3**24 - 3 * 7
+count = 0
+while num:
+    if num % 3 == 2: count += 1
+    num //= 3
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(count)</pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>14</strong></div>
+
+  <h3>Задача №3</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Определите в 25-ричной записи числа количество цифр с числовым значением, превышающим 10: 4 × 3125²⁰¹⁹ + 3 × 625²⁰²⁰ − 2 × 125²⁰²¹ + 25²⁰²² − 4 × 5²⁰²³ − 2024.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> вычислить выражение, в 25-ричной записи подсчитать цифры > 10.</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol3-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol3-code">
+      <div class="code-block">
+        <pre>num = (4 * 3125**2019 + 3 * 625**2020 - 2 * 125**2021
+       + 25**2022 - 4 * 5**2023 - 2024)
+count = 0
+while num:
+    if num % 25 > 10: count += 1
+    num //= 25
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(count)</pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>3030</strong></div>
+
+  <h3>Задача №4 <span style="color: #c96f0d; font-weight: 600;">★ сумма цифр с условием</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Значение арифметического выражения 3 × 289²⁰²⁴ + 81 × 49¹²¹ − 9 × 16⁸¹ − 6011 записали в системе счисления с основанием 31. Определите сумму цифр с числовым значением, не превышающим 17, в записи этого числа.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> вычислить выражение, в 31-ричной записи найти сумму цифр ≤ 17.</div>
+  <div class="info-block"><p><strong>🔍 Сумма цифр с условием:</strong> <a href="task14_theory.html#digit-sum">сумма цифр →</a></p></div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol4-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol4-code">
+      <div class="code-block">
+        <pre>num = (3 * 289**2024 + 81 * 49**121 - 9 * 16**81 - 6011)
+base = 31
+summa = 0
+while num:
+    digit = num % base
+    if digit <= 17: summa += digit
+    num //= base
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(summa)</pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>16750</strong></div>
+
+  <!-- ===== НОВАЯ ЗАДАЧА 5: СУММА ВСЕХ ЦИФР ===== -->
+  <h3>Задача №5 <span style="color: #c96f0d; font-weight: 600;">★ сумма всех цифр</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Число, являющееся результатом выражения 5²⁰ + 5¹⁰ − 5¹³ − 5³, записали в системе счисления с основанием 5. Чему равна сумма цифр в получившейся записи? В ответе укажите одно десятичное число — сумма разрядов пятеричного числа.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> вычислить выражение, найти сумму всех цифр в 5-ричной записи.</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol5-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol5-code">
+      <div class="code-block">
+        <pre>num = 5**20 + 5**10 - 5**13 - 5**3
+summa = 0
+while num:
+    summa += num % 5
+    num //= 5
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(summa)</pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>56</strong></div>
+
+  <!-- ==================== ТИП 2: С НЕИЗВЕСТНЫМ x ==================== -->
+  <h2><span class="type-badge type-1">Тип 2</span> Выражение с неизвестным числом x</h2>
+
+  <div class="theory-block">
+    <p>Дано арифметическое выражение с переменной x. Нужно найти x, при котором в записи значения выражения содержится определённое количество цифр (или сумма цифр равна заданной, или количество цифр максимально).</p>
+  </div>
+
+  <!-- Задачи 6–7 — бывшие 5–6 без изменений -->
+  <h3>Задача №6</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Значение арифметического выражения 3¹⁰⁰ − x, где x — целое положительное число, не превышающее 2030, записали в троичной системе счисления. Определите наибольшее значение x, при котором в троичной записи числа содержится ровно пять нулей.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> 3¹⁰⁰ − x, x ∈ [1, 2030], троичная система, ровно 5 нулей. Найти: наибольшее x.</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol6-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol6-code">
+      <div class="code-block">
+        <pre>for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 2031)[::-1]:
+    num = 3**100 - x
+    count = 0
+    while num:
+        if num % 3 == 0: count += 1
+        num //= 3
+    if count == 5:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(x)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>2024</strong></div>
+
+  <h3>Задача №7</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Значение арифметического выражения 7⁹¹ + 7¹⁶⁰ − x, где x — целое положительное число, не превышающее 2030, записали в 7-ричной системе счисления. Определите наибольшее значение x, при котором в 7-ричной записи числа содержится ровно 70 нулей.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> 7⁹¹ + 7¹⁶⁰ − x, x ∈ [1, 2030], 7-ричная система, ровно 70 нулей. Найти: наибольшее x.</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol7-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol7-code">
+      <div class="code-block">
+        <pre>for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 2031)[::-1]:
+    num = 7**91 + 7**160 - x
+    count = 0
+    while num:
+        if num % 7 == 0: count += 1
+        num //= 7
+    if count == 70:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(x)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>2029</strong></div>
+
+  <!-- ===== НОВАЯ ЗАДАЧА 8: ПОИСК x ПО СУММЕ ЦИФР ===== -->
+  <h3>Задача №8 <span style="color: #c96f0d; font-weight: 600;">★ x по сумме цифр</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Значение выражения 27⁷ − 3¹¹ + 36 − x записали в троичной системе счисления, при этом сумма цифр в записи оказалась равной 22. При каком минимальном натуральном x это возможно?</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> 27⁷ − 3¹¹ + 36 − x, троичная система, сумма цифр = 22. Найти: минимальное x.</div>
+  <div class="info-block"><p><strong>🔍 Поиск по сумме цифр:</strong> перебираем x, вычисляем сумму всех цифр, сравниваем с 22. <a href="task14_theory.html#digit-sum">Подробнее →</a></p></div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol8-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol8-code">
+      <div class="code-block">
+        <pre>for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 10000):
+    num = 27**7 - 3**11 + 36 - x
+    summa = 0
+    while num:
+        summa += num % 3
+        num //= 3
+    if summa == 22:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(x)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>6</strong></div>
+
+  <!-- ===== НОВАЯ ЗАДАЧА 9: ПОИСК x С МАКСИМУМОМ НУЛЕЙ ===== -->
+  <h3>Задача №9 <span style="color: #c96f0d; font-weight: 600;">★ x с максимумом нулей</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Значение арифметического выражения 4²¹⁰ + 4¹¹⁰ − x, где x — целое положительное число, не превышающее 3000, записали в четверичной системе счисления. Определите наименьшее значение x, при котором в четверичной записи числа содержится наибольшее количество нулей.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> 4²¹⁰ + 4¹¹⁰ − x, x ∈ [1, 3000], четверичная система, найти x с макс. количеством нулей (наименьший).</div>
+  <div class="info-block"><p><strong>🔍 Поиск максимума:</strong> перебираем все x, для каждого считаем количество нулей, отслеживаем максимум. <a href="task14_theory.html#code-templates">Шаблон 7 →</a></p></div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol9-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol9-code">
+      <div class="code-block">
+        <pre>max_count = -1
+best_x = 0
+for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 3001):
+    num = 4**210 + 4**110 - x
+    count = 0
+    while num:
+        if num % 4 == 0: count += 1
+        num //= 4
+    if count > max_count:
+        max_count = count
+        best_x = x
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(best_x)</pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>1024</strong></div>
+
+  <!-- ==================== ТИП 3: С НЕИЗВЕСТНОЙ ЦИФРОЙ ==================== -->
+  <h2><span class="type-badge type-3">Тип 3</span> Выражение с неизвестной цифрой в числе</h2>
+
+  <div class="theory-block">
+    <p>В числах выражения одна цифра заменена на x (цифра заданной системы счисления). Нужно найти x, при котором выражение кратно заданному числу, и вычислить результат.</p>
+  </div>
+
+  <!-- Задачи 10–11 — бывшие 7–8 без изменений -->
+  <h3>Задача №10</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Операнды арифметического выражения записаны в системе счисления с основанием 15: 97968x15₁₅ + 7x233₁₅. Определите наименьшее значение x, при котором значение выражения кратно 14. Для найденного x вычислите частное от деления на 14.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> система 15, наименьший x (кратность 14), частное от деления на 14.</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol10-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol10-code">
+      <div class="code-block">
+        <pre>from string import <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a>, <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+alph = <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a> + <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+
+for x in alph[:15]:
+    n1 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'97968{x}15', 15)
+    n2 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'7{x}233', 15)
+    res = n1 + n2
+    if res % 14 == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(res // 14)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>116071912</strong></div>
+
+  <h3>Задача №11</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Операнды арифметического выражения записаны в системе счисления с основанием 19: 98x79641₁₉ + 36x14₁₉ + 73x4₁₉. Определите наибольшее значение x, при котором значение выражения кратно 18. Для найденного x вычислите частное от деления на 18.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> система 19, наибольший x (кратность 18), частное от деления на 18.</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol11-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol11-code">
+      <div class="code-block">
+        <pre>from string import <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a>, <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+alph = <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a> + <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+
+for x in alph[:19][::-1]:
+    n1 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'98{x}79641', 19)
+    n2 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'36{x}14', 19)
+    n3 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'73{x}4', 19)
+    res = n1 + n2 + n3
+    if res % 18 == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(res // 18)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>470402599</strong></div>
+
+  <!-- ===== НОВАЯ ЗАДАЧА 12: НЕИЗВЕСТНАЯ ЦИФРА, ОСНОВАНИЕ 29 ===== -->
+  <h3>Задача №12 <span style="color: #c96f0d; font-weight: 600;">★ основание 29</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Операнды арифметического выражения записаны в системе счисления с основанием 29: 463x7921₂₉ + 8241x153₂₉. Определите наименьшее значение x, при котором значение выражения кратно 28. Для найденного x вычислите частное от деления на 28.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> система 29, наименьший x (кратность 28), частное от деления на 28.</div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol12-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol12-code">
+      <div class="code-block">
+        <pre>from string import <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a>, <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+alph = <a href="../../base_of_programming/functions_descriptions.html#func-digits" class="func-link" target="_blank">digits</a> + <a href="../../base_of_programming/functions_descriptions.html#func-ascii-uppercase" class="func-link" target="_blank">ascii_uppercase</a>
+
+for x in alph[:29]:
+    n1 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'463{x}7921', 29)
+    n2 = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(f'8241{x}153', 29)
+    res = n1 + n2
+    if res % 28 == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(res // 28)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>139856041</strong></div>
+
+  <!-- ===== НОВАЯ ЗАДАЧА 13: ОСНОВАНИЕ 150 ===== -->
+  <h3>Задача №13 <span style="color: #c96f0d; font-weight: 600;">★ основание 150</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Операнды арифметического выражения записаны в системе счисления с основанием 150: 51x29₁₅₀ + x023₁₅₀. Определите наибольшее значение x, при котором значение выражения кратно 149. Для найденного x вычислите частное от деления на 149.</p>
+  </div>
+  <div class="task-brief"><strong>📌 Кратко:</strong> система 150, наибольший x (кратность 149), частное от деления на 149.</div>
+  <div class="info-block"><p><strong>🔍 Основание > 36:</strong> алфавит не работает, переводим через разряды. <a href="task14_theory.html#large-base">Подробнее →</a></p></div>
+  <div class="tab-container">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(event, 'sol13-code')">💻 Программное решение</button>
+    </div>
+    <div class="tab-content active" id="sol13-code">
+      <div class="code-block">
+        <pre><span style="color: #888;"># 51x29₁₅₀: 9·150⁰ + 2·150¹ + x·150² + 1·150³ + 5·150⁴</span>
+<span style="color: #888;"># x023₁₅₀:  3·150⁰ + 2·150¹ + 0·150² + x·150³</span>
+for x in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(150)[::-1]:
+    n1 = 5*150**4 + 1*150**3 + x*150**2 + 2*150 + 9
+    n2 = x*150**3 + 0*150**2 + 2*150 + 3
+    res = n1 + n2
+    if res % 149 == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(res // 149)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+      </div>
+    </div>
+  </div>
+  <div class="answer-block">Ответ: <strong>20157588</strong></div>
+
+  <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+  <div class="homework-block">
+    <h2>📋 Домашнее задание</h2>
+    <p class="placeholder">Материалы для самостоятельной практики появятся здесь позже.</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Совет:</strong> для каждого типа задания 14 используйте один и тот же алгоритм подсчёта цифр через деление. Меняется только условие внутри цикла и способ перебора x. Доведите этот алгоритм до автоматизма.
+  </div>
+
+</body>
+</html>
