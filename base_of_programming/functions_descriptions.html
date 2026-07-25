@@ -375,7 +375,7 @@ all([True, False, True])  # False
 all([])                   # True (пустая коллекция)</div>
     </div>
 
-        <div class="func-card" id="func-abs">
+    <div class="func-card" id="func-abs">
       <h3>abs()</h3>
       <div class="syntax">abs(x)</div>
       <div class="desc">Возвращает <strong>абсолютное значение</strong> (модуль) числа. Для целых и вещественных чисел — просто отбрасывает знак минус.</div>
@@ -390,6 +390,51 @@ abs(-2.7)  # 2.7</div>
       <div class="desc">Объединяет элементы из нескольких коллекций в кортежи. Возвращает итератор. Останавливается на самой короткой коллекции.</div>
       <div class="example">list(zip('ABC', [1, 2, 3]))  # [('A', 1), ('B', 2), ('C', 3)]
 list(zip('xyz', [10, 20]))   # [('x', 10), ('y', 20)] — по короткой</div>
+    </div>
+
+    <div class="func-card" id="func-format">
+      <h3>format()</h3>
+      <div class="syntax">format(число, спецификатор)</div>
+      <div class="desc">Форматирует число в строку по заданному спецификатору. Для систем счисления: <code>'b'</code> — двоичная, <code>'o'</code> — восьмеричная, <code>'x'</code> — шестнадцатеричная (строчные), <code>'X'</code> — заглавные. В отличие от <code>bin()/oct()/hex()</code>, не добавляет префикс.</div>
+      <div class="example">format(42, 'b')   # '101010'
+format(42, 'o')   # '52'
+format(42, 'x')   # '2a'
+format(42, 'X')   # '2A'</div>
+      <div class="see-also">См. также: <a href="#func-bin">bin()</a>, <a href="#func-oct">oct()</a>, <a href="#func-hex">hex()</a>, <a href="#func-f-strings">f-строки</a></div>
+    </div>
+
+    <div class="func-card" id="func-f-strings">
+      <h3>f-строки для систем счисления</h3>
+      <div class="syntax">f"{число:спецификатор}"</div>
+      <div class="desc">Современный способ форматирования чисел в разные системы счисления прямо внутри строки. Спецификаторы: <code>b</code> — двоичная, <code>o</code> — восьмеричная, <code>x</code> — шестнадцатеричная (строчные), <code>X</code> — заглавные. Не добавляет префикс.</div>
+      <div class="example">x = 42
+f'{x:b}'   # '101010'
+f'{x:o}'   # '52'
+f'{x:x}'   # '2a'
+f'{x:X}'   # '2A'</div>
+      <div class="see-also">См. также: <a href="#func-format">format()</a>, <a href="#func-bin">bin()</a></div>
+    </div>
+
+    <div class="func-card" id="func-map">
+      <h3>map()</h3>
+      <div class="syntax">map(функция, итерируемый_объект)</div>
+      <div class="desc">Применяет указанную функцию к <strong>каждому элементу</strong> переданной коллекции и возвращает итератор с результатами. Часто используется с <code>int()</code> для преобразования строковых цифр в числа.</div>
+      <div class="example">list(map(int, ['1', '2', '3']))  # [1, 2, 3]
+list(map(int, '102'))          # [1, 0, 2]
+sum(map(int, '102'))           # 3 — сумма цифр</div>
+      <div class="see-also">См. также: <a href="#func-sum">sum()</a></div>
+    </div>
+
+    <div class="func-card" id="func-enumerate">
+      <h3>enumerate()</h3>
+      <div class="syntax">enumerate(итерируемый_объект, start=0)</div>
+      <div class="desc">Возвращает итератор, который на каждой итерации выдаёт пару <strong>(индекс, элемент)</strong>. Удобно, когда в цикле нужен и сам элемент, и его порядковый номер.</div>
+      <div class="example">for i, val in enumerate(['a', 'b', 'c'], start=1):
+    print(i, val)
+# 1 a
+# 2 b
+# 3 c</div>
+      <div class="see-also">См. также: <a href="#func-range">range()</a></div>
     </div>
 
   </div>
@@ -780,6 +825,20 @@ len(ascii_uppercase)   # 26</div>
       <div class="desc">Завершает выполнение функции и возвращает указанное значение в место вызова. Если <code>return</code> не указан, функция возвращает <code>None</code>.</div>
       <div class="example">def add(a, b):
     return a + b</div>
+    </div>
+
+        <div class="func-card" id="keyword-yield">
+      <h3>yield</h3>
+      <div class="syntax">yield значение</div>
+      <div class="desc">Превращает функцию в <strong>генератор</strong>. В отличие от <code>return</code>, не завершает функцию, а «замораживает» её состояние до следующего вызова. При следующем обращении выполнение продолжается с того же места.</div>
+      <div class="example">def gen():
+    yield 1
+    yield 2
+    yield 3
+
+for x in gen():
+    print(x)  # 1, 2, 3 — по одному за раз</div>
+      <div class="see-also">См. также: <a href="#keyword-return">return</a> · Используется в: <a href="task5/task5_theory.html">Задание 5</a> — генератор двоичных чисел.</div>
     </div>
 
     <div class="func-card" id="keyword-pass">

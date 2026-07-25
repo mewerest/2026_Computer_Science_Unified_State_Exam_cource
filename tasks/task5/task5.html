@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Задание N — Разбор ЕГЭ по информатике</title>
+  <title>Задание 5 ЕГЭ — разбор и практика</title>
   <style>
     :root {
       --bg: #fdfdfd;
       --text: #2e2e2e;
       --accent: #1a5f8a;
-      --accent-light: #eaf3f9;
+      --code-bg: #f4f4f4;
       --border: #e0e0e0;
+      --highlight: #fff8e7;
       --radius: 10px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -38,82 +34,627 @@
       text-decoration: none;
       font-size: 0.9rem;
     }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
+    .back-link:hover { text-decoration: underline; }
 
     h1 {
-      font-size: 2rem;
+      font-size: 2.3rem;
       color: var(--accent);
       border-bottom: 3px solid var(--accent);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
     }
 
-    .placeholder {
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .theory-link {
+      display: inline-block;
+      margin-bottom: 1.8rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: 8px;
+      color: #4a2a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+    .theory-link:hover { background-color: #e8ddf5; }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .task-full {
+      background-color: #fefefe;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+    }
+    .task-full .task-label {
+      font-weight: 700;
+      color: #888;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .answer-block {
+      background-color: #e8f4e8;
+      border: 2px solid #4a8a4a;
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      color: #fff;
+    }
+    .type-ss { background-color: #4a9a4a; }
+    .type-digits { background-color: #c98a30; }
+
+    .homework-block {
       background-color: #fffdf5;
       border: 2px dashed #d4c048;
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
       text-align: center;
-      margin: 2rem 0;
     }
-
-    .placeholder .icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .placeholder p {
+    .homework-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
       color: #8a6d00;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
     }
+    .homework-block .placeholder { color: #aaa; font-style: italic; }
 
-    .placeholder .small {
-      color: #aaa;
-      font-size: 0.9rem;
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
     }
 
     .footer-note {
-      font-size: 0.85rem;
-      color: #aaa;
-      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
       margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
+      text-align: center;
     }
 
     @media (max-width: 600px) {
-      body {
-        padding: 1.2rem 0.8rem;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
-
 <body>
 
   <a href="../tasks_index.html" class="back-link">← К списку заданий</a>
 
-  <h1>📝 Задание 5</h1>
-  <p style="color: #555; font-style: italic;">Анализ алгоритмов для исполнителей</p>
+  <h1>📝 Задание 5 ЕГЭ</h1>
+  <p class="subtitle">Анализ алгоритмов · Системы счисления · Обработка записей чисел · Работа с цифрами</p>
 
-  <div class="placeholder">
-    <div class="icon">🚧</div>
-    <p>Материал для этого задания появится позже</p>
-    <p class="small">Разбор находится в разработке</p>
+  <a href="task5_theory.html" class="theory-link">📖 Открыть теорию к заданию 5 →</a>
+
+  <!-- ==================== О ЗАДАНИИ ==================== -->
+  <h2>О задании</h2>
+
+  <div class="theory-block">
+    <p>Задание 5 проверяет умение <strong>анализировать простые алгоритмы</strong>. Встречаются два типа задач: алгоритмы, работающие с записью числа в различных системах счисления, и алгоритмы, работающие напрямую с десятичными цифрами числа.</p>
+    <p>Ключевые навыки: перевод чисел между системами счисления, обработка строк, реализация условий «если... то...», извлечение и обработка цифр числа.</p>
   </div>
 
+  <!-- ==================== ТИП 1: СИСТЕМЫ СЧИСЛЕНИЯ ==================== -->
+  <h2><span class="type-badge type-ss">Тип 1</span> Алгоритмы с системами счисления</h2>
+
+  <div class="theory-block">
+    <p>Строится запись числа N в заданной системе счисления, обрабатывается по правилам, результат переводится обратно в десятичную систему. <a href="task5_theory.html#conversion">Перевод чисел →</a></p>
+  </div>
+
+  <!-- Задача 1 -->
+  <h3>Задача №1</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p>
+    <ol>
+      <li>Строится двоичная запись числа N.</li>
+      <li>Далее эта запись обрабатывается по следующему правилу:<br>
+      а) если число чётное, то к двоичной записи числа слева дописывается 10;<br>
+      б) если число нечётное, то к двоичной записи числа слева дописывается 1 и справа дописывается 01.</li>
+      <li>Результат переводится в десятичную систему и выводится на экран.</li>
+    </ol>
+    <p>Например, для исходного числа 4₁₀ = 100₂ результатом является число 20₁₀ = 10100₂, а для исходного числа 5₁₀ = 101₂ это число 53₁₀ = 110101₂.</p>
+    <p>Укажите <strong>максимальное</strong> число R, которое может быть результатом работы данного алгоритма, при условии, что N не больше 12.</p>
+  </div>
+
+  <div class="code-block">
+    <pre>res = []
+for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 13):
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-f-strings" class="func-link" target="_blank">f'{N:b}'</a>
+    if N % 2 == 0:
+        R = '10' + R
+    else:
+        R = '1' + R + '01'
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(R, 2)
+    res.append(R)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="../../base_of_programming/functions_descriptions.html#func-max" class="func-link" target="_blank">max</a>(res))</pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>109</strong></div>
+
+  <!-- Задача 2 -->
+  <h3>Задача №2</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p>
+    <ol>
+      <li>Строится троичная запись числа N.</li>
+      <li>Далее эта запись обрабатывается по следующему правилу:<br>
+      а) если число N делится на 3, то к этой записи дописываются две последние троичные цифры;<br>
+      б) если число N на 3 не делится, то вычисляется сумма цифр полученной троичной записи, эта сумма переводится в троичную систему счисления и дописывается в конец числа.</li>
+      <li>Результат переводится в десятичную систему и выводится на экран.</li>
+    </ol>
+    <p>Например, для исходного числа 11₁₀ = 102₃ результатом является число 10210₃ = 102₁₀, а для исходного числа 12₁₀ = 110₃ это число 11010₃ = 111₁₀.</p>
+    <p>Укажите <strong>минимальное чётное</strong> число R, большее 220, которое может быть получено с помощью описанного алгоритма.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> to_ternary(num):
+    result = ''
+    while num:
+        result += <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(num % 3)
+        num //= 3
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> result[::-1]
+
+res = []
+for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 10_000):
+    R = to_ternary(N)
+    if N % 3 == 0:
+        R += R[-2:]
+    else:
+        sum_d = <a href="../../base_of_programming/functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>(<a href="../../base_of_programming/functions_descriptions.html#func-map" class="func-link" target="_blank">map</a>(<a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>, R))
+        R += to_ternary(sum_d)
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(R, 3)
+    if R % 2 == 0 and R > 220:
+        res.append(R)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>(res))</pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>222</strong></div>
+
+    <!-- Задача 3 -->
+  <h3>Задача №3</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p>
+    <ol>
+      <li>Строится восьмеричная запись числа N.</li>
+      <li>Далее эта запись обрабатывается по следующему правилу:<br>
+      а) если количество чётных цифр в записи числа нечётно, то к трём последним разрядам восьмеричной записи справа дописывается 46;<br>
+      б) если количество чётных цифр в записи числа чётно, то остаток от деления числа на 8 умножается на 5, переводится в восьмеричную запись и дописывается слева.</li>
+      <li>Результат переводится в десятичную систему и выводится на экран.</li>
+    </ol>
+    <p>Например, для исходного числа 12 = 14₈ результатом является число 1446₈ = 806, а для исходного числа 777 = 1411₈ это число 41146₈ = 16998.</p>
+    <p>Укажите <strong>минимальное</strong> число R, которое может быть получено с помощью описанного алгоритма при N <strong>не меньшем 80</strong>. В ответ запишите это число в десятичной системе счисления.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> count_evens(num):
+    evens = <a href="../../base_of_programming/functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>([1 for d in num
+                 if <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(d, 8) % 2 == 0])
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> evens
+
+res = []
+for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(80, 10000):
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-f-strings" class="func-link" target="_blank">f'{N:o}'</a>
+    if count_evens(R) % 2:
+        R = R[-3:] + '46'
+    else:
+        R = <a href="../../base_of_programming/functions_descriptions.html#func-f-strings" class="func-link" target="_blank">f'{(N % 8 * 5):o}'</a> + R
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(R, 8)
+    res.append(R)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>(res))</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Обрати внимание:</strong> перебираем все N от 80 до 10000, для каждого вычисляем R, собираем в список и находим минимальное. В отличие от задач, где ищется конкретное N по условию <code>R == N</code>, здесь ищется минимальное R среди всех возможных.</p>
+  </div>
+
+  <div class="answer-block">Ответ: <strong>38</strong></div>
+
+  <!-- Задача 4 — замена символов -->
+  <h3>Задача №4 <span style="color: #c96f0d; font-weight: 600;">★ замена символов</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p>
+    <ol>
+      <li>Строится двоичная запись числа N.</li>
+      <li>Далее эта запись обрабатывается по следующему правилу:<br>
+      а) если число N чётное, то в этой записи каждая единица заменяется на 11;<br>
+      б) если число N нечётное, то в этой записи каждый нуль заменяется на 00.</li>
+      <li>Результат переводится в десятичную систему и выводится на экран.</li>
+    </ol>
+    <p>Например, для исходного числа 4₁₀ = 100₂ результат — 1100₂ = 12₁₀, а для исходного числа 5₁₀ = 101₂ это число 1001₂ = 9₁₀.</p>
+    <p>Укажите <strong>минимальное</strong> число N, после обработки которого с помощью этого алгоритма получается число R, большее 70.</p>
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Замена символов:</strong> <a href="task5_theory.html#replace-chars">метод <code>.replace()</code> →</a></p>
+  </div>
+  <div class="code-block">
+    <pre>for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000):
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-f-strings" class="func-link" target="_blank">f'{N:b}'</a>
+    if N % 2 == 0:
+        R = R.<a href="../../base_of_programming/functions_descriptions.html#method-replace" class="func-link" target="_blank">replace</a>('1', '11')
+    else:
+        R = R.<a href="../../base_of_programming/functions_descriptions.html#method-replace" class="func-link" target="_blank">replace</a>('0', '00')
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(R, 2)
+    if R > 70:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(N)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>14</strong></div>
+
+  <!-- Задача 5 — замена левых разрядов -->
+  <h3>Задача №5 <span style="color: #c96f0d; font-weight: 600;">★ замена левых разрядов</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p>
+    <ol>
+      <li>Строится двоичная запись числа N.</li>
+      <li>Далее, если исходное число N чётное, то справа к построенной двоичной записи числа N приписывается 0, если нечётное — приписывается 1.</li>
+      <li>Далее полученная запись обрабатывается по следующему правилу:<br>
+      а) если количество единиц в двоичной записи кратно трём, то в этой записи два левых разряда заменяются на 11;<br>
+      б) если количество единиц в двоичной записи некратно трём, то в этой записи два левых разряда заменяются на 10.</li>
+      <li>Результат переводится в десятичную систему.</li>
+    </ol>
+    <p>Например, для исходного числа 6₁₀ = 110₂ результат — 1000₂ = 8₁₀, а для исходного числа 3₁₀ = 11₂ результат — 111₂ = 7₁₀.</p>
+    <p>Укажите <strong>минимальное</strong> число N, после обработки которого с помощью этого алгоритма получается число R, не меньшее чем 26.</p>
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Замена левых разрядов:</strong> <a href="task5_theory.html#left-digits">приём →</a></p>
+  </div>
+  <div class="code-block">
+    <pre>for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000):
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-f-strings" class="func-link" target="_blank">f'{N:b}'</a>
+    R += '0' if N % 2 == 0 else '1'
+    if R.<a href="../../base_of_programming/functions_descriptions.html#method-count" class="func-link" target="_blank">count</a>('1') % 3 == 0:
+        R = '11' + R[2:]
+    else:
+        R = '10' + R[2:]
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(R, 2)
+    if R >= 26:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(N)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>9</strong></div>
+
+    <!-- Задача 6 — копия/переворот -->
+  <h3>Задача №6 <span style="color: #c96f0d; font-weight: 600;">★ копия / переворот</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p>
+    <ol>
+      <li>Строится двоичная запись числа N.</li>
+      <li>Далее эта запись обрабатывается по следующему правилу:<br>
+      а) если число N делится на 4, то к этой записи дописывается справа она же;<br>
+      б) если число N на 4 не делится, то к этой записи дописывается справа эта же запись, но в обратном порядке.</li>
+      <li>Результат переводится в десятичную систему.</li>
+    </ol>
+    <p>Например, для исходного числа 4₁₀ = 100₂ результатом является число 100100₂ = 36₁₀, а для исходного числа 11₁₀ = 1011₂ это число 10111101₂ = 189₁₀.</p>
+    <p>Укажите <strong>минимальное</strong> число N, после обработки которого с помощью этого алгоритма получается число R, не меньшее 544.</p>
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Копия и переворот записи:</strong> <a href="task5_theory.html#reverse-copy">приём →</a></p>
+  </div>
+  <div class="code-block">
+    <pre>for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000):
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-f-strings" class="func-link" target="_blank">f'{N:b}'</a>
+    if N % 4 == 0:
+        R += R
+    else:
+        R += R[::-1]
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(R, 2)
+    if R >= 544:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(N)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>17</strong></div>
+
+  <!-- Задача 7 — вставка в середину -->
+  <h3>Задача №7 <span style="color: #c96f0d; font-weight: 600;">★ вставка в середину</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p>
+    <ol>
+      <li>Строится двоичная запись числа N.</li>
+      <li>Далее эта запись обрабатывается по следующему правилу:<br>
+      а) если количество значащих цифр в двоичной записи числа чётное, то к этой записи в середину дописывается 1;<br>
+      б) если количество значащих цифр в двоичной записи числа нечётное, то запись не изменяется.</li>
+      <li>Результат переводится в десятичную систему.</li>
+    </ol>
+    <p>Например, для исходного числа 5₁₀ = 101₂ результат — 101₂ = 5₁₀, а для исходного числа 2₁₀ = 10₂ результат — 110₂ = 6₁₀.</p>
+    <p>Укажите <strong>минимальное</strong> число N, после обработки которого с помощью этого алгоритма получается число R, не меньше чем 26.</p>
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Вставка в середину:</strong> <a href="task5_theory.html#insert-middle">приём →</a></p>
+  </div>
+  <div class="code-block">
+    <pre>for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000):
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-f-strings" class="func-link" target="_blank">f'{N:b}'</a>
+    if <a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(R) % 2 == 0:
+        mid = <a href="../../base_of_programming/functions_descriptions.html#func-len" class="func-link" target="_blank">len</a>(R) // 2
+        R = R[:mid] + '1' + R[mid:]
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(R, 2)
+    if R >= 26:
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(N)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>12</strong></div>
+
+  <!-- Задача 8 — четверичная система -->
+  <h3>Задача №8 <span style="color: #c96f0d; font-weight: 600;">★ четверичная система</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>На вход алгоритма подаётся натуральное число N. Алгоритм строит по нему новое число R следующим образом.</p>
+    <ol>
+      <li>Строится четверичная запись числа N.</li>
+      <li>Далее эта запись обрабатывается по следующему правилу:<br>
+      а) если число N делится на 4, то к этой записи дописываются две последние четверичные цифры;<br>
+      б) если число N на 4 не делится, то остаток от деления умножается на 2, переводится в четверичную запись и дописывается в конец числа.</li>
+      <li>Результат переводится в десятичную систему.</li>
+    </ol>
+    <p>Например, для исходного числа 11₁₀ = 23₄ результат — 2312₄ = 182₁₀, а для исходного числа 12₁₀ = 30₄ это число 3030₄ = 204₁₀.</p>
+    <p>Укажите <strong>максимальное</strong> число N, после обработки которого с помощью этого алгоритма получается число R, меньшее 261.</p>
+  </div>
+  <div class="info-block">
+    <p><strong>🔍 Четверичная система:</strong> пишем свою функцию <code>to_quaternary()</code> по аналогии с троичной. <a href="task5_theory.html#custom-convert">Собственная функция перевода →</a></p>
+  </div>
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> to_quaternary(num):
+    result = ''
+    while num:
+        result += <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(num % 4)
+        num //= 4
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> result[::-1]
+
+res = []
+for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 1000):
+    R = to_quaternary(N)
+    if N % 4 == 0:
+        R += R[-2:]
+    else:
+        R += to_quaternary((N % 4) * 2)
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(R, 4)
+    if R < 261:
+        res.append(N)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="../../base_of_programming/functions_descriptions.html#func-max" class="func-link" target="_blank">max</a>(res))</pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>61</strong></div>
+
+  <!-- ==================== ТИП 2: РАБОТА С ЦИФРАМИ ==================== -->
+  <h2><span class="type-badge type-digits">Тип 2</span> Работа с десятичными цифрами</h2>
+
+  <div class="theory-block">
+    <p>Алгоритм работает напрямую с десятичными цифрами исходного числа. Системы счисления не используются. <a href="task5_theory.html#decimal-digits">Работа с цифрами →</a></p>
+  </div>
+
+  <!-- Задача 9 -->
+  <h3>Задача №9</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Автомат получает на вход трёхзначное число. По этому числу строится новое число по следующим правилам.</p>
+    <ol>
+      <li>Вычисляются суммы квадратов первой и второй, а также второй и третьей цифр исходного числа.</li>
+      <li>Полученные два числа записываются друг за другом в порядке невозрастания (без разделителей).</li>
+    </ol>
+    <p>Пример. Исходное число: 621. Суммы квадратов: 6² + 2² = 40; 2² + 1² = 5. Результат: 405.</p>
+    <p>Укажите <strong>наибольшее</strong> число, при обработке которого автомат выдаст число 9752.</p>
+  </div>
+  <div class="code-block">
+    <pre>for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(999, 99, -1):
+    a, b, c = <a href="../../base_of_programming/functions_descriptions.html#func-map" class="func-link" target="_blank">map</a>(<a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>, <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(N))
+    s1 = a**2 + b**2
+    s2 = b**2 + c**2
+    vals = <a href="../../base_of_programming/functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted</a>([s1, s2], reverse=True)
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(vals[0]) + <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(vals[1])
+    if R == '9752':
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(N)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>946</strong></div>
+
+  <!-- Задача 10 -->
+  <h3>Задача №10</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Автомат получает на вход трёхзначное число. По этому числу строится новое число по следующим правилам.</p>
+    <ol>
+      <li>Перемножаются все цифры исходного числа.</li>
+      <li>Суммируются все цифры исходного числа.</li>
+      <li>Полученные два числа записываются друг за другом в порядке невозрастания (без разделителей).</li>
+    </ol>
+    <p>Пример. Исходное число: 621. Произведение: 6×2×1 = 12; сумма: 6+2+1 = 9. Результат: 129.</p>
+    <p>Укажите <strong>наибольшее</strong> число, при обработке которого автомат выдаст число 33621.</p>
+  </div>
+  <div class="code-block">
+    <pre>for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(999, 99, -1):
+    digits = [<a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(d) for d in <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(N)]
+    prod = digits[0] * digits[1] * digits[2]
+    sum_d = digits[0] + digits[1] + digits[2]
+    vals = <a href="../../base_of_programming/functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted</a>([prod, sum_d], reverse=True)
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(vals[0]) + <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(vals[1])
+    if R == '33621':
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(N)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>876</strong></div>
+
+  <!-- Задача 11 -->
+  <h3>Задача №11</h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Автомат получает на вход четырёхзначное число K. По этому числу строится новое число L по следующим правилам.</p>
+    <ol>
+      <li>Вычисляется S — сумма всех цифр числа K.</li>
+      <li>Вычисляется M — максимальная цифра в записи числа K.</li>
+      <li>Вычисляется N — минимальная цифра в записи числа K.</li>
+      <li>Вычисляется P1 = S − M.</li>
+      <li>Вычисляется P2 = S − N.</li>
+      <li>L получается записью P1 и P2 в неубывающем порядке (без пробелов).</li>
+    </ol>
+    <p>Пример. K = 6241. S = 13, M = 6, N = 1. P1 = 7, P2 = 12. Результат: L = 712.</p>
+    <p>Укажите <strong>наименьшее</strong> число K, при обработке которого автомат выдаст число L = 1318.</p>
+  </div>
+  <div class="code-block">
+    <pre>for K in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1000, 10000):
+    digits = [<a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(d) for d in <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(K)]
+    S = <a href="../../base_of_programming/functions_descriptions.html#func-sum" class="func-link" target="_blank">sum</a>(digits)
+    M = <a href="../../base_of_programming/functions_descriptions.html#func-max" class="func-link" target="_blank">max</a>(digits)
+    N = <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>(digits)
+    P1, P2 = S - M, S - N
+    vals = <a href="../../base_of_programming/functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted</a>([P1, P2])
+    L = <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(vals[0]) + <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(vals[1])
+    if L == '1318':
+        <a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(K)
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-break" class="func-link" target="_blank">break</a></pre>
+  </div>
+  <div class="answer-block">Ответ: <strong>1666</strong></div>
+
+  <!-- Задача 12 -->
+  <h3>Задача №12 <span style="color: #c96f0d; font-weight: 600;">★ произведения пар</span></h3>
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка</div>
+    <p>Дано натуральное четырёхзначное число N. К нему применяется алгоритм.</p>
+    <ol>
+      <li>Перемножаются первая и вторая, вторая и третья, третья и четвёртая цифры числа.</li>
+      <li>Полученные произведения записываются друг за другом в порядке неубывания.</li>
+      <li>Незначащие нули в начале числа отбрасываются.</li>
+    </ol>
+    <p>Например, для числа 1024: произведения — 0, 0, 8 → 008 → 8. Для числа 2311: произведения — 6, 3, 1 → 136.</p>
+    <p>Какое <strong>минимальное трёхзначное</strong> число можно получить?</p>
+  </div>
+  <div class="code-block">
+    <pre>res = []
+for N in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1000, 10000):
+    a, b, c, d = [<a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(x) for x in <a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>(N)]
+    prods = [a*b, b*c, c*d]
+    prods_sorted = ''.<a href="../../base_of_programming/functions_descriptions.html#method-join" class="func-link" target="_blank">join</a>(<a href="../../base_of_programming/functions_descriptions.html#func-map" class="func-link" target="_blank">map</a>(<a href="../../base_of_programming/functions_descriptions.html#func-str" class="func-link" target="_blank">str</a>, <a href="../../base_of_programming/functions_descriptions.html#func-sorted" class="func-link" target="_blank">sorted</a>(prods)))
+    R = <a href="../../base_of_programming/functions_descriptions.html#func-int" class="func-link" target="_blank">int</a>(prods_sorted)
+    if 100 <= R <= 999:
+        res.append(R)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>(<a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>(res))</pre>
+  </div>
+  <div class="note-block">
+    <p><strong>💡 Отбрасывание незначащих нулей:</strong> <code>int(prods_sorted)</code> автоматически убирает ведущие нули. Например, <code>int('008')</code> → <strong>8</strong>.</p>
+  </div>
+  <div class="answer-block">Ответ: <strong>111</strong></div>
+
+  <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+  <div class="homework-block">
+    <h2>📋 Домашнее задание</h2>
+    <p class="placeholder">Материалы для самостоятельной практики появятся здесь позже.</p>
+  </div>
+
+  <hr>
+
   <div class="footer-note">
-    Актуально для ЕГЭ 2026–2027
+    📌 <strong>Совет:</strong> всегда проверяйте свой код на примерах из условия задачи. Если для тестовых чисел результаты совпадают — алгоритм записан верно, и можно переходить к поиску ответа.
   </div>
 
 </body>
-
 </html>
