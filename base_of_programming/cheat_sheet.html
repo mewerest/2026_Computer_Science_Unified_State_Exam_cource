@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles.css">
   <title>Python: шпаргалка для ЕГЭ</title>
   <style>
     :root {
@@ -126,9 +128,11 @@
       .two-columns {
         grid-template-columns: 1fr;
       }
+
       body {
         padding: 0.8rem 0.6rem;
       }
+
       h1 {
         font-size: 1.6rem;
       }
@@ -160,7 +164,16 @@
     }
   </style>
 </head>
+
 <body>
+
+  <nav class="page-nav" aria-label="Основная навигация">
+    <a class="nav-pill" href="../index.html">Главная</a>
+    <a class="nav-pill active" href="base_of_programming_index.html">Основы Python</a>
+    <a class="nav-pill" href="../tasks/tasks_index.html">Задания ЕГЭ</a>
+    <a class="nav-pill" href="functions_descriptions.html">Справочник функций</a>
+  </nav>
+
 
   <a href="base_of_programming_index.html" class="back-link">← К списку тем</a>
 
@@ -212,7 +225,8 @@ a % b    # остаток от деления</pre>
   </div>
 
   <div class="note-mini">
-    <strong>⚠️ Не путай:</strong> <code>=</code> — присваивание (<code>x = 5</code>), <code>==</code> — сравнение (<code>x == 5</code>).
+    <strong>⚠️ Не путай:</strong> <code>=</code> — присваивание (<code>x = 5</code>), <code>==</code> — сравнение
+    (<code>x == 5</code>).
   </div>
 
   <div class="two-columns">
@@ -480,7 +494,8 @@ s, p = stats(3, 5)  # s=8, p=15</pre>
   </div>
 
   <div class="note-mini">
-    <strong>💡 Локальные переменные</strong> внутри функции не видны снаружи. Используй параметры и <code><a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a></code>.
+    <strong>💡 Локальные переменные</strong> внутри функции не видны снаружи. Используй параметры и
+    <code><a href="functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a></code>.
   </div>
 
   <!-- ==================== 8. ЧТЕНИЕ ФАЙЛОВ ==================== -->
@@ -519,8 +534,17 @@ f.<a href="functions_descriptions.html#method-readlines" class="func-link" targe
   <hr>
 
   <div class="footer-note">
-    📌 <strong>Шпаргалка по всем темам курса.</strong> Используй для быстрого поиска синтаксиса при решении задач. Кликай на функции, чтобы открыть подробное описание.
+    📌 <strong>Шпаргалка по всем темам курса.</strong> Используй для быстрого поиска синтаксиса при решении задач.
+    Кликай на функции, чтобы открыть подробное описание.
   </div>
 
+
+  <div class="next-step">
+    <strong>Следующий шаг:</strong> вернись к <a href="base_of_programming_index.html">списку тем</a> или открой <a
+      href="functions_descriptions.html">справочник функций</a>.
+  </div>
+
+  <script src="../scripts/syntax-highlight.js"></script>
 </body>
+
 </html>

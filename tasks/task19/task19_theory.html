@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../styles.css">
+  <title>Задания 19–21 ЕГЭ: теория игр</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #2e2e2e;
+      --accent: #1a5f8a;
+      --code-bg: #f4f4f4;
+      --border: #e0e0e0;
+      --highlight: #fff8e7;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 2.3rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.3rem;
+      color: #444;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .definition {
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .definition strong { color: #4a2a7a; }
+
+    .formula-block {
+      background-color: #fafafa;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      font-size: 1.2rem;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    }
+    .formula-block .formula-desc {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    table th {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+    }
+    table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    table tr:nth-child(even) td { background-color: #fafafa; }
+
+    .step-block {
+      background-color: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+    }
+    .step-block .step-num {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fff;
+      width: 26px;
+      height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 26px;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      margin-right: 0.3rem;
+      color: #fff;
+    }
+    .type-1 { background-color: #4a9a4a; }
+    .type-2 { background-color: #3a7aca; }
+    .type-3 { background-color: #c98a30; }
+    .type-4 { background-color: #6a3a8a; }
+
+    .extra-block {
+      background-color: #fdfaf0;
+      border: 2px dashed #d4c048;
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .extra-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      color: #8a6d00;
+    }
+    .extra-block .extra-label {
+      display: inline-block;
+      background-color: #fff3cd;
+      color: #8a6d00;
+      padding: 0.2rem 0.7rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="page-nav" aria-label="Основная навигация">
+    <a class="nav-pill" href="../../index.html">Главная</a>
+    <a class="nav-pill" href="../../base_of_programming/base_of_programming_index.html">Основы Python</a>
+    <a class="nav-pill active" href="../tasks_index.html">Задания ЕГЭ</a>
+    <a class="nav-pill" href="../../base_of_programming/functions_descriptions.html">Справочник функций</a>
+  </nav>
+
+
+  <a href="task19.html" class="back-link">← К заданиям 19–21</a>
+
+  <h1>🎯 Задания 19–21 ЕГЭ: теория игр</h1>
+  <p class="subtitle">Теория · Классификация задач · Методы решения · Алгоритмы для разных типов</p>
+
+  <!-- ==================== КЛАССИФИКАЦИЯ ==================== -->
+  <h2 id="classification">Классификация задач 19–21</h2>
+
+  <div class="theory-block">
+    <p>Все задания 19–21 можно классифицировать по трём параметрам. Понимание этой классификации поможет быстро определить, какой алгоритм использовать.</p>
+  </div>
+
+  <h3>Параметр 1: Количество куч</h3>
+  <table>
+    <thead><tr><th>Тип</th><th>Описание</th><th>Пример</th></tr></thead>
+    <tbody>
+      <tr><td><span class="type-badge type-1">1 куча</span></td><td>Одна куча камней. Игроки изменяют её количество.</td><td>Задача №1, №2, №3</td></tr>
+      <tr><td><span class="type-badge type-2">2 кучи</span></td><td>Две кучи камней. Игроки изменяют одну из них.</td><td>Задача №4</td></tr>
+      <tr><td><span class="type-badge type-3">3 кучи</span></td><td>Три кучи камней. Игроки изменяют одну из них или все сразу.</td><td>Задача №5</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Параметр 2: Направление изменения</h3>
+  <table>
+    <thead><tr><th>Тип</th><th>Описание</th><th>Условие победы</th></tr></thead>
+    <tbody>
+      <tr><td><strong>На увеличение</strong></td><td>Камни добавляются в кучу (или умножаются).</td><td><code>s >= цель</code></td></tr>
+      <tr><td><strong>На уменьшение</strong></td><td>Камни убираются из кучи (или делятся).</td><td><code>s <= цель</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Параметр 3: Количество игроков и тип взаимодействия</h3>
+  <table>
+    <thead><tr><th>Тип</th><th>Описание</th><th>Особенность</th></tr></thead>
+    <tbody>
+      <tr><td><strong>2 игрока (антагонистическая)</strong></td><td>Петя и Ваня играют друг против друга.</td><td>Классический вариант. <code>any()</code> / <code>all()</code>.</td></tr>
+      <tr><td><strong>3 игрока (кооперативная)</strong></td><td>Три игрока, двое могут сговориться против третьего.</td><td>Анализ коалиций. <a href="#coalitions">Подробнее ↓</a></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-block">
+    <p><strong>💡 Полная классификация задачи:</strong> [количество куч] → [направление] → [количество игроков].<br>
+    Например: <strong>1 куча → на увеличение → 2 игрока</strong> — самый частый тип в ЕГЭ.</p>
+  </div>
+
+  <!-- ==================== МЕТОДЫ РЕШЕНИЯ ==================== -->
+  <h2 id="methods">Методы решения задач 19–21</h2>
+
+  <div class="theory-block">
+    <p>Задачи 19–21 можно решать тремя способами. Каждый имеет свои преимущества и недостатки.</p>
+  </div>
+
+  <h3>Метод 1: Аналитический (ручной)</h3>
+  <div class="theory-block">
+    <p><strong>Суть:</strong> анализ игры с конца (от целевого значения к начальному). Строится дерево решений, выделяются выигрышные и проигрышные позиции.</p>
+    <p><strong>Когда использовать:</strong> для небольших диапазонов S (до 30–40) и простых правил.</p>
+    <p><strong>Плюсы:</strong> развивает логическое мышление, не требует компьютера.</p>
+    <p><strong>Минусы:</strong> трудоёмко для больших диапазонов и сложных правил.</p>
+  </div>
+
+  <h3>Метод 2: Программный (рекурсивная функция)</h3>
+  <div class="theory-block">
+    <p><strong>Суть:</strong> пишется рекурсивная функция, которая перебирает все возможные ходы и определяет выигрышные стратегии.</p>
+    <p><strong>Когда использовать:</strong> для любых задач — универсальный метод.</p>
+    <p><strong>Плюсы:</strong> надёжен, легко проверяется, работает для любых диапазонов.</p>
+    <p><strong>Минусы:</strong> требует навыков программирования.</p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Базовый шаблон для 1 кучи (на увеличение)</span>
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s >= цель:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(ход1, m-1), f(ход2, m-1), ...]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m+1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)</pre>
+  </div>
+
+  <h3>Метод 3: Электронные таблицы (Excel / Google Sheets)</h3>
+  <div class="theory-block">
+    <p><strong>Суть:</strong> строится таблица, где строки — возможные значения S, столбцы — ходы. Ячейки заполняются по рекуррентной формуле.</p>
+    <p><strong>Когда использовать:</strong> если нет доступа к Python или нужно быстро проверить гипотезу.</p>
+    <p><strong>Плюсы:</strong> наглядно, не требует программирования.</p>
+    <p><strong>Минусы:</strong> трудоёмко для больших таблиц, сложно автоматизировать поиск.</p>
+  </div>
+
+  <div class="info-block">
+    <p><strong>💡 Рекомендация:</strong> на экзамене используйте <strong>программный метод</strong> — он надёжен и универсален. Аналитический метод полезен для понимания логики игры. Электронные таблицы — для быстрой проверки.</p>
+  </div>
+
+  <!-- ==================== ОСНОВНОЙ АЛГОРИТМ ==================== -->
+  <h2 id="basic-algorithm">Базовый алгоритм для 2 игроков</h2>
+
+  <div class="theory-block">
+    <p>Для классических задач с двумя игроками (Петя и Ваня) используется единый шаблон рекурсивной функции.</p>
+  </div>
+
+  <h3>Логика проверки</h3>
+
+  <div class="step-block">
+    <p><span class="step-num">1</span> Если достигнуто целевое состояние — проверяем, чей это ход. Побеждает тот, на чьём ходу достигнута цель.</p>
+    <p><span class="step-num">2</span> Если m = 0 — ходы закончились, а цель не достигнута → поражение.</p>
+    <p><span class="step-num">3</span> Формируем список h — результаты всех возможных ходов.</p>
+    <p><span class="step-num">4</span> Если ход <strong>чётный</strong> (Ваня) — нужно, чтобы <strong>хотя бы один</strong> вариант вёл к победе → <code>any(h)</code>.</p>
+    <p><span class="step-num">5</span> Если ход <strong>нечётный</strong> (Петя) — нужно, чтобы <strong>все</strong> варианты вели к победе → <code>all(h)</code>.</p>
+  </div>
+
+  <!-- ==================== ТРИ КУЧИ ==================== -->
+  <h2 id="three-piles">Три кучи</h2>
+
+  <div class="definition">
+    <p><strong>Задачи с тремя кучами</strong> — игры, где есть три независимые кучи камней. Игроки могут изменять одну из куч или все кучи одновременно.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>Особенности задач с тремя кучами:</p>
+    <ul>
+      <li>Функция принимает <strong>три аргумента</strong>: <code>f(s1, s2, s3, m)</code>.</li>
+      <li>Условие победы может быть сложным: например, «в одной из куч ≥ 20 ИЛИ суммарно ≥ 25».</li>
+      <li>Операции могут быть двух видов:
+        <ul>
+          <li><strong>Локальные:</strong> изменяют одну кучу (удвоить камни в какой-то куче).</li>
+          <li><strong>Глобальные:</strong> изменяют все кучи (добавить по 2 камня в каждую).</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <h3>Шаблон для трёх куч</h3>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s1, s2, s3, m):
+    <span style="color: #888;"># Условие победы (может быть сложным)</span>
+    if s1 >= 20 or s2 >= 20 or s3 >= 20 or s1 + s2 + s3 >= 25:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    
+    <span style="color: #888;"># Локальные операции (изменяют одну кучу)</span>
+    h = [f(s1 * 2, s2, s3, m-1),  <span style="color: #888;"># удвоить первую</span>
+         f(s1, s2 * 2, s3, m-1),  <span style="color: #888;"># удвоить вторую</span>
+         f(s1, s2, s3 * 2, m-1),  <span style="color: #888;"># удвоить третью</span>
+         f(s1 + 2, s2 + 2, s3 + 2, m-1)]  <span style="color: #888;"># глобальная операция</span>
+    
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m+1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)</pre>
+  </div>
+
+  <div class="warn-block">
+    <p><strong>⚠️ Важно:</strong> в задачах с тремя кучами начальное состояние может быть фиксированным для двух куч и переменным для третьей. Например: [2, 3, S]. В этом случае в поиске перебирается только S.</p>
+  </div>
+
+  <!-- ==================== ТРИ ИГРОКА И КОАЛИЦИИ ==================== -->
+  <h2 id="coalitions">Три игрока и коалиции</h2>
+
+  <div class="definition">
+    <p><strong>Кооперативная игра</strong> — игра, в которой игроки могут объединяться в коалиции для достижения общей цели. В заданиях 19–21 это обычно «сговор» двух игроков против третьего.</p>
+  </div>
+
+  <div class="theory-block">
+    <p>В задачах с тремя игроками (например, Екатерина, Петя, Ваня) появляются новые типы вопросов:</p>
+    <ul>
+      <li><strong>Задание 19:</strong> «Ваня выиграл своим первым ходом» — нужно проверить, что существует ход Пети, после которого Ваня может выиграть.</li>
+      <li><strong>Задание 20:</strong> «Екатерина и Ваня сговорились, чтобы Петя не выиграл» — коалиция Екатерина+Ваня против Пети.</li>
+      <li><strong>Задание 21:</strong> «Екатерина и Петя сговорились, чтобы Екатерина выиграла своим вторым ходом» — коалиция Екатерина+Петя.</li>
+    </ul>
+  </div>
+
+  <h3>Особенности анализа коалиций</h3>
+
+  <div class="theory-block">
+    <p>В кооперативных играх логика <code>any()</code> / <code>all()</code> меняется в зависимости от того, <strong>кто</strong> делает ход и <strong>кто</strong> должен выиграть:</p>
+    <ul>
+      <li><strong>Ход игрока, входящего в коалицию:</strong> он будет выбирать ход, который помогает достичь цели коалиции → <strong><code>any()</code></strong> (ему достаточно одного хорошего хода).</li>
+      <li><strong>Ход игрока, НЕ входящего в коалицию (противника):</strong> он будет пытаться помешать → <strong><code>all()</code></strong> (коалиция должна быть готова к любому его ходу).</li>
+    </ul>
+  </div>
+
+  <h3>Шаблон для трёх игроков</h3>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Коалиция: Екатерина + Ваня против Пети</span>
+<span style="color: #888;"># Екатерина ходит первой, Петя второй, Ваня третий</span>
+
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s >= 30:
+        <span style="color: #888;"># Побеждает игрок, сделавший последний ход</span>
+        <span style="color: #888;"># m % 3 == 0 — Екатерина, == 1 — Петя, == 2 — Ваня</span>
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 3 == 2  <span style="color: #888;"># Ваня выиграл</span>
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    
+    h = [f(s + 1, m-1), f(s * 2, m-1)]
+    
+    <span style="color: #888;"># Кто сейчас ходит?</span>
+    <span style="color: #888;"># m % 3 == 0 — Екатерина (в коалиции) → any()</span>
+    <span style="color: #888;"># m % 3 == 1 — Петя (противник) → all()</span>
+    <span style="color: #888;"># m % 3 == 2 — Ваня (в коалиции) → any()</span>
+    
+    if m % 3 == 1:  <span style="color: #888;"># Ход Пети — противник</span>
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h)  <span style="color: #888;"># Екатерина или Ваня — коалиция</span></pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Ключевые отличия от 2 игроков:</strong></p>
+    <ul>
+      <li>Нужно отслеживать, <strong>чей</strong> сейчас ход (<code>m % 3</code>).</li>
+      <li>Логика <code>any()</code> / <code>all()</code> зависит от принадлежности игрока к коалиции.</li>
+      <li>В условии победы нужно проверять, <strong>кто</strong> выиграл (<code>m % 3</code>).</li>
+    </ul>
+  </div>
+
+  <!-- ==================== РАЗЛИЧИЕ ЗАДАНИЙ ==================== -->
+  <h2 id="tasks-difference">Различие заданий 19, 20 и 21</h2>
+
+  <table>
+    <thead><tr><th>Задание</th><th>Что требуется</th><th>Формула (для 2 игроков)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>19</strong></td><td>Петя не может выиграть за 1 ход, но Ваня выигрывает первым ходом</td><td><code>f(s, 2)</code></td></tr>
+      <tr><td><strong>20</strong></td><td>Петя не может выиграть за 1 ход, но выигрывает вторым ходом</td><td><code>f(s, 3) and not f(s, 1)</code></td></tr>
+      <tr><td><strong>21</strong></td><td>Ваня выигрывает первым или вторым ходом, но не гарантированно первым</td><td><code>f(s, 4) and not f(s, 2)</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-block">
+    <p><strong>🔍 Для 3 игроков:</strong> задания формулируются иначе, но суть та же — анализ выигрышных стратегий для конкретных игроков или коалиций на определённых ходах.</p>
+  </div>
+
+  <!-- ==================== ПРОГРАММНЫЕ ШАБЛОНЫ ==================== -->
+  <div class="extra-block">
+    <span class="extra-label">📖 Программные шаблоны</span>
+    <h2 id="code-templates">Шаблоны кода для разных типов задач</h2>
+
+    <h3>Шаблон 1: 1 куча, на увеличение, 2 игрока</h3>
+    <div class="code-block">
+      <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s >= цель:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s + a, m-1), f(s * b, m-1), ...]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m+1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)</pre>
+    </div>
+
+    <h3>Шаблон 2: 1 куча, на уменьшение, 2 игрока</h3>
+    <div class="code-block">
+      <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s <= цель:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s - a, m-1), f(s // b, m-1), ...]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m+1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)</pre>
+    </div>
+
+    <h3>Шаблон 3: 2 кучи, 2 игрока</h3>
+    <div class="code-block">
+      <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s1, s2, m):
+    if s1 + s2 >= цель:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s1 + a, s2, m-1),
+         f(s1, s2 + a, m-1),
+         f(s1 * b, s2, m-1),
+         f(s1, s2 * b, m-1)]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m+1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)</pre>
+    </div>
+
+    <h3>Шаблон 4: 3 кучи, 2 игрока</h3>
+    <div class="code-block">
+      <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s1, s2, s3, m):
+    if s1 >= a or s2 >= a or s3 >= a or s1+s2+s3 >= b:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s1 * 2, s2, s3, m-1),
+         f(s1, s2 * 2, s3, m-1),
+         f(s1, s2, s3 * 2, m-1),
+         f(s1 + c, s2 + c, s3 + c, m-1)]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m+1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)</pre>
+    </div>
+
+    <h3>Шаблон 5: 3 игрока, коалиция (на примере Задачи №6)</h3>
+    <div class="code-block">
+      <pre><span style="color: #888;"># Коалиция Екатерина + Ваня против Пети</span>
+<span style="color: #888;"># Екатерина (ход 0), Петя (ход 1), Ваня (ход 2)</span>
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s >= 30:
+        <span style="color: #888;"># Проверяем, выиграл ли игрок из коалиции</span>
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 3 != 1  <span style="color: #888;"># Не Петя</span>
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s + 1, m-1), f(s * 2, m-1)]
+    <span style="color: #888;"># Если ход Пети (противника) — all()</span>
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h) if m % 3 == 1 else <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h)</pre>
+    </div>
+
+    <div class="note-block">
+      <p><strong>💡 Важно:</strong> для коалиционных задач логика <code>any()</code> / <code>all()</code> зависит от того, <strong>чей</strong> сейчас ход и <strong>кто</strong> входит в коалицию. Противник использует <code>all()</code>, союзники — <code>any()</code>.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer-note">
+    📌 <strong>Далее:</strong> в разделе «Практика» мы разберём все типы заданий 19–21: от классических двух игроков до коалиционных задач с тремя игроками и тремя кучами.
+  </div>
+
+
+    <div class="next-step">
+    <strong>Следующий шаг:</strong> вернись к <a href="task19.html">странице задания 19</a> или открой <a href="../tasks_index.html">список задач</a>.
+  </div>
+  <script src="../../scripts/syntax-highlight.js"></script>
+</body>
+</html>

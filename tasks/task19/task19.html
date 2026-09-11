@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Задание N — Разбор ЕГЭ по информатике</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <title>Задания 19–21 ЕГЭ — разбор и практика</title>
   <style>
     :root {
       --bg: #fdfdfd;
       --text: #2e2e2e;
       --accent: #1a5f8a;
-      --accent-light: #eaf3f9;
+      --code-bg: #f4f4f4;
       --border: #e0e0e0;
+      --highlight: #fff8e7;
       --radius: 10px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -38,82 +35,586 @@
       text-decoration: none;
       font-size: 0.9rem;
     }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
+    .back-link:hover { text-decoration: underline; }
 
     h1 {
-      font-size: 2rem;
+      font-size: 2.3rem;
       color: var(--accent);
       border-bottom: 3px solid var(--accent);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
     }
 
-    .placeholder {
+    .subtitle {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .theory-link {
+      display: inline-block;
+      margin-bottom: 1.8rem;
+      padding: 0.5rem 1.2rem;
+      background-color: #f5f0ff;
+      border: 1px solid #c4b4e0;
+      border-radius: 8px;
+      color: #4a2a7a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+    .theory-link:hover { background-color: #e8ddf5; }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    p, li { margin-bottom: 0.8rem; }
+
+    a.func-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent);
+    }
+    a.func-link:hover { border-bottom-style: solid; }
+
+    .theory-block {
+      background-color: var(--highlight);
+      border: 1px solid #f0d98c;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .task-full {
+      background-color: #fefefe;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+    }
+    .task-full .task-label {
+      font-weight: 700;
+      color: #888;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .task-brief {
+      background-color: #f9f9f9;
+      border-left: 3px solid var(--accent);
+      padding: 0.6rem 1rem;
+      margin: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    .task-brief strong { color: var(--accent); }
+
+    .code-block {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .image-block img {
+      max-width: 100%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-block .caption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .note-block {
+      background-color: #e8f4e8;
+      border: 1px solid #b4d9b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .warn-block {
+      background-color: #fff0f0;
+      border: 1px solid #e0b4b4;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .info-block {
+      background-color: #eaf3f9;
+      border: 1px solid #b0c8dc;
+      border-radius: var(--radius);
+      padding: 1rem 1.3rem;
+      margin: 1.2rem 0;
+    }
+
+    .answer-block {
+      background-color: #e8f4e8;
+      border: 2px solid #4a8a4a;
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .type-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      color: #fff;
+    }
+    .type-1 { background-color: #4a9a4a; }
+    .type-2 { background-color: #3a7aca; }
+    .type-3 { background-color: #c98a30; }
+    .type-4 { background-color: #6a3a8a; }
+
+    .homework-block {
       background-color: #fffdf5;
       border: 2px dashed #d4c048;
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: 1.5rem;
+      margin: 2.5rem 0 1rem 0;
       text-align: center;
-      margin: 2rem 0;
     }
-
-    .placeholder .icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .placeholder p {
+    .homework-block h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
       color: #8a6d00;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
+    }
+    .homework-block .placeholder { color: #aaa; font-style: italic; }
+
+    .method-summary {
+      background-color: #f0f7fb;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .method-summary h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+    .method-summary ul {
+      margin-left: 1.2rem;
     }
 
-    .placeholder .small {
-      color: #aaa;
-      font-size: 0.9rem;
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0 1rem 0;
     }
 
     .footer-note {
-      font-size: 0.85rem;
-      color: #aaa;
-      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #f0f7fb;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius);
       margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
+      text-align: center;
     }
 
     @media (max-width: 600px) {
-      body {
-        padding: 1.2rem 0.8rem;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
+      body { padding: 1.2rem 0.8rem; }
+      h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
-
 <body>
+
+  <nav class="page-nav" aria-label="Основная навигация">
+    <a class="nav-pill" href="../../index.html">Главная</a>
+    <a class="nav-pill" href="../../base_of_programming/base_of_programming_index.html">Основы Python</a>
+    <a class="nav-pill active" href="../tasks_index.html">Задания ЕГЭ</a>
+    <a class="nav-pill" href="../../base_of_programming/functions_descriptions.html">Справочник функций</a>
+  </nav>
+
 
   <a href="../tasks_index.html" class="back-link">← К списку заданий</a>
 
-  <h1>📝 Задание 19</h1>
-  <p style="color: #555; font-style: italic;">Теория игр. Анализ алгоритма логической игры</p>
+  <h1>📝 Задания 19–21 ЕГЭ</h1>
+  <p class="subtitle">Теория игр · Анализ стратегий · Рекурсивные алгоритмы</p>
 
-  <div class="placeholder">
-    <div class="icon">🚧</div>
-    <p>Материал для этого задания появится позже</p>
-    <p class="small">Разбор находится в разработке</p>
+  <a href="task19_theory.html" class="theory-link">📖 Открыть теорию к заданиям 19–21 →</a>
+
+  <!-- ==================== О ЗАДАНИЯХ ==================== -->
+  <h2>О заданиях</h2>
+
+  <div class="theory-block">
+    <p>Задания 19–21 посвящены <strong>теории игр</strong> и анализу стратегий в логических играх. Два или три игрока по очереди делают ходы, изменяя количество камней в одной или нескольких кучах. Побеждает тот, на чьём ходу достигается целевое состояние.</p>
+    <p>Все три задания решаются <strong>одной рекурсивной функцией</strong> — меняются только параметры поиска. <a href="task19_theory.html#basic-algorithm">Подробнее в теории →</a></p>
   </div>
+
+  <!-- ==================== КЛАССИФИКАЦИЯ ==================== -->
+  <div class="info-block">
+    <h3 style="margin-top: 0; color: var(--accent);">📊 Классификация задач 19–21</h3>
+    <p>Задачи делятся по трём параметрам:</p>
+    <ul>
+      <li><strong>По количеству куч:</strong> 1 куча <span class="type-badge type-1">1</span> · 2 кучи <span class="type-badge type-2">2</span> · 3 кучи <span class="type-badge type-3">3</span></li>
+      <li><strong>По направлению:</strong> на увеличение (добавляем камни) · на уменьшение (убираем камни)</li>
+      <li><strong>По количеству игроков:</strong> 2 игрока (антагонистическая) · 3 игрока (кооперативная)</li>
+    </ul>
+    <p style="margin-top: 0.5rem;">Подробная классификация и описание типов — в <a href="task19_theory.html#classification">теории →</a></p>
+  </div>
+
+  <!-- ==================== МЕТОДЫ РЕШЕНИЯ ==================== -->
+  <div class="method-summary">
+    <h3>🔧 Методы решения</h3>
+    <p>Задачи 19–21 можно решать тремя способами:</p>
+    <ul>
+      <li><strong>1. Аналитический метод</strong> — ручной анализ с построением дерева решений. Подходит для небольших диапазонов.</li>
+      <li><strong>2. Программный метод</strong> — рекурсивная функция на Python. Универсальный и надёжный способ.</li>
+      <li><strong>3. Электронные таблицы</strong> — построение таблицы в Excel/Google Sheets с рекуррентными формулами.</li>
+    </ul>
+    <p style="margin-top: 0.5rem;">Подробнее о каждом методе — в <a href="task19_theory.html#methods">теории →</a></p>
+  </div>
+
+  <!-- ==================== ЗАДАЧА 1 ==================== -->
+  <h2><span class="type-badge type-1">1 куча ↑ 2 игрока</span> Задача №1</h2>
+
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка (задания 19, 20, 21)</div>
+    <p>Два игрока, Петя и Ваня, играют в следующую игру. Перед игроками лежит куча камней. Игроки ходят по очереди, первый ход делает Петя. За один ход игрок может добавить в кучу один камень или увеличить количество камней в куче в два раза.</p>
+    <p>Игра завершается, когда количество камней в куче становится не менее 129. Победителем считается игрок, сделавший последний ход. В начальный момент в куче было S камней; 1 ≤ S ≤ 128.</p>
+    <p><strong>Задание 19:</strong> укажите такое значение S, при котором Петя не может выиграть за один ход, но при любом ходе Пети Ваня может выиграть своим первым ходом.</p>
+    <p><strong>Задание 20:</strong> найдите два наименьших значения S, при которых у Пети есть выигрышная стратегия, причём одновременно выполняются два условия: Петя не может выиграть за один ход; Петя может выиграть своим вторым ходом независимо от того, как будет ходить Ваня.</p>
+    <p><strong>Задание 21:</strong> найдите минимальное значение S, при котором одновременно выполняются два условия: у Вани есть выигрышная стратегия, позволяющая ему выиграть первым или вторым ходом при любой игре Пети; у Вани нет стратегии, которая позволит ему гарантированно выиграть первым ходом.</p>
+  </div>
+
+  <div class="task-brief">
+    <strong>📌 Тип:</strong> 1 куча → на увеличение → 2 игрока
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s >= 129:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s + 1, m - 1),
+         f(s * 2, m - 1)]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m + 1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('19:', *[s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 129) if f(s, 2)])
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('20:', *[s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 129) if f(s, 3) and not f(s, 1)])
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('21:', <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>([s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 129) if f(s, 4) and not f(s, 2)]))</pre>
+  </div>
+
+  <div class="answer-block">
+    <strong>Ответы:</strong><br>
+    19: <strong>64</strong><br>
+    20: <strong>56, 60</strong><br>
+    21: <strong>55</strong>
+  </div>
+
+  <!-- ==================== ЗАДАЧА 2 ==================== -->
+  <h2><span class="type-badge type-1">1 куча ↑ 2 игрока</span> Задача №2</h2>
+
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка (задания 19, 20, 21)</div>
+    <p>Два игрока, Петя и Ваня, играют в следующую игру. Перед игроками лежит куча камней. Игроки ходят по очереди, первый ход делает Петя. За один ход игрок может добавить в кучу один камень или увеличить количество камней в куче в два раза.</p>
+    <p>Игра завершается, когда количество камней в куче становится не менее 29. Победителем считается игрок, сделавший последний ход. В начальный момент в куче было S камней; 1 ≤ S ≤ 28.</p>
+    <p><strong>Задание 19:</strong> укажите такое значение S, при котором Петя не может выиграть за один ход, но при любом ходе Пети Ваня может выиграть своим первым ходом.</p>
+    <p><strong>Задание 20:</strong> найдите два таких значения S, при которых у Пети есть выигрышная стратегия, причём одновременно выполняются два условия: Петя не может выиграть за один ход; Петя может выиграть своим вторым ходом независимо от того, как будет ходить Ваня.</p>
+    <p><strong>Задание 21:</strong> найдите значение S, при котором одновременно выполняются два условия: у Вани есть выигрышная стратегия, позволяющая ему выиграть первым или вторым ходом при любой игре Пети; у Вани нет стратегии, которая позволит ему гарантированно выиграть первым ходом.</p>
+  </div>
+
+  <div class="task-brief">
+    <strong>📌 Тип:</strong> 1 куча → на увеличение → 2 игрока
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s >= 29:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s + 1, m - 1),
+         f(s * 2, m - 1)]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m + 1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('19:', *[s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 29) if f(s, 2)])
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('20:', *[s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 29) if f(s, 3) and not f(s, 1)])
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('21:', <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>([s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 29) if f(s, 4) and not f(s, 2)]))</pre>
+  </div>
+
+  <div class="answer-block">
+    <strong>Ответы:</strong><br>
+    19: <strong>14</strong><br>
+    20: <strong>11, 13</strong><br>
+    21: <strong>10</strong>
+  </div>
+
+  <!-- ==================== ЗАДАЧА 3 ==================== -->
+  <h2><span class="type-badge type-1">1 куча ↓ 2 игрока</span> Задача №3</h2>
+
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка (задания 19, 20, 21)</div>
+    <p>Два игрока, Петя и Ваня, играют в следующую игру. Перед игроками лежит куча камней. Игроки ходят по очереди, первый ход делает Петя. За один ход игрок может убрать из кучи 3 камня, убрать 8 камней или уменьшить количество камней в куче в 3 раза (с округлением до меньшего).</p>
+    <p>Игра завершается, когда количество камней в куче становится не более 16. Победителем считается игрок, сделавший последний ход. В начальный момент в куче было S камней; S ≥ 17.</p>
+    <p><strong>Задание 19:</strong> укажите минимальное значение S, при котором Петя не может выиграть за один ход, но при любом ходе Пети Ваня может выиграть своим первым ходом.</p>
+    <p><strong>Задание 20:</strong> найдите два наименьших значения S, при которых у Пети есть выигрышная стратегия, причём одновременно выполняются два условия: Петя не может выиграть за один ход; Петя может выиграть своим вторым ходом независимо от того, как будет ходить Ваня.</p>
+    <p><strong>Задание 21:</strong> найдите минимальное значение S, при котором одновременно выполняются два условия: у Вани есть выигрышная стратегия, позволяющая ему выиграть первым или вторым ходом при любой игре Пети; у Вани нет стратегии, которая позволит ему гарантированно выиграть первым ходом.</p>
+  </div>
+
+  <div class="task-brief">
+    <strong>📌 Тип:</strong> 1 куча → на уменьшение → 2 игрока
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s <= 16:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s - 3, m - 1),
+         f(s - 8, m - 1),
+         f(s // 3, m - 1)]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m + 1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('19:', <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>([s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(17, 100) if f(s, 2)]))
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('20:', *[s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(17, 100) if f(s, 3) and not f(s, 1)])
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('21:', <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>([s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(17, 100) if f(s, 4) and not f(s, 2)]))</pre>
+  </div>
+
+  <div class="answer-block">
+    <strong>Ответы:</strong><br>
+    19: <strong>48</strong><br>
+    20: <strong>50, 53</strong><br>
+    21: <strong>54</strong>
+  </div>
+
+  <!-- ==================== ЗАДАЧА 4 ==================== -->
+  <h2><span class="type-badge type-2">2 кучи ↑ 2 игрока</span> Задача №4</h2>
+
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка (задания 19, 20, 21)</div>
+    <p>Два игрока, Петя и Ваня, играют в следующую игру. Перед игроками лежат две кучи камней. Игроки ходят по очереди, первый ход делает Петя. За один ход игрок может добавить в одну из куч один камень или увеличить количество камней в куче в два раза.</p>
+    <p>Игра завершается, когда суммарное количество камней в кучах становится не менее 77. Победителем считается игрок, сделавший последний ход. В начальный момент в первой куче было 7 камней, во второй — S камней; 1 ≤ S ≤ 69.</p>
+    <p>Известно, что Ваня выиграл своим первым ходом после неудачного хода Пети.</p>
+    <p><strong>Задание 19:</strong> укажите минимальное значение S, когда такая ситуация возможна.</p>
+    <p><strong>Задание 20:</strong> найдите два таких значения S, при которых у Пети есть выигрышная стратегия, причём одновременно выполняются два условия: Петя не может выиграть за один ход; Петя может выиграть своим вторым ходом независимо от того, как будет ходить Ваня.</p>
+    <p><strong>Задание 21:</strong> найдите минимальное значение S, при котором одновременно выполняются два условия: у Вани есть выигрышная стратегия, позволяющая ему выиграть первым или вторым ходом при любой игре Пети; у Вани нет стратегии, которая позволит ему гарантированно выиграть первым ходом.</p>
+  </div>
+
+  <div class="task-brief">
+    <strong>📌 Тип:</strong> 2 кучи → на увеличение → 2 игрока
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s1, s2, m):
+    if s1 + s2 >= 77:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s1 + 1, s2, m - 1),
+         f(s1, s2 + 1, m - 1),
+         f(s1 * 2, s2, m - 1),
+         f(s1, s2 * 2, m - 1)]
+    <span style="color: #888;"># Для 19 — только any (Петя сходил неудачно)</span>
+    <span style="color: #888;"># return any(h)</span>
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m + 1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)
+
+<span style="color: #888;"># Для 19 раскомментировать return any(h) и использовать:</span>
+<span style="color: #888;"># print('19:', min([s for s in range(1, 70) if f(7, s, 2)]))</span>
+
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('20:', *[s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 70) if f(7, s, 3) and not f(7, s, 1)])
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('21:', <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>([s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 70) if f(7, s, 4) and not f(7, s, 2)]))</pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Для задания 19:</strong> фраза «после неудачного хода Пети» означает, что Петя ошибся и дал Ване возможность выиграть. Поэтому не нужно проверять, что все ходы Пети ведут к победе Вани — достаточно, что существует хотя бы один такой ход. В коде это <code>return any(h)</code> вместо <code>any/all</code>.</p>
+  </div>
+
+  <div class="answer-block">
+    <strong>Ответы:</strong><br>
+    19: <strong>17</strong><br>
+    20: <strong>33, 36</strong><br>
+    21: <strong>32</strong>
+  </div>
+
+  <!-- ==================== ЗАДАЧА 5 (НОВАЯ) ==================== -->
+  <h2><span class="type-badge type-3">3 кучи ↑ 2 игрока</span> Задача №5</h2>
+
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка (задания 19, 20, 21)</div>
+    <p>Два игрока, Петя и Ваня, играют в следующую игру. Перед ними лежат три кучки камней, в первой из которых 2, во второй – 3, в третьей – S (1 ≤ S ≤ 19) камней. У каждого игрока неограниченное количество камней. Игроки ходят по очереди, первый ход делает Петя. Ход состоит в том, что игрок или удваивает число камней в какой-то куче, или добавляет по два камня в каждую из куч.</p>
+    <p>Выигрывает игрок, после хода которого в одной из куч становится не менее 20 камней, или после хода которого общее число камней во всех трёх кучах становится не менее 25.</p>
+    <p><strong>Задание 19:</strong> укажите такое значение S, при котором Петя не может выиграть за один ход, но при любом ходе Пети Ваня может выиграть своим первым ходом.</p>
+    <p><strong>Задание 20:</strong> найдите два наименьших значения S, при которых у Пети есть выигрышная стратегия, причём одновременно выполняются два условия: Петя не может выиграть за один ход; Петя может выиграть своим вторым ходом независимо от того, как будет ходить Ваня.</p>
+    <p><strong>Задание 21:</strong> найдите минимальное значение S, при котором одновременно выполняются два условия: у Вани есть выигрышная стратегия, позволяющая ему выиграть первым или вторым ходом при любой игре Пети; у Вани нет стратегии, которая позволит ему гарантированно выиграть первым ходом.</p>
+  </div>
+
+  <div class="task-brief">
+    <strong>📌 Тип:</strong> 3 кучи → на увеличение → 2 игрока
+  </div>
+
+  <div class="info-block">
+    <p><strong>🔍 Особенности задачи с тремя кучами:</strong></p>
+    <ul>
+      <li>Функция принимает три аргумента: <code>f(s1, s2, s3, m)</code></li>
+      <li>Условие победы: <code>s1 >= 20 or s2 >= 20 or s3 >= 20 or s1+s2+s3 >= 25</code></li>
+      <li>Локальные операции: удвоение каждой из трёх куч</li>
+      <li>Глобальная операция: добавить по 2 камня в каждую кучу</li>
+    </ul>
+    <p>Подробнее о задачах с тремя кучами — в <a href="task19_theory.html#three-piles">теории →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre><a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s1, s2, s3, m):
+    if s1 >= 20 or s2 >= 20 or s3 >= 20 or s1 + s2 + s3 >= 25:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 2 == 0
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s1 * 2, s2, s3, m - 1),
+         f(s1, s2 * 2, s3, m - 1),
+         f(s1, s2, s3 * 2, m - 1),
+         f(s1 + 2, s2 + 2, s3 + 2, m - 1)]
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h) if (m + 1) % 2 == 0 else <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h)
+
+<span style="color: #888;"># Начальное состояние: [2, 3, S]</span>
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('19:', *[s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 20) if f(2, 3, s, 2)])
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('20:', *[s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 20) if f(2, 3, s, 3) and not f(2, 3, s, 1)])
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('21:', <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>([s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 20) if f(2, 3, s, 4) and not f(2, 3, s, 2)]))</pre>
+  </div>
+
+  <div class="answer-block">
+    <strong>Ответы:</strong><br>
+    19: <strong>8</strong><br>
+    20: <strong>10, 11</strong><br>
+    21: <strong>9</strong>
+  </div>
+
+  <!-- ==================== ЗАДАЧА 6 (НОВАЯ) ==================== -->
+  <h2><span class="type-badge type-4">1 куча ↑ 3 игрока (коалиция)</span> Задача №6</h2>
+
+  <div class="task-full">
+    <div class="task-label">📋 Полная формулировка (задания 19, 20, 21)</div>
+    <p>Три игрока, Петя, Ваня и Екатерина, играют в следующую игру. Перед игроками лежит куча камней. Игроки ходят по очереди, первый ход делает Екатерина, второй – Петя, третий – Ваня. За один ход игрок может добавить в кучу один камень или увеличить количество камней в куче в два раза.</p>
+    <p>Игра завершается, когда количество камней в куче становится не менее 30. Победителем считается игрок, сделавший последний ход. В начальный момент в куче было S камней; 1 ≤ S ≤ 29.</p>
+    <p><strong>Задание 19:</strong> Известно, что Ваня выиграл своим первым ходом. При каком минимальном значении S это возможно?</p>
+    <p><strong>Задание 20:</strong> Екатерина и Ваня сговорились. Они хотят, чтобы Петя не выиграл. Найдите минимальное значение S, при котором у них гарантированно получится играть так, чтобы Петя не смог выиграть.</p>
+    <p><strong>Задание 21:</strong> Екатерина и Петя сговорились. Они хотят, чтобы Екатерина победила своим вторым ходом. Сколько существует значений S, при которых Екатерина и Петя гарантированно смогут осуществить их план?</p>
+  </div>
+
+  <div class="task-brief">
+    <strong>📌 Тип:</strong> 1 куча → на увеличение → 3 игрока (кооперативная)
+  </div>
+
+  <div class="info-block">
+    <p><strong>🔍 Особенности кооперативных задач с тремя игроками:</strong></p>
+    <ul>
+      <li>Игроки ходят по очереди: Екатерина (ход 0) → Петя (ход 1) → Ваня (ход 2) → ...</li>
+      <li>В задании 19: нужно проверить, что существует ход Пети, после которого Ваня может выиграть.</li>
+      <li>В задании 20: коалиция Екатерина+Ваня против Пети. Ходы Екатерины и Вани — <code>any()</code>, ход Пети — <code>all()</code>.</li>
+      <li>В задании 21: коалиция Екатерина+Петя. Цель — победа Екатерины на втором ходу.</li>
+    </ul>
+    <p>Подробнее о коалиционных играх — в <a href="task19_theory.html#coalitions">теории →</a></p>
+  </div>
+
+  <div class="code-block">
+    <pre><span style="color: #888;"># Коалиция: Екатерина + Ваня против Пети</span>
+<span style="color: #888;"># Екатерина (m % 3 == 0), Петя (m % 3 == 1), Ваня (m % 3 == 2)</span>
+
+<a href="../../base_of_programming/functions_descriptions.html#keyword-def" class="func-link" target="_blank">def</a> f(s, m):
+    if s >= 30:
+        <span style="color: #888;"># Для задания 19: Ваня выиграл → m % 3 == 2</span>
+        <span style="color: #888;"># return m % 3 == 2</span>
+        <span style="color: #888;"># Для заданий 20-21: коалиция выиграла → не Петя</span>
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> m % 3 != 1
+    if m == 0:
+        <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> False
+    h = [f(s + 1, m - 1),
+         f(s * 2, m - 1)]
+    <span style="color: #888;"># Если ход Пети (противника) — all()</span>
+    <span style="color: #888;"># Если ход союзника — any()</span>
+    <a href="../../base_of_programming/functions_descriptions.html#keyword-return" class="func-link" target="_blank">return</a> <a href="../../base_of_programming/functions_descriptions.html#func-all" class="func-link" target="_blank">all</a>(h) if m % 3 == 1 else <a href="../../base_of_programming/functions_descriptions.html#func-any" class="func-link" target="_blank">any</a>(h)
+
+<span style="color: #888;"># Задание 19: Ваня выиграл своим первым ходом</span>
+<span style="color: #888;"># В f(s, m) заменить return на m % 3 == 2</span>
+<span style="color: #888;"># print('19:', min([s for s in range(1, 30) if f(s, 2)]))</span>
+
+<span style="color: #888;"># Задание 20: Екатерина + Ваня против Пети</span>
+<a href="../../base_of_programming/functions_descriptions.html#func-print" class="func-link" target="_blank">print</a>('20:', <a href="../../base_of_programming/functions_descriptions.html#func-min" class="func-link" target="_blank">min</a>([s for s in <a href="../../base_of_programming/functions_descriptions.html#func-range" class="func-link" target="_blank">range</a>(1, 30) if f(s, 3)]))
+
+<span style="color: #888;"># Задание 21: Екатерина + Петя, Екатерина побеждает вторым ходом</span>
+<span style="color: #888;"># Екатерина ходит на 0-м и 3-м ходу (m = 3 — второй ход Екатерины)</span>
+<span style="color: #888;"># В f(s, m) заменить return на m % 3 == 0 (Екатерина выиграла)</span>
+<span style="color: #888;"># Искать: f(s, 3) and f(s, 2) — Екатерина выигрывает на втором ходе</span>
+<span style="color: #888;"># print('21:', len([s for s in range(1, 30) if f(s, 3) and not f(s, 2)]))</span></pre>
+  </div>
+
+  <div class="note-block">
+    <p><strong>💡 Важно:</strong> для задания 19 нужно заменить условие победы на <code>return m % 3 == 2</code> (Ваня выиграл). Для задания 21 — на <code>return m % 3 == 0</code> (Екатерина выиграла). Логика <code>any()</code>/<code>all()</code> остаётся той же.</p>
+  </div>
+
+  <div class="answer-block">
+    <strong>Ответы:</strong><br>
+    19: <strong>16</strong><br>
+    20: <strong>15</strong><br>
+    21: <strong>4</strong>
+  </div>
+
+  <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+  <div class="homework-block">
+    <h2>📋 Домашнее задание</h2>
+    <p class="placeholder">Материалы для самостоятельной практики появятся здесь позже.</p>
+    <p class="placeholder">Здесь будут размещены дополнительные варианты заданий для отработки навыков.</p>
+  </div>
+
+  <hr>
 
   <div class="footer-note">
-    Актуально для ЕГЭ 2026–2027
+    📌 <strong>Совет:</strong> для всех трёх заданий используется одна и та же функция. Меняются только параметры в поисковых выражениях. Если вы поняли шаблон — вы решили все три задания. Для коалиционных задач обратите внимание на логику <code>any()</code>/<code>all()</code> в зависимости от того, кто входит в коалицию.
   </div>
 
-</body>
 
+    <div class="next-step">
+    <strong>Следующий шаг:</strong> вернись к <a href="../tasks_index.html">списку задач</a> и продолжай подготовку.
+  </div>
+  <script src="../../scripts/syntax-highlight.js"></script>
+</body>
 </html>
