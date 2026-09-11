@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Основы программирования на Python — методички</title>
+  <link rel="stylesheet" href="../styles.css">
   <style>
     :root {
       --bg: #fdfdfd;
@@ -80,9 +82,11 @@
       .lessons-grid {
         grid-template-columns: 1fr;
       }
+
       body {
         padding: 1.2rem 0.8rem;
       }
+
       h1 {
         font-size: 1.6rem;
       }
@@ -102,7 +106,7 @@
     }
 
     .lesson-card:hover {
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
       border-color: #bbb;
     }
 
@@ -168,14 +172,24 @@
     }
   </style>
 </head>
+
 <body>
 
   <a href="../index.html" class="back-link">← На главную страницу курса</a>
 
+  <nav class="page-nav" aria-label="Навигация по разделам">
+    <a class="nav-pill" href="../index.html">Главная</a>
+    <a class="nav-pill active" href="base_of_programming_index.html">Основы Python</a>
+    <a class="nav-pill" href="../tasks/tasks_index.html">Задания ЕГЭ</a>
+    <a class="nav-pill" href="functions_descriptions.html">Справочник функций</a>
+  </nav>
+
   <h1>📚 Основы программирования на Python</h1>
   <p class="subtitle">Методички для самостоятельного изучения · Метод «Перевёрнутый класс»</p>
 
-  <p>В этом разделе собран теоретический материал, необходимый для освоения программирования на Python с нуля. Темы выстроены по нарастающей: каждая следующая опирается на предыдущие и по возможности использует уже изученные конструкции для закрепления.</p>
+  <p>В этом разделе собран теоретический материал, необходимый для освоения программирования на Python с нуля. Темы
+    выстроены по нарастающей: каждая следующая опирается на предыдущие и по возможности использует уже изученные
+    конструкции для закрепления.</p>
 
   <div class="principles">
     <strong>🔁 Как работать с методичками:</strong>
@@ -275,5 +289,7 @@
     </div>
   </div>
 
+  <script src="../scripts/syntax-highlight.js"></script>
 </body>
+
 </html>
